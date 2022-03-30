@@ -1,0 +1,82 @@
+//colors
+:root{
+    --primary:          #0e9594;
+    --primary-dark:     #127475;
+    --primary-light:    #7dcfb6;
+    --secondary:        #fbd1a2;
+    --secondary-dark:   #f79256;
+    --secondary-light:  #f5dfbb;
+    --secondary-darkest:#562c2c;
+    --tertiary:         #00b2ca;
+    --tertiary-dark:    #1d4e89;
+    --tertiary-light:   #a2d6f9;
+
+    --white:   #ffffff;
+    --light-1: #eeeeee;
+    --light-2: #dddddd;
+    --light-3: #cccccc;
+    --light-4: #bbbbbb;
+    --light-5: #aaaaaa;
+    --dark-5:  #999999;
+    --dark-4:  #888888;
+    --dark-3:  #666666;
+    --dark-2:  #444444;
+    --dark-1:  #222222;
+    --black:   #000000;
+
+    --success: #28a745;
+    --danger:  #dc3545;
+    --info:    #17a2b8;
+    --warning: #ffc107;
+
+    --info-light:  #7ab3bc;
+    --danger-light:#e0757f;
+
+    --breakpoint-xs:   0;
+    --breakpoint-sm:   576px;
+    --breakpoint-md:   768px;
+    --breakpoint-lg:   992px;
+    --breakpoint-xl:   1200px;
+    --breakpoint-xxl:  1600px;
+    --breakpoint-xxxl: 1920px;
+}
+
+$primary:           var(--primary);
+$primary_dark:      var(--primary-dark);
+$primary_light:     var(--primary-light);
+$secondary:         var(--secondary);
+$secondary_dark:    var(--secondary-dark);
+$secondary_light:   var(--secondary-light);
+$secondary_darkest: var(--secondary-darkest);
+$tertiary:          var(--tertiary);
+$tertiary_dark:     var(--tertiary-dark);
+$tertiary_light:    var(--tertiary-light);
+
+$white:   var(--white);
+$light_1: var(--light-1);
+$light_2: var(--light-2);
+$light_3: var(--light-3);
+$light_4: var(--light-4);
+$light_5: var(--light-5);
+$dark_5:  var(--dark-5);
+$dark_4:  var(--dark-4);
+$dark_3:  var(--dark-3);
+$dark_2:  var(--dark-2);
+$dark_1:  var(--dark-1);
+$black:   var(--black);
+
+$success: var(--success);
+$danger:  var(--danger); 
+$info:    var(--info);   
+$warning: var(--warning);
+
+$info-light:   var(--info-light);
+$danger-light: var(--danger-light);
+
+$breakpoint-xs:   var(--breakpoint-xs);
+$breakpoint-sm:   var(--breakpoint-sm);
+$breakpoint-md:   var(--breakpoint-md);
+$breakpoint-lg:   var(--breakpoint-lg);
+$breakpoint-xl:   var(--breakpoint-xl);
+$breakpoint-xxl:  var(--breakpoint-xxl);
+$breakpoint-xxxl: var(--breakpoint-xxxl);

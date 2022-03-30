@@ -1,0 +1,252 @@
+@import url("color.css");
+
+* {
+    user-select: none;
+}
+
+input, p {
+    user-select: all !important;
+}
+
+.text-color-1 {
+    color: var(--color-1) !important;
+}
+
+.text-color-2 {
+    color: var(--color-2) !important;
+}
+
+.text-color-3 {
+    color: var(--color-3) !important;
+}
+
+.text-color-4 {
+    color: var(--color-4) !important;
+}
+
+.text-color-5 {
+    color: var(--color-5) !important;
+}
+
+.text-color-6 {
+    color: var(--color-6) !important;
+}
+
+.text-color-7 {
+    color: var(--color-7) !important;
+}
+
+.text-color-8 {
+    color: var(--color-8) !important;
+}
+
+.text-dark-1 {
+    color: var(--dark-1) !important;
+}
+
+.text-dark-2 {
+    color: var(--dark-2) !important;
+}
+
+.text-dark-3 {
+    color: var(--dark-3) !important;
+}
+
+.text-dark-4 {
+    color: var(--dark-4) !important;
+}
+
+.text-dark-5 {
+    color: var(--dark-5) !important;
+}
+
+.text-light-1 {
+    color: var(--light-1) !important;
+}
+
+.text-light-2 {
+    color: var(--light-2) !important;
+}
+
+.text-light-3 {
+    color: var(--light-3) !important;
+}
+
+.text-light-4 {
+    color: var(--light-4) !important;
+}
+
+.text-light-5 {
+    color: var(--light-5) !important;
+}
+
+.bg-color-1 {
+    background-color: var(--color-1) !important;
+}
+
+.bg-color-2 {
+    background-color: var(--color-2) !important;
+}
+
+.bg-color-3 {
+    background-color: var(--color-3) !important;
+}
+
+.bg-color-4 {
+    background-color: var(--color-4) !important;
+}
+
+.bg-color-5 {
+    background-color: var(--color-5) !important;
+}
+
+.bg-color-6 {
+    background-color: var(--color-6) !important;
+}
+
+.bg-color-7 {
+    background-color: var(--color-7) !important;
+}
+
+.bg-color-8 {
+    background-color: var(--color-8) !important;
+}
+
+.bg-dark-1 {
+    background-color: var(--dark-1) !important;
+}
+
+.bg-dark-2 {
+    background-color: var(--dark-2) !important;
+}
+
+.bg-dark-3 {
+    background-color: var(--dark-3) !important;
+}
+
+.bg-dark-4 {
+    background-color: var(--dark-4) !important;
+}
+
+.bg-dark-5 {
+    background-color: var(--dark-5) !important;
+}
+
+.bg-light-1 {
+    background-color: var(--light-1) !important;
+}
+
+.bg-light-2 {
+    background-color: var(--light-2) !important;
+}
+
+.bg-light-3 {
+    background-color: var(--light-3) !important;
+}
+
+.bg-light-4 {
+    background-color: var(--light-4) !important;
+}
+
+.bg-light-5 {
+    background-color: var(--light-5) !important;
+}
+
+.object-fit-cover{
+    object-fit: cover !important;
+    object-position: center;
+}
+
+.btn-click-color-1, .btn-click-color-1:focus {
+    box-shadow: -2px 2px 4px -1px var(--color-1);
+}
+
+.btn-click-color-1:active {
+    box-shadow: inset -2px 2px 6px 2px var(--color-1);
+}
+
+.btn-click-color-2, .btn-click-color-2:focus {
+    box-shadow: -2px 2px 4px -1px var(--color-2);
+}
+
+.btn-click-color-2:active {
+    box-shadow: inset -2px 2px 6px -2px var(--color-2);
+}
+
+.btn-click-color-3, .btn-click-color-3:focus {
+    box-shadow: -2px 2px 4px -1px var(--color-3);
+}
+
+.btn-click-color-3:active {
+    box-shadow: inset -2px 2px 6px -2px var(--color-3);
+}
+
+.btn-click-color-4, .btn-click-color-4:focus {
+    box-shadow: -2px 2px 4px -1px var(--color-4);
+}
+
+.btn-click-color-4:active {
+    box-shadow: inset -2px 2px 6px -2px var(--color-4);
+}
+
+.btn-click-color-5, .btn-click-color-5:focus {
+    box-shadow: -2px 2px 4px -1px var(--color-5);
+}
+
+.btn-click-color-5:active {
+    box-shadow: inset -2px 2px 6px -2px var(--color-5);
+}
+
+.btn-click-color-6, .btn-click-color-6:focus {
+    box-shadow: -2px 2px 4px -1px var(--color-6);
+}
+
+.btn-click-color-6:active {
+    box-shadow: inset -2px 2px 6px -2px var(--color-6);
+}
+
+.btn-click-color-7, .btn-click-color-7:focus {
+    box-shadow: -2px 2px 4px -1px var(--color-7);
+}
+
+.btn-click-color-7:active {
+    box-shadow: inset -2px 2px 6px -2px var(--color-7);
+}
+
+.btn-click-color-8, .btn-click-color-8:focus {
+    box-shadow: -2px 2px 4px -1px var(--color-8);
+}
+
+.btn-click-color-8:active {
+    box-shadow: inset -2px 2px 6px -2px var(--color-8);
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.title.small {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.title.big {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.description {
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 2.2;
+	text-align: justify;
+}
+
+.mt-8 {
+    margin-top: 8rem;
+}
+
+.mt-6 {
+    margin-top: 6rem;
+}

@@ -1,0 +1,127 @@
+@import url("global/font.css");
+
+body {
+    font-family: iranyekan, Tahoma, sans-serif;
+}
+
+.btn-check:focus + .btn, .btn:focus {
+    box-shadow: inset 0 0 5px 2px var(--color-3-50);
+}
+
+::selection {
+    background-color: var(--color-3);
+    color: var(--dark-1);
+}
+
+::placeholder {
+    font-size: .8rem;
+}
+
+.form-control {
+    background-color: var(--light-3);
+    border-radius: 25px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+    box-shadow: -2px 2px 4px -1px var(--dark-4);
+    height: 3rem;
+    transition: all 100ms linear;
+    -webkit-transition: all 100ms linear;
+    -moz-transition: all 100ms linear;
+    -ms-transition: all 100ms linear;
+    -o-transition: all 100ms linear;
+}
+
+.form-control:focus {
+	color: var(--color-3);
+	background-color: var(--light-3);
+	border-color: transparent;
+	box-shadow: inset -2px 2px 6px -2px var(--dark-4);
+}
+
+.form-check-input:focus {
+	border-color: var(--color-3);
+	box-shadow: 0 0 5px 2px var(--color-3-50);
+}
+
+.form-check-input:checked {
+	background-color: var(--color-3);
+	border-color: var(--color-3);
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav-absolute .logo {
+    height: 5rem;
+}
+
+.nav-absolute {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 150;
+    margin: auto;
+}
+
+.header {
+    width: 100%;
+    height: 65vh;
+    position: relative;
+}
+
+.header .image-back {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.header .image-back::after{
+    content: "";
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: var(--gradient-header);
+    opacity: 0.5;
+}
+
+.header-description {
+	position: absolute;
+	right: 5rem;
+	bottom: 5rem;
+	background-image: var(--gradient-caption);
+	width: 40%;
+	height: auto;
+	border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	-ms-border-radius: 20px;
+	-o-border-radius: 20px;
+	z-index: 5;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+	padding: 2rem 2.5rem;
+}
+
+.header-description > .title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-2);
+    margin-bottom: 1rem;
+}
+
+.header-description > .description {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--dark-2);
+    margin-bottom: 0;
+}

@@ -1,0 +1,130 @@
+@import url("../global/main.css");
+@import url("../header.css");
+@import url("../footer.css");
+
+.header {
+    height: 80vh;
+}
+
+.header .image-back .swiper,
+.header .image-back .swiper-wrapper,
+.header .image-back .swiper-wrapper *:not(.header-description) {
+    height: 100%;
+}
+
+.header .image-back::after {
+    content: none;
+}
+
+.header-description::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background-image: var(--gradient-caption);
+	width: 100%;
+	height: 100%;
+	opacity: 0.8;
+	z-index: -1;
+}
+
+.advice-box {
+    margin-bottom: 1.5rem;
+}
+
+.advice-box > .parent {
+    box-shadow: var(--shadow-outset-small);
+    padding: 1rem;
+    background-color: var(--white);
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 200ms linear;
+    -webkit-transition: all 200ms linear;
+    -moz-transition: all 200ms linear;
+    -ms-transition: all 200ms linear;
+    -o-transition: all 200ms linear;
+    position: relative;
+}
+
+.advice-box > .parent::after {
+    content: "";
+    width: calc( 100% - 4px );
+    height: 3px;
+    background-color: var(--color-4);
+    left: 2px;
+    bottom: 0;
+    position: absolute;
+    z-index: 2;
+}
+
+.advice-box > .parent:hover {
+    box-shadow: var(--shadow-inset-small);
+}
+
+.advice-box > .parent * {
+    pointer-events: none;
+}
+
+.advice-box > .parent > .image {
+    width: 100%;
+    height: 5rem;
+    object-fit: contain;
+    margin: 3rem auto;
+}
+
+.advice-box .title {
+    color: var(--black);
+    margin-bottom: 1rem;
+}
+
+.advice-box .description {
+    color: var(--dark-3);
+}
+
+@media (min-width: 1400px) {
+    .advice-box > .parent {
+        padding: 2rem;
+    }
+}
+
+.main {
+    margin-bottom: 4rem;
+}
+
+.about-index-description .description {
+	line-height: 1.8;
+	padding-right: 3rem;
+	padding-bottom: 1rem;
+	position: relative;
+	font-size: 1.1rem;
+}
+
+.about-index-description .description::before {
+    content: "\f00c";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 1rem;
+    width: 2rem;
+    height: 2rem;
+    font-family: "Font Awesome 6 Pro";
+    color: var(--color-4);
+    font-size: 2rem;
+    margin: auto;
+    font-weight: 900;
+}
+
+.about-index-description .description::after {
+    content: "";
+    width: 40%;
+    height: 1px;
+    background-color: var(--light-4);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

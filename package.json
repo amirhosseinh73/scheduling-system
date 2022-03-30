@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "compile:sass:index": "node-sass assets/scss/pages/index.scss assets/css/index.css -w",
+        "compile:sass:contact": "node-sass assets/scss/pages/contact.scss assets/css/contact.css -w"
+    }
+}
