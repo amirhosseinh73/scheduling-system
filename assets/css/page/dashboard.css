@@ -1,0 +1,10 @@
+@import url("../global/main.css");
+@import url("../header.css");
+@import url("../footer.css");
+
+.main-dashboard {
+	background-image: linear-gradient( 0deg, var(--color-4) 0, var(--color-4) 20%,var(--color-2-75) 50%, var(--color-4) 80%, var(--color-4) 100% );
+	width: 100%;
+	height: 100vh;
+	position: relative;
+}
