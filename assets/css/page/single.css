@@ -147,3 +147,75 @@
 .tag:hover > a {
     color: var(--color-2);
 }
+
+.page-about-image-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    height: 14rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.page-about-image-1 {
+	border-top-right-radius: 75px;
+}
+
+main.main {
+    position: relative;
+}
+
+.main-about::after {
+	content: "";
+	background-image: url(../../image/shape-about.svg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: left top;
+	position: absolute;
+	z-index: -1;
+	top: 40%;
+	left: 0;
+	width: 25rem;
+	height: 23rem;
+	transform: rotateX(180deg);
+}
+
+.page-about-certificate {
+    max-width: 100%;
+    height: 16rem;
+    display: block;
+    object-fit: cover;
+    margin: auto;
+    width: 100%;
+}
+
+.page-about-certificate.certificate-1 {
+    border-radius: 75px 8px 0 0;
+    -webkit-border-radius: 75px 8px 0 0;
+    -moz-border-radius: 75px 8px 0 0;
+    -ms-border-radius: 75px 8px 0 0;
+    -o-border-radius: 75px 8px 0 0;
+    margin-bottom: 0.5rem;
+}
+
+.page-about-certificate.certificate-2 {
+	height: 12rem;
+	border-radius: 0 0 75px 0;
+	-webkit-border-radius: 0 0 75px 0;
+	-moz-border-radius: 0 0 75px 0;
+	-ms-border-radius: 0 0 75px 0;
+	-o-border-radius: 0 0 75px 0;
+}
+
+.page-about-certificate.certificate-3 {
+	height: 12rem;
+	border-radius: 0 0 0 75px;
+	-webkit-border-radius: 0 0 0 75px;
+	-moz-border-radius: 0 0 0 75px;
+	-ms-border-radius: 0 0 0 75px;
+	-o-border-radius: 0 0 0 75px;
+}

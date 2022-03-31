@@ -8,6 +8,10 @@ input, p {
     user-select: all !important;
 }
 
+body {
+    position: relative;
+}
+
 .text-color-1 {
     color: var(--color-1) !important;
 }
@@ -260,7 +264,7 @@ input, p {
 .description {
     font-size: 0.9rem;
     font-weight: 400;
-    line-height: 2.2;
+    line-height: 3;
 	text-align: justify;
 }
 
