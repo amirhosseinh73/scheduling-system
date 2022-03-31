@@ -219,3 +219,124 @@ main.main {
 	-ms-border-radius: 0 0 0 75px;
 	-o-border-radius: 0 0 0 75px;
 }
+
+.accordion {
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.accordion-item {
+    background-color: transparent;
+}
+
+.accordion-button:focus {
+	border-color: var(--color-2);
+	box-shadow: 0 0 0 .25rem var(--color-2-25);
+}
+
+.accordion-button:not(.collapsed) {
+	color: var(--color-2);
+	background-color: var(--color-1);
+}
+
+.accordion-button::after {
+	margin-right: auto;
+    margin-left: 0;
+}
+
+.accordion-body {
+    line-height: 2;
+    text-align: justify;
+    font-size: 1rem;
+    color: var(--dark-2);
+    background-color: var(--light-2);
+}
+
+.page-contact-us-contact-info {
+    position: relative;
+}
+
+.page-contact-us-contact-info::after {
+	content: "";
+	position: absolute;
+	right: 0;
+	top: 5.3rem;
+	background-image: url(../../image/shape-contact-us.svg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: right top;
+	width: 25rem;
+	height: 28rem;
+	display: block;
+	z-index: -1;
+}
+
+.page-contact-us-contact-info .vector {
+    width: 100%;
+    height: auto;
+}
+
+.page-contact-us-contact-info .contact-info {
+    border: 1px solid var(--color-2);
+    /* box-shadow: 0 -2px 3px 0 var(--color-2-50); */
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+    padding: 2rem;
+    background-image: linear-gradient( to top, var(--color-4-50) 70%, var(--color-2-25) 100% );
+}
+
+.addresses-list {
+	padding: 0 1rem 0 2rem;
+	list-style: none;
+	line-height: 2;
+	max-width: 75%;
+    margin-top: 2.5rem;
+}
+
+.addresses-list > li {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+    margin-bottom: 2rem;
+}
+
+.addresses-list > li:last-child {
+    margin-bottom: 0;
+}
+
+.addresses-list > li > i {
+    color: var(--color-3);
+    font-size: 1.75rem;
+    flex: 0 0 auto;
+    margin-left: 1.25rem;
+}
+
+.addresses-list > li > p {
+    color: var(--color-8);
+    font-size: 1.1rem;
+    font-weight: 600;
+    flex: 1;
+    margin: 0;
+}
+
+.page-contact-us-map {
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+    overflow: hidden;
+    width: 100%;
+    height: 25rem;
+    border: 1px solid var(--color-2);
+    /* box-shadow: 0 -2px 3px 0 var(--color-2-50); */
+}
+
+.page-contact-us-map > * {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}

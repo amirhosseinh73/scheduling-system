@@ -246,6 +246,88 @@ body {
     box-shadow: inset -2px 2px 6px -2px var(--color-8);
 }
 
+.btn-color-1, .btn-color-2, .btn-color-3, .btn-color-4,
+.btn-color-5, .btn-color-6, .btn-color-7, .btn-color-8 {
+	color: var(--black);
+	font-size: 0.9rem;
+	padding: 0.75rem 1.25rem;
+	border: 0;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+    display: block;
+}
+
+.btn-color-1, .btn-color-3 {
+    color: var(--white);
+}
+
+.btn-color-1 {
+    background-color: var(--color-1);
+}
+
+.btn-color-2 {
+    background-color: var(--color-2);
+}
+
+.btn-color-3 {
+    background-color: var(--color-3);
+}
+
+.btn-color-4 {
+    background-color: var(--color-4);
+}
+
+.btn-color-5 {
+    background-color: var(--color-5);
+}
+
+.btn-color-6 {
+    background-color: var(--color-6);
+}
+
+.btn-color-7 {
+    background-color: var(--color-7);
+}
+
+.btn-color-8 {
+    background-color: var(--color-8);
+}
+
+.btn-color-1:hover {
+    background-color: var(--color-1-75);
+}
+
+.btn-color-2:hover {
+    background-color: var(--color-2-75);
+}
+
+.btn-color-3:hover {
+    background-color: var(--color-3-75);
+}
+
+.btn-color-4:hover {
+    background-color: var(--color-4-75);
+}
+
+.btn-color-5:hover {
+    background-color: var(--color-5-75);
+}
+
+.btn-color-6:hover {
+    background-color: var(--color-6-75);
+}
+
+.btn-color-7:hover {
+    background-color: var(--color-7-75);
+}
+
+.btn-color-8:hover {
+    background-color: var(--color-8-75);
+}
+
 .title {
     font-size: 1.1rem;
     font-weight: 600;
@@ -254,6 +336,11 @@ body {
 .title.small {
     font-size: 0.9rem;
     font-weight: 500;
+}
+
+.title.medium {
+    font-size: 1.3rem;
+    font-weight: 700;
 }
 
 .title.big {
