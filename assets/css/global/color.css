@@ -13,9 +13,6 @@
     --dark-1:  #222222;
     --black:   #000000;
 
-    --info-light:  #7ab3bc;
-    --danger-light:#e0757f;
-
     --breakpoint-xs:   0;
     /* --breakpoint-sm:   576px;
     --breakpoint-md:   768px;
@@ -78,4 +75,18 @@
 
     --shadow-outset-small: 2px 2px 4px 0 var(--light-2);
     --shadow-inset-small: inset 2px 2px 4px 0 var(--light-2);
+
+    --shadow-outset-input: 2px 2px 0 0 var(--light-5);
+    --shadow-inset-input: inset 7px 11px 16px -8px var(--light-5);
+
+    --bs-primary-50:  #0d6efd80;
+    --bs-secondary-50:#6c757d80;
+    --bs-success-50:  #19875480;
+    --bs-info-50:     #0dcaf080;
+    --bs-warning-50:  #ffc10780;
+    --bs-danger-50:   #dc354580;
+    --bs-light-50:    #f8f9fa80;
+    --bs-dark-50:     #21252980;
+
+    --fontawesome: "Font Awesome 6 Pro";
 }

@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+    <title>dashboard</title>
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/lib/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/font/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/page/dashboard.css" />
+</head>
+<body class="dashboard-body container-fluid">
+    <nav class="row flex-row-reverse flex-sm-row nav-header">
+        <div class="col-12 col-sm-auto ms-sm-auto">
+            <button type="button" class="btn text-color-7">
+                <i class="fad fa-bars"></i>
+            </button>
+            <button type="button" class="btn text-color-7">
+                <i class="fad fa-search"></i>
+            </button>
+        </div>
+        <div class="col-12 col-sm-auto mx-sm-auto">
+            <a href="#">
+                <img src="../assets/image/logo.png" class="img-fluid logo" alt="logo"/>
+            </a>
+        </div>
+        <div class="col-12 col-sm-auto me-sm-auto">
+            <div class="row nav-profile">
+                <div class="col">
+                    <p>آقای حسنی</p>
+                </div>
+                <div class="col-auto pe-1">
+                    <img src="../assets/image/dashboard/male.jpg" class="nav-profile-image"/>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container dashboard-main">
+        <div class="row">
+            <aside class="col-8 col-sm-4 col-lg-2 dashboard-side-nav">
+                <button type="button" class="btn-color-3 fas fa-arrow-right py-1 btn-close-side-nav"></button>
+                <span class="wallet-balance">
+                    موجودی کیف پول:
+                    <abbr>15000</abbr>
+                </span>
+                <ul class="side-nav-ul">
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="far fa-dashboard"></i>
+                            <span>پیش خوان</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dashboard-page-2.html">
+                            <i class="far fa-calendar-check"></i>
+                            <span>نوبت های گرفته شده</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="dashboard-page-3.html">
+                            <i class="far fa-calendar-edit"></i>
+                            <span>ثبت نوبت جدید</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dashboard-page-4.html">
+                            <i class="far fa-wallet"></i>
+                            <span>کیف پول</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dashboard-page-5.html">
+                            <i class="far fa-file-signature"></i>
+                            <span>آزمون های آنلاین</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dashboard-page-6.html">
+                            <i class="far fa-screen-users"></i>
+                            <span>کارگاه های آنلاین</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dashboard-page-7.html">
+                            <i class="far fa-question-circle"></i>
+                            <span>پرسش و پاسخ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dashboard-page-8.html">
+                            <i class="far fa-comments"></i>
+                            <span>تیکت ها</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="far fa-power-off"></i>
+                            <span>خروج</span>
+                        </a>
+                    </li>
+                </ul>
+            </aside>
+            <article class="col-12 col-sm-8 col-lg-10 px-0 h-100">
+                <div class="dashboard-main-container">
+                    <div class="col-12 h-100">
+                        <section class="row">
+                            <div class="col-12 col-sm-3">
+                                <section class="search-box-parent">
+                                    <input type="text" class="custom-input-text" placeholder="نام متخصص خود را وارد کنید..."/>
+                                    <button type="button" class="btn-color-1 far fa-search"></button>
+                                </section>
+                            </div>
+                            <div class="col-12 col-sm-3 me-3">
+                                <section class="custom-select-box-parent">
+                                    <select class="custom-select-box">
+                                        <option value="none">نوع نوبت خود را انتخاب کنید.</option>
+                                        <option>تلفنی</option>
+                                        <option>حضوری</option>
+                                    </select>
+                                    <button type="button" class="btn-color-1 far fa-angle-down"></button>
+                                </section>
+                            </div>
+                            <div class="col-12 col-sm-5 me-auto text-start">
+                                <div class="row justify-content-end">
+                                    <div class="col-12">
+                                        <p class="text-dark-2 text-center font-size-0-7 mb-1">فیلتر تاریخ و زمان</p>
+                                    </div>
+                                </div>
+                                <div class="row font-size-0-7">
+                                    <div class="col-6">
+                                        <span class="ms-2">از:</span>
+                                        <button type="button" class="btn-box-shadow dir-ltr">1400/02/03 08:30</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <span class="ms-2">تا:</span>
+                                        <button type="button" class="btn-box-shadow dir-ltr">1400/02/03 08:30</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="dashboard-inside-container row">
+                            <div class="col-12 col-sm-9 h-100">
+                                <div class="inside-container-right">
+                                    <section class="appointment-card active">
+                                        <img src="../assets/image/doctor-1.jpg"/>
+                                        <div>
+                                            <h5 class="card-title">دکتر امین بازرگانی</h5>
+                                            <p class="card-description-1">مشاور ازدواج</p>
+                                            <span class="card-icon text-success fas fa-user-group"></span>
+                                            <span class="card-icon text-danger fas fa-phone-volume"></span>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>08:45 - 11:30</abbr>
+                                            </p>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>16:00 - 22:15</abbr>
+                                            </p>
+                                            <p class="card-description-3">
+                                                <span>بیمه:</span>
+                                                <abbr>نکمیلی</abbr>
+                                                <abbr>تامین اجتماعی</abbr>
+                                                <abbr>فولاد</abbr>
+                                            </p>
+                                        </div>
+                                    </section>
+                                    <section class="appointment-card">
+                                        <img src="../assets/image/doctor-1.jpg"/>
+                                        <div>
+                                            <h5 class="card-title">دکتر امین بازرگانی</h5>
+                                            <p class="card-description-1">مشاور ازدواج</p>
+                                            <span class="card-icon text-success fas fa-user-group"></span>
+                                            <span class="card-icon text-danger fas fa-phone-volume"></span>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>08:45 - 11:30</abbr>
+                                            </p>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>16:00 - 22:15</abbr>
+                                            </p>
+                                            <p class="card-description-3">
+                                                <span>بیمه:</span>
+                                                <abbr>نکمیلی</abbr>
+                                                <abbr>تامین اجتماعی</abbr>
+                                                <abbr>فولاد</abbr>
+                                            </p>
+                                        </div>
+                                    </section>
+                                    <section class="appointment-card">
+                                        <img src="../assets/image/doctor-1.jpg"/>
+                                        <div>
+                                            <h5 class="card-title">دکتر امین بازرگانی</h5>
+                                            <p class="card-description-1">مشاور ازدواج</p>
+                                            <span class="card-icon text-success fas fa-user-group"></span>
+                                            <span class="card-icon text-danger fas fa-phone-volume"></span>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>08:45 - 11:30</abbr>
+                                            </p>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>16:00 - 22:15</abbr>
+                                            </p>
+                                            <p class="card-description-3">
+                                                <span>بیمه:</span>
+                                                <abbr>نکمیلی</abbr>
+                                                <abbr>تامین اجتماعی</abbr>
+                                                <abbr>فولاد</abbr>
+                                            </p>
+                                        </div>
+                                    </section>
+                                    <section class="appointment-card">
+                                        <img src="../assets/image/doctor-1.jpg"/>
+                                        <div>
+                                            <h5 class="card-title">دکتر امین بازرگانی</h5>
+                                            <p class="card-description-1">مشاور ازدواج</p>
+                                            <span class="card-icon text-success fas fa-user-group"></span>
+                                            <span class="card-icon text-danger fas fa-phone-volume"></span>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>08:45 - 11:30</abbr>
+                                            </p>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>16:00 - 22:15</abbr>
+                                            </p>
+                                            <p class="card-description-3">
+                                                <span>بیمه:</span>
+                                                <abbr>نکمیلی</abbr>
+                                                <abbr>تامین اجتماعی</abbr>
+                                                <abbr>فولاد</abbr>
+                                            </p>
+                                        </div>
+                                    </section>
+                                    <section class="appointment-card">
+                                        <img src="../assets/image/doctor-1.jpg"/>
+                                        <div>
+                                            <h5 class="card-title">دکتر امین بازرگانی</h5>
+                                            <p class="card-description-1">مشاور ازدواج</p>
+                                            <span class="card-icon text-success fas fa-user-group"></span>
+                                            <span class="card-icon text-danger fas fa-phone-volume"></span>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>08:45 - 11:30</abbr>
+                                            </p>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>16:00 - 22:15</abbr>
+                                            </p>
+                                            <p class="card-description-3">
+                                                <span>بیمه:</span>
+                                                <abbr>نکمیلی</abbr>
+                                                <abbr>تامین اجتماعی</abbr>
+                                                <abbr>فولاد</abbr>
+                                            </p>
+                                        </div>
+                                    </section>
+                                    <section class="appointment-card">
+                                        <img src="../assets/image/doctor-1.jpg"/>
+                                        <div>
+                                            <h5 class="card-title">دکتر امین بازرگانی</h5>
+                                            <p class="card-description-1">مشاور ازدواج</p>
+                                            <span class="card-icon text-success fas fa-user-group"></span>
+                                            <span class="card-icon text-danger fas fa-phone-volume"></span>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>08:45 - 11:30</abbr>
+                                            </p>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>16:00 - 22:15</abbr>
+                                            </p>
+                                            <p class="card-description-3">
+                                                <span>بیمه:</span>
+                                                <abbr>نکمیلی</abbr>
+                                                <abbr>تامین اجتماعی</abbr>
+                                                <abbr>فولاد</abbr>
+                                            </p>
+                                        </div>
+                                    </section>
+                                    <section class="appointment-card">
+                                        <img src="../assets/image/doctor-1.jpg"/>
+                                        <div>
+                                            <h5 class="card-title">دکتر امین بازرگانی</h5>
+                                            <p class="card-description-1">مشاور ازدواج</p>
+                                            <span class="card-icon text-success fas fa-user-group"></span>
+                                            <span class="card-icon text-danger fas fa-phone-volume"></span>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>08:45 - 11:30</abbr>
+                                            </p>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>16:00 - 22:15</abbr>
+                                            </p>
+                                            <p class="card-description-3">
+                                                <span>بیمه:</span>
+                                                <abbr>نکمیلی</abbr>
+                                                <abbr>تامین اجتماعی</abbr>
+                                                <abbr>فولاد</abbr>
+                                            </p>
+                                        </div>
+                                    </section>
+                                    <section class="appointment-card">
+                                        <img src="../assets/image/doctor-1.jpg"/>
+                                        <div>
+                                            <h5 class="card-title">دکتر امین بازرگانی</h5>
+                                            <p class="card-description-1">مشاور ازدواج</p>
+                                            <span class="card-icon text-success fas fa-user-group"></span>
+                                            <span class="card-icon text-danger fas fa-phone-volume"></span>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>08:45 - 11:30</abbr>
+                                            </p>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>16:00 - 22:15</abbr>
+                                            </p>
+                                            <p class="card-description-3">
+                                                <span>بیمه:</span>
+                                                <abbr>نکمیلی</abbr>
+                                                <abbr>تامین اجتماعی</abbr>
+                                                <abbr>فولاد</abbr>
+                                            </p>
+                                        </div>
+                                    </section>
+                                    <section class="appointment-card">
+                                        <img src="../assets/image/doctor-1.jpg"/>
+                                        <div>
+                                            <h5 class="card-title">دکتر امین بازرگانی</h5>
+                                            <p class="card-description-1">مشاور ازدواج</p>
+                                            <span class="card-icon text-success fas fa-user-group"></span>
+                                            <span class="card-icon text-danger fas fa-phone-volume"></span>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>08:45 - 11:30</abbr>
+                                            </p>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>16:00 - 22:15</abbr>
+                                            </p>
+                                            <p class="card-description-3">
+                                                <span>بیمه:</span>
+                                                <abbr>نکمیلی</abbr>
+                                                <abbr>تامین اجتماعی</abbr>
+                                                <abbr>فولاد</abbr>
+                                            </p>
+                                        </div>
+                                    </section>
+                                    <section class="appointment-card">
+                                        <img src="../assets/image/doctor-1.jpg"/>
+                                        <div>
+                                            <h5 class="card-title">دکتر امین بازرگانی</h5>
+                                            <p class="card-description-1">مشاور ازدواج</p>
+                                            <span class="card-icon text-success fas fa-user-group"></span>
+                                            <span class="card-icon text-danger fas fa-phone-volume"></span>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>08:45 - 11:30</abbr>
+                                            </p>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>16:00 - 22:15</abbr>
+                                            </p>
+                                            <p class="card-description-3">
+                                                <span>بیمه:</span>
+                                                <abbr>نکمیلی</abbr>
+                                                <abbr>تامین اجتماعی</abbr>
+                                                <abbr>فولاد</abbr>
+                                            </p>
+                                        </div>
+                                    </section>
+                                    <section class="appointment-card">
+                                        <img src="../assets/image/doctor-1.jpg"/>
+                                        <div>
+                                            <h5 class="card-title">دکتر امین بازرگانی</h5>
+                                            <p class="card-description-1">مشاور ازدواج</p>
+                                            <span class="card-icon text-success fas fa-user-group"></span>
+                                            <span class="card-icon text-danger fas fa-phone-volume"></span>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>08:45 - 11:30</abbr>
+                                            </p>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>16:00 - 22:15</abbr>
+                                            </p>
+                                            <p class="card-description-3">
+                                                <span>بیمه:</span>
+                                                <abbr>نکمیلی</abbr>
+                                                <abbr>تامین اجتماعی</abbr>
+                                                <abbr>فولاد</abbr>
+                                            </p>
+                                        </div>
+                                    </section>
+                                    <section class="appointment-card">
+                                        <img src="../assets/image/doctor-1.jpg"/>
+                                        <div>
+                                            <h5 class="card-title">دکتر امین بازرگانی</h5>
+                                            <p class="card-description-1">مشاور ازدواج</p>
+                                            <span class="card-icon text-success fas fa-user-group"></span>
+                                            <span class="card-icon text-danger fas fa-phone-volume"></span>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>08:45 - 11:30</abbr>
+                                            </p>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>16:00 - 22:15</abbr>
+                                            </p>
+                                            <p class="card-description-3">
+                                                <span>بیمه:</span>
+                                                <abbr>نکمیلی</abbr>
+                                                <abbr>تامین اجتماعی</abbr>
+                                                <abbr>فولاد</abbr>
+                                            </p>
+                                        </div>
+                                    </section>
+                                    <section class="appointment-card">
+                                        <img src="../assets/image/doctor-1.jpg"/>
+                                        <div>
+                                            <h5 class="card-title">دکتر امین بازرگانی</h5>
+                                            <p class="card-description-1">مشاور ازدواج</p>
+                                            <span class="card-icon text-success fas fa-user-group"></span>
+                                            <span class="card-icon text-danger fas fa-phone-volume"></span>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>08:45 - 11:30</abbr>
+                                            </p>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>16:00 - 22:15</abbr>
+                                            </p>
+                                            <p class="card-description-3">
+                                                <span>بیمه:</span>
+                                                <abbr>نکمیلی</abbr>
+                                                <abbr>تامین اجتماعی</abbr>
+                                                <abbr>فولاد</abbr>
+                                            </p>
+                                        </div>
+                                    </section>
+                                    <section class="appointment-card">
+                                        <img src="../assets/image/doctor-1.jpg"/>
+                                        <div>
+                                            <h5 class="card-title">دکتر امین بازرگانی</h5>
+                                            <p class="card-description-1">مشاور ازدواج</p>
+                                            <span class="card-icon text-success fas fa-user-group"></span>
+                                            <span class="card-icon text-danger fas fa-phone-volume"></span>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>08:45 - 11:30</abbr>
+                                            </p>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>16:00 - 22:15</abbr>
+                                            </p>
+                                            <p class="card-description-3">
+                                                <span>بیمه:</span>
+                                                <abbr>نکمیلی</abbr>
+                                                <abbr>تامین اجتماعی</abbr>
+                                                <abbr>فولاد</abbr>
+                                            </p>
+                                        </div>
+                                    </section>
+                                    <section class="appointment-card">
+                                        <img src="../assets/image/doctor-1.jpg"/>
+                                        <div>
+                                            <h5 class="card-title">دکتر امین بازرگانی</h5>
+                                            <p class="card-description-1">مشاور ازدواج</p>
+                                            <span class="card-icon text-success fas fa-user-group"></span>
+                                            <span class="card-icon text-danger fas fa-phone-volume"></span>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>08:45 - 11:30</abbr>
+                                            </p>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>16:00 - 22:15</abbr>
+                                            </p>
+                                            <p class="card-description-3">
+                                                <span>بیمه:</span>
+                                                <abbr>نکمیلی</abbr>
+                                                <abbr>تامین اجتماعی</abbr>
+                                                <abbr>فولاد</abbr>
+                                            </p>
+                                        </div>
+                                    </section>
+                                    <section class="appointment-card">
+                                        <img src="../assets/image/doctor-1.jpg"/>
+                                        <div>
+                                            <h5 class="card-title">دکتر امین بازرگانی</h5>
+                                            <p class="card-description-1">مشاور ازدواج</p>
+                                            <span class="card-icon text-success fas fa-user-group"></span>
+                                            <span class="card-icon text-danger fas fa-phone-volume"></span>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>08:45 - 11:30</abbr>
+                                            </p>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>16:00 - 22:15</abbr>
+                                            </p>
+                                            <p class="card-description-3">
+                                                <span>بیمه:</span>
+                                                <abbr>نکمیلی</abbr>
+                                                <abbr>تامین اجتماعی</abbr>
+                                                <abbr>فولاد</abbr>
+                                            </p>
+                                        </div>
+                                    </section>
+                                    <section class="appointment-card">
+                                        <img src="../assets/image/doctor-1.jpg"/>
+                                        <div>
+                                            <h5 class="card-title">دکتر امین بازرگانی</h5>
+                                            <p class="card-description-1">مشاور ازدواج</p>
+                                            <span class="card-icon text-success fas fa-user-group"></span>
+                                            <span class="card-icon text-danger fas fa-phone-volume"></span>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>08:45 - 11:30</abbr>
+                                            </p>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>16:00 - 22:15</abbr>
+                                            </p>
+                                            <p class="card-description-3">
+                                                <span>بیمه:</span>
+                                                <abbr>نکمیلی</abbr>
+                                                <abbr>تامین اجتماعی</abbr>
+                                                <abbr>فولاد</abbr>
+                                            </p>
+                                        </div>
+                                    </section>
+                                    <section class="appointment-card">
+                                        <img src="../assets/image/doctor-1.jpg"/>
+                                        <div>
+                                            <h5 class="card-title">دکتر امین بازرگانی</h5>
+                                            <p class="card-description-1">مشاور ازدواج</p>
+                                            <span class="card-icon text-success fas fa-user-group"></span>
+                                            <span class="card-icon text-danger fas fa-phone-volume"></span>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>08:45 - 11:30</abbr>
+                                            </p>
+                                            <p class="card-description-2">
+                                                <span>شنبه تا پنج شنبه</span>
+                                                <abbr>16:00 - 22:15</abbr>
+                                            </p>
+                                            <p class="card-description-3">
+                                                <span>بیمه:</span>
+                                                <abbr>نکمیلی</abbr>
+                                                <abbr>تامین اجتماعی</abbr>
+                                                <abbr>فولاد</abbr>
+                                            </p>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-3 px-0 h-100">
+                                <div class="inside-container-left row mx-0">
+                                    <div class="col-12">
+                                        <h4 class="title text-color-1 mt-3">دکتر امین بازرگانی</h4>
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <div class="row mx-0 align-items-center">
+                                            <div class="col ms-auto">
+                                                <p class="description font-size-0-7 mb-0">روز خود را انتخاب کنید:</p>
+                                            </div>
+                                            <div class="col-auto ps-0 pe-1">
+                                                <button type="button" class="btn-text fas fa-long-arrow-right text-dark-1"></button>
+                                            </div>
+                                            <div class="col-auto pe-0 ps-1">
+                                                <button type="button" class="btn-text fas fa-long-arrow-left text-color-3"></button>
+                                            </div>
+                                        </div>
+                                        <div class="row mx-0">
+                                            <div class="col-6 px-1 my-1">
+                                                <button type="button" class="btn-color-2 font-size-0-8 w-100">شنبه 09:30</button>
+                                            </div>
+                                            <div class="col-6 px-1 my-1">
+                                                <button type="button" class="btn-color-2 font-size-0-8 w-100">شنبه 09:30</button>
+                                            </div>
+                                            <div class="col-6 px-1 my-1">
+                                                <button type="button" class="btn-color-2 font-size-0-8 w-100">شنبه 09:30</button>
+                                            </div>
+                                            <div class="col-6 px-1 my-1">
+                                                <button type="button" class="btn-color-1 font-size-0-8 w-100">شنبه 09:30</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mx-0 align-items-center mt-4">
+                                            <div class="col ms-auto">
+                                                <p class="description font-size-0-7 mb-0">ساعت خود را انتخاب کنید:</p>
+                                            </div>
+                                            <div class="col-auto ps-0 pe-1">
+                                                <button type="button" class="btn-text fas fa-long-arrow-right text-dark-1"></button>
+                                            </div>
+                                            <div class="col-auto pe-0 ps-1">
+                                                <button type="button" class="btn-text fas fa-long-arrow-left text-color-3"></button>
+                                            </div>
+                                        </div>
+                                        <div class="row mx-0">
+                                            <div class="col-6 px-1 my-1">
+                                                <button type="button" class="btn-color-2 font-size-0-8 w-100">شنبه 09:30</button>
+                                            </div>
+                                            <div class="col-6 px-1 my-1">
+                                                <button type="button" class="btn-color-2 font-size-0-8 w-100">شنبه 09:30</button>
+                                            </div>
+                                            <div class="col-6 px-1 my-1">
+                                                <button type="button" class="btn-color-2 font-size-0-8 w-100">شنبه 09:30</button>
+                                            </div>
+                                            <div class="col-6 px-1 my-1">
+                                                <button type="button" class="btn-color-1 font-size-0-8 w-100">شنبه 09:30</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mx-0 align-items-center mt-4">
+                                            <div class="col ms-auto">
+                                                <p class="description font-size-0-7 mb-0">انتخاب بیمه:</p>
+                                            </div>
+                                        </div>
+                                        <div class="row mx-0">
+                                            <div class="col-6 px-1 my-1">
+                                                <button type="button" class="btn-color-1 font-size-0-7 w-100">فولاد</button>
+                                            </div>
+                                            <div class="col-6 px-1 my-1">
+                                                <button type="button" class="btn-color-2 font-size-0-7 w-100">تامین اجتماعی</button>
+                                            </div>
+                                            <div class="col-6 px-1 my-1">
+                                                <button type="button" class="btn-color-2 font-size-0-7 w-100">تکمیلی</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mx-0 align-items-center mt-4">
+                                            <div class="col ms-auto description mb-0 text-color-1"">
+                                                <i class="fas fa-circle-info font-size-0-8 align-sub"></i>
+                                                <abbr class="font-size-0-7">مبلغ قابل پرداخت:</abbr>
+                                            </div>
+                                            <div class="col-auto text-color-3 font-size-0-9">
+                                                <span>180,000</span>
+                                                <abbr>تومان</abbr>
+                                            </div>
+                                        </div>
+                                        <div class="row mx-0 mb-3">
+                                            <div class="col-12 px-1 my-1">
+                                                <button type="button" class="btn btn-success font-size-0-7 w-100">ثبت و پرداخت</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer container-fluid">
+        <div class="d-flex flex-column">
+            <section class="row bottom">
+                <div class="col-12 col-sm-8 text-center text-sm-end">
+                    <i class="far fa-copyright"></i>
+                    تمامی حقوق برای وبسایت کیمیای مهر محفوظ می باشد.
+                </div>
+                <div class="col-12 col-sm-4 text-center text-sm-start">
+                    1399 - 1400
+                </div>
+            </section>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,12 +1,51 @@
 @import url("color.css");
 
+@supports (scrollbar-width: thin) {
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-3) var(--light-2);
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    padding: 15px;
+    height: 50vh;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light-2);
+    border-width: 4px;
+    border-color: var(--color-3);
+    padding: 15px;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-3);
+    /* border: 1px solid var(--white); */
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+}
+
 * {
+    outline: none;
+}
+
+img, i {
     user-select: none;
 }
 
-input, p {
+/* input, p {
     user-select: all !important;
-}
+} */
 
 body {
     position: relative;
@@ -257,7 +296,7 @@ body {
 	-moz-border-radius: 5px;
 	-ms-border-radius: 5px;
 	-o-border-radius: 5px;
-    display: block;
+    /* display: block; */
 }
 
 .btn-color-1, .btn-color-3 {
@@ -361,4 +400,187 @@ body {
 
 .mt-6 {
     margin-top: 6rem;
+}
+
+.custom-input-text {
+	appearance: none;
+	background: none;
+	border: 0;
+	box-shadow: var(--shadow-outset-input);
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+	height: 2.4rem;
+	font-size: 0.9rem;
+	background-color: var(--light-4);
+	color: var(--dark-2);
+	transition: all 200ms ease-in;
+	-webkit-transition: all 200ms ease-in;
+	-moz-transition: all 200ms ease-in;
+	-ms-transition: all 200ms ease-in;
+	-o-transition: all 200ms ease-in;
+	padding: 0.5rem;
+}
+
+.custom-input-text::placeholder {
+    font-size: 0.8rem;
+    color: var(--dark-3);
+}
+
+.custom-input-text:focus::placeholder,
+.custom-input-text:active::placeholder {
+    font-size: 0.7rem;
+}
+
+.custom-input-text:focus,
+.custom-input-text:active {
+    box-shadow: var(--shadow-inset-input);
+}
+
+.dir-ltr {
+    direction: ltr !important;
+}
+
+.dir-rtl {
+    direction: rtl !important;
+}
+
+.custom-select-box-parent {
+	position: relative;
+	height: 2.4rem;
+}
+
+.custom-select-box {
+    appearance: none;
+    border: 0;
+    background-color: var(--light-4);
+    box-shadow: var(--shadow-outset-input);
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    transition: all 200ms ease-in;
+	-webkit-transition: all 200ms ease-in;
+	-moz-transition: all 200ms ease-in;
+	-ms-transition: all 200ms ease-in;
+	-o-transition: all 200ms ease-in;
+}
+
+.custom-select-box:focus,
+.custom-select-box:active {
+    box-shadow: var(--shadow-inset-input);
+    font-size: 0.7rem;
+}
+
+.font-size-0-5 {
+    font-size: 0.5rem !important;
+}
+
+.font-size-0-6 {
+    font-size: 0.6rem !important;
+}
+
+.font-size-0-7 {
+    font-size: 0.7rem !important;
+}
+
+.font-size-0-8 {
+    font-size: 0.8rem !important;
+}
+
+.font-size-0-85 {
+    font-size: 0.85rem !important;
+}
+
+.font-size-0-9 {
+    font-size: 0.9rem !important;
+}
+
+.font-size-0-95 {
+    font-size: 0.95rem !important;
+}
+
+.font-size-1-0 {
+    font-size: 1rem !important;
+}
+
+.font-size-1-1 {
+    font-size: 1.1rem !important;
+}
+
+.font-size-1-2 {
+    font-size: 1.2rem !important;
+}
+
+.font-size-1-3 {
+    font-size: 1.3rem !important;
+}
+
+.font-size-1-4 {
+    font-size: 1.4rem !important;
+}
+
+.font-size-1-5 {
+    font-size: 1.5rem !important;
+}
+
+.font-size-1-6 {
+    font-size: 1.6rem !important;
+}
+
+.font-size-2-0 {
+    font-size: 2rem !important;
+}
+
+.font-size-3-0 {
+    font-size: 3rem !important;
+}
+
+.font-size-4-0 {
+    font-size: 4rem !important;
+}
+
+.btn-text {
+    appearance: none;
+    background-color: transparent;
+    border: 0;
+    color: var(--dark-2);
+}
+
+.btn-box-shadow {
+    appearance: none;
+    background-color: transparent;
+    border: 0;
+    color: var(--dark-2);
+    box-shadow: var(--shadow-outset-input);
+    font-size: 0.9rem;
+    border: 2px solid var(--light-4);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    transition: all 200ms ease-in;
+	-webkit-transition: all 200ms ease-in;
+	-moz-transition: all 200ms ease-in;
+	-ms-transition: all 200ms ease-in;
+	-o-transition: all 200ms ease-in;
+}
+
+.btn-box-shadow:active,
+.btn-box-shadow:focus {
+    box-shadow: var(--shadow-inset-input);
+    font-size: 0.8rem;
+}
+
+.align-sub {
+    vertical-align: sub;
 }
