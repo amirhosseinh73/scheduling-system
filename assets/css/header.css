@@ -152,3 +152,51 @@ a {
 	z-index: -1;
 	object-fit: cover;
 }
+
+.accordion {
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.accordion-item {
+    background-color: transparent;
+}
+
+.accordion-button:focus {
+	border-color: var(--color-2);
+	box-shadow: 0 0 0 .25rem var(--color-2-25);
+}
+
+.accordion-active-color-2 .accordion-button:focus {
+    border-color: transparent;
+	box-shadow: none;
+}
+
+.accordion-active-color-2 .accordion-button {
+	background-color: var(--light-4);
+    color: var(--dark-1);
+}
+
+.accordion-button:not(.collapsed) {
+	color: var(--color-2);
+	background-color: var(--color-1);
+}
+
+.accordion-active-color-2 .accordion-button:not(.collapsed) {
+    color: var(--light-1);
+	background-color: var(--color-1-75);
+    font-weight: 600;
+}
+
+.accordion-button::after {
+	margin-right: auto;
+    margin-left: 0;
+}
+
+.accordion-body {
+    line-height: 2;
+    text-align: justify;
+    font-size: 1rem;
+    color: var(--dark-2);
+    background-color: var(--light-2);
+}

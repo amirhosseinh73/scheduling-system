@@ -186,6 +186,7 @@
 	-ms-border-radius: 8px;
 	-o-border-radius: 8px;
 	padding: 0;
+	pointer-events: none;
 }
 
 .dashboard-inside-container {
@@ -321,3 +322,9 @@
 /* .inside-container-left {
 	padding: 0.5rem;
 } */
+
+.table-bordered > :not(caption) > * {
+	border-width: 3px 3px;
+	border-color: var(--light-5);
+	text-align: center;
+}
