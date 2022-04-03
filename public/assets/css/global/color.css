@@ -76,6 +76,9 @@
     --shadow-outset-small: 2px 2px 4px 0 var(--light-2);
     --shadow-inset-small: inset 2px 2px 4px 0 var(--light-2);
 
+    --shadow-outset-big: 0 12px 28px 2px var(--dark-5);
+    --shadow-inset-big: inset 0 12px 28px 2px var(--dark-5);
+
     --shadow-outset-input: 2px 2px 0 0 var(--light-5);
     --shadow-inset-input: inset 7px 11px 16px -8px var(--light-5);
 

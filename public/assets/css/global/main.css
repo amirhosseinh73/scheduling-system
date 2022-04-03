@@ -595,3 +595,18 @@ body {
 .align-sub {
     vertical-align: sub;
 }
+
+.btn-back {
+    background-color: var(--light-5);
+    box-shadow: var(--shadow-inset-input);
+    border: 0;
+    color: var(--color-1);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    font-size: 1.25rem;
+    width: 3rem;
+    height: 3rem;
+}
