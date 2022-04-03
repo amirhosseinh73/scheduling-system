@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2022 at 01:58 PM
+-- Generation Time: Apr 03, 2022 at 02:22 PM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -31,6 +31,40 @@ CREATE TABLE `log` (
   `ID` int(11) NOT NULL,
   `user_ID` int(11) NOT NULL,
   `data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`data`)),
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_request`
+--
+
+CREATE TABLE `payment_request` (
+  `ID` int(11) NOT NULL,
+  `user_ID` int(11) NOT NULL,
+  `amount` int(9) NOT NULL COMMENT '100,000,000,\r\nیکصد میلیون ریال',
+  `order_ID` int(11) NOT NULL,
+  `time` datetime NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_track`
+--
+
+CREATE TABLE `payment_track` (
+  `ID` int(11) NOT NULL,
+  `user_ID` int(11) NOT NULL,
+  `payment_request_ID` int(11) NOT NULL,
+  `amount` int(9) NOT NULL COMMENT '100,000,000,\r\nیکصد میلیون ریال',
+  `order_ID` int(11) NOT NULL COMMENT 'Res_NUM',
+  `track_ID` int(11) NOT NULL,
+  `time` datetime NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
@@ -91,6 +125,18 @@ ALTER TABLE `log`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `payment_request`
+--
+ALTER TABLE `payment_request`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `payment_track`
+--
+ALTER TABLE `payment_track`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `token`
 --
 ALTER TABLE `token`
@@ -110,6 +156,18 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `payment_request`
+--
+ALTER TABLE `payment_request`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `payment_track`
+--
+ALTER TABLE `payment_track`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
