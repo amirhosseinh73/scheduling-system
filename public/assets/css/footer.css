@@ -94,7 +94,7 @@
 }
 
 .footer-large-button > section:hover {
-	background-color: var(--color-3-50);
+	background-color: var(--color-2);
 	color: var(--color-1);
 }
 
