@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2022 at 10:23 AM
+-- Generation Time: Apr 04, 2022 at 01:34 PM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -24,6 +24,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `answer`
+--
+
+CREATE TABLE `answer` (
+  `ID` int(11) NOT NULL,
+  `user_ID` int(11) NOT NULL COMMENT 'doctor or patient',
+  `question_ID` int(11) NOT NULL,
+  `answer` longtext COLLATE utf8_persian_ci DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `blog`
 --
 
@@ -32,9 +48,9 @@ CREATE TABLE `blog` (
   `title` varchar(150) COLLATE utf8_persian_ci DEFAULT NULL,
   `uniqe_image` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
   `excerpt` text COLLATE utf8_persian_ci DEFAULT NULL,
-  `view` smallint(5) NOT NULL DEFAULT 0,
   `content` longtext COLLATE utf8_persian_ci DEFAULT NULL,
   `tag` text COLLATE utf8_persian_ci DEFAULT NULL,
+  `view` smallint(5) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `deleted_at` datetime DEFAULT NULL
@@ -50,10 +66,10 @@ CREATE TABLE `booking_time` (
   `ID` int(11) NOT NULL,
   `user_ID` int(11) NOT NULL COMMENT 'doctor_ID',
   `type` tinyint(1) NOT NULL COMMENT '1: meeting,\r\n2: phone',
-  `time` tinyint(3) NOT NULL COMMENT 'each person by minute',
+  `date` varchar(10) COLLATE utf8_persian_ci NOT NULL COMMENT 'day of visit',
   `start` varchar(5) COLLATE utf8_persian_ci NOT NULL COMMENT 'start time for visit',
   `end` varchar(5) COLLATE utf8_persian_ci NOT NULL COMMENT 'end time for visit',
-  `date` varchar(10) COLLATE utf8_persian_ci NOT NULL COMMENT 'day of visit',
+  `time` tinyint(3) NOT NULL COMMENT 'each person by minute',
   `number_reserve` tinyint(3) NOT NULL COMMENT 'تعدادی بیماری که میتواند معاینه کند',
   `number_reserved` tinyint(3) NOT NULL DEFAULT 0 COMMENT 'تعداد بیماران رزرو شده',
   `created_at` datetime NOT NULL,
@@ -82,6 +98,39 @@ CREATE TABLE `contact_us_message` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `exam`
+--
+
+CREATE TABLE `exam` (
+  `ID` int(11) NOT NULL,
+  `type` tinyint(1) NOT NULL COMMENT '0: Descriptiveو\r\n1: checkbox,\r\n2: radio',
+  `status` bit(1) NOT NULL DEFAULT b'1' COMMENT '0: Not Show,\r\n1: show',
+  `question` longtext COLLATE utf8_persian_ci DEFAULT NULL,
+  `answer` longtext COLLATE utf8_persian_ci NOT NULL COMMENT 'JSON or TEXT',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `faq`
+--
+
+CREATE TABLE `faq` (
+  `ID` int(11) NOT NULL,
+  `question` longtext COLLATE utf8_persian_ci DEFAULT NULL,
+  `answer` longtext COLLATE utf8_persian_ci DEFAULT NULL,
+  `status` bit(1) NOT NULL DEFAULT b'1' COMMENT '0: not show,\r\n1: show',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `log`
 --
 
@@ -101,12 +150,12 @@ CREATE TABLE `log` (
 
 CREATE TABLE `page` (
   `ID` int(11) NOT NULL,
-  `title` varchar(150) COLLATE utf8_persian_ci DEFAULT NULL,
   `uniqe_image` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
+  `title` varchar(150) COLLATE utf8_persian_ci DEFAULT NULL,
   `excerpt` text COLLATE utf8_persian_ci DEFAULT NULL,
-  `view` smallint(5) NOT NULL DEFAULT 0,
   `content` longtext COLLATE utf8_persian_ci DEFAULT NULL,
   `tag` text COLLATE utf8_persian_ci DEFAULT NULL,
+  `view` smallint(5) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `deleted_at` datetime DEFAULT NULL
@@ -144,6 +193,24 @@ CREATE TABLE `payment_track` (
   `time` datetime NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `question`
+--
+
+CREATE TABLE `question` (
+  `ID` int(11) NOT NULL,
+  `user_ID` int(11) NOT NULL COMMENT 'patient_ID',
+  `question` longtext COLLATE utf8_persian_ci DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: new,\r\n1: answered,\r\n2: closed',
+  `show` bit(1) NOT NULL DEFAULT b'0' COMMENT '0: private,\r\n1: public',
+  `type` bit(1) NOT NULL COMMENT '0: QUESTION and ANSWER,\r\n1: Ticket',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
@@ -212,6 +279,12 @@ CREATE TABLE `user` (
 --
 
 --
+-- Indexes for table `answer`
+--
+ALTER TABLE `answer`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `blog`
 --
 ALTER TABLE `blog`
@@ -227,6 +300,18 @@ ALTER TABLE `booking_time`
 -- Indexes for table `contact_us_message`
 --
 ALTER TABLE `contact_us_message`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `exam`
+--
+ALTER TABLE `exam`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `faq`
+--
+ALTER TABLE `faq`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -254,6 +339,12 @@ ALTER TABLE `payment_track`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `question`
+--
+ALTER TABLE `question`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `reservation`
 --
 ALTER TABLE `reservation`
@@ -276,6 +367,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `answer`
+--
+ALTER TABLE `answer`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `blog`
 --
 ALTER TABLE `blog`
@@ -291,6 +388,18 @@ ALTER TABLE `booking_time`
 -- AUTO_INCREMENT for table `contact_us_message`
 --
 ALTER TABLE `contact_us_message`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `exam`
+--
+ALTER TABLE `exam`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `faq`
+--
+ALTER TABLE `faq`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -315,6 +424,12 @@ ALTER TABLE `payment_request`
 -- AUTO_INCREMENT for table `payment_track`
 --
 ALTER TABLE `payment_track`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `question`
+--
+ALTER TABLE `question`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
