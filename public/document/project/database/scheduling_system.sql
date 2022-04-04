@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2022 at 02:22 PM
+-- Generation Time: Apr 04, 2022 at 10:23 AM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -24,6 +24,64 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `blog`
+--
+
+CREATE TABLE `blog` (
+  `ID` int(11) NOT NULL,
+  `title` varchar(150) COLLATE utf8_persian_ci DEFAULT NULL,
+  `uniqe_image` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
+  `excerpt` text COLLATE utf8_persian_ci DEFAULT NULL,
+  `view` smallint(5) NOT NULL DEFAULT 0,
+  `content` longtext COLLATE utf8_persian_ci DEFAULT NULL,
+  `tag` text COLLATE utf8_persian_ci DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking_time`
+--
+
+CREATE TABLE `booking_time` (
+  `ID` int(11) NOT NULL,
+  `user_ID` int(11) NOT NULL COMMENT 'doctor_ID',
+  `type` tinyint(1) NOT NULL COMMENT '1: meeting,\r\n2: phone',
+  `time` tinyint(3) NOT NULL COMMENT 'each person by minute',
+  `start` varchar(5) COLLATE utf8_persian_ci NOT NULL COMMENT 'start time for visit',
+  `end` varchar(5) COLLATE utf8_persian_ci NOT NULL COMMENT 'end time for visit',
+  `date` varchar(10) COLLATE utf8_persian_ci NOT NULL COMMENT 'day of visit',
+  `number_reserve` tinyint(3) NOT NULL COMMENT 'تعدادی بیماری که میتواند معاینه کند',
+  `number_reserved` tinyint(3) NOT NULL DEFAULT 0 COMMENT 'تعداد بیماران رزرو شده',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact_us_message`
+--
+
+CREATE TABLE `contact_us_message` (
+  `ID` int(11) NOT NULL,
+  `fullname` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
+  `email` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
+  `phone` int(11) DEFAULT NULL,
+  `subject` varchar(100) COLLATE utf8_persian_ci DEFAULT NULL,
+  `message` text COLLATE utf8_persian_ci DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `log`
 --
 
@@ -33,6 +91,25 @@ CREATE TABLE `log` (
   `data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`data`)),
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `page`
+--
+
+CREATE TABLE `page` (
+  `ID` int(11) NOT NULL,
+  `title` varchar(150) COLLATE utf8_persian_ci DEFAULT NULL,
+  `uniqe_image` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
+  `excerpt` text COLLATE utf8_persian_ci DEFAULT NULL,
+  `view` smallint(5) NOT NULL DEFAULT 0,
+  `content` longtext COLLATE utf8_persian_ci DEFAULT NULL,
+  `tag` text COLLATE utf8_persian_ci DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
@@ -67,6 +144,22 @@ CREATE TABLE `payment_track` (
   `time` datetime NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reservation`
+--
+
+CREATE TABLE `reservation` (
+  `ID` int(11) NOT NULL,
+  `user_ID` int(11) NOT NULL COMMENT 'patient_ID',
+  `booking_ID` int(11) NOT NULL,
+  `number` int(3) NOT NULL COMMENT 'number of turn,\r\nJOIN with booking',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
@@ -119,9 +212,33 @@ CREATE TABLE `user` (
 --
 
 --
+-- Indexes for table `blog`
+--
+ALTER TABLE `blog`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `booking_time`
+--
+ALTER TABLE `booking_time`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `contact_us_message`
+--
+ALTER TABLE `contact_us_message`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `log`
 --
 ALTER TABLE `log`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `page`
+--
+ALTER TABLE `page`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -134,6 +251,12 @@ ALTER TABLE `payment_request`
 -- Indexes for table `payment_track`
 --
 ALTER TABLE `payment_track`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `reservation`
+--
+ALTER TABLE `reservation`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -153,9 +276,33 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `blog`
+--
+ALTER TABLE `blog`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `booking_time`
+--
+ALTER TABLE `booking_time`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `contact_us_message`
+--
+ALTER TABLE `contact_us_message`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `page`
+--
+ALTER TABLE `page`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -168,6 +315,12 @@ ALTER TABLE `payment_request`
 -- AUTO_INCREMENT for table `payment_track`
 --
 ALTER TABLE `payment_track`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `reservation`
+--
+ALTER TABLE `reservation`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
