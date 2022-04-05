@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class LibraryModel extends ParentModel
+class PageModel extends ParentModel
 {
     protected $DBGroup          = 'default';
 
@@ -10,7 +10,7 @@ class LibraryModel extends ParentModel
     protected $useSoftDeletes   = TRUE;
     protected $useTimestamps    = TRUE;
 
-    protected $table            = 'library';
+    protected $table            = 'page';
     protected $primaryKey       = 'ID';
     protected $returnType       = 'object';
 
@@ -19,10 +19,11 @@ class LibraryModel extends ParentModel
     protected $deletedField     = 'deleted_at';
 
     protected $allowedFields    = [
-        "user_ID",
-        "package_ID",
-        "active_mode",
-        "active_value",
-        "status",
+        "uniqe_image",
+        "title",
+        "excerpt",
+        "content",
+        "tag",
+        "view",
     ];
 }

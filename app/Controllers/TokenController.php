@@ -139,9 +139,9 @@ class TokenController extends ParentController
      * @param string $token use for app, get token from app
      * @return bool|object UserData
      */
-    public static function UserData( string $session_cookie_name, string $token = NULL )
+    public static function UserData( string $session_cookie_name )
     {
-        if ( ! $token ) $token = self::Get( $session_cookie_name );
+        $token = self::Get( $session_cookie_name );
 
         if ( ! exists( $token )) return FALSE;
 

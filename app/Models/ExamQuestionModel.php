@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class PackageModel extends ParentModel
+class ExamQuestionModel extends ParentModel
 {
     protected $DBGroup          = 'default';
 
@@ -10,7 +10,7 @@ class PackageModel extends ParentModel
     protected $useSoftDeletes   = TRUE;
     protected $useTimestamps    = TRUE;
 
-    protected $table            = 'package';
+    protected $table            = 'exam_question';
     protected $primaryKey       = 'ID';
     protected $returnType       = 'object';
 
@@ -19,12 +19,10 @@ class PackageModel extends ParentModel
     protected $deletedField     = 'deleted_at';
 
     protected $allowedFields    = [
-        "title",
-        "description",
-        "grade",
-        "image",
-        "price",
-        "discount",
-        "sales_count",
+        "exam_ID",
+        "type",
+        "status",
+        "question",
+        "answer",
     ];
 }

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class UserModel extends ParentModel
+class FAQModel extends ParentModel
 {
     protected $DBGroup          = 'default';
 
@@ -10,7 +10,7 @@ class UserModel extends ParentModel
     protected $useSoftDeletes   = TRUE;
     protected $useTimestamps    = TRUE;
 
-    protected $table            = 'user';
+    protected $table            = 'faq';
     protected $primaryKey       = 'ID';
     protected $returnType       = 'object';
 
@@ -19,23 +19,8 @@ class UserModel extends ParentModel
     protected $deletedField     = 'deleted_at';
 
     protected $allowedFields    = [
-        "username",
-        "firstname",
-        "lastname",
-        "email",
-        "gender",
-        "type_user",
+        "question",
+        "answer",
         "status",
-        "is_admin",
-        "image",
-        "verifile_code_mobile",
-        "verifile_code_email",
-        "mobile_verified_at",
-        "email_verified_at",
-        "last_login_dt",
-        "recovery_pass_dt",
-        "change_pass_dt",
-        "token",
-        "password",
     ];
 }

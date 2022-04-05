@@ -1,14 +1,14 @@
 <?php
 
 //defines
-defined( "TOKEN_COOKIE_NAME" ) || define( "LOGIN_TOKEN_COOKIE_NAME", "BookMoToken" );
+defined( "TOKEN_COOKIE_NAME" ) || define( "LOGIN_TOKEN_COOKIE_NAME", "Scheduling_system" );
 defined( "IMAGE_DIR_PROFILE" ) || define( "IMAGE_DIR_PROFILE",       "uploads/profile/" );
 defined( "IMAGE_DIR_PACKAGE" ) || define( "IMAGE_DIR_PACKAGE",       "uploads/package/" );
 defined( "IMAGE_DIR_LESSON" )  || define( "IMAGE_DIR_LESSON",        "uploads/lesson/" );
 
 
 //functions
-function render_page(string $page, array $data, string $header = "header", string $footer = "footer") {
+function renderPage( string $page, array $data, string $header = "header", string $footer = "footer" ) {
     $header = view("Template/{$header}", $data);
 
     $footer = view("Template/{$footer}", $data);

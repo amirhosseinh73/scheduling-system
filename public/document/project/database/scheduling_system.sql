@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2022 at 01:34 PM
+-- Generation Time: Apr 05, 2022 at 08:43 AM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -45,8 +45,8 @@ CREATE TABLE `answer` (
 
 CREATE TABLE `blog` (
   `ID` int(11) NOT NULL,
-  `title` varchar(150) COLLATE utf8_persian_ci DEFAULT NULL,
   `uniqe_image` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
+  `title` varchar(150) COLLATE utf8_persian_ci DEFAULT NULL,
   `excerpt` text COLLATE utf8_persian_ci DEFAULT NULL,
   `content` longtext COLLATE utf8_persian_ci DEFAULT NULL,
   `tag` text COLLATE utf8_persian_ci DEFAULT NULL,
@@ -103,6 +103,38 @@ CREATE TABLE `contact_us_message` (
 
 CREATE TABLE `exam` (
   `ID` int(11) NOT NULL,
+  `title` varchar(100) COLLATE utf8_persian_ci NOT NULL,
+  `description` tinytext COLLATE utf8_persian_ci DEFAULT NULL,
+  `time` tinyint(3) NOT NULL COMMENT 'Minute',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exam_answer`
+--
+
+CREATE TABLE `exam_answer` (
+  `ID` int(11) NOT NULL,
+  `question_ID` int(11) NOT NULL,
+  `answer` longtext COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'JSON or TEXT',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exam_question`
+--
+
+CREATE TABLE `exam_question` (
+  `ID` int(11) NOT NULL,
+  `exam_ID` int(11) NOT NULL,
   `type` tinyint(1) NOT NULL COMMENT '0: Descriptiveو\r\n1: checkbox,\r\n2: radio',
   `status` bit(1) NOT NULL DEFAULT b'1' COMMENT '0: Not Show,\r\n1: show',
   `question` longtext COLLATE utf8_persian_ci DEFAULT NULL,
@@ -257,9 +289,11 @@ CREATE TABLE `user` (
   `firstname` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
   `lastname` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
   `email` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
+  `gender` bit(1) NOT NULL DEFAULT b'0' COMMENT '0: female\r\n1: male',
   `type_user` bit(1) DEFAULT NULL COMMENT '1: Doctor,\r\n2: Patient',
   `status` bit(1) NOT NULL DEFAULT b'0' COMMENT '0: Disable,\r\n1: Enable',
   `is_admin` bit(1) NOT NULL DEFAULT b'0' COMMENT 'Admin Panel,\r\n0: Not Admin,\r\n1: Is Admin',
+  `image` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
   `verifile_code_mobile` varchar(10) COLLATE utf8_persian_ci DEFAULT NULL,
   `verifile_code_email` varchar(10) COLLATE utf8_persian_ci DEFAULT NULL,
   `mobile_verified_at` datetime DEFAULT NULL,
@@ -306,6 +340,18 @@ ALTER TABLE `contact_us_message`
 -- Indexes for table `exam`
 --
 ALTER TABLE `exam`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `exam_answer`
+--
+ALTER TABLE `exam_answer`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `exam_question`
+--
+ALTER TABLE `exam_question`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -394,6 +440,18 @@ ALTER TABLE `contact_us_message`
 -- AUTO_INCREMENT for table `exam`
 --
 ALTER TABLE `exam`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `exam_answer`
+--
+ALTER TABLE `exam_answer`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `exam_question`
+--
+ALTER TABLE `exam_question`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --

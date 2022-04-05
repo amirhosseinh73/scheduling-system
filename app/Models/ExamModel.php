@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class LessonModel extends ParentModel
+class ExamModel extends ParentModel
 {
     protected $DBGroup          = 'default';
 
@@ -10,7 +10,7 @@ class LessonModel extends ParentModel
     protected $useSoftDeletes   = TRUE;
     protected $useTimestamps    = TRUE;
 
-    protected $table            = 'lesson';
+    protected $table            = 'exam';
     protected $primaryKey       = 'ID';
     protected $returnType       = 'object';
 
@@ -21,9 +21,6 @@ class LessonModel extends ParentModel
     protected $allowedFields    = [
         "title",
         "description",
-        "image",
-        "URL",
-        "head_ID",
-        "is_free",
+        "time",
     ];
 }

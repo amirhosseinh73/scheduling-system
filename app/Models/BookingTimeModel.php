@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class LessonHeadModel extends ParentModel
+class BookingTimeModel extends ParentModel
 {
     protected $DBGroup          = 'default';
 
@@ -10,7 +10,7 @@ class LessonHeadModel extends ParentModel
     protected $useSoftDeletes   = TRUE;
     protected $useTimestamps    = TRUE;
 
-    protected $table            = 'lesson_head';
+    protected $table            = 'booking_time';
     protected $primaryKey       = 'ID';
     protected $returnType       = 'object';
 
@@ -19,8 +19,13 @@ class LessonHeadModel extends ParentModel
     protected $deletedField     = 'deleted_at';
 
     protected $allowedFields    = [
-        "title",
-        "description",
-        "package_ID",
+        "user_ID",
+        "type",
+        "date",
+        "start",
+        "end",
+        "time",
+        "number_reserve",
+        "number_reserved",
     ];
 }

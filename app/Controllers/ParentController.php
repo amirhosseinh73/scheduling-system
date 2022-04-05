@@ -24,7 +24,7 @@ class ParentController extends BaseController {
     protected string $subject     = "";
     protected bool   $is_recovery = FALSE;
 
-    protected function send_email() {
+    protected function sendEmail() {
 
         if ( $this->is_recovery ) {
             $message = "<div style='direction: ltr !important;'>
@@ -93,12 +93,9 @@ class ParentController extends BaseController {
      * @var $incomming_token as token
      * @return string|object die and return json | $user_info
      */
-    protected function CheckLogin() {
-        $incomming_token  = $this->request->getVar( "token" );
+    protected function checkLogin() {
 
-        if ( ! exists( $incomming_token ) ) $incomming_token = NULL;
-
-        $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME, $incomming_token ); // use for web
+        $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME ); // use for web
 
         if ( ! $user_info || ! exists( $user_info->ID ) ) return Alert::Error( 101 );
 
@@ -112,4 +109,12 @@ class ParentController extends BaseController {
      * @var bool $CallFunction
      */
     protected $CallFunction = FALSE;
+
+    protected function renderPageSite( string $page, array $data ) {
+        return renderPage( "Site\\$page", $data, "header", "footer" );
+    }
+
+    protected function renderPageDashboard( string $page, array $data ) {
+        return renderPage( "Dashboard\\$page", $data, "header", "footer" );
+    }
 }

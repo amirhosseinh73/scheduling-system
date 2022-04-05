@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class LicenseModel extends ParentModel
+class ExamAnswerModel extends ParentModel
 {
     protected $DBGroup          = 'default';
 
@@ -10,7 +10,7 @@ class LicenseModel extends ParentModel
     protected $useSoftDeletes   = TRUE;
     protected $useTimestamps    = TRUE;
 
-    protected $table            = 'license';
+    protected $table            = 'exam_answer';
     protected $primaryKey       = 'ID';
     protected $returnType       = 'object';
 
@@ -19,12 +19,7 @@ class LicenseModel extends ParentModel
     protected $deletedField     = 'deleted_at';
 
     protected $allowedFields    = [
-        "limit",
-        "use",
-        "code",
-        "packages",
-        "users",
-        "users_use",
-        "status",
+        "question_ID",
+        "answer",
     ];
 }
