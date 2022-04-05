@@ -32,9 +32,9 @@ class UserModel extends ParentModel
         "verifile_code_email",
         "mobile_verified_at",
         "email_verified_at",
-        "last_login_dt",
-        "recovery_pass_dt",
-        "change_pass_dt",
+        "last_login_at",
+        "recovery_pass_at",
+        "change_pass_at",
         "token",
         "password",
     ];

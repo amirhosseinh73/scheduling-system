@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2022 at 08:43 AM
+-- Generation Time: Apr 05, 2022 at 10:53 AM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -32,25 +32,6 @@ CREATE TABLE `answer` (
   `user_ID` int(11) NOT NULL COMMENT 'doctor or patient',
   `question_ID` int(11) NOT NULL,
   `answer` longtext COLLATE utf8_persian_ci DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `blog`
---
-
-CREATE TABLE `blog` (
-  `ID` int(11) NOT NULL,
-  `uniqe_image` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
-  `title` varchar(150) COLLATE utf8_persian_ci DEFAULT NULL,
-  `excerpt` text COLLATE utf8_persian_ci DEFAULT NULL,
-  `content` longtext COLLATE utf8_persian_ci DEFAULT NULL,
-  `tag` text COLLATE utf8_persian_ci DEFAULT NULL,
-  `view` smallint(5) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `deleted_at` datetime DEFAULT NULL
@@ -177,25 +158,6 @@ CREATE TABLE `log` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `page`
---
-
-CREATE TABLE `page` (
-  `ID` int(11) NOT NULL,
-  `uniqe_image` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
-  `title` varchar(150) COLLATE utf8_persian_ci DEFAULT NULL,
-  `excerpt` text COLLATE utf8_persian_ci DEFAULT NULL,
-  `content` longtext COLLATE utf8_persian_ci DEFAULT NULL,
-  `tag` text COLLATE utf8_persian_ci DEFAULT NULL,
-  `view` smallint(5) NOT NULL DEFAULT 0,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `payment_request`
 --
 
@@ -225,6 +187,28 @@ CREATE TABLE `payment_track` (
   `time` datetime NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post`
+--
+
+CREATE TABLE `post` (
+  `ID` int(11) NOT NULL,
+  `uniqe_image` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
+  `title` varchar(150) COLLATE utf8_persian_ci DEFAULT NULL,
+  `excerpt` text COLLATE utf8_persian_ci DEFAULT NULL,
+  `content` longtext COLLATE utf8_persian_ci DEFAULT NULL,
+  `tag` text COLLATE utf8_persian_ci DEFAULT NULL,
+  `type` bit(1) NOT NULL DEFAULT b'0' COMMENT '0: page,\r\n1: blog',
+  `status` bit(1) NOT NULL DEFAULT b'1' COMMENT '0: draft\r\n1: show',
+  `view` smallint(5) NOT NULL DEFAULT 0,
+  `publish_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
@@ -301,9 +285,9 @@ CREATE TABLE `user` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `deleted_at` datetime DEFAULT NULL,
-  `last_login_dt` datetime DEFAULT NULL,
-  `recovery_pass_dt` datetime DEFAULT NULL,
-  `change_pass_dt` datetime DEFAULT NULL,
+  `last_login_at` datetime DEFAULT NULL,
+  `recovery_pass_at` datetime DEFAULT NULL,
+  `change_pass_at` datetime DEFAULT NULL,
   `token` varchar(100) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'Uniqe,\r\nFor login',
   `password` varchar(100) COLLATE utf8_persian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
@@ -316,12 +300,6 @@ CREATE TABLE `user` (
 -- Indexes for table `answer`
 --
 ALTER TABLE `answer`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `blog`
---
-ALTER TABLE `blog`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -367,12 +345,6 @@ ALTER TABLE `log`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `page`
---
-ALTER TABLE `page`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- Indexes for table `payment_request`
 --
 ALTER TABLE `payment_request`
@@ -382,6 +354,12 @@ ALTER TABLE `payment_request`
 -- Indexes for table `payment_track`
 --
 ALTER TABLE `payment_track`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `post`
+--
+ALTER TABLE `post`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -416,12 +394,6 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `blog`
---
-ALTER TABLE `blog`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -467,12 +439,6 @@ ALTER TABLE `log`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `page`
---
-ALTER TABLE `page`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `payment_request`
 --
 ALTER TABLE `payment_request`
@@ -482,6 +448,12 @@ ALTER TABLE `payment_request`
 -- AUTO_INCREMENT for table `payment_track`
 --
 ALTER TABLE `payment_track`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `post`
+--
+ALTER TABLE `post`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --

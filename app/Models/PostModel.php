@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class PageModel extends ParentModel
+class PostModel extends ParentModel
 {
     protected $DBGroup          = 'default';
 
@@ -10,7 +10,7 @@ class PageModel extends ParentModel
     protected $useSoftDeletes   = TRUE;
     protected $useTimestamps    = TRUE;
 
-    protected $table            = 'page';
+    protected $table            = 'post';
     protected $primaryKey       = 'ID';
     protected $returnType       = 'object';
 
@@ -24,6 +24,9 @@ class PageModel extends ParentModel
         "excerpt",
         "content",
         "tag",
+        "type",
+        "status",
         "view",
+        "publish_at",
     ];
 }

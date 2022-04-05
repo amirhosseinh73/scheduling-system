@@ -9,8 +9,8 @@ class IndexController extends ParentController
 {
     public function loadIndex() {
         $data_page = array(
-            "head_title"        => TextLibrary::title( "index" ),
-            "head_description"  => TextLibrary::description( "company_name" ),
+            "title_head"        => TextLibrary::title( "index" ),
+            "description_head"  => TextLibrary::description( "company_name" ),
         );
 
         return $this->renderPageSite( "index", $data_page );
