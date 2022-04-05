@@ -1,21 +1,44 @@
 <?php
 
 //defines
-defined( "TOKEN_COOKIE_NAME" ) || define( "LOGIN_TOKEN_COOKIE_NAME", "Scheduling_system" );
-defined( "IMAGE_DIR_PROFILE" ) || define( "IMAGE_DIR_PROFILE",       "uploads/profile/" );
-defined( "IMAGE_DIR_PACKAGE" ) || define( "IMAGE_DIR_PACKAGE",       "uploads/package/" );
-defined( "IMAGE_DIR_LESSON" )  || define( "IMAGE_DIR_LESSON",        "uploads/lesson/" );
+defined( "TOKEN_COOKIE_NAME" )      || define( "LOGIN_TOKEN_COOKIE_NAME", "Scheduling_system" );
+
+defined( "BLOG_URL" )               || define( "BLOG_URL"               , "/blog/" );
+
+defined( "IMAGE_DIR_PROFILE" )      || define( "IMAGE_DIR_PROFILE"      , "/uploads/profile/" );
+defined( "IMAGE_DIR_BLOG" )         || define( "IMAGE_DIR_BLOG"         , "/uploads/blog/" );
+defined( "IMAGE_DEFAULT" )          || define( "IMAGE_DEFAULT"          , "/uploads/default.jpg" );
+defined( "IMAGE_DEFAULT_MALE" )     || define( "IMAGE_DEFAULT_MALE"     , "/uploads/default-male.jpg" );
+defined( "IMAGE_DEFAULT_FEMALE" )   || define( "IMAGE_DEFAULT_FEMALE"   , "/uploads/default-female.jpg" );
 
 
 //functions
-function renderPage( string $page, array $data, string $header = "header", string $footer = "footer" ) {
-    $header = view("Template/{$header}", $data);
+/**
+ * @param string $page `index` | `contact-us`
+ * @param array|object $data
+ * @param ?string $header
+ * @param ?string $footer
+ */
+function renderPage( string $page, array $data, string $header = NULL, string $footer = NULL ) {
+    if( $header ) $header = view("Template/{$header}", $data);
 
-    $footer = view("Template/{$footer}", $data);
+    if( $footer ) $footer = view("Template/{$footer}", $data);
 
     $content = view($page, $data);
 
     return $header . $content . $footer;
+}
+
+function str_split_unicode($str, $length = 0) {
+    if ($length > 0) {
+        $ret = array();
+        $len = mb_strlen($str, "UTF-8");
+        for ($i = 0; $i < $len; $i += $length) {
+            $ret[] = mb_substr($str, $i, $length, "UTF-8");
+        }
+        return $ret;
+    }
+    return preg_split("//u", $str, -1, PREG_SPLIT_NO_EMPTY);
 }
 
 /**
@@ -178,4 +201,21 @@ function grade_text( int $grade ) {
         default:
             return "";
     endswitch;
+}
+
+/**
+ * @return object `time` & `date`
+ */
+function gregorianDatetimeToJalali( $datetime ) {
+    $datetime = explode( " ", $datetime );
+    $time     = $datetime[ count( $datetime ) - 1 ];
+    $time     = explode( ":", $time );
+    $time     = $time[ 0 ] . ":" . $time[ 1 ];
+    $date     = explode( "-", $datetime[ 0 ] );
+    $date     = gregorian_to_jalali( $date[ 0 ], $date[ 1 ], $date[ 2 ], "/" );
+
+    return ( object ) [
+        "time" => $time,
+        "date" => $date,
+    ];
 }

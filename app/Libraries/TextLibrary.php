@@ -10,7 +10,7 @@ namespace App\Libraries;
 class TextLibrary {
 
     /**
-     * @param string $key `index` | 
+     * @param string $key `index` | `blog`
      * @return string
      */
     public static function title( string $key ) {
@@ -19,6 +19,8 @@ class TextLibrary {
 
             case "index" :
                 return "مرکز مشاوره و روانشناختی";
+            case "blog" :
+                return "اخبار و مقالات";
 
         endswitch;
 

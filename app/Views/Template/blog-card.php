@@ -4,8 +4,8 @@
             <img src="<?= $image?>" class="w-100 h-100 object-fit-cover"/>
             <div class="blog-box-description">
                 <h3 class="title"><?= $title?></h3>
-                <p class="description"><?= $description?></p>
-                <time class="date"><?= $date?></time>
+                <p class="description"><?= $excerpt?></p>
+                <time class="date"><?= $publish_at->date?></time>
             </div>
         </div>
     </a>

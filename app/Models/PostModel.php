@@ -19,11 +19,12 @@ class PostModel extends ParentModel
     protected $deletedField     = 'deleted_at';
 
     protected $allowedFields    = [
-        "uniqe_image",
+        "image",
         "title",
         "excerpt",
         "content",
         "tag",
+        "url",
         "type",
         "status",
         "view",

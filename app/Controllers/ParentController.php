@@ -7,7 +7,8 @@ use Config\Services;
 
 class ParentController extends BaseController {
     protected $helpers = array(
-        "public"
+        "Jalali_date",
+        "public",
     );
 
     /**
@@ -116,5 +117,21 @@ class ParentController extends BaseController {
 
     protected function renderPageDashboard( string $page, array $data ) {
         return renderPage( "Dashboard\\$page", $data, "header", "footer" );
+    }
+
+    protected function checkFileReturn( $address, $image ) {
+        return ( file_exists( FCPATH . $address . $image ) ? base_url( $address ) . "/" . $image  : IMAGE_DEFAULT );
+    }
+
+    protected function firstSegment() {
+        $uri = new \CodeIgniter\HTTP\URI( "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" );;
+
+        return $uri->getSegment( 1 );
+    }
+
+    protected function secondSegment() {
+        $uri = new \CodeIgniter\HTTP\URI( "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" );;
+
+        return $uri->getSegment( 2 );
     }
 }

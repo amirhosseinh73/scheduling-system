@@ -32,6 +32,7 @@ $routes->setAutoRoute( FALSE );
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Site\IndexController::loadIndex');
+$routes->get( "/(:segment)/(:any)", "Site\PostController::index/$1/$2" );
 
 /*
  * --------------------------------------------------------------------

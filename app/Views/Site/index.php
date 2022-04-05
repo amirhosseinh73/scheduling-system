@@ -125,10 +125,16 @@
     <article id="blog" class="my-5 container">
         <div class="row">
             <div class="col-12">
-                <h3 class="title big text-dark-2"><?= $title_blog?></h3>
+                <h3 class="title big text-dark-2"><?= $blog->title_head ?></h3>
             </div>
         </div>
         <div class="row">
-            
+            <?php 
+                if ( exists( $blog->data ) && is_array( $blog->data ) ) :
+                    foreach( $blog->data as $datum ) :
+                        echo renderPage( "Template\blog-card", (array)$datum );
+                    endforeach;
+                endif;
+            ?>
         </div>
     </article>
