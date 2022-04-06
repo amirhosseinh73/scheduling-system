@@ -4,7 +4,7 @@
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="../assets/image/slide-1.jpg" class="w-100 h-100 object-fit-cover" alt="" />
+                        <img src="<?= base_url( "../assets/image/slide-1.jpg" )?>" class="w-100 h-100 object-fit-cover" alt="" />
                         <div class="header-description">
                             <h1 class="title">مشاوره تلفنی</h1>
                             <p class="description">
@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <img src="../assets/image/slide-2.jpg" class="w-100 h-100 object-fit-cover" alt="" />
+                        <img src="<?= base_url( "../assets/image/slide-2.jpg" )?>" class="w-100 h-100 object-fit-cover" alt="" />
                         <div class="header-description">
                             <h1 class="title">پرسش و پاسخ</h1>
                             <p class="description">
@@ -44,7 +44,7 @@
                 <div class="row">
                     <section class="col-12 col-sm-6 col-lg-3 advice-box">
                         <div class="parent">
-                            <img src="../assets/icon/advice-meeting.png" class="image" alt=""/>
+                            <img src="<?= base_url( "assets/icon/advice-meeting.png" )?>" class="image" alt=""/>
                             <h3 class="title">مشاوره حضوری</h3>
                             <p class="description">
                                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
@@ -54,7 +54,7 @@
                     </section>
                     <section class="col-12 col-sm-6 col-lg-3 advice-box">
                         <div class="parent">
-                            <img src="../assets/icon/advice-phone.png" class="image" alt=""/>
+                            <img src="<?= base_url( "assets/icon/advice-phone.png" )?>" class="image" alt=""/>
                             <h3 class="title">مشاوره تلفنی</h3>
                             <p class="description">
                                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
@@ -64,7 +64,7 @@
                     </section>
                     <section class="col-12 col-sm-6 col-lg-3 advice-box">
                         <div class="parent">
-                            <img src="../assets/icon/advice-online-exam.png" class="image" alt=""/>
+                            <img src="<?= base_url( "/assets/icon/advice-online-exam.png" )?>" class="image" alt=""/>
                             <h3 class="title">آزمون آنلاین</h3>
                             <p class="description">
                                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
@@ -74,7 +74,7 @@
                     </section>
                     <section class="col-12 col-sm-6 col-lg-3 advice-box">
                         <div class="parent">
-                            <img src="../assets/icon/advice-faq.png" class="image" alt=""/>
+                            <img src="<?= base_url( "/assets/icon/advice-faq.png" )?>" class="image" alt=""/>
                             <h3 class="title">پرسش و پاسخ</h3>
                             <p class="description">
                                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
@@ -94,7 +94,7 @@
             <section class="col-12 mt-6">
                 <div class="row">
                     <section class="col-12 col-sm-5">
-                        <img src="../assets/image/about-index.jpg" class="w-100 h-100 object-fit-cover rounded-3" />
+                        <img src="<?= base_url( "/assets/image/about-index.jpg" ) ?>" class="w-100 h-100 object-fit-cover rounded-3" />
                     </section>
                     <section class="col-12 col-sm-7 about-index-description">
                         <h5 class="title big text-dark-1 mt-2 mb-4">خدمات مرکز</h5>

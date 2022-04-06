@@ -120,7 +120,7 @@ class ParentController extends BaseController {
     }
 
     protected function checkFileReturn( $address, $image ) {
-        return ( file_exists( FCPATH . $address . $image ) ? base_url( $address ) . "/" . $image  : IMAGE_DEFAULT );
+        return ( ( exists( $image ) && file_exists( FCPATH . $address . $image ) ) ? base_url( $address ) . "/" . $image  : IMAGE_DEFAULT );
     }
 
     protected function firstSegment() {
@@ -134,5 +134,35 @@ class ParentController extends BaseController {
         $uri = new \CodeIgniter\HTTP\URI( current_url() );
 
         return $uri->getSegment( 2 );
+    }
+
+    protected function handlePostData( $post ) {
+        $post->url          = base_url( BLOG_URL . $post->url );
+        $post->image        = $this->checkFileReturn( IMAGE_DIR_BLOG, $post->image );
+        $post->excerpt      = $post->excerpt ?: str_split_unicode( $post->content, 150 )[ 0 ] . "...";
+        $post->publish_at   = gregorianDatetimeToJalali( $post->publish_at );
+        $post->tag          = $this->handleTag( $post->tag );
+
+        return $post;
+    }
+
+    /**
+     * @return array
+     */
+    protected function handleTag( string $tags ) {
+        if ( is_array( $tags ) ) return;
+
+        $tags_1 = explode( ",", $tags );
+
+        $tags_1 = implode( "/", $tags_1 );
+        $tags_2 = explode( "/", $tags_1 );
+
+        $tags_2 = implode( "،", $tags_2 );
+        $tags_3 = explode( "،", $tags_2 );
+
+        $tags_3 = implode( "-", $tags_3 );
+        $tags_4 = explode( "-", $tags_3 );
+
+        return $tags_4;
     }
 }

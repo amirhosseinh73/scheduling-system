@@ -1,16 +1,11 @@
     <header class="header">
         <div class="image-back">
-            <img src="../assets/image/blog-1.jpg" class="w-100 h-100 object-fit-contain" alt="" />
-            <img src="../assets/image/blog-1.jpg" class="image-back-transparency" alt="" />
+            <img src="<?= $blog->image ?>" class="w-100 h-100 object-fit-contain" alt="" />
+            <img src="<?= $blog->image ?>" class="image-back-transparency" alt="" />
         </div>
         <div class="header-description">
-            <h1 class="title">مقالات آموزشی</h1>
-            <p class="description">
-                لورم ایپسوم متن ساختگی
-                با تولید سادگی نامفهوم از
-                صنعت چاپ و با استفاده 
-                از طراحان گرافیک است
-            </p>
+            <h1 class="title"><?= $title_head ?></h1>
+            <p class="description"><?= $blog->excerpt ?></p>
         </div>
     </header>
 
@@ -19,16 +14,12 @@
             <div class="col-12 single-blog-top">
                 <div class="row">
                     <section class="col-12 col-md-6">
-                        <h1 class="title big text-color-1">
-                            لورم ایپسوم متن ساختگی
-                        </h1>
+                        <h1 class="title big text-color-1"><?= $blog->title ?></h1>
                     </section>
                     <section class="col-12 col-md-6 single-blog-top-details">
                         <section class="row single-blog-top-details-border mx-0">
                             <div class="col-12 text-start single-blog-top-icon">
-                                <span id="view_number">
-                                    738
-                                </span>
+                                <span id="view_number"><?= $blog->view ?></span>
                                 <i class="far fa-eye"></i>
                             </div>
                         </section>
@@ -36,21 +27,24 @@
                             <div class="col-6">
                                 <ul class="single-blog-social">
                                     <li>
-                                        <a href="#" class="fab fa-facebook-f"></a>
+                                        <a target="_blank" href="http://www.facebook.com/sharer.php?u=<?= $blog->url ?>" class="fab fa-facebook-f"></a>
                                     </li>
                                     <li>
-                                        <a href="#" class="fab fa-twitter"></a>
+                                        <a target="_blank" href="https://twitter.com/share?url=<?= $blog->url ?>" class="fab fa-twitter"></a>
                                     </li>
                                     <li>
-                                        <a href="#" class="fab fa-telegram-plane"></a>
+                                        <a target="_blank" href="https://telegram.me/share?url=<?= $blog->url ?>" class="fab fa-telegram-plane"></a>
                                     </li>
                                     <li>
-                                        <a href="#" class="fab fa-whatsapp"></a>
+                                        <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=<?= $blog->url ?>" class="fab fa-linkedin-in"></a>
+                                    </li>
+                                    <li>
+                                        <a target="_blank" href="https://instagram.com?url=<?= $blog->url ?>" class="fab fa-instagram"></a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="col-6 single-blog-top-icon">
-                                <time id="publish_date">1400/02/01</time>
+                                <time id="publish_date" class="dir-ltr"><?= $blog->publish_at->date ?></time>
                                 <i class="far fa-clock"></i>
                             </div>
                         </section>
@@ -60,55 +54,18 @@
         </article>
         <article class="row mt-4">
             <div class="col-12 single-blog-content">
-                <div>
-                    <img src="../assets/image/single-blog.jpg" class="float-end"/>
-
-                    <p>
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                    </p>
-                    <p>
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                    </p>
-                    <p>
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                    </p>
-
-                    <p>
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                    </p>
-                </div>
+                <div><?= $blog->content ?></div>
 
                 <section class="single-blog-tags">
                     <span class="tag-icon far fa-tags"></span>
-
-                    <span class="tag">
-                        <i class="far fa-hashtag ml-1"></i>
-                        <a href="#">لورم</a>
-                    </span>
-                    <span class="tag">
-                        <i class="far fa-hashtag ml-1"></i>
-                        <a href="#">لورم ایپسوم</a>
-                    </span>
-                    <span class="tag">
-                        <i class="far fa-hashtag ml-1"></i>
-                        <a href="#">لورم ایپسوم متن</a>
-                    </span>
-                    <span class="tag">
-                        <i class="far fa-hashtag ml-1"></i>
-                        <a href="#">لورم ایپسوم متن ساختگی</a>
-                    </span>
-                    <span class="tag">
-                        <i class="far fa-hashtag ml-1"></i>
-                        <a href="#">لورم ایپسوم</a>
-                    </span>
-                    <span class="tag">
-                        <i class="far fa-hashtag ml-1"></i>
-                        <a href="#">لورم</a>
-                    </span>
-                    <span class="tag">
-                        <i class="far fa-hashtag ml-1"></i>
-                        <a href="#">لورم ایپسوم</a>
-                    </span>
+                    <?php if ( exists( $blog->tag ) && is_array( $blog->tag ) ) :
+                        foreach( $blog->tag as $tag ) :
+                            echo "<span class='tag'>
+                                    <i class='far fa-hashtag ml-1'></i>
+                                    <a>$tag</a>
+                                </span>";
+                        endforeach;
+                    endif; ?>
                 </section>
             </div>
         </article>

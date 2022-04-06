@@ -9,7 +9,11 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/bootstrap.min.css" );?>" />
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/swiper-bundle.min.css" );?>" />
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/font/fontawesome/css/all.min.css" );?>" />
-    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/index.css" );?>" />
+    <?php if ( $page_name === "index" ) : ?>
+        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/index.css" );?>" />
+    <?php elseif ( $page_name === "blog" ) : ?>
+        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/single.css" );?>" />
+    <?php endif; ?>
 
     <script type="text/javascript">
         const base_url = "<?= base_url();?>";

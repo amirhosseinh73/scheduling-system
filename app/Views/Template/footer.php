@@ -101,6 +101,6 @@
     <script type="text/javascript" src="<?= base_url( "/assets/js/lib/bootstrap.bundle.min.js" )?>"></script>
     <script type="text/javascript" src="<?= base_url( "/assets/js/lib/swiper-bundle.min.js" )?>"></script>
     <script type="text/javascript" src="<?= base_url( "/assets/js/global/helper.js" )?>"></script>
-    <!-- <script type="text/javascript" src="<?//= base_url( "/assets/js/page/index.js" )?>"></script> -->
+    <script type="text/javascript" src="<?= base_url( "/assets/js/page/index.js" )?>"></script>
 </body>
 </html>

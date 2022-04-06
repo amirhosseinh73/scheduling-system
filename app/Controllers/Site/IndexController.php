@@ -13,13 +13,14 @@ class IndexController extends ParentController
         $data_page = array(
             "title_head"        => TextLibrary::title( "index" ),
             "description_head"  => TextLibrary::description( "company_name" ),
-            "blog"              => $this->blogData(),
+            "blog"              => $this->blogData( 4 ),
+            "page_name"         => "index",
         );
 
         return $this->renderPageSite( "index", $data_page );
     }
 
-    private function blogData() {
+    private function blogData( $limit = 4 ) {
         $post_model = new PostModel();
 
         $select_blog = $post_model
@@ -27,13 +28,10 @@ class IndexController extends ParentController
             ->where( "status", TRUE ) //draft is 0
             ->where( "publish_at <", date( "Y-m-d H:i:s" ) )
             ->orderBy( "publish_at", "DESC" )
-            ->findAll();
+            ->findAll( $limit, 0 );
 
         foreach( $select_blog as $blog ) :
-            $blog->url          = base_url( BLOG_URL . $blog->url );
-            $blog->image        = $this->checkFileReturn( IMAGE_DIR_BLOG, $blog->image );
-            $blog->excerpt      = $blog->excerpt ?: str_split_unicode( $blog->content, 150 )[ 0 ] . "...";
-            $blog->publish_at   = gregorianDatetimeToJalali( $blog->publish_at );
+            $blog = $this->handlePostData( $blog );
         endforeach;
 
         return (object)array(

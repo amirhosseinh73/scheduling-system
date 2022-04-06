@@ -75,6 +75,7 @@
     margin-bottom: 2rem;
 }
 
+.single-blog-content > div,
 .single-blog-content > div p {
     line-height: 3;
     font-size: 1rem;
@@ -117,13 +118,13 @@
 }
 
 .single-blog-tags .tag-icon {
-    position: absolute;
-    right: 0;
-    top: -0.5rem;
-    bottom: 0;
-    margin: auto;
-    font-size: 2rem;
-    color: var(--color-2);
+	position: absolute;
+	right: 0;
+	top: -0.5rem;
+	bottom: 0;
+	margin: auto;
+	font-size: 1.5rem;
+	color: var(--color-2);
 }
 
 .tag {

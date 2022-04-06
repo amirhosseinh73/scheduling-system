@@ -212,7 +212,7 @@ function gregorianDatetimeToJalali( $datetime ) {
     $time     = explode( ":", $time );
     $time     = $time[ 0 ] . ":" . $time[ 1 ];
     $date     = explode( "-", $datetime[ 0 ] );
-    $date     = gregorian_to_jalali( $date[ 0 ], $date[ 1 ], $date[ 2 ], "/" );
+    $date     = gregorian_to_jalali( $date[ 0 ], $date[ 1 ], $date[ 2 ], " / " );
 
     return ( object ) [
         "time" => $time,
