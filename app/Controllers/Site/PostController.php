@@ -24,7 +24,9 @@ class PostController extends ParentController {
 
         $select_blog = $this->loadPost( TRUE );
 
-        $select_blog = $this->handlePostData( $select_blog );
+        if ( ! $select_blog ) return redirect()->to( base_url() );
+
+        $select_blog = $this->handlePostData( $select_blog, BLOG_URL, IMAGE_DIR_BLOG );
 
         $data_page = array(
             "title_head"        => TextLibrary::title( "blog" ),
@@ -39,7 +41,27 @@ class PostController extends ParentController {
     }
 
     protected function loadPage() {
+        $select_page = $this->loadPost( FALSE );
+        
+        if ( ! $select_page ) return redirect()->to( base_url() );
 
+        $select_page = $this->handlePostData( $select_page, PAGE_URL, IMAGE_DIR_PAGE );
+
+        $data_page = array(
+            "title_head"        => TextLibrary::title( "page" ),
+            "description_head"  => TextLibrary::description( "company_name" ),
+            "page"              => $select_page,
+            "page_name"         => "page",
+            "description"       => TextLibrary::description( "page" ),
+        );
+
+        if ( strpos( $select_page->url, "about-us" ) ) {
+            return $this->renderPageSite( "page-about", $data_page );
+        } elseif( strpos( $select_page->url, "contact-us" ) ) {
+            return $this->renderPageSite( "page-contact", $data_page );
+        } else {
+            return $this->renderPageSite( "page-default", $data_page );
+        }
     }
 
     /**
@@ -48,11 +70,11 @@ class PostController extends ParentController {
     protected function loadPost( $post_type ) {
         $post_key = $this->secondSegment();
 
-        if ( ! exists( $post_key ) ) return redirect()->to( base_url() );
+        if ( ! exists( $post_key ) ) return FALSE;
 
         $post_model = new PostModel();
 
-        $select_blog = $post_model
+        $select_post = $post_model
             ->where( "type", $post_type ) //blog is 1
             ->where( "status", TRUE ) //draft is 0
             ->where( "publish_at <", date( "Y-m-d H:i:s" ) )
@@ -60,18 +82,18 @@ class PostController extends ParentController {
             ->orderBy( "publish_at", "DESC" )
             ->first();
 
-        if ( ! exists( $select_blog ) ) return redirect()->to( base_url() );
+        if ( ! exists( $select_post ) ) return FALSE;
 
         try {
             $data_update = array(
-                "view" => intval( $select_blog->view ) + 1
+                "view" => intval( $select_post->view ) + 1
             );
-            $post_model->update( $select_blog->ID, $data_update );
+            $post_model->update( $select_post->ID, $data_update );
         } catch ( \Exception $e ) {
-            return redirect()->to( base_url() );
+            return FALSE;
         }
 
-        return $select_blog;
+        return $select_post;
     }
 
 }

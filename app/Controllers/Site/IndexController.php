@@ -31,7 +31,7 @@ class IndexController extends ParentController
             ->findAll( $limit, 0 );
 
         foreach( $select_blog as $blog ) :
-            $blog = $this->handlePostData( $blog );
+            $blog = $this->handlePostData( $blog, BLOG_URL, IMAGE_DIR_BLOG );
         endforeach;
 
         return (object)array(

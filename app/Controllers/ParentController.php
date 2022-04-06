@@ -136,9 +136,9 @@ class ParentController extends BaseController {
         return $uri->getSegment( 2 );
     }
 
-    protected function handlePostData( $post ) {
-        $post->url          = base_url( BLOG_URL . $post->url );
-        $post->image        = $this->checkFileReturn( IMAGE_DIR_BLOG, $post->image );
+    protected function handlePostData( $post, $post_url, $post_image_url ) {
+        $post->url          = base_url( $post_url . $post->url );
+        $post->image        = $this->checkFileReturn( $post_image_url, $post->image );
         $post->excerpt      = $post->excerpt ?: str_split_unicode( $post->content, 150 )[ 0 ] . "...";
         $post->publish_at   = gregorianDatetimeToJalali( $post->publish_at );
         $post->tag          = $this->handleTag( $post->tag );
