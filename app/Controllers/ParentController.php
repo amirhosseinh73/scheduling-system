@@ -124,13 +124,14 @@ class ParentController extends BaseController {
     }
 
     protected function firstSegment() {
-        $uri = new \CodeIgniter\HTTP\URI( "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" );;
+        //"http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"
+        $uri = new \CodeIgniter\HTTP\URI( current_url() );
 
         return $uri->getSegment( 1 );
     }
 
     protected function secondSegment() {
-        $uri = new \CodeIgniter\HTTP\URI( "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" );;
+        $uri = new \CodeIgniter\HTTP\URI( current_url() );
 
         return $uri->getSegment( 2 );
     }
