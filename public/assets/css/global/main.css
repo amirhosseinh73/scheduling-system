@@ -221,6 +221,10 @@ body {
     object-position: bottom left !important;
 }
 
+.object-position-top-rem {
+    object-position: 0 -3rem;
+}
+
 .btn-click-color-1, .btn-click-color-1:focus {
     box-shadow: -2px 2px 4px -1px var(--color-1);
 }

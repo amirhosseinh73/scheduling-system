@@ -4,7 +4,7 @@
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="<?= base_url( "../assets/image/slide-1.jpg" )?>" class="w-100 h-100 object-fit-cover" alt="" />
+                        <img src="<?= base_url( "../assets/image/slide-1.jpg" )?>" class="w-100 h-100 object-fit-cover object-position-top-rem" alt="" />
                         <div class="header-description">
                             <h1 class="title">مشاوره تلفنی</h1>
                             <p class="description">

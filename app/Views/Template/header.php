@@ -21,14 +21,34 @@
 </head>
 <body>
     
-    <nav class="nav-absolute row flex-row-reverse flex-sm-row">
-        <div class="col-12 col-sm-auto ms-sm-auto">
-            <button type="button" class="btn text-color-7">
+    <nav class="nav-absolute row flex-row-reverse flex-sm-row align-items-center">
+        <div class="col-12 col-sm ms-sm-auto nav-list-parent">
+            <button type="button" class="btn text-color-7 nav-btn-collapse">
                 <i class="fad fa-bars"></i>
             </button>
-            <button type="button" class="btn text-color-7">
+            <!-- <button type="button" class="btn text-color-7">
                 <i class="fad fa-search"></i>
-            </button>
+            </button> -->
+            <ul class="nav-list-ul">
+                <li>
+                    <a href="<?= base_url() ?>">صفحه اصلی</a>
+                </li>
+                <li>
+                    <a href="<?= base_url( "/category/blog" )?>">وبلاگ</a>
+                </li>
+                <li>
+                    <a href="<?= base_url( "/page/about-us" )?>">درباره ما</a>
+                </li>
+                <li>
+                    <a href="<?= base_url( "/page/contact-us" )?>">تماس با ما</a>
+                </li>
+                <li class="button-outline">
+                    <a href="<?= base_url( "/page/login" )?>">ورود</a>
+                </li>
+                <li class="button-fill">
+                    <a href="<?= base_url( "/page/register" )?>">ثبت نام</a>
+                </li>
+            </ul>
         </div>
         <div class="col-12 col-sm-auto me-sm-auto">
             <a href="<?= base_url();?>">
