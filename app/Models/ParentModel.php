@@ -27,7 +27,7 @@ class ParentModel extends Model
      * @return object|array|null
      * @author amirhosein hasani
      */
-    public function CustomFindAll( bool $return_all = FALSE, int $limit = 0, int $offset = 0 )
+    public function customFindAll( bool $return_all = FALSE, int $limit = 0, int $offset = 0 )
     {
         if ( $return_all ) return $this->findAll( $limit, $offset );
         
@@ -45,7 +45,7 @@ class ParentModel extends Model
      * @return object|array|null
      * @author amirhosein hasani
      */
-    public function CustomFind( bool $return_all = FALSE, $id = NULL )
+    public function customFind( bool $return_all = FALSE, $id = NULL )
     {
         if ( $return_all ) return $this->find( $id );
 
@@ -62,7 +62,7 @@ class ParentModel extends Model
      * @return object|array|null
      * @author amirhosein hasani
      */
-    public function CustomFirst( bool $return_all = FALSE )
+    public function customFirst( bool $return_all = FALSE )
     {
         if ( $return_all ) return $this->first();
 

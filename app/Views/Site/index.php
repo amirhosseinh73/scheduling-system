@@ -132,7 +132,7 @@
             <?php 
                 if ( exists( $blog->data ) && is_array( $blog->data ) ) :
                     foreach( $blog->data as $datum ) :
-                        echo renderPage( "Template\blog-card", (array)$datum );
+                        echo render_page( "Template\blog-card", (array)$datum );
                     endforeach;
                 endif;
             ?>

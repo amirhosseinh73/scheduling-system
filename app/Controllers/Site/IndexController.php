@@ -25,10 +25,10 @@ class IndexController extends ParentController
 
         $select_blog = $post_model
             ->where( "type", TRUE ) //blog is 1
-            ->where( "status", TRUE ) //draft is 0
+            // ->where( "status", TRUE ) //draft is 0
             ->where( "publish_at <", date( "Y-m-d H:i:s" ) )
             ->orderBy( "publish_at", "DESC" )
-            ->findAll( $limit, 0 );
+            ->customFindAll( FALSE, $limit, 0 );
 
         foreach( $select_blog as $blog ) :
             $blog = $this->handlePostData( $blog, BLOG_URL, IMAGE_DIR_BLOG );

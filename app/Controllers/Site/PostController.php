@@ -4,6 +4,7 @@ namespace App\Controllers\Site;
 
 use App\Controllers\ParentController;
 use App\Libraries\TextLibrary;
+use App\Models\FAQModel;
 use App\Models\PostModel;
 
 class PostController extends ParentController {
@@ -48,7 +49,7 @@ class PostController extends ParentController {
         $select_page = $this->handlePostData( $select_page, PAGE_URL, IMAGE_DIR_PAGE );
 
         $data_page = array(
-            "title_head"        => TextLibrary::title( "page" ),
+            "title_head"        => $select_page->title,
             "description_head"  => TextLibrary::description( "company_name" ),
             "page"              => $select_page,
             "page_name"         => "page",
@@ -58,6 +59,10 @@ class PostController extends ParentController {
         if ( strpos( $select_page->url, "about-us" ) ) {
             return $this->renderPageSite( "page-about", $data_page );
         } elseif( strpos( $select_page->url, "contact-us" ) ) {
+
+            $data_page[ "metadata" ] = $this->handleMetadata( "contact_us" );
+            $data_page[ "faq" ] = $this->loadFAQ();
+
             return $this->renderPageSite( "page-contact", $data_page );
         } else {
             return $this->renderPageSite( "page-default", $data_page );
@@ -66,6 +71,7 @@ class PostController extends ParentController {
 
     /**
      * @param bool $post_type blog as `TRUE` | page as `FALSE`
+     * @return bool|object `FALSE` | `page or blog`
      */
     protected function loadPost( $post_type ) {
         $post_key = $this->secondSegment();
@@ -76,11 +82,11 @@ class PostController extends ParentController {
 
         $select_post = $post_model
             ->where( "type", $post_type ) //blog is 1
-            ->where( "status", TRUE ) //draft is 0
+            // ->where( "status", TRUE ) //draft is 0
             ->where( "publish_at <", date( "Y-m-d H:i:s" ) )
             ->where( "url", urldecode( $post_key ) )
             ->orderBy( "publish_at", "DESC" )
-            ->first();
+            ->customFirst();
 
         if ( ! exists( $select_post ) ) return FALSE;
 
@@ -94,6 +100,14 @@ class PostController extends ParentController {
         }
 
         return $select_post;
+    }
+
+    public function loadFAQ() {
+        $faq_model = new FAQModel();
+
+        $select_faq = $faq_model->orderBy( "updated_at", "DESC" )->customFindAll( FALSE, 8, 0 );
+
+        return $select_faq;
     }
 
 }

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class PostModel extends ParentModel
+class MetadataModel extends ParentModel
 {
     protected $DBGroup          = 'default';
 
@@ -10,7 +10,7 @@ class PostModel extends ParentModel
     protected $useSoftDeletes   = TRUE;
     protected $useTimestamps    = TRUE;
 
-    protected $table            = 'post';
+    protected $table            = 'metadata';
     protected $primaryKey       = 'ID';
     protected $returnType       = 'object';
 
@@ -19,16 +19,8 @@ class PostModel extends ParentModel
     protected $deletedField     = 'deleted_at';
 
     protected $allowedFields    = [
-        "image",
-        "title",
-        "excerpt",
-        "content",
-        "tag",
-        "sub_title",
-        "url",
-        "type",
-        "status",
-        "view",
-        "publish_at",
+        "meta_key",
+        "meta_value",
+        "parent",
     ];
 }

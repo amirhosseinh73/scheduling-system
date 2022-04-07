@@ -21,7 +21,7 @@ defined( "IMAGE_DEFAULT_FEMALE" )   || define( "IMAGE_DEFAULT_FEMALE"   , "/uplo
  * @param ?string $header
  * @param ?string $footer
  */
-function renderPage( string $page, array $data, string $header = NULL, string $footer = NULL ) {
+function render_page( string $page, array $data, string $header = NULL, string $footer = NULL ) {
     if( $header ) $header = view("Template/{$header}", $data);
 
     if( $footer ) $footer = view("Template/{$footer}", $data);
@@ -78,6 +78,11 @@ function is_base64( string $string ) {
     }
 }
 
+function is_json($string) {
+   json_decode($string);
+   return json_last_error() === JSON_ERROR_NONE;
+}
+
 /**
  * Summary.
  * is item declared or not
@@ -96,6 +101,7 @@ function exists( $item ) {
  * @param mixed $item
  */
 function _dump( $item ){
+    echo "<pre>";
     var_dump( $item );
     die;
 }

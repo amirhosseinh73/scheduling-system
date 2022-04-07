@@ -16,7 +16,7 @@ button > i {
 
 ::selection {
     background-color: var(--color-3);
-    color: var(--dark-1);
+    color: var(--light-1);
 }
 
 ::placeholder {

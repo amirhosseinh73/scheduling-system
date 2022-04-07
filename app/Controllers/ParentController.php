@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Libraries\Alert;
+use App\Models\MetadataModel;
 use Config\Services;
 
 class ParentController extends BaseController {
@@ -112,14 +113,14 @@ class ParentController extends BaseController {
     protected $CallFunction = FALSE;
 
     protected function renderPageSite( string $page, array $data ) {
-        return renderPage( "Site\\$page", $data, "header", "footer" );
+        return render_page( "Site\\$page", $data, "header", "footer" );
     }
 
     protected function renderPageDashboard( string $page, array $data ) {
-        return renderPage( "Dashboard\\$page", $data, "header", "footer" );
+        return render_page( "Dashboard\\$page", $data, "header", "footer" );
     }
 
-    protected function checkFileReturn( $address, $image ) {
+    protected function checkImageReturn( $address, $image ) {
         return ( ( exists( $image ) && file_exists( FCPATH . $address . $image ) ) ? base_url( $address ) . "/" . $image  : IMAGE_DEFAULT );
     }
 
@@ -138,7 +139,7 @@ class ParentController extends BaseController {
 
     protected function handlePostData( $post, $post_url, $post_image_url ) {
         $post->url          = base_url( $post_url . $post->url );
-        $post->image        = $this->checkFileReturn( $post_image_url, $post->image );
+        $post->image        = $this->checkImageReturn( $post_image_url, $post->image );
         $post->excerpt      = $post->excerpt ?: str_split_unicode( $post->content, 150 )[ 0 ] . "...";
         $post->publish_at   = gregorianDatetimeToJalali( $post->publish_at );
         $post->tag          = $this->handleTag( $post->tag );
@@ -164,5 +165,24 @@ class ParentController extends BaseController {
         $tags_4 = explode( "-", $tags_3 );
 
         return $tags_4;
+    }
+
+    protected function handleMetadata( $parent_key ) {
+
+        $metadata_model = new MetadataModel();
+
+        $select_metadata = $metadata_model
+            ->where( "parent", $parent_key )
+            ->findAll();
+
+        $data = array();
+        foreach( $select_metadata as $metadata ) :
+
+            $meta_value = json_decode( $metadata->meta_value );
+
+            $data[ $metadata->meta_key ] = ( count( $meta_value ) === 1 ? $meta_value[ 0 ] : $meta_value );
+        endforeach;
+
+        return (object)$data;
     }
 }

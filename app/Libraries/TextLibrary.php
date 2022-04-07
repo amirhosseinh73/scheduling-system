@@ -19,7 +19,7 @@ class TextLibrary {
 
             default :
             case "index" :
-                return "مرکز مشاوره و روانشناختی";
+                return "مرکز مشاوره روانشناختی";
             case "blog" :
                 return "اخبار و مقالات";
 
