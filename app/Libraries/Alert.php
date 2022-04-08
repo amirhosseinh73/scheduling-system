@@ -48,6 +48,9 @@ class Alert {
             case 105 :
                 $message = "تکرار رمز عبور صحیح نیست.";
                 break;
+            case 106 :
+                $message = "نوع کاربری خود را مشخص گنید.";
+                break;
         endswitch;
 
         if ( $show_code ) :

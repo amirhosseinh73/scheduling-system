@@ -11,11 +11,11 @@ class IsLogin implements FilterInterface {
     public function before(RequestInterface $request, $arguments = null)
     {
         helper( "public" );
-        //check if user is login going to dashboard and not going to login page
-        //and is admin
-        $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
+        //check if user not login going to login page and not going to dashboard page
+        //and is not admin
+        $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME ); // use for web
 
-        if ( exists( $user_info ) && exists( $user_info->ID ) && $user_info->is_admin ) return redirect()->to( base_url( "admin/dashboard" ) );
+        if ( ! $user_info || ! exists( $user_info->ID ) || !!!$user_info->is_admin ) return redirect()->to( base_url( "/login" ) );
 
         return TRUE;
     }

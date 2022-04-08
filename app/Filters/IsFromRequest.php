@@ -2,21 +2,24 @@
 
 namespace App\Filters;
 
-use App\Controllers\TokenController;
-use App\Libraries\Alert;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class IsLoginApi implements FilterInterface {
+/**
+ * this filter check user type url or redirect to this page with my response
+ */
+class IsFromRequest implements FilterInterface {
     public function before(RequestInterface $request, $arguments = null)
     {
         helper( "public" );
-        //check if user is login going to dashboard and not going to login page
-        //and is admin
-        $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
 
-        if ( exists( $user_info ) && exists( $user_info->ID ) && $user_info->is_admin ) return Alert::Error( 122 );
+        $session = session();
+        $check = $session->get( KEY_CHECK_RESPONSE );
+
+        // if ( ! exists( $check ) ) return redirect()->to( base_url( "/register" ) );
+
+        $session->remove( KEY_CHECK_RESPONSE );
 
         return TRUE;
     }

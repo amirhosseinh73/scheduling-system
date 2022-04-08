@@ -24,6 +24,8 @@ class TextLibrary {
                 return "اخبار و مقالات";
             case "register" :
                 return "ثبت نام";
+            case "verify" :
+                return "تایید تلفن همراه";
             case "login" :
                 return "ورود به حساب کاربری";
 

@@ -14,7 +14,7 @@ function doc_ready(fn) {
  * @param {object} data { method, headers, data }
  */
 async function ajax_fetch( url, success_function, data ) {
-    // document.body.insertAdjacentHTML( "beforeend", html_loading() );
+    document.body.insertAdjacentHTML( "beforeend", html_loading() );
     const form_data = new FormData();
     if ( data.method.toUpperCase() === "POST" ) {
         for ( const key in data.data ) {
@@ -28,11 +28,11 @@ async function ajax_fetch( url, success_function, data ) {
     } )
     .then( ( response ) => response.json() )
     .then( ( response ) => {
-        // document.getElementById( "preloader" ).remove();
+        document.getElementById( "preloader" ).remove();
         return success_function( response );
     } )
     .catch( ( error ) => {
-        // document.getElementById( "preloader" ).remove();
+        document.getElementById( "preloader" ).remove();
         console.error( 'Error:', error );
     } );
 }
@@ -134,7 +134,7 @@ function sweet_alert_confirm( data, callback = () => {} ) {
     });
 }
 
-function sweet_alert_message( data ) {
+function sweet_alert_message( data, callback = () => {} ) {
     Swal.fire({
         title: data.title,
         text: data.message,
@@ -144,6 +144,10 @@ function sweet_alert_message( data ) {
         showCancelButton: false,
         allowOutsideClick: false,   
         allowEscapeKey: false,
+    }).then(function (result) {
+        if ( result.value ) {
+            callback();
+        }
     });
 }
 
@@ -182,7 +186,7 @@ doc_ready( function() {
 
 function html_loading() {
     return `<div id="preloader" style="opacity: 70%">
-        <div id="status">
+        <div class="loading">
             <div class="spinner-chase">
                 <div class="chase-dot"></div>
                 <div class="chase-dot"></div>

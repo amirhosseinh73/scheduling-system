@@ -2,6 +2,9 @@
 
 namespace Config;
 
+use App\Filters\IsFromRequest;
+use App\Filters\IsLogin;
+use App\Filters\IsNotLogin;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -24,8 +27,8 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'IsLogin'       => IsLogin::class,
-        'NotLogin'      => NotLogin::class,
-        'IsLoginApi'    => IsLoginApi::class,
+        'IsNotLogin'    => IsNotLogin::class,
+        'IsFromRequest' => IsFromRequest::class,
     ];
 
     /**

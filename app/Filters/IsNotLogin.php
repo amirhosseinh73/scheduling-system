@@ -7,15 +7,15 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class NotLogin implements FilterInterface {
+class IsNotLogin implements FilterInterface {
     public function before(RequestInterface $request, $arguments = null)
     {
         helper( "public" );
-        //check if user not login going to login page and not going to dashboard page
-        //and is not admin
-        $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME ); // use for web
+        //check if user is login going to dashboard and not going to login page
+        //and is admin
+        $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
 
-        if ( ! $user_info || ! exists( $user_info->ID ) || !!!$user_info->is_admin ) return redirect()->to( base_url( "admin/login" ) );
+        if ( exists( $user_info ) && exists( $user_info->ID ) ) return redirect()->to( base_url( "/dashboard" ) );
 
         return TRUE;
     }

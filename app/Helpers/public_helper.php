@@ -5,6 +5,7 @@
 use App\Libraries\SmsIrUltraFastSend;
 
 defined( "TOKEN_COOKIE_NAME" )      || define( "LOGIN_TOKEN_COOKIE_NAME", "Scheduling_system" );
+defined( "KEY_CHECK_RESPONSE" )     || define( "KEY_CHECK_RESPONSE", "request_response_session" );
 
 defined( "BLOG_URL" )               || define( "BLOG_URL"               , "/blog/" );
 defined( "PAGE_URL" )               || define( "PAGE_URL"               , "/page/" );
@@ -195,25 +196,6 @@ function save_request_files( $file, $address = IMAGE_DIR_PROFILE ) {
     return $saved_file_name;
 }
 
-function _base_url(){
-    return "http://192.168.1.11:2525";
-}
-
-function grade_text( int $grade ) {
-    switch ( $grade ) :
-        case 1:
-            return "Lower Primary";
-        case 2:
-            return "Upper Primary";
-        case 3:
-            return "Lower Secondary";
-        case 4:
-            return "Upper Secondary";
-        default:
-            return "";
-    endswitch;
-}
-
 /**
  * @return object `time` & `date`
  */
@@ -231,46 +213,31 @@ function gregorianDatetimeToJalali( $datetime ) {
     ];
 }
 
-function UltraFastSendServiceSms( $type, $mobile, $password, $nat_code = null ) {
+function sms_ir_ultra_fast_send_service( $mobile, $param, $value ) {
     try {
         date_default_timezone_set("Asia/Tehran");
 
         // your sms.ir panel configuration
-        $APIKey = "71c28b38c2086476362fa8df";
-        $SecretKey = "Vira@5668";
+        $APIKey = "646a2a1a76f4451355e3745";
+        $SecretKey = "amirhoseinh730016973178";
 
         $APIURL = "https://ws.sms.ir/";
 
         // message data
-        if ($type == 1) {
-            $data = array(
-                "ParameterArray" => array(
-                    array(
-                        "Parameter" => "Password",
-                        "ParameterValue" => $password
-                    ),
-                    array(
-                        "Parameter" => "Nat_Code",
-                        "ParameterValue" => $nat_code),
+        $data = array(
+            "ParameterArray" => array(
+                array(
+                    "Parameter" => "$param",
+                    "ParameterValue" => $value
                 ),
-                "Mobile" => $mobile,
-                "TemplateId" => "38482",
-            );
-        } else {
-            $data = array(
-                "ParameterArray" => array(
-                    array(
-                        "Parameter" => "Password",
-                        "ParameterValue" => $password
-                    ),
-                ),
-                "Mobile" => $mobile,
-                "TemplateId" => "38483",
-            );
-        }
+            ),
+            "Mobile" => $mobile,
+            "TemplateId" => "64651",
+        );
         $SmsIR_UltraFastSend = new SmsIrUltraFastSend($APIKey, $SecretKey, $APIURL);
         $UltraFastSend = $SmsIR_UltraFastSend->ultraFastSend($data);
 
+        return $UltraFastSend;
     } catch ( \Exception $e ) {
         echo 'Error UltraFastSend : ' . $e->getMessage();
     }

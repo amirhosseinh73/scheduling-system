@@ -24,24 +24,20 @@ class Register {
             const mobile = this.validateMobile();
             if ( ! mobile ) return;
 
-            const password = this.validatePassword();
-            if ( ! password ) return;
-            
-            const confirm_passwrod = this.validateConfirmPasswrod();
-            if ( ! confirm_passwrod ) return;
+            const type_user = this.validateTypeUser();
+            if ( ! type_user ) return;
 
             const fetch_data = {
                 method: "post",
                 data: {
-                    firstname       : firstname,
-                    lastname        : lastname,
-                    mobile          : mobile,
-                    password        : password,
-                    confirm_password: confirm_passwrod,
+                    firstname   : firstname,
+                    lastname    : lastname,
+                    mobile      : mobile,
+                    type_user   : type_user,
                 }
             };
 
-            ajax_fetch( route.register_submit, this.loginAfterRegister, fetch_data );
+            ajax_fetch( route.register_submit, this.stepVerifyMobile, fetch_data );
         } );
     }
 
@@ -84,13 +80,26 @@ class Register {
         return mobile;
     }
 
+    validateTypeUser() {
+        const register_form     = document.getElementById( "register_form" );
+        const type_user_doctor  = document.getElementById( "type_user_1" );
+        const type_user_patient = document.getElementById( "type_user_2" );
+
+        if ( type_user_doctor.checked ) return 1;
+        else if( type_user_patient.checked ) return 2;
+        else {
+            register_form.insertAdjacentHTML( "afterbegin", alert_html_rtl( "danger", Alert.error( 106 ) ) );
+            return 0;
+        }
+    }
+
     validatePassword() {
 
-        const register_form     = document.getElementById( "register_form" );
+        const verify_form       = document.getElementById( "verify_form" );
         const password          = document.getElementById( "password" ).value;
 
         if ( password.length < 6 ) {
-            register_form.insertAdjacentHTML( "afterbegin", alert_html_rtl( "danger", Alert.error( 104 ) ) );
+            verify_form.insertAdjacentHTML( "afterbegin", alert_html_rtl( "danger", Alert.error( 104 ) ) );
             return false;
         }
 
@@ -99,26 +108,67 @@ class Register {
 
     validateConfirmPasswrod() {
 
-        const register_form     = document.getElementById( "register_form" );
+        const verify_form       = document.getElementById( "verify_form" );
         const password          = document.getElementById( "password" ).value;
         const confirm_password  = document.getElementById( "confirm_password" ).value;
 
         if ( confirm_password !== password ) {
-            register_form.insertAdjacentHTML( "afterbegin", alert_html_rtl( "danger", Alert.error( 105 ) ) );
+            verify_form.insertAdjacentHTML( "afterbegin", alert_html_rtl( "danger", Alert.error( 105 ) ) );
             return false;
         }
 
         return confirm_password;
     }
 
-    loginAfterRegister( response ) {
-        console.log(response);
-        if ( response.status === "failed" )
-            sweet_alert_message( response );
-        else
-            sweet_alert_confirm( response, () => {
-                window.location.href = response.return_url;
-            } );
+    validateVerifyCode() {
+
+        const verify_form       = document.getElementById( "verify_form" );
+        const verify_code          = document.getElementById( "verify_code" ).value;
+
+        if ( verify_code.length !== 6 ) {
+            verify_form.insertAdjacentHTML( "afterbegin", alert_html_rtl( "danger", Alert.error( 107 ) ) );
+            return false;
+        }
+
+        return verify_code;
+    }
+
+    stepVerifyMobile( response ) {
+        sweet_alert_message( response, () => {
+            register_form.reset();
+            window.location.href = response.return_url;
+        } );
+    }
+
+    submitVerify() {
+        const verify_form = document.getElementById( "verify_form" );
+        verify_form.addEventListener( "submit", ( e ) => {
+            e.preventDefault();
+
+            if ( verify_form.querySelector( ".alert" ) ) {
+                verify_form.querySelector( ".alert" ).remove();
+            }
+
+            const verify_code = this.validateVerifyCode();
+            if ( ! verify_code ) return;
+
+            const password = this.validatePassword();
+            if ( ! password ) return;
+
+            const confirm_password = this.validateConfirmPasswrod();
+            if ( ! confirm_password ) return;
+
+            const fetch_data = {
+                method: "post",
+                data: {
+                    verify_code     : verify_code,
+                    password        : password,
+                    confirm_password: confirm_password,
+                }
+            };
+
+            ajax_fetch( route.verify_submit, this.completeRegister, fetch_data );
+        } );
     }
 }
 
