@@ -9,10 +9,13 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/bootstrap.min.css" );?>" />
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/swiper-bundle.min.css" );?>" />
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/font/fontawesome/css/all.min.css" );?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/sweetalert2.min.css" );?>" />
     <?php if ( $page_name === "index" ) : ?>
         <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/index.css" );?>" />
     <?php elseif ( $page_name === "blog" || $page_name === "page" ) : ?>
         <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/single.css" );?>" />
+    <?php elseif ( $page_name === "register" || $page_name === "login" ) : ?>
+        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/login.css" );?>" />
     <?php endif; ?>
 
     <script type="text/javascript">
@@ -43,10 +46,10 @@
                     <a href="<?= base_url( "/page/contact-us" )?>">تماس با ما</a>
                 </li>
                 <li class="button-outline">
-                    <a href="<?= base_url( "/page/login" )?>">ورود</a>
+                    <a href="<?= base_url( "/login" )?>">ورود</a>
                 </li>
                 <li class="button-fill">
-                    <a href="<?= base_url( "/page/register" )?>">ثبت نام</a>
+                    <a href="<?= base_url( "/register" )?>">ثبت نام</a>
                 </li>
             </ul>
         </div>

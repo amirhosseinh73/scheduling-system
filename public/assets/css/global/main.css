@@ -614,3 +614,32 @@ body {
     width: 2.5rem;
     height: 2.5rem;
 }
+
+.alert {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.transition-alert {
+    animation: opacity 500ms forwards;
+    -webkit-animation: opacity 500ms forwards;
+}
+
+@keyframes opacity {
+    from {
+        opacity: 0;
+        height: 0;
+    } to {
+        height: 4rem;
+        opacity: 1;
+    }
+}
+  
+.input-password {
+	font-family: 'password';
+	-webkit-text-security: disc;
+	letter-spacing: 2px;
+	font-size: small;
+}

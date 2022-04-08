@@ -49,12 +49,12 @@ button > i {
 
 .form-check-input:focus {
 	border-color: var(--color-1);
-	box-shadow: 0 0 5px 2px var(--color-1-50);
+	box-shadow: 0 0 5px 2px var(--color-2-50);
 }
 
 .form-check-input:checked {
-	background-color: var(--color-1);
-	border-color: var(--color-1);
+	background-color: var(--color-2);
+	border-color: var(--color-2);
 }
 
 a {

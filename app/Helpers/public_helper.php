@@ -1,6 +1,9 @@
 <?php
 
 //defines
+
+use App\Libraries\SmsIrUltraFastSend;
+
 defined( "TOKEN_COOKIE_NAME" )      || define( "LOGIN_TOKEN_COOKIE_NAME", "Scheduling_system" );
 
 defined( "BLOG_URL" )               || define( "BLOG_URL"               , "/blog/" );
@@ -226,4 +229,49 @@ function gregorianDatetimeToJalali( $datetime ) {
         "time" => $time,
         "date" => $date,
     ];
+}
+
+function UltraFastSendServiceSms( $type, $mobile, $password, $nat_code = null ) {
+    try {
+        date_default_timezone_set("Asia/Tehran");
+
+        // your sms.ir panel configuration
+        $APIKey = "71c28b38c2086476362fa8df";
+        $SecretKey = "Vira@5668";
+
+        $APIURL = "https://ws.sms.ir/";
+
+        // message data
+        if ($type == 1) {
+            $data = array(
+                "ParameterArray" => array(
+                    array(
+                        "Parameter" => "Password",
+                        "ParameterValue" => $password
+                    ),
+                    array(
+                        "Parameter" => "Nat_Code",
+                        "ParameterValue" => $nat_code),
+                ),
+                "Mobile" => $mobile,
+                "TemplateId" => "38482",
+            );
+        } else {
+            $data = array(
+                "ParameterArray" => array(
+                    array(
+                        "Parameter" => "Password",
+                        "ParameterValue" => $password
+                    ),
+                ),
+                "Mobile" => $mobile,
+                "TemplateId" => "38483",
+            );
+        }
+        $SmsIR_UltraFastSend = new SmsIrUltraFastSend($APIKey, $SecretKey, $APIURL);
+        $UltraFastSend = $SmsIR_UltraFastSend->ultraFastSend($data);
+
+    } catch ( \Exception $e ) {
+        echo 'Error UltraFastSend : ' . $e->getMessage();
+    }
 }

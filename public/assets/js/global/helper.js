@@ -1,4 +1,4 @@
-function docReady(fn) {
+function doc_ready(fn) {
     // see if DOM is already available
     if (document.readyState === "complete" || document.readyState === "interactive") {
         // call on next available tick
@@ -9,45 +9,43 @@ function docReady(fn) {
 }
 
 /**
- * @param {string} _url
- * @param {function} _successFn
- * @param {object} _data { method, headers, data }
+ * @param {string} url
+ * @param {function} success_function
+ * @param {object} data { method, headers, data }
  */
-async function ajaxFetch( _url, _successFn, _data ) {
-    document.body.insertAdjacentHTML( "beforeend", html_loading() );
+async function ajax_fetch( url, success_function, data ) {
+    // document.body.insertAdjacentHTML( "beforeend", html_loading() );
     const form_data = new FormData();
-    if ( _data.method.toUpperCase() === "POST" ) {
-        for ( const key in _data.data ) {
-            form_data.append( key , _data.data[key] );
+    if ( data.method.toUpperCase() === "POST" ) {
+        for ( const key in data.data ) {
+            form_data.append( key , data.data[key] );
         }
     }
-    return fetch( _url , {
-        method:  _data.method,
+    return fetch( url , {
+        method:  data.method,
         // headers: _data.headers,
-       ...( ( _data.method.toUpperCase() === "POST" ) && { body: form_data } ),
+       ...( ( data.method.toUpperCase() === "POST" ) && { body: form_data } ),
     } )
     .then( ( response ) => response.json() )
-        //Then with the data from the response in JSON...
-    .then( ( data ) => {
-        document.getElementById( "preloader" ).remove();
-        return _successFn( data );
+    .then( ( response ) => {
+        // document.getElementById( "preloader" ).remove();
+        return success_function( response );
     } )
-        //Then with the error genereted...
     .catch( ( error ) => {
-        document.getElementById( "preloader" ).remove();
+        // document.getElementById( "preloader" ).remove();
         console.error( 'Error:', error );
     } );
 }
 
-function alertHtmlLtr( _id = "", _type = "danger", _message = "", _effect = "opacity" ) {
-    return `<div id="${_id}" class="alert alert-${_type} dir-ltr text-right transition-alert-${_effect}">
-    ${_message}
+function alert_html_ltr( type = "danger", message = "", id = "" ) {
+    return `<div id="${id}" class="alert alert-${type} dir-ltr text-start transition-alert">
+    ${message}
     </div>`;
 }
 
-function alertHtmlRtl( _id = "", _type = "danger", _message = "", _effect = "opacity" ) {
-    return `<div id="${_id}" class="alert alert-${_type} text-left transition-alert-${_effect}">
-    ${_message}
+function alert_html_rtl( type = "danger", message = "", id = "" ) {
+    return `<div id="${id}" class="alert alert-${type} dir-rtl text-end transition-alert">
+    ${message}
     </div>`;
 }
 
@@ -55,7 +53,7 @@ function alertHtmlRtl( _id = "", _type = "danger", _message = "", _effect = "opa
  * @param {array|object} _data array of object
  * @returns {string} html
  */
-function tableRowHtml( _data ) {
+function table_row_html( _data ) {
     if ( ! _data ) return;
     if ( typeof _data === "object" ) {
         for ( const key in _data ) {
@@ -108,74 +106,57 @@ function tableRowHtml( _data ) {
 }
 
 
-function urlParam() {
+function url_param() {
     return new URLSearchParams(window.location.search);
 }
 
-function historyURL( _data ) {
+function history_url( _data ) {
     window.history.pushState({"html":_data.html,"pageTitle":_data.pageTitle},"", _data.url);
 }
 
-function sweetAlertConfirm( _callback = () => {} ) {
+function sweet_alert_confirm( data, callback = () => {} ) {
     Swal.fire({
-        title: "آیا اطمینان دارید؟",
-        text: "قادر به بازگردانی این عمل نخواهید بود!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#34c38f",
-        cancelButtonColor: "#f46a6a",
+        title: data.title,
+        text: data.message,
+        // type: $type === "error" ? "info" : $type ,
+        type: data.type_2,
         confirmButtonText: "بله!",
         cancelButtonText: 'انصراف',
+        showCancelButton: true,
+        allowOutsideClick: false,   
+        allowEscapeKey: false,
+        confirmButtonColor: "var(--color-1)",
+        cancelButtonColor: "var(--color-3)",
     }).then(function (result) {
-        if (result.value) {
-            _callback();
+        if ( result.value ) {
+            callback();
         }
     });
 }
 
-function sweetAlertSuccess( message = "عملیات با موفقیت انجام شد." ) {
+function sweet_alert_message( data ) {
     Swal.fire({
-        title: "موفقیت!",
-        text: message,
-        type: "success",
+        title: data.title,
+        text: data.message,
+        // type: $type === "error" ? "info" : $type ,
+        type: data.type_2,
         confirmButtonText: 'باشه',
-    });
-}
-
-function sweetAlertError( message = "متاسافنه عملیات انجام نشد!" ) {
-    Swal.fire({
-        title: "خطا!",
-        text: message,
-        type: "error",
-        confirmButtonText: 'باشه',
+        showCancelButton: false,
+        allowOutsideClick: false,   
+        allowEscapeKey: false,
     });
 }
 
 if (!String.prototype.format) {
     String.prototype.format = function() {
-      var args = arguments;
-      return this.replace(/{(\d+)}/g, function(match, number) { 
-        return typeof args[number] != 'undefined'
+      let args = arguments;
+      return this.replace( /{(\d+)}/g, function( match, number ) { 
+        return typeof args[number] !== 'undefined'
           ? args[number]
           : match
         ;
       });
     };
-}
-
-function grade_num( grade ) {
-    switch ( grade.toUpperCase() ) {
-        case "LOWER PRIMARY":
-            return 1;
-        case "UPPER PRIMARY":
-            return 2;
-        case "LOWER SECONDARY":
-            return 3;
-        case "UPPER SECONDARY":
-            return 4;
-        default:
-            return "";
-    }
 }
 
 function input_text_number() {
@@ -195,7 +176,7 @@ function input_text_number() {
     } );
 }
 
-docReady( function() {
+doc_ready( function() {
     input_text_number();
 } );
 

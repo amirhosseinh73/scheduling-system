@@ -22,6 +22,10 @@ class TextLibrary {
                 return "مرکز مشاوره روانشناختی";
             case "blog" :
                 return "اخبار و مقالات";
+            case "register" :
+                return "ثبت نام";
+            case "login" :
+                return "ورود به حساب کاربری";
 
         endswitch;
 

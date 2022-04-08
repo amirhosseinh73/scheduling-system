@@ -8,7 +8,7 @@ use App\Models\PostModel;
 
 class IndexController extends ParentController
 {
-    public function loadIndex() {
+    public function index() {
 
         $data_page = array(
             "title_head"        => TextLibrary::title( "index" ),

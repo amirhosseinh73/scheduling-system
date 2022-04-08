@@ -77,3 +77,10 @@
     url('../../font/iranyekan/woff/iranyekanwebextrablackfanum.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ 
     url('../../font/iranyekan/ttf/iranyekanwebextrablackfanum.ttf') format('truetype');
 }
+
+@font-face {
+    font-family: 'password';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../../font/password.ttf') format('truetype');
+}
