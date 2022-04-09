@@ -2,7 +2,7 @@ const docReadyFunctions = function () {
     loadSwiper();
 };
 
-docReady( docReadyFunctions );
+doc_ready( docReadyFunctions );
 
 function loadSwiper() {
     new Swiper(".mySwiper", {

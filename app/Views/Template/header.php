@@ -45,10 +45,10 @@
                 <li>
                     <a href="<?= base_url( "/page/contact-us" )?>">تماس با ما</a>
                 </li>
-                <li class="button-outline">
+                <li class="btn-outline-6">
                     <a href="<?= base_url( "/login" )?>">ورود</a>
                 </li>
-                <li class="button-fill">
+                <li class="btn-color-6">
                     <a href="<?= base_url( "/register" )?>">ثبت نام</a>
                 </li>
             </ul>

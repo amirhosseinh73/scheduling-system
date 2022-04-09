@@ -213,22 +213,27 @@ a {
     list-style: none;
     padding: 0.75rem 1rem 0 0;
     width: 100%;
+    align-items: center;
 }
 
 .nav-list-ul > li {
     flex: 0 0 auto;
-    max-width: 5rem;
+    max-width: 6rem;
     margin: 0 0.75rem;
 }
 
-.nav-list-ul > li > a {
+.nav-list-ul > li:not([class *= "btn"]) > a {
     color: var(--light-2);
     font-size: 0.9rem;
     font-weight: 600;
 }
 
-.nav-list-ul > li > a:hover {
+.nav-list-ul > li:not([class *= "btn"]) > a:hover {
     color: var(--color-2);
+}
+
+.nav-list-ul > li[class *= "btn"] > a {
+    color: inherit;
 }
 
 @media ( min-width: 992px ) {
