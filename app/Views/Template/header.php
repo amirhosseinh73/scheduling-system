@@ -45,7 +45,7 @@
                 <li>
                     <a href="<?= base_url( "/page/contact-us" )?>">تماس با ما</a>
                 </li>
-                <li class="btn-outline-6">
+                <li class="btn-outline-6 me-auto">
                     <a href="<?= base_url( "/login" )?>">ورود</a>
                 </li>
                 <li class="btn-color-6">

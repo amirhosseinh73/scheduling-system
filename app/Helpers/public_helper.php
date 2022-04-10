@@ -6,6 +6,7 @@ use App\Libraries\SmsIrUltraFastSend;
 
 defined( "TOKEN_COOKIE_NAME" )      || define( "LOGIN_TOKEN_COOKIE_NAME", "Scheduling_system" );
 defined( "KEY_CHECK_RESPONSE" )     || define( "KEY_CHECK_RESPONSE", "request_response_session" );
+defined( "KEY_VALUE_SESSION" )      || define( "KEY_VALUE_SESSION", "needed_key_in_session" );
 
 defined( "BLOG_URL" )               || define( "BLOG_URL"               , "/blog/" );
 defined( "PAGE_URL" )               || define( "PAGE_URL"               , "/page/" );

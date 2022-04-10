@@ -3,11 +3,21 @@
 namespace App\Controllers\Dashboard;
 
 use App\Controllers\ParentController;
+use App\Controllers\TokenController;
 use App\Libraries\Alert;
 use App\Libraries\TextLibrary;
 use App\Models\UserModel;
 
 class RegisterController extends ParentController {
+
+    private function selectUserByUsername( $username ) {
+        $user_model = new UserModel();
+        $select_user = $user_model
+            ->where( "username", $username )
+            ->first();
+
+        return $select_user;
+    }
 
     public function index() {
         $data_page = array(
@@ -25,8 +35,6 @@ class RegisterController extends ParentController {
         $lastname   = $this->request->getPost( "lastname" );
         $mobile     = $this->request->getPost( "mobile" );
         $type_user  = $this->request->getPost( "type_user" );
-        // $password           = $this->request->getPost( "password" );
-        // $confirm_password   = $this->request->getPost( "confirm_password" );
 
         if ( strlen( $firstname ) < 2 ) return Alert::Error( 101 );
 
@@ -36,14 +44,8 @@ class RegisterController extends ParentController {
 
         if ( $type_user == 0 ) return Alert::Error( 106, $mobile );
 
-        // if ( strlen( $password ) < 6 ) return Alert::Error( 104 );
-
-        // if ( $password !== $confirm_password ) return Alert::Error( 105 );
-
+        $select_user = $this->selectUserByUsername( $mobile );
         $user_model = new UserModel();
-        $select_user = $user_model
-            ->where( "username", $mobile )
-            ->first();
 
         $data_insert = array(
             "username"  => $mobile,
@@ -67,8 +69,9 @@ class RegisterController extends ParentController {
             $user_model->update( $select_user->ID, $data_update );
 
             if ( exists( $select_user->mobile_verified_at ) ) return Alert::Info( 301, $data_insert, base_url( "/login" ) );
-            else $session->set( KEY_CHECK_RESPONSE, "KEY_CHECK_RESPONSE" );
 
+            $session->set( KEY_CHECK_RESPONSE, "KEY_CHECK_RESPONSE" );
+            $session->set( KEY_VALUE_SESSION, $mobile );
             return Alert::Info( 302, $data_insert, base_url( "/register/verify" ) );
         }
 
@@ -85,11 +88,12 @@ class RegisterController extends ParentController {
         $data_insert[ "ID" ] = $return_ID;
 
         $session->set( KEY_CHECK_RESPONSE, "KEY_CHECK_RESPONSE" );
+        $session->set( KEY_VALUE_SESSION, $mobile );
         return Alert::Success( 200, $data_insert, base_url( "/register/verify" ) );
 
     }
 
-    public function verifyMobile() {
+    public function verify() {
         $data_page = array(
             "title_head"        => TextLibrary::title( "verify" ),
             "description_head"  => TextLibrary::description( "company_name" ),
@@ -97,6 +101,49 @@ class RegisterController extends ParentController {
         );
 
         return $this->renderPageSite( "verify", $data_page );
+    }
+
+    public function verifySubmit() {
+        $verify_code = intval( $this->request->getPost( "verify_code" ) );
+        $password = $this->request->getPost( "password" );
+        $confirm_password = $this->request->getPost( "confirm_password" );
+
+        if ( strlen( $verify_code ) !== 6 || ! is_numeric( $verify_code ) ) return Alert::Error( 107 );
+
+        if ( ! validate_password( $password ) ) return Alert::Error( 104 );
+
+        if ( $password !== $confirm_password ) return Alert::Error( 105 );
+
+        $session = session();
+        $mobile = $session->get( KEY_VALUE_SESSION );
+        if ( ! exists( $mobile ) ) return Alert::Error( -1 );
+
+        $select_user = $this->selectUserByUsername( $mobile );
+
+        if ( $verify_code !== intval( $select_user->verify_code_mobile ) ) return Alert::Error( 107 );
+
+        $data_update = array(
+            "mobile_verified_at" => date( "Y-m-d H:i:s" ),
+            "status"             => TRUE,
+            "password"           => password_hash( $password, PASSWORD_BCRYPT ),
+
+        );
+
+        $user_model = new UserModel;
+
+        try {
+            $user_model->update( $select_user->ID, $data_update );
+        } catch( \Exception $e ) {
+            return Alert::Error( -1, $e );
+        }
+
+        $user_data = TokenController::Insert( LOGIN_TOKEN_COOKIE_NAME, $mobile, DAY );
+
+        if ( ! $user_data ) return Alert::Error( 100 );
+
+        $session->remove( KEY_VALUE_SESSION );
+        $session->remove( KEY_CHECK_RESPONSE );
+        return Alert::Success( 201, $user_data, base_url( "/dashboard" ) );
     }
 
 }

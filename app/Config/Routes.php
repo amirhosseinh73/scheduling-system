@@ -34,11 +34,11 @@ $routes->setAutoRoute( FALSE );
 $routes->get('/'                    , 'Site\IndexController::index');
 $routes->get('/login'               , 'Dashboard\LoginController::index');
 
-$routes->group( "register",[ "filter", "IsNotLogin" ], function( $routes ) {
+$routes->group( "register",[ "filter" => "IsNotLogin" ], function( $routes ) {
     $routes->get( ''                , 'Dashboard\RegisterController::index' );
     $routes->post( 'submit'         , 'Dashboard\RegisterController::submit' );
-    $routes->get( 'verify'          , 'Dashboard\RegisterController::verifyMobile', [ "filter" => "IsFromRequest" ] );
-    $routes->get( 'submit/verify'   , 'Dashboard\RegisterController::verifyMobile' );
+    $routes->get( 'verify'          , 'Dashboard\RegisterController::verify', [ "filter" => "IsFromRequest" ] );
+    $routes->post( 'verify/submit'  , 'Dashboard\RegisterController::verifySubmit' );
 } );
 
 $routes->get( "/(:segment)/(:any)"  , "Site\PostController::index/$1/$2" );

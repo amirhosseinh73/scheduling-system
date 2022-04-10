@@ -70,14 +70,14 @@ class TokenController extends ParentController
         $token_model = new TokenModel();
         $user_model  = new UserModel();
         $select_user = $user_model
-            ->where( "email", $username )
+            ->where( "username", $username )
             ->CustomFirst();
 
         if ( ! exists( $select_user ) ) return FALSE;
 
         $data_update_user = array(
             'token'      => $create_token->token,
-            'last_login' => date( "Y-m-d H:i:s", time() ),
+            'last_login_at' => date( "Y-m-d H:i:s", time() ),
         );
 
         $data_insert_token = array(

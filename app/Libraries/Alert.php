@@ -25,7 +25,10 @@ class Alert {
 
         switch ( $code ) :
             default :
-                $message =  "اطلاعات را صحیح وارد کنید.";
+                $message =  "درخواست صحیح نیست!";
+                break;
+            case 98:
+                $message = "اطلاعات را صحیح وارد کنید.";
                 break;
             case 99:
                 $message = "ورودی ها اشتباه است.";
@@ -50,6 +53,9 @@ class Alert {
                 break;
             case 106 :
                 $message = "نوع کاربری خود را مشخص گنید.";
+                break;
+            case 107 :
+                $message = "کد وارد شده صحیح نیست!";
                 break;
         endswitch;
 
@@ -85,6 +91,9 @@ class Alert {
         switch ( $code ) :
             case 200:
                 $message = "عملیات با موفقیت انجام شد.";
+                break;
+            case 201:
+                $message = "ثبت نام شما با موفقیت انجام شد. \n خوش آمدید! ";
                 break;
         endswitch;
 

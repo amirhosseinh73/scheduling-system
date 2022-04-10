@@ -4,10 +4,12 @@ class Register {
         const register = new Register();
 
         register.submit();
+        register.submitVerify();
     }
 
     submit() {
         const register_form = document.getElementById( "register_form" );
+        if ( ! register_form ) return;
         register_form.addEventListener( "submit", ( e ) => {
             e.preventDefault();
 
@@ -135,6 +137,8 @@ class Register {
 
     stepVerifyMobile( response ) {
         sweet_alert_message( response, () => {
+            const register_form = document.getElementById( "register_form" );
+            if ( response.status === "failed" ) return;
             register_form.reset();
             window.location.href = response.return_url;
         } );
@@ -142,6 +146,7 @@ class Register {
 
     submitVerify() {
         const verify_form = document.getElementById( "verify_form" );
+        if ( ! verify_form ) return;
         verify_form.addEventListener( "submit", ( e ) => {
             e.preventDefault();
 
@@ -168,6 +173,15 @@ class Register {
             };
 
             ajax_fetch( route.verify_submit, this.completeRegister, fetch_data );
+        } );
+    }
+
+    completeRegister( response ) {
+        sweet_alert_message( response, () => {
+            const verify_form = document.getElementById( "verify_form" );
+            if ( response.status !== "success" ) return;
+            verify_form.reset();
+            window.location.href = response.return_url;
         } );
     }
 }
