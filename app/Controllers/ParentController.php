@@ -113,11 +113,11 @@ class ParentController extends BaseController {
     protected $CallFunction = FALSE;
 
     protected function renderPageSite( string $page, array $data ) {
-        return render_page( "Site\\$page", $data, "header", "footer" );
+        return render_page( "Site/$page", $data, "header", "footer" );
     }
 
     protected function renderPageDashboard( string $page, array $data ) {
-        return render_page( "Dashboard\\$page", $data, "header", "footer" );
+        return render_page( "Dashboard/$page", $data, "header-dashboard", "footer-dashboard" );
     }
 
     protected function checkImageReturn( $address, $image ) {

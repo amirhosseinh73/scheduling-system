@@ -28,6 +28,8 @@ class TextLibrary {
                 return "تایید تلفن همراه";
             case "login" :
                 return "ورود به حساب کاربری";
+            case "dashboard" :
+                return "حساب کاربری";
 
         endswitch;
 

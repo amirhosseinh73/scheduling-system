@@ -32,13 +32,23 @@ $routes->setAutoRoute( FALSE );
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/'                    , 'Site\IndexController::index');
-$routes->get('/login'               , 'Dashboard\LoginController::index');
+$routes->group( "login",[ "filter" => "IsNotLogin" ], function( $routes ) {
+    $routes->get( ''                , 'Dashboard\LoginController::index' );
+    $routes->post( 'submit'         , 'Dashboard\LoginController::submit' );
+} );
+
+$routes->get('/logout'               , 'Dashboard\DashboardController::logout');
 
 $routes->group( "register",[ "filter" => "IsNotLogin" ], function( $routes ) {
     $routes->get( ''                , 'Dashboard\RegisterController::index' );
     $routes->post( 'submit'         , 'Dashboard\RegisterController::submit' );
     $routes->get( 'verify'          , 'Dashboard\RegisterController::verify', [ "filter" => "IsFromRequest" ] );
     $routes->post( 'verify/submit'  , 'Dashboard\RegisterController::verifySubmit' );
+} );
+
+$routes->group( "dashboard",[ "filter" => "IsLogin" ], function( $routes ) {
+    $routes->get( ''                , 'Dashboard\DashboardController::index' );
+    
 } );
 
 $routes->get( "/(:segment)/(:any)"  , "Site\PostController::index/$1/$2" );

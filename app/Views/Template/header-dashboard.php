@@ -4,31 +4,55 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
-    <title>dashboard</title>
+    <title><?= $title_head ?> | <?= $description_head ?></title>
 
-    <link rel="stylesheet" type="text/css" href="../assets/css/lib/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="../assets/font/fontawesome/css/all.min.css" />
-    <link rel="stylesheet" type="text/css" href="../assets/css/page/dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/bootstrap.min.css" );?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/font/fontawesome/css/all.min.css" );?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/sweetalert2.min.css" );?>" />
+    <?php if ( $page_name === "index" ) : ?>
+        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/dashboard.css" );?>" />
+    <?php endif; ?>
+
+    <script type="text/javascript">
+        const base_url = "<?= base_url();?>";
+    </script>
 </head>
 <body class="dashboard-body container-fluid">
-    <nav class="row flex-row-reverse flex-sm-row nav-header">
-        <div class="col-12 col-sm-auto ms-sm-auto">
-            <button type="button" class="btn text-color-7">
-                <i class="fad fa-bars"></i>
-            </button>
-            <button type="button" class="btn text-color-7">
-                <i class="fad fa-search"></i>
-            </button>
-        </div>
-        <div class="col-12 col-sm-auto mx-sm-auto">
-            <a href="#">
-                <img src="../assets/image/logo.png" class="img-fluid logo" alt="logo"/>
+    <nav class="row flex-row-reverse flex-sm-row nav-header align-items-center">
+        <div class="col-12 col-sm-auto">
+            <a href="<?= base_url();?>">
+                <img src="<?= base_url( "/assets/image/logo.png" ); ?>" class="img-fluid logo" alt="logo"/>
             </a>
         </div>
+        <div class="col-12 col-sm ms-sm-auto nav-list-parent">
+            <button type="button" class="btn text-color-7 nav-btn-collapse">
+                <i class="fad fa-bars"></i>
+            </button>
+            <!-- <button type="button" class="btn text-color-7">
+                <i class="fad fa-search"></i>
+            </button> -->
+            <ul class="nav-list-ul">
+                <li>
+                    <a href="<?= base_url() ?>">صفحه اصلی</a>
+                </li>
+                <li>
+                    <a href="<?= base_url( "/category/blog" )?>">وبلاگ</a>
+                </li>
+                <li>
+                    <a href="<?= base_url( "/page/about-us" )?>">درباره ما</a>
+                </li>
+                <li>
+                    <a href="<?= base_url( "/page/contact-us" )?>">تماس با ما</a>
+                </li>
+            </ul>
+        </div>
+        
         <div class="col-12 col-sm-auto me-sm-auto">
             <div class="row nav-profile">
                 <div class="col">
-                    <p>آقای حسنی</p>
+                    <p>
+                        <?= gender_text() . $user_info->lastname ?>
+                    </p>
                 </div>
                 <div class="col-auto pe-1">
                     <img src="../assets/image/dashboard/male.jpg" class="profile-image"/>
@@ -95,38 +119,10 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<?= base_url( "/logout" )?>">
                             <i class="far fa-power-off"></i>
                             <span>خروج</span>
                         </a>
                     </li>
                 </ul>
             </aside>
-            <article class="col-12 col-sm-8 col-lg-9 col-xl-10 px-0">
-                <div class="dashboard-main-container align-content-center">
-                    <h6 class="title text-dark-2 col-12 m-0 text-center">کاربر گرامی، آقای حسنی</h6>
-                    <p class="title text-dark-2 col-12 m-0 text-center">خوش آمدید!</p>
-                </div>
-            </article>
-        </div>
-    </main>
-
-    <footer class="dashboard-footer container-fluid">
-        <div class="d-flex flex-column">
-            <section class="row bottom">
-                <div class="col-12 col-sm-8 text-center text-sm-end">
-                    <i class="far fa-copyright"></i>
-                    تمامی حقوق برای وبسایت کیمیای مهر محفوظ می باشد.
-                </div>
-                <div class="col-12 col-sm-4 text-center text-sm-start">
-                    1399 - 1400
-                </div>
-            </section>
-        </div>
-    </footer>
-
-    <!-- scripts -->
-    <script type="text/javascript" src="../assets/js/lib/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="../assets/js/page/index.js"></script>
-</body>
-</html>

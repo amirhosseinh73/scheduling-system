@@ -45,12 +45,21 @@
                 <li>
                     <a href="<?= base_url( "/page/contact-us" )?>">تماس با ما</a>
                 </li>
-                <li class="btn-outline-6 me-auto">
-                    <a href="<?= base_url( "/login" )?>">ورود</a>
-                </li>
-                <li class="btn-color-6">
-                    <a href="<?= base_url( "/register" )?>">ثبت نام</a>
-                </li>
+                <?php if( exists( $user_info ) ) : ?>
+                    <li class="btn-outline-6 me-auto">
+                        <a href="<?= base_url( "/dashboard" )?>">صفحه شخصی</a>
+                    </li>
+                    <li class="btn-color-6">
+                        <a href="<?= base_url( "/logout" )?>">خروج</a>
+                    </li>
+                <?php else:?>
+                    <li class="btn-outline-6 me-auto">
+                        <a href="<?= base_url( "/login" )?>">ورود</a>
+                    </li>
+                    <li class="btn-color-6">
+                        <a href="<?= base_url( "/register" )?>">ثبت نام</a>
+                    </li>
+                <?php endif;?>
             </ul>
         </div>
         <div class="col-12 col-sm-auto me-sm-auto">

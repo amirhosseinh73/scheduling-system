@@ -2,11 +2,12 @@
 
 //defines
 
+use App\Controllers\TokenController;
 use App\Libraries\SmsIrUltraFastSend;
 
 defined( "TOKEN_COOKIE_NAME" )      || define( "LOGIN_TOKEN_COOKIE_NAME", "Scheduling_system" );
-defined( "KEY_CHECK_RESPONSE" )     || define( "KEY_CHECK_RESPONSE", "request_response_session" );
-defined( "KEY_VALUE_SESSION" )      || define( "KEY_VALUE_SESSION", "needed_key_in_session" );
+defined( "KEY_CHECK_RESPONSE" )     || define( "KEY_CHECK_RESPONSE"     , "request_response_session" );
+defined( "KEY_VALUE_SESSION" )      || define( "KEY_VALUE_SESSION"      , "needed_key_in_session" );
 
 defined( "BLOG_URL" )               || define( "BLOG_URL"               , "/blog/" );
 defined( "PAGE_URL" )               || define( "PAGE_URL"               , "/page/" );
@@ -242,4 +243,28 @@ function sms_ir_ultra_fast_send_service( $mobile, $param, $value ) {
     } catch ( \Exception $e ) {
         echo 'Error UltraFastSend : ' . $e->getMessage();
     }
+}
+
+function gender_text() {
+    $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
+    if ( is_null( $user_info->gender ) ) :
+        return "آقای / خانم ";
+    elseif ( $user_info->gender ) :
+        return "آقای ";
+    elseif ( ! $user_info->gender ) :
+        return "خانم ";
+    endif;
+
+    return "";
+}
+
+function type_user_text() {
+    $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
+    if ( $user_info->type_user ) :
+        return "کاربر گرامی، ";
+    elseif ( ! $user_info->type_user ) :
+        return "پزشک گرامی، ";
+    endif;
+
+    return "";
 }

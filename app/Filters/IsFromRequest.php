@@ -17,7 +17,7 @@ class IsFromRequest implements FilterInterface {
         $session = session();
         $check = $session->get( KEY_CHECK_RESPONSE );
 
-        // if ( ! exists( $check ) ) return redirect()->to( base_url( "/register" ) );
+        if ( ! exists( $check ) ) return redirect()->to( base_url( "/register" ) );
 
         $session->remove( KEY_CHECK_RESPONSE );
 

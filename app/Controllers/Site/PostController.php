@@ -3,6 +3,7 @@
 namespace App\Controllers\Site;
 
 use App\Controllers\ParentController;
+use App\Controllers\TokenController;
 use App\Libraries\TextLibrary;
 use App\Models\FAQModel;
 use App\Models\PostModel;
@@ -29,12 +30,15 @@ class PostController extends ParentController {
 
         $select_blog = $this->handlePostData( $select_blog, BLOG_URL, IMAGE_DIR_BLOG );
 
+        $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
+
         $data_page = array(
             "title_head"        => TextLibrary::title( "blog" ),
             "description_head"  => TextLibrary::description( "company_name" ),
             "blog"              => $select_blog,
             "page_name"         => "blog",
             "description"       => TextLibrary::description( "blog" ),
+            "user_info"         => $user_info,
         );
 
         return $this->renderPageSite( "single-blog", $data_page ) ;
@@ -48,12 +52,15 @@ class PostController extends ParentController {
 
         $select_page = $this->handlePostData( $select_page, PAGE_URL, IMAGE_DIR_PAGE );
 
+        $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
+
         $data_page = array(
             "title_head"        => $select_page->title,
             "description_head"  => TextLibrary::description( "company_name" ),
             "page"              => $select_page,
             "page_name"         => "page",
             "description"       => TextLibrary::description( "page" ),
+            "user_info"         => $user_info,
         );
 
         if ( strpos( $select_page->url, "about-us" ) ) {

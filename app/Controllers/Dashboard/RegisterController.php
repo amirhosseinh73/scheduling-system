@@ -40,9 +40,9 @@ class RegisterController extends ParentController {
 
         if ( strlen( $lastname ) < 2 ) return Alert::Error( 102 );
 
-        if ( strlen( $mobile ) !== 11 || $mobile[ 0 ] != 0 || $mobile[ 1 ] != 9 ) return Alert::Error( 103, $mobile );
+        if ( strlen( $mobile ) !== 11 || $mobile[ 0 ] != 0 || $mobile[ 1 ] != 9 ) return Alert::Error( 103 );
 
-        if ( $type_user == 0 ) return Alert::Error( 106, $mobile );
+        if ( $type_user == 0 ) return Alert::Error( 106 );
 
         $select_user = $this->selectUserByUsername( $mobile );
         $user_model = new UserModel();
@@ -110,7 +110,7 @@ class RegisterController extends ParentController {
 
         if ( strlen( $verify_code ) !== 6 || ! is_numeric( $verify_code ) ) return Alert::Error( 107 );
 
-        if ( ! validate_password( $password ) ) return Alert::Error( 104 );
+        if ( ! exists( $password ) || ! validate_password( $password ) ) return Alert::Error( 104 );
 
         if ( $password !== $confirm_password ) return Alert::Error( 105 );
 

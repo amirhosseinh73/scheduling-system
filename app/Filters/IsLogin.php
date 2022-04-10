@@ -15,7 +15,8 @@ class IsLogin implements FilterInterface {
         //and is not admin
         $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME ); // use for web
 
-        if ( ! $user_info || ! exists( $user_info->ID ) || !!!$user_info->is_admin ) return redirect()->to( base_url( "/login" ) );
+        //|| !!!$user_info->is_admin
+        if ( ! $user_info || ! exists( $user_info->ID ) ) return redirect()->to( base_url( "/login" ) );
 
         return TRUE;
     }

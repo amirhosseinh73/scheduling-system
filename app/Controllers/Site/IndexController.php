@@ -3,6 +3,7 @@
 namespace App\Controllers\Site;
 
 use App\Controllers\ParentController;
+use App\Controllers\TokenController;
 use App\Libraries\TextLibrary;
 use App\Models\PostModel;
 
@@ -10,11 +11,14 @@ class IndexController extends ParentController
 {
     public function index() {
 
+        $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
+        
         $data_page = array(
             "title_head"        => TextLibrary::title( "index" ),
             "description_head"  => TextLibrary::description( "company_name" ),
             "blog"              => $this->blogData( 4 ),
             "page_name"         => "index",
+            "user_info"         => $user_info,
         );
 
         return $this->renderPageSite( "index", $data_page );
