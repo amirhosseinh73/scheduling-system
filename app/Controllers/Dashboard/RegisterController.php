@@ -56,20 +56,18 @@ class RegisterController extends ParentController {
             "verify_code_mobile" => custom_random_string( 6, TRUE ),
         );
 
-        $sms_result = sms_ir_ultra_fast_send_service( $mobile, "VerificationCode", $data_insert[ "verify_code_mobile" ] );
-        $data_insert[ "sms_result" ] = $sms_result;
-
         $session = session();
         if ( exists( $select_user ) ) {
             $data_insert[ "ID" ] = $select_user->ID;
 
+            if ( exists( $select_user->mobile_verified_at ) ) return Alert::Info( 301, $data_insert, base_url( "/login" ) );
+
+            $sms_result = sms_ir_ultra_fast_send_service( $mobile, "VerificationCode", $data_insert[ "verify_code_mobile" ] );
+            $data_insert[ "sms_result" ] = $sms_result;
             $data_update = array(
                 "verify_code_mobile" => $data_insert[ "verify_code_mobile" ],
             );
             $user_model->update( $select_user->ID, $data_update );
-
-            if ( exists( $select_user->mobile_verified_at ) ) return Alert::Info( 301, $data_insert, base_url( "/login" ) );
-
             $session->set( KEY_CHECK_RESPONSE, "KEY_CHECK_RESPONSE" );
             $session->set( KEY_VALUE_SESSION, $mobile );
             return Alert::Info( 302, $data_insert, base_url( "/register/verify" ) );
@@ -86,6 +84,9 @@ class RegisterController extends ParentController {
         }
 
         $data_insert[ "ID" ] = $return_ID;
+
+        $sms_result = sms_ir_ultra_fast_send_service( $mobile, "VerificationCode", $data_insert[ "verify_code_mobile" ] );
+        $data_insert[ "sms_result" ] = $sms_result;
 
         $session->set( KEY_CHECK_RESPONSE, "KEY_CHECK_RESPONSE" );
         $session->set( KEY_VALUE_SESSION, $mobile );

@@ -12,9 +12,9 @@ defined( "KEY_VALUE_SESSION" )      || define( "KEY_VALUE_SESSION"      , "neede
 defined( "BLOG_URL" )               || define( "BLOG_URL"               , "/blog/" );
 defined( "PAGE_URL" )               || define( "PAGE_URL"               , "/page/" );
 
+defined( "IMAGE_DIR_PROFILE" )      || define( "IMAGE_DIR_PROFILE"      , "/uploads/profile/" );
 defined( "IMAGE_DIR_BLOG" )         || define( "IMAGE_DIR_BLOG"         , "/uploads/blog/" );
 defined( "IMAGE_DIR_PAGE" )         || define( "IMAGE_DIR_PAGE"         , "/uploads/page/" );
-defined( "IMAGE_DIR_PROFILE" )      || define( "IMAGE_DIR_PROFILE"      , "/uploads/profile/" );
 defined( "IMAGE_DEFAULT" )          || define( "IMAGE_DEFAULT"          , "/uploads/default.jpg" );
 defined( "IMAGE_DEFAULT_MALE" )     || define( "IMAGE_DEFAULT_MALE"     , "/uploads/default-male.jpg" );
 defined( "IMAGE_DEFAULT_FEMALE" )   || define( "IMAGE_DEFAULT_FEMALE"   , "/uploads/default-female.jpg" );

@@ -57,6 +57,15 @@ class Alert {
             case 107 :
                 $message = "کد وارد شده صحیح نیست!";
                 break;
+            case 108 :
+                $message = "نام کاربری در سیستم وجود ندارد.";
+                break;
+            case 109 :
+                $message = "حساب شما غیر فعال شده است! با ما تماس بگیرید.";
+                break;
+            case 110 :
+                $message = "رمز عبور اشتباه است!";
+                break;
         endswitch;
 
         if ( $show_code ) :

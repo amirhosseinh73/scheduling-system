@@ -12,7 +12,7 @@
 
     <main class="main container">
         <article>
-            <form class="row flex-column" method="post">
+            <form id="login_form" class="row flex-column" method="post">
                 <section class="col-12 mb-4">
                     <label class="col-form-label">
                         نام کاربری

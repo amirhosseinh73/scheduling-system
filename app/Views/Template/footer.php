@@ -109,6 +109,8 @@
         <script type="text/javascript" src="<?= base_url( "/assets/js/page/index.js" )?>"></script>
     <?php elseif( $page_name === "register" ) : ?>
         <script type="text/javascript" src="<?= base_url( "/assets/js/page/Register.js" )?>"></script>
+    <?php elseif( $page_name === "login" ) : ?>
+        <script type="text/javascript" src="<?= base_url( "/assets/js/page/Login.js" )?>"></script>
     <?php endif; ?>
 </body>
 </html>
