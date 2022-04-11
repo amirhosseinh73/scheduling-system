@@ -245,8 +245,7 @@ function sms_ir_ultra_fast_send_service( $mobile, $param, $value ) {
     }
 }
 
-function gender_text() {
-    $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
+function gender_text( $user_info ) {
     if ( is_null( $user_info->gender ) ) :
         return "آقای / خانم ";
     elseif ( $user_info->gender ) :
@@ -258,8 +257,18 @@ function gender_text() {
     return "";
 }
 
-function type_user_text() {
-    $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
+function gender_handler( $user_info ) {
+    if ( is_null( $user_info->gender ) ) :
+        return "default-male.jpg";
+    elseif ( $user_info->gender ) :
+        return "default-male.jpg";
+    elseif ( ! $user_info->gender ) :
+        return "default-female.jpg";
+    endif;
+
+    return "default-male.jpg";
+}
+function type_user_text( $user_info ) {
     if ( $user_info->type_user ) :
         return "کاربر گرامی، ";
     elseif ( ! $user_info->type_user ) :
@@ -267,4 +276,14 @@ function type_user_text() {
     endif;
 
     return "";
+}
+
+function handle_user_info( $user_info ) {
+
+    $user_info->status   = !!$user_info->status;
+    $user_info->is_admin = !!$user_info->is_admin;
+    // $user_info->gender   = !!$user_info->gender;
+    $user_info->image    = ( exists( $user_info->image ) ? base_url( IMAGE_DIR_PROFILE . $user_info->image ) : base_url( IMAGE_DIR_PROFILE . gender_handler( $user_info ) ) );
+
+    return $user_info;
 }

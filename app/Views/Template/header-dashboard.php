@@ -51,11 +51,11 @@
             <div class="row nav-profile">
                 <div class="col">
                     <p>
-                        <?= gender_text() . $user_info->lastname ?>
+                        <?= gender_text( $user_info ) . $user_info->lastname ?>
                     </p>
                 </div>
                 <div class="col-auto pe-1">
-                    <img src="../assets/image/dashboard/male.jpg" class="profile-image"/>
+                    <img src="<?= $user_info->image ?>" class="profile-image"/>
                 </div>
             </div>
         </div>
@@ -64,11 +64,11 @@
     <main class="container dashboard-main">
         <div class="row h-100">
             <aside class="col-8 col-sm-4 col-lg-3 col-xl-2 dashboard-side-nav">
-                <button type="button" class="btn-color-3 fas fa-arrow-right py-1 btn-close-side-nav"></button>
-                <span class="wallet-balance">
+                <!-- <button type="button" class="btn-color-3 fas fa-arrow-right py-1 btn-close-side-nav"></button>  -->
+                <!-- <span class="wallet-balance">
                     موجودی کیف پول:
                     <abbr>15000</abbr>
-                </span>
+                </span> -->
                 <ul class="side-nav-ul">
                     <li class="active">
                         <a href="dashboard.html">

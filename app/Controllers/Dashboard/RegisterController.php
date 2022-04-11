@@ -138,13 +138,15 @@ class RegisterController extends ParentController {
             return Alert::Error( -1, $e );
         }
 
-        $user_data = TokenController::Insert( LOGIN_TOKEN_COOKIE_NAME, $mobile, DAY );
+        $user_info = TokenController::Insert( LOGIN_TOKEN_COOKIE_NAME, $mobile, DAY );
 
-        if ( ! $user_data ) return Alert::Error( 100 );
+        if ( ! $user_info ) return Alert::Error( 100 );
+
+        $user_info = handle_user_info( $user_info );
 
         $session->remove( KEY_VALUE_SESSION );
         $session->remove( KEY_CHECK_RESPONSE );
-        return Alert::Success( 201, $user_data, base_url( "/dashboard" ) );
+        return Alert::Success( 201, $user_info, base_url( "/dashboard" ) );
     }
 
 }

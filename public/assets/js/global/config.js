@@ -7,3 +7,7 @@ const route = {
 
     dashboard       : base_url + "/dashboard",
 };
+
+const state = {
+    user_info: null,
+}

@@ -65,16 +65,13 @@ class LoginController extends ParentController {
             return Alert::Info( 302, $data_insert, base_url( "/register/verify" ) );
         }
 
-        $user_data = TokenController::Insert( LOGIN_TOKEN_COOKIE_NAME, $username, $login_time );
+        $user_info = TokenController::Insert( LOGIN_TOKEN_COOKIE_NAME, $username, $login_time );
 
-        if ( ! $user_data ) return Alert::Error( 100 );
+        if ( ! $user_info ) return Alert::Error( 100 );
 
-        $user_data["image"]    = base_url( IMAGE_DIR_PROFILE . $user_data["image"] );
-        $user_data["status"]   = !!$user_data["status"];
-        $user_data["is_admin"] = !!$user_data["is_admin"];
-        $user_data["gender"]   = !!$user_data["gender"];
+        $user_info = handle_user_info( $user_info );
 
-        return Alert::Success( 200, $user_data, base_url( "/dashboard" ) );
+        return Alert::Success( 200, $user_info, base_url( "/dashboard" ) );
     }
 
 }

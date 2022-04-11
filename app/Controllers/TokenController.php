@@ -61,7 +61,7 @@ class TokenController extends ParentController
      * @param string $session_cookie_name Name of token or COOKIE
      * @param string $username username of user email|nat_code
      * @param int $time DAY|MONTH|YEAR
-     * @return bool|array FALSE|userdata
+     * @return bool|object FALSE|userdata
      */
     public static function Insert( string $session_cookie_name, string $username, int $time = DAY)
     {
@@ -96,7 +96,7 @@ class TokenController extends ParentController
 
             $data_return = array_merge( (array)$select_user, $data_update_user );
 
-            return $data_return;
+            return (object)$data_return;
         } catch (\Exception $exception) {
             logFile([$exception], "log/except_login_" . time() . ".json");
             return FALSE;

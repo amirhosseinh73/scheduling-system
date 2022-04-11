@@ -11,6 +11,8 @@ class DashboardController extends ParentController {
     public function index() {
 
         $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
+
+        $user_info = handle_user_info( $user_info );
         
         $data_page = array(
             "title_head"        => TextLibrary::title( "dashboard" ),
