@@ -71,13 +71,13 @@
                 </span> -->
                 <ul class="side-nav-ul">
                     <li class="active">
-                        <a href="dashboard.html">
+                        <a href="<?= base_url( "/dashboard" )?>">
                             <i class="far fa-dashboard"></i>
-                            <span>پیش خوان</span>
+                            <span>پیشخوان</span>
                         </a>
                     </li>
                     <li>
-                        <a href="dashboard-page-2.html">
+                        <a href="<?= base_url( "/booking" )?>">
                             <i class="far fa-calendar-check"></i>
                             <span>نوبت های گرفته شده</span>
                         </a>
@@ -101,7 +101,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="dashboard-page-6.html">
+                        <a href="javascript:void(0)" class="disabled">
                             <i class="far fa-screen-users"></i>
                             <span>کارگاه های آنلاین</span>
                         </a>

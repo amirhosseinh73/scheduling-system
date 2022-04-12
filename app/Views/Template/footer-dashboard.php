@@ -21,5 +21,10 @@
     <script type="text/javascript" src="<?= base_url( "/assets/js/global/config.js" )?>"></script>
     <script type="text/javascript" src="<?= base_url( "/assets/js/global/helper.js" )?>"></script>
     <script type="text/javascript" src="<?= base_url( "/assets/js/global/Alert.js" )?>"></script>
+
+    <?php if ( $page_name === "index" ) : ?>
+        <script type="text/javascript" src="<?= base_url( "/assets/js/page/dashboard/Dashboard.js" )?>"></script>
+    <?php elseif( $page_name === "register" ) : ?>
+    <?php endif; ?>
 </body>
 </html>

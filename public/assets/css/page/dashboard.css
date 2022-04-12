@@ -18,6 +18,11 @@
 .nav-profile {
 	margin-top: 0.5rem;
 	align-items: center;
+	cursor: pointer;
+}
+
+.nav-profile > * {
+	pointer-events: none;
 }
 
 .nav-profile p {
@@ -120,6 +125,11 @@
 .side-nav-ul > li.active > a,
 .side-nav-ul > li:hover > a {
 	color: var(--color-3);
+}
+
+.side-nav-ul > li > a.disabled > i,
+.side-nav-ul > li > a.disabled {
+	color: var(--dark-2) !important;
 }
 
 .dashboard-main {
@@ -556,4 +566,63 @@
 	-moz-border-radius: 2px;
 	-ms-border-radius: 2px;
 	-o-border-radius: 2px;
+}
+
+.side-nav-profile {
+	background-color: var(--dark-5);
+	border-bottom-right-radius: 25px;
+	width: 12rem;
+	position: fixed;
+	left: -12rem;
+	top: 0;
+	display: block;
+	transition: all 200ms linear;
+	-webkit-transition: all 200ms linear;
+	-moz-transition: all 200ms linear;
+	-ms-transition: all 200ms linear;
+	-o-transition: all 200ms linear;
+	overflow: hidden;
+	z-index: 5;
+}
+
+.side-nav-profile > ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.side-nav-profile > ul > li {
+	padding: 1rem 1rem;
+	transition: all 200ms linear;
+	-webkit-transition: all 200ms linear;
+	-moz-transition: all 200ms linear;
+	-ms-transition: all 200ms linear;
+	-o-transition: all 200ms linear;
+}
+
+.side-nav-profile > ul > li:hover {
+	background-color: var(--light-4);
+}
+
+.side-nav-profile > ul > li:not(:last-of-type) {
+	border-bottom: 1px solid var(--light-1);
+}
+
+.side-nav-profile > ul > li > button {
+	font-size: 1rem;
+	color: var(--dark-1);
+	background-color: transparent;
+	border: 0;
+	width: 100%;
+	text-align: right;
+}
+
+.side-nav-profile > ul > li > button > i {
+	color: var(--color-3);
+	font-size: 1.5rem;
+	vertical-align: middle;
+}
+
+.side-nav-profile > ul > li > button > abbr {
+	padding-right: 1rem;
 }

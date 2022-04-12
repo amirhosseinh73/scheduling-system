@@ -23,7 +23,7 @@
                     <label class="col-form-label">
                         رمز عبور
                     </label>
-                    <input id="password" type="text" class="form-control" placeholder="رمز عبور خود را وارد کنید."/>
+                    <input id="password" type="password" class="form-control input-password" placeholder="رمز عبور خود را وارد کنید."/>
                 </section>
 
                 <section class="col-12 mb-5">

@@ -43,9 +43,9 @@ img, i {
     user-select: none;
 }
 
-/* input, p {
-    user-select: all !important;
-} */
+button > i {
+    pointer-events: none;
+}
 
 body {
     position: relative;
