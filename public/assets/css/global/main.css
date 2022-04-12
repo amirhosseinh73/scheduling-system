@@ -714,3 +714,9 @@ body {
 	letter-spacing: 2px;
 	font-size: small;
 }
+
+.disabled *,
+.disabled {
+    color: var(--dark-3) !important;
+    pointer-events: none;
+}

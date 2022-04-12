@@ -13,6 +13,14 @@ class ParentController extends BaseController {
     );
 
     /**
+     * Summary.
+     * if set TRUE, return data in methods
+     * if FLSE return Alert and die with data
+     * @var bool $CallFunction
+     */
+    protected $callFunction = FALSE;
+
+    /**
      * email details
      * @var string $email
      * @var string $name
@@ -103,14 +111,6 @@ class ParentController extends BaseController {
 
         return $user_info;
     }
-
-    /**
-     * Summary.
-     * if set TRUE, return data in methods
-     * if FLSE return Alert and die with data
-     * @var bool $CallFunction
-     */
-    protected $CallFunction = FALSE;
 
     protected function renderPageSite( string $page, array $data ) {
         return render_page( "Site/$page", $data, "header", "footer" );

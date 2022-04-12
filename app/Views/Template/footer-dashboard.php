@@ -24,7 +24,8 @@
 
     <?php if ( $page_name === "index" ) : ?>
         <script type="text/javascript" src="<?= base_url( "/assets/js/page/dashboard/Dashboard.js" )?>"></script>
-    <?php elseif( $page_name === "register" ) : ?>
+    <?php elseif( $page_name === "booking-index" ) : ?>
+        <script type="text/javascript" src="<?= base_url( "/assets/js/page/dashboard/Booking.js" )?>"></script>
     <?php endif; ?>
 </body>
 </html>

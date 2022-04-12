@@ -127,11 +127,6 @@
 	color: var(--color-3);
 }
 
-.side-nav-ul > li > a.disabled > i,
-.side-nav-ul > li > a.disabled {
-	color: var(--dark-2) !important;
-}
-
 .dashboard-main {
 	margin-top: 0.25rem;
 	height: calc( 100% - 8rem);
@@ -515,8 +510,8 @@
 	right: 0;
 	top: 0;
 	bottom: 0;
-	width: .95rem;
-	height: .95rem;
+	width: 1rem;
+	height: 1rem;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -543,11 +538,12 @@
 
 .answer-radio > input:checked + label::after,
 .answer-checkbox > input:checked + label::after {
-	right: 0.2rem;
-	top: 0.05rem;
+	right: 0.25rem;
+	top: 0.25rem;
 	width: 0.5rem;
 	height: 0.5rem;
 	background-color: var(--color-2);
+	bottom: 0.25rem;
 }
 
 .answer-radio > label::before,
@@ -571,9 +567,9 @@
 .side-nav-profile {
 	background-color: var(--dark-5);
 	border-bottom-right-radius: 25px;
-	width: 12rem;
+	width: 10rem;
 	position: fixed;
-	left: -12rem;
+	left: -10rem;
 	top: 0;
 	display: block;
 	transition: all 200ms linear;
@@ -592,7 +588,7 @@
 }
 
 .side-nav-profile > ul > li {
-	padding: 1rem 1rem;
+	padding: 0.5rem 0.5rem;
 	transition: all 200ms linear;
 	-webkit-transition: all 200ms linear;
 	-moz-transition: all 200ms linear;
@@ -609,7 +605,7 @@
 }
 
 .side-nav-profile > ul > li > button {
-	font-size: 1rem;
+	font-size: 0.9rem;
 	color: var(--dark-1);
 	background-color: transparent;
 	border: 0;
@@ -624,5 +620,5 @@
 }
 
 .side-nav-profile > ul > li > button > abbr {
-	padding-right: 1rem;
+	padding-right: 0.5rem;
 }

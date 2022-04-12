@@ -30,6 +30,8 @@ class TextLibrary {
                 return "ورود به حساب کاربری";
             case "dashboard" :
                 return "حساب کاربری";
+            case "booking" :
+                return "رزرو نوبت";
 
         endswitch;
 

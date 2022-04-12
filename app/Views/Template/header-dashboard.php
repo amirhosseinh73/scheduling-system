@@ -9,9 +9,7 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/bootstrap.min.css" );?>" />
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/font/fontawesome/css/all.min.css" );?>" />
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/sweetalert2.min.css" );?>" />
-    <?php if ( $page_name === "index" ) : ?>
-        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/dashboard.css" );?>" />
-    <?php endif; ?>
+    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/dashboard.css" );?>" />
 
     <script type="text/javascript">
         const base_url = "<?= base_url();?>";
@@ -70,32 +68,32 @@
                     <abbr>15000</abbr>
                 </span> -->
                 <ul class="side-nav-ul">
-                    <li class="active">
+                    <li <?php if ( $page_name === "index" ) echo "class='active'" ?>>
                         <a href="<?= base_url( "/dashboard" )?>">
                             <i class="far fa-dashboard"></i>
                             <span>پیشخوان</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="<?= base_url( "/booking" )?>">
-                            <i class="far fa-calendar-check"></i>
-                            <span>نوبت های گرفته شده</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dashboard-page-3.html">
+                    <li <?php if ( $page_name === "booking_index" ) echo "class='active'" ?>>
+                        <a href="<?= base_url( "/dashboard/booking" )?>">
                             <i class="far fa-calendar-edit"></i>
                             <span>ثبت نوبت جدید</span>
                         </a>
                     </li>
                     <li>
-                        <a href="dashboard-page-4.html">
+                        <a href="#" class="disabled">
+                            <i class="far fa-calendar-check"></i>
+                            <span>نوبت های گرفته شده</span>
+                        </a>
+                    </li>
+                    <!-- <li>
+                        <a href="dashboard-page-4.html" class="disabled">
                             <i class="far fa-wallet"></i>
                             <span>کیف پول</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
-                        <a href="dashboard-page-5.html">
+                        <a href="dashboard-page-5.html" class="disabled">
                             <i class="far fa-file-signature"></i>
                             <span>آزمون های آنلاین</span>
                         </a>
@@ -107,13 +105,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="dashboard-page-7.html">
+                        <a href="dashboard-page-7.html" class="disabled">
                             <i class="far fa-question-circle"></i>
                             <span>پرسش و پاسخ</span>
                         </a>
                     </li>
                     <li>
-                        <a href="dashboard-page-8.html">
+                        <a href="dashboard-page-8.html" class="disabled">
                             <i class="far fa-comments"></i>
                             <span>تیکت ها</span>
                         </a>

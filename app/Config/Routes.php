@@ -37,7 +37,6 @@ $routes->group( "login",[ "filter" => "IsNotLogin" ], function( $routes ) {
     $routes->post( 'submit'         , 'Dashboard\LoginController::submit' );
 } );
 
-$routes->get('/logout'               , 'Dashboard\DashboardController::logout');
 
 $routes->group( "register",[ "filter" => "IsNotLogin" ], function( $routes ) {
     $routes->get( ''                , 'Dashboard\RegisterController::index' );
@@ -46,8 +45,10 @@ $routes->group( "register",[ "filter" => "IsNotLogin" ], function( $routes ) {
     $routes->post( 'verify/submit'  , 'Dashboard\RegisterController::verifySubmit' );
 } );
 
-$routes->group( "dashboard",[ "filter" => "IsLogin" ], function( $routes ) {
-    $routes->get( ''                , 'Dashboard\DashboardController::index' );
+$routes->get('/logout'      , 'Dashboard\DashboardController::logout');
+$routes->group( "dashboard" , [ "filter" => "IsLogin" ], function( $routes ) {
+    $routes->get( ''        , 'Dashboard\DashboardController::index' );
+    $routes->get( 'booking' , 'Dashboard\BookingController::index' );
     
 } );
 
