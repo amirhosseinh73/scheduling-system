@@ -1,4 +1,3 @@
-
 class Register {
     static run = () => {
         const register = new Register();
@@ -108,7 +107,7 @@ class Register {
         return password;
     }
 
-    validateConfirmPasswrod() {
+    validateConfirmPassword() {
 
         const verify_form       = document.getElementById( "verify_form" );
         const password          = document.getElementById( "password" ).value;
@@ -160,7 +159,7 @@ class Register {
             const password = this.validatePassword();
             if ( ! password ) return;
 
-            const confirm_password = this.validateConfirmPasswrod();
+            const confirm_password = this.validateConfirmPassword();
             if ( ! confirm_password ) return;
 
             const fetch_data = {

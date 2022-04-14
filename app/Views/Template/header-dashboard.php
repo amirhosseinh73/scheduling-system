@@ -42,11 +42,11 @@
                             <div class="row text-end align-items-center">
                                 <div class="col-12 col-sm-6 mb-4">
                                     <label class="col-form-label">نام</label>
-                                    <input type="text" class="form-control form-control-sm" value="<?= $user_info->firstname ?>" />
+                                    <input id="firstname" type="text" class="form-control form-control-sm" value="<?= $user_info->firstname ?>" />
                                 </div>
                                 <div class="col-12 col-sm-6 mb-4">
                                     <label class="col-form-label">نام خانوادگی</label>
-                                    <input type="text" class="form-control form-control-sm" value="<?= $user_info->lastname ?>" />
+                                    <input id="lastname" type="text" class="form-control form-control-sm" value="<?= $user_info->lastname ?>" />
                                 </div>
                                 <div class="col-12 col-sm-6 mb-4">
                                     <label class="col-form-label">تلفن همراه</label>
@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="col-12 col-sm-6 mb-4">
                                     <label class="col-form-label">ایمیل</label>
-                                    <input type="text" class="form-control form-control-sm" value="<?= $user_info->email ?>" />
+                                    <input id="email" type="text" class="form-control form-control-sm" value="<?= $user_info->email ?>" />
                                 </div>
                                 <div class="col-12 col-sm-6 mb-4">
                                     <label class="col-form-label d-block">جنسیت</label>
@@ -67,16 +67,16 @@
                                 </div>
                                 <div class="col-12 col-sm-6 mb-4">
                                     <label>رمز عبور جدید</label>
-                                    <input type="password" class="form-control form-control-sm input-password" placeholder="*******"/>
+                                    <input id="password" type="password" class="form-control form-control-sm input-password" placeholder="*******"/>
                                 </div>
                                 <div class="col-12 col-sm-6 mb-4">
                                     <label>تکرار رمز عبور جدید</label>
-                                    <input type="password" class="form-control form-control-sm input-password" placeholder="*******"/>
+                                    <input id="confirm_password" type="password" class="form-control form-control-sm input-password" placeholder="*******"/>
                                 </div>
                                 <?php if ( ! exists( $user_info->email_verified_at ) ) echo "
                                 <div class='col-12 col-sm-6 mb-4'>
                                     <label>کد تایید ایمیل</label>
-                                    <input type='password' class='form-control form-control-sm input-password' />
+                                    <input id='verify_code_email' type='text' class='form-control form-control-sm input-password' />
                                 </div>" ?>
 
                                 <div class="col-12 mb-2 text-start">

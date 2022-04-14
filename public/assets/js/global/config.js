@@ -6,6 +6,7 @@ const route = {
     login_submit    : base_url + "/login/submit",
 
     dashboard       : base_url + "/dashboard",
+    update_profile  : base_url + "/dashboard/update",
 };
 
 const state = {

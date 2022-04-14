@@ -37,4 +37,13 @@ class DashboardController extends ParentController {
         else
             return redirect()->to( base_url( "/login" ) );
     }
+
+    public function updateProfile() {
+        $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
+        
+        $firstname = $this->request->getPost( "firstname" );
+        $lastname = $this->request->getPost( "lastname" );
+
+        _dump( $_POST );
+    }
 }

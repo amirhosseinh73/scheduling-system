@@ -105,16 +105,15 @@
 .cs-modal-body {
     padding: 1rem 1.5rem;
     text-align: center;
-    margin-bottom: 3rem;
 }
 
 .cs-modal-body {
-    height: 100%;
+	height: calc( 100% - 2.5rem );
 }
 
 .cs-modal-body > div {
-    height: calc(100% - 5rem);
-    overflow: auto;
+	height: 100%;
+	overflow: auto;
 }
 
 .cs-modal-body .profile-image {

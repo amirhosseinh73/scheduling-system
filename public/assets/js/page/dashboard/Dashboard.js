@@ -120,12 +120,175 @@ class Dashboard {
         this.profileClose();
     }
 
-    profileUpdate = () => {
+    get profileUpdateFormSelector() {
+        return document.getElementById( "form_edit_profile" );
+    }
 
+    validateFirstname = ( profile_form ) => {
+        const first_name = document.getElementById( "firstname" ).value;
+
+        if ( first_name.length < 2 ) {
+            profile_form.insertAdjacentHTML( "afterbegin", alert_html_rtl( "danger", Alert.error( 101 ) ) );
+            profile_form.scrollIntoView({behavior: 'smooth', block: 'start'});
+            return false;
+        }
+
+        return first_name;
+    }
+
+    validateLastname = ( profile_form ) => {
+        const last_name = document.getElementById( "lastname" ).value;
+
+        if ( last_name.length < 2 ) {
+            profile_form.insertAdjacentHTML( "afterbegin", alert_html_rtl( "danger", Alert.error( 102 ) ) );
+            profile_form.scrollIntoView({behavior: 'smooth', block: 'start'});
+            return false;
+        }
+
+        return last_name;
+    }
+
+    validateEmail = ( profile_form ) => {
+        const valid_regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        const email = document.getElementById( "email" ).value;
+
+        if ( email.length === 0 ) return true;
+
+        if (email.match( valid_regex )) {
+            profile_form.insertAdjacentHTML( "afterbegin", alert_html_rtl( "danger", Alert.error( 108 ) ) );
+            profile_form.scrollIntoView({behavior: 'smooth', block: 'start'});
+            return false;
+        }
+
+        return email;
+    }
+
+    validateGender = () => {
+        const male   = document.getElementById( "gender_1" );
+        const female = document.getElementById( "gender_2" );
+
+        if ( male.checked ) return 1;
+        else if( female.checked ) return 0;
+        else null;
+    }
+
+    validatePassword = ( profile_form ) => {
+        const password = document.getElementById( "password" ).value;
+
+        if ( password.length === 0 ) return true;
+
+        if ( password.length < 6 ) {
+            profile_form.insertAdjacentHTML( "afterbegin", alert_html_rtl( "danger", Alert.error( 104 ) ) );
+            profile_form.scrollIntoView({behavior: 'smooth', block: 'start'});
+            return false;
+        }
+
+        return password;
+    }
+
+    validateConfirmPassword = ( profile_form ) => {
+        const password          = document.getElementById( "password" ).value;
+        const confirm_password  = document.getElementById( "confirm_password" ).value;
+
+        if ( password.length === 0 ) return true;
+
+        if ( confirm_password !== password ) {
+            profile_form.insertAdjacentHTML( "afterbegin", alert_html_rtl( "danger", Alert.error( 105 ) ) );
+            profile_form.scrollIntoView({behavior: 'smooth', block: 'start'});
+            return false;
+        }
+
+        return confirm_password;
+    }
+
+    validateVerifyCode = ( profile_form ) => {
+        const verify_code = document.getElementById( "verify_code_email" );
+
+        if ( ! verify_code ) return true;
+
+        if ( verify_code.value.length === 0 ) return true;
+
+        if ( verify_code.value.length !== 6 ) {
+            profile_form.insertAdjacentHTML( "afterbegin", alert_html_rtl( "danger", Alert.error( 107 ) ) );
+            profile_form.scrollIntoView({behavior: 'smooth', block: 'start'});
+            return false;
+        }
+
+        return verify_code;
+    }
+
+    validateProfileImage = ( profile_form ) => {
+        const image = document.getElementById( "choose_profile_image" );
+
+        if ( ! image.files[0] ) return true;
+
+        if( ! [ "image/jpeg", "image/png", "image/jpg" ].includes( image.files[0].type ) ) {
+            profile_form.insertAdjacentHTML( "afterbegin", alert_html_rtl( "danger", Alert.error( 109 ) ) );
+            return false;
+        }
+
+        return image;
+    }
+
+    successAlert = ( response ) => {
+        sweet_alert_message( response, () => {
+            // window.location.reload();
+        } );
+    }
+
+    profileUpdateHandler = ( event ) => {
+        event.preventDefault();
+        const profile_form = this.profileUpdateFormSelector;
+
+        if ( profile_form.querySelector( ".alert" ) ) {
+            profile_form.querySelector( ".alert" ).remove();
+        }
+
+        const firstname = this.validateFirstname( profile_form );
+        if ( ! firstname ) return;
+
+        const lastname = this.validateLastname( profile_form );
+        if ( ! lastname ) return;
+
+        const email = this.validateEmail( profile_form );
+        if ( ! email ) return;
+
+        const gender = this.validateGender();
+
+        const password = this.validatePassword( profile_form );
+        if ( ! password ) return;
+
+        const confirm_password = this.validateConfirmPassword( profile_form );
+        if ( ! confirm_password ) return;
+
+        const verify_code_email = this.validateVerifyCode( profile_form );
+        if ( ! verify_code_email ) return;
+
+        const image = this.validateProfileImage( profile_form );
+        if ( ! image ) return;
+
+        const fetch_data = {
+            method: "post",
+            data: {
+                firstname: firstname,
+                lastname : lastname,
+                email    : email,
+                gender   : gender,
+                password : password,
+                image    : image,
+            }
+        };
+
+        ajax_fetch( route.update_profile, this.successAlert, fetch_data );
+    }
+
+    profileUpdate = () => {
+        this.profileUpdateFormSelector.addEventListener( "submit", this.profileUpdateHandler );
     }
 
     init = () => {
         this.sideNavProfileClick();
+        this.profileUpdate();
     }
 
     static run = () => {
