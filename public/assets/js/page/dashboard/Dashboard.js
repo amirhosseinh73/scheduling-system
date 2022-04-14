@@ -36,6 +36,8 @@ class Dashboard {
         body.offsetWidth;
         this.sideNavProfileMenuSelector.style.left = 0;
 
+        //load events
+        this.profileShow();
         this.logoutEvent();
         this.closeSideNav();
     }
@@ -66,6 +68,7 @@ class Dashboard {
 
     closeSideNavHandler = ( event ) => {
         if ( event.target.closest( ".side-nav-profile" ) ) return;
+        if ( ! this.sideNavProfileMenuSelector ) return;
 
         this.sideNavProfileMenuSelector.style.left = - this.sideNavProfileMenuSelector.offsetWidth + "px";
         setTimeout( () => {
@@ -77,6 +80,48 @@ class Dashboard {
         const body = document.body;
 
         body.addEventListener( "click", this.closeSideNavHandler );
+    }
+
+    get profileModalSelector() {
+        return document.getElementById( "profile_change_modal" );
+    }
+
+    get modalBtnCloseSelector() {
+        return this.profileModalSelector.querySelector( ".cs-close-modal" );
+    }
+
+    get modalBackSelector() {
+        return document.querySelector( ".cs-modal-back" );
+    }
+
+    get modalSelector() {
+        return document.querySelector( ".cs-modal" );
+    }
+
+    profileCloseHandler = ( event ) => {
+        if ( event.target.closest( ".cs-modal-inside" ) && ! event.target.closest( ".cs-close-modal" ) ) return;
+
+        this.modalBackSelector.classList.remove( "active" );
+        this.modalSelector.classList.remove( "active" );
+    }
+
+    profileClose = () => {
+        this.modalSelector.addEventListener( "click", this.profileCloseHandler );
+        this.modalBtnCloseSelector.addEventListener( "click", this.profileCloseHandler );
+    }
+
+    profileShowHandler = () => {
+        this.profileModalSelector.classList.add( "active" );
+        this.modalBackSelector.classList.add( "active" );
+    }
+
+    profileShow = () => {
+        this.btnSideNavEditProfileSelector.addEventListener( "click", this.profileShowHandler );
+        this.profileClose();
+    }
+
+    profileUpdate = () => {
+
     }
 
     init = () => {
@@ -95,26 +140,14 @@ init = () => {
 
 doc_ready( init );
 
-$('#profile_user').off('click').on('click', function () {
-    $('#profile_change_modal').addClass('active');
-    $('.close_modal').off('click').on('click', function () {
-        $('.ibv_vb_modal_back').click();
+function sss() {
+    $('.ibv_vb_modal,.ibv_vb_modal_back').on('click', function () {
+        // $('.tooltip').fadeOut('fast');
+        $('#ibv_vb_date_send_answer_practice').MdPersianDateTimePicker('hide');
+        $('#ibv_vb_date_publish_practice').MdPersianDateTimePicker('hide');
+        // $('.select_time_practice_start').popover('hide');
     });
-});
-
-$('.ibv_vb_modal_back,.ibv_vb_modal').off('click').on('click', function () {
-    // TODO: clear all modal items
-    $('.ibv_vb_modal').removeClass('active');
-    $('.ibv_vb_modal_back').removeClass('active');
-    $('#ibv_vb_search_list_books').val('');
-});
-
-$('.ibv_vb_modal,.ibv_vb_modal_back').on('click', function () {
-    // $('.tooltip').fadeOut('fast');
-    $('#ibv_vb_date_send_answer_practice').MdPersianDateTimePicker('hide');
-    $('#ibv_vb_date_publish_practice').MdPersianDateTimePicker('hide');
-    // $('.select_time_practice_start').popover('hide');
-});
+}
 
 function dateTimeCalendarEventShow( id_click, id_show, date = new Date() ) {
     $( '#' + id_click ).MdPersianDateTimePicker({

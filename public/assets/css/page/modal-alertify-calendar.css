@@ -1,6 +1,4 @@
-
-
-.ibv_vb_modal {
+.cs-modal {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -17,13 +15,17 @@
     transform: scale(0);
 }
 
-.ibv_vb_modal.active {
+.cs-modal.active {
     opacity: 1;
     transform: scale(1);
     pointer-events: all;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
 }
 
-.ibv_vb_modal_back {
+.cs-modal-back {
     position: fixed;
     top: 0;
     left: 0;
@@ -32,151 +34,103 @@
     opacity: 0;
     pointer-events: none;
     z-index: -100;
-    /*background-color: var(--color_back_dark);*/
     background-color: transparent;
     transition: all 300ms linear;
+    -webkit-transition: all 300ms linear;
+    -moz-transition: all 300ms linear;
+    -ms-transition: all 300ms linear;
+    -o-transition: all 300ms linear;
 }
 
-.ibv_vb_modal_back.active {
+.cs-modal-back.active {
     z-index: 18;
     opacity: 1;
     pointer-events: all;
 }
 
-.ibv_vb_modal_inside {
-    position: relative;
-    background-color: var(--color_back_light-transparent);
-    top: 0;
-    left: 0;
-    padding: 0;
-    overflow: hidden;
-    width: 22rem;
-    height: 31rem;
-    border-radius: 20px;
-    max-height: 90%;
+.cs-modal-inside {
+	position: relative;
+	background-color: var(--color-6-75);
+	top: 0;
+	left: 0;
+	padding: 0;
+	overflow: hidden;
+	width: 65rem;
+	height: 32rem;
+	border-radius: 20px;
+	max-height: 90%;
+	border: 1px solid var(--color-2);
 }
 
-@media (orientation: portrait) and (min-width: 768px) {
-    .ibv_vb_modal_inside {
-        border-radius: 30px;
-    }
+.cs-modal-header {
+	background-color: var(--color-2);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 4px 8px;
+	color: var(--dark-1);
+	position: relative;
+	width: 100%;
+	direction: rtl;
 }
 
-@media (orientation: landscape) and (min-height: 576px) {
-    .ibv_vb_modal_inside {
-        width: 22rem;
-        height: 29rem;
-        border-radius: 22px 22px 22px 20px;
-    }
+.cs-modal-header > p {
+    margin-bottom: 0;
+    margin-left: auto;
 }
 
-@media (orientation: landscape) and (min-width: 992px) {
-    .ibv_vb_modal_inside {
-        width: 22rem;
-        height: 29rem;
-        border-radius: 22px 22px 22px 20px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .ibv_vb_modal_inside {
-        width: 22rem;
-        height: 28rem;
-    }
-}
-
-.ibv_vb_modal_inside::before {
-    content: '';
-    top: -1px;
-    bottom: -1px;
-    left: -1px;
-    right: -1px;
-    position: absolute;
-    z-index: 1;
-    background-image: url(../icons/border-image-vertical.png);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    pointer-events: none;
-}
-
-/*normal view*/
-@media (orientation: landscape) and (min-height: 576px) {
-    .ibv_vb_modal_inside::before {
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-    }
-}
-
-@media (orientation: landscape) and (min-width: 992px) {
-    .ibv_vb_modal_inside::before {
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-    }
-}
-
-.ibv_vb_modal_header {
-    background-color: var(--color_main_lightest);
+.cs-modal-header > .cs-close-modal {
+    width: 2rem;
+    height: 2rem;
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    padding: 4px 8px;
-    color: var(--white);
-    border-radius: 21px 21px 0 0;
-    cursor: move;
-    right: 2px;
-    position: relative;
-    width: calc(100% - 4px);
+    padding: 0;
+    font-size: 1.2rem;
+    transition: all 150ms linear;
+    -webkit-transition: all 150ms linear;
+    -moz-transition: all 150ms linear;
+    -ms-transition: all 150ms linear;
+    -o-transition: all 150ms linear;
 }
 
-/*normal view*/
-@media (orientation: landscape) and (min-height: 576px) {
-    .ibv_vb_modal_header {
-        border-radius: 25px 25px 0 0;
-    }
+.cs-modal-header > .cs-close-modal:hover {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
 }
 
-@media (orientation: landscape) and (min-width: 992px) {
-    .ibv_vb_modal_header {
-        border-radius: 25px 25px 0 0;
-    }
-}
-
-.ibv_vb_modal_body {
+.cs-modal-body {
     padding: 1rem 1.5rem;
     text-align: center;
     margin-bottom: 3rem;
 }
 
-.ibv_vb_modal_body.scroll {
+.cs-modal-body {
     height: 100%;
 }
 
-.ibv_vb_modal_body.scroll > div {
+.cs-modal-body > div {
     height: calc(100% - 5rem);
     overflow: auto;
 }
 
-.add_class_modal .ibv_vb_modal_body {
-    height: calc(100% - 65px);
-    padding-left: 1rem;
+.cs-modal-body .profile-image {
+	width: 12rem;
+	height: 12rem;
+	overflow: hidden;
+	display: block;
+	margin: 2rem;
+	border-color: var(--color-2);
 }
 
-.add_class_modal .ibv_vb_modal_body > div {
-    height: 100%;
-    overflow: auto;
-    padding-left: 1rem;
-}
-
-.ibv_vb_modal_footer {
+.cs-modal-footer {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    /*height: 35px;*/
     z-index: 1;
     display: flex;
     justify-content: center;
@@ -184,19 +138,8 @@
 }
 
 @supports (backdrop-filter: blur(8px)) {
-    .ibv_vb_custom_select_items {
-        -webkit-backdrop-filter: blur(7px);
-        backdrop-filter: blur(7px);
-    }
-
-    /*.custom_select_scroll_up span,*/
-    /*.custom_select_scroll_down span,*/
     .alertify .ajs-dialog,
-    .content-maker-back-content,
-    .btn-glass-green,
-    .btn-glass-light-blue,
-    .ibv_vb_custom_select_preview_img,
-    .ibv_vb_modal_inside,
+    .cs-modal-inside,
     .mds-bootstrap-persian-datetime-picker-popover {
         -webkit-backdrop-filter: blur(8px);
         backdrop-filter: blur(8px);
@@ -204,37 +147,21 @@
 }
 
 @-moz-document url-prefix() {
-    /*.custom_select_scroll_up span::after,*/
-    /*.custom_select_scroll_down span::after,*/
     .alertify .ajs-dialog::after,
-    .content-maker-back-content::after,
-    .btn-glass-green::after,
-    .btn-glass-light-blue::after,
-    .ibv_vb_custom_select_preview_img::after,
     .mds-bootstrap-persian-datetime-picker-popover::after,
-    .ibv_vb_custom_select_items_parent::after,
-    .ibv_vb_modal_inside::after {
+    .cs-modal-inside::after {
         content: '';
         position: absolute;
         left: 0;
         width: 100%;
         top: 0;
         height: 100%;
-        /* background-color: var(--color_back_light); */
         border-radius: inherit;
         z-index: -1;
-        background-image: -moz-radial-gradient(99% 93%, circle cover, var(--color_back_light) 0, var(--color_back_light-transparent) 56%);
+        background-image: -moz-radial-gradient(99% 93%, circle cover, var(--color-5-50) 0, var(--color-5-25) 56%);
     }
 
-    /*.custom_select_scroll_up span::before,*/
-    /*.custom_select_scroll_down span::before,*/
-    .alertify .ajs-dialog::before,
-    .content-maker-back-content::before,
-    .btn-glass-green::before,
-    .btn-glass-light-blue::before,
-    .ibv_vb_custom_select_items_parent::before
-        /*.ibv_vb_modal_inside::before*/
-    {
+    .alertify .ajs-dialog::before {
         content: '';
         background-color: #00000091;
         position: absolute;
@@ -244,9 +171,6 @@
         height: 100%;
         filter: blur(100px);
         z-index: -2;
-    }
-    .ibv_vb_custom_select_items_parent::before {
-        filter: blur(15px);
     }
 }
 
@@ -261,18 +185,13 @@
     min-height: 16rem;
     border-radius: 25px;
     overflow: hidden;
-    background-color: var(--color_back_light-transparent);
-    border: 1px solid var(--color_red);
-    /*min-height: unset;*/
+    background-color: var(--color-5-50);
+    border: 1px solid var(--color-1);
     max-width: unset;
     box-shadow: none;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
-
-.alertify.alertify-info .ajs-dialog {
-    border-color: var(--color_main_light);
 }
 
 .alertify .ajs-commands {
@@ -284,31 +203,30 @@
 
 .alertify.ajs-movable:not(.ajs-maximized) .ajs-header {
     padding: 0.5rem 1rem;
-    background-color: var(--color_red-3);
+    background-color: var(--color-1-75);
     font-size: 0;
     height: 3rem;
     position: relative;
 }
 
 .alertify.alertify-info.ajs-movable:not(.ajs-maximized) .ajs-header {
-    background-color: var(--color_2);
+    background-color: var(--color-1);
 }
 
 .alertify.ajs-movable:not(.ajs-maximized) .ajs-header::before {
-    content: '\f071';
+    content: '\f05a';
     font-size: 2rem;
-    color: var(--color_red);
+    color: var(--color-1);
     font-family: "Font Awesome 6 Pro";
     font-weight: 300;
     position: absolute;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-}
-
-.alertify.alertify-info.ajs-movable:not(.ajs-maximized) .ajs-header::before {
-    content: '\f05a';
-    color: var(--color_main_light);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
 }
 
 .alertify.ajs-closable .ajs-commands button.ajs-close {
@@ -319,7 +237,7 @@
     align-items: center;
     transition: all 150ms linear;
     background-color: transparent;
-    color: var(--color_red);
+    color: var(--color-3);
     font-size: 1.4rem;
     background-image: none;
     margin: 0;
@@ -328,28 +246,15 @@
     top: -4px;
     bottom: initial;
     right: initial;
-    text-shadow: var(--shadow-outset-smallest);
-    box-shadow: var(--shadow-inset-small-icon);
+    text-shadow: var(--shadow-outset-small);
+    box-shadow: var(--shadow-inset-small);
     border-radius: 50%;
     padding: 0.875rem;
     border: 2px solid var(--white);
 }
 
 .alertify.alertify-info.ajs-closable .ajs-commands button.ajs-close {
-    color: var(--color_main_light);
-}
-
-/*normal view*/
-@media (orientation: landscape) and (min-height: 576px) {
-    .alertify.ajs-closable .ajs-commands button.ajs-close {
-        top: -2px;
-    }
-}
-
-@media (orientation: landscape) and (min-width: 992px) {
-    .alertify.ajs-closable .ajs-commands button.ajs-close {
-        top: -2px;
-    }
+    color: var(--color-1);
 }
 
 .alertify.ajs-closable .ajs-commands button.ajs-close::before {
@@ -360,6 +265,10 @@
 
 .alertify.ajs-closable .ajs-commands button.ajs-close:hover {
     transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
 }
 
 .alertify .ajs-body .ajs-content {
@@ -369,7 +278,8 @@
 }
 
 .alertify .ajs-body .ajs-content::before {
-    content: 'اخطار!';
+    content: 'اطلاعیه!';
+    color: var(--color-5);
     font-size: 2rem;
     position: absolute;
     display: block;
@@ -377,13 +287,11 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    color: var(--color_red);
     font-weight: 500;
-}
-
-.alertify.alertify-info .ajs-body .ajs-content::before {
-    content: 'اطلاعیه!';
-    color: var(--color_main_light);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
 }
 
 .alertify .ajs-footer {
@@ -402,40 +310,26 @@
     align-items: center;
 }
 
-.alertify.alertify-info .ibv_vb_custom-button {
-    background-color: var(--color_2);
-    color: var(--color_main_light) !important;
-    border: 1px solid var(--color_main_light);
-}
-
-.alertify.alertify-info .ibv_vb_custom-button.red-2 {
-    background-color: var(--color_back_light);
-    color: var(--color_text) !important;
-    border: 0;
-}
-
 /**end alertify**/
 
 /*calendar*/
 .mds-bootstrap-persian-datetime-picker-popover {
     font-family: iransans, sans-serif !important;
     border: 0;
-    /*box-shadow: var(--shadow-outset-small);*/
     border-radius: 18px;
-    background-color: var(--color_back_light-transparent);
-    /*overflow: hidden;*/
+    background-color: var(--color-5-50);
     width: 14rem;
     padding: 12px;
 }
 
 .mds-bootstrap-persian-datetime-picker-popover.bs-popover-bottom .arrow::after,
 .mds-bootstrap-persian-datetime-picker-popover.bs-popover-bottom .arrow::before {
-    border-bottom-color: var(--color_back_light-transparent) !important;
+    border-bottom-color: var(--color-5-75) !important;
 }
 
 .mds-bootstrap-persian-datetime-picker-popover.bs-popover-top .arrow::before,
 .mds-bootstrap-persian-datetime-picker-popover.bs-popover-top .arrow::after {
-    border-top-color: var(--color_back_light-transparent) !important;
+    border-top-color: var(--color-5-75) !important;
 }
 
 .mds-bootstrap-persian-datetime-picker-popover.bs-popover-top .arrow {
@@ -451,9 +345,9 @@
 }
 
 .mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container .dropdown-menu {
-    background-color: var(--color_back_light-transparent);
+    background-color: var(--color-5-75);
     border-radius: 15px;
-    border-color: var(--color_back_dark);
+    border-color: var(--dark-5);
     width: 100%;
     padding: 0;
     overflow: auto;
@@ -479,11 +373,11 @@
     height: 1.7rem;
     font-size: 0.8rem;
     vertical-align: middle !important;
-    color: var(--color_main_lightest);
+    color: var(--color-5-50);
 }
 
 .mds-bootstrap-persian-datetime-picker-popover table .btn-light {
-    background-color: var(--color_2);
+    background-color: var(--color-2);
     border: 0;
     border-radius: 18px;
     color: var(--white);
@@ -495,23 +389,19 @@
 
 #mdsBootstrapPersianDatetimePickerMonthSelectorButon {
     background-color: transparent !important;
-    color: var(--color_2);
+    color: var(--color-2);
     cursor: pointer !important;
 }
 
 .mds-bootstrap-persian-datetime-picker-popover table .btn-light {
-    box-shadow: var(--shadow-outset);
+    box-shadow: var(--shadow-outset-small);
 }
-
-/*.mds-bootstrap-persian-datetime-picker-popover table .btn-light:hover {
-    background-color: transparent;
-}*/
 
 .mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container .btn[disabled] {
     opacity: 1;
     cursor: not-allowed;
     background-color: transparent;
-    color: var(--color_2);
+    color: var(--color-3);
     font-weight: 500;
     font-size: 0.94rem;
 }
@@ -519,7 +409,7 @@
 .mds-bootstrap-persian-datetime-picker-popover .btn-light:not(:disabled):not(.disabled):active,
 .mds-bootstrap-persian-datetime-picker-popover .btn-light:not(:disabled):not(.disabled).active,
 .mds-bootstrap-persian-datetime-picker-popover .show > .btn-light.dropdown-toggle {
-    box-shadow: var(--shadow-inset);
+    box-shadow: var(--shadow-inset-small);
 }
 
 .mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container .dropdown-divider {
@@ -530,10 +420,14 @@
     padding: 0.5rem 0.75rem;
     margin-bottom: 0;
     font-size: 1rem;
-    color: var(--color_2);
+    color: var(--color-1);
     background-color: transparent;
     border: 0;
     border-radius: 18px 18px 0 0;
+    -webkit-border-radius: 18px 18px 0 0;
+    -moz-border-radius: 18px 18px 0 0;
+    -ms-border-radius: 18px 18px 0 0;
+    -o-border-radius: 18px 18px 0 0;
 }
 
 .mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table table tbody.days td[data-day][data-today] {
@@ -543,11 +437,11 @@
 .mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table table tbody.days td[data-day]:not([data-special-date]):hover,
 .mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table table tbody.days td[data-nm]:hover,
 .mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table table tbody.days td[data-pm]:hover {
-    box-shadow: var(--shadow-inset);
+    box-shadow: var(--shadow-inset-small);
 }
 
 .mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table table tbody.days td[data-day][data-selectedday] {
-    background-color: var(--color_2);
+    background-color: var(--color-1);
     box-shadow: var(--shadow-outset-small);
 }
 
@@ -570,7 +464,7 @@
 }
 
 .mds-bootstrap-persian-datetime-picker-popover .text-danger {
-    color: var(--color_main) !important;
+    color: var(--color-3) !important;
 }
 
 .mds-bootstrap-persian-datetime-picker-container table table input[type="text"] {
@@ -601,7 +495,7 @@
 	text-align: center;
 	margin: auto;
 	right: 0;
-	color: var(--color_main_light);
+	color: var(--color-1-75);
 }
 
 .mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table tfoot > tr:first-child table tbody > tr > td:nth-child(3)::before {
