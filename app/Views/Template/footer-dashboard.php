@@ -23,9 +23,9 @@
     <script type="text/javascript" src="<?= base_url( "/assets/js/global/Alert.js" )?>"></script>
     <script type="text/javascript" src="<?= base_url( "/assets/js/page/dashboard/Dashboard.js" )?>"></script>
     
-    <?php if ( $page_name === "index" ) : ?>
-        
-    <?php elseif( $page_name === "booking-index" ) : ?>
+    <?php if( $page_name === "booking_index" ) : ?>
+        <script type="text/javascript" src="<?= base_url( "/assets/js/lib/mds.bs.datetimepicker.js" )?>"></script>
+        <script type="text/javascript" src="<?= base_url( "/assets/js/lib/mdtimepicker.js" )?>"></script>
         <script type="text/javascript" src="<?= base_url( "/assets/js/page/dashboard/Booking.js" )?>"></script>
     <?php endif; ?>
 </body>

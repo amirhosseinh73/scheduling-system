@@ -9,6 +9,12 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/bootstrap.min.css" );?>" />
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/font/fontawesome/css/all.min.css" );?>" />
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/sweetalert2.min.css" );?>" />
+
+    <?php if( $page_name === "booking_index" ) : ?>
+        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/mds.bs.datetimepicker.style.css" );?>" />
+        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/mdtimepicker.css" );?>" />
+    <?php endif; ?>
+
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/modal-alertify-calendar.css" );?>" />
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/dashboard.css" );?>" />
 
@@ -188,12 +194,12 @@
                             <span>پرسش و پاسخ</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="dashboard-page-8.html" class="disabled">
                             <i class="far fa-comments"></i>
                             <span>تیکت ها</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="<?= base_url( "/logout" )?>">
                             <i class="far fa-power-off"></i>

@@ -31,10 +31,10 @@
                                 <p class="title small mb-0">تاریخ مورد نظرتان را انتخاب کنید:</p>
                             </div>
                             <div class="col-2">
-                                <button type="button" class="btn-color-2">انتخاب تاریخ</button>
+                                <button id="booking_choose_date" type="button" class="btn-color-2">انتخاب تاریخ</button>
                             </div>
                             <div class="col-2">
-                                <input type="text" class="text-center disabled dir-ltr form-control form-control-sm" readonly value="<?= date("Y-m-d") ?>"/>
+                                <input id="booking_choose_date_append" type="text" class="text-center disabled dir-ltr form-control form-control-sm" readonly value="<?= jdate("Y-m-d") ?>"/>
                             </div>
                         </section>
                         <section class="row align-items-center mb-3">
@@ -42,10 +42,11 @@
                                 <p class="title small mb-0">ساعت حضور در مطب را انتخاب کنید:</p>
                             </div>
                             <div class="col-2">
-                                <button type="button" class="btn-color-2">انتخاب ساعت</button>
+                                <button id="booking_start_time" type="button" class="btn-color-2">انتخاب ساعت</button>
                             </div>
                             <div class="col-2">
-                                <input type="text" class="text-center disabled dir-ltr form-control form-control-sm" readonly value="<?= date("H:i") ?>"/>
+                                <input id="booking_start_time_append" type="text" class="text-center disabled dir-ltr form-control form-control-sm" readonly value="<?= date("H:i") ?>"/>
+                                <!-- <input type="time" class="dir-ltr form-control form-control-sm"/> -->
                             </div>
                         </section>
                         <section class="row align-items-center mb-5">
@@ -53,10 +54,10 @@
                                 <p class="title small mb-0">ساعت خروج از مطب را انتخاب کنید:</p>
                             </div>
                             <div class="col-2">
-                                <button type="button" class="btn-color-2">انتخاب ساعت</button>
+                                <button id="booking_end_time" type="button" class="btn-color-2">انتخاب ساعت</button>
                             </div>
                             <div class="col-2">
-                                <input type="text" class="text-center disabled dir-ltr form-control form-control-sm" readonly value="<?= date("H:i") ?>"/>
+                                <input id="booking_end_time_append" type="text" class="text-center disabled dir-ltr form-control form-control-sm" readonly value="<?= date("H:i") ?>"/>
                             </div>
                         </section>
                         <section class="row align-items-center mb-5">

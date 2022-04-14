@@ -1,7 +1,6 @@
 @import url("global/font.css");
 
 body {
-    font-family: iranyekan, Tahoma, sans-serif;
     background-color: var(--light-1);
 }
 

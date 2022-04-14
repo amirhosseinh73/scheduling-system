@@ -139,7 +139,7 @@
 @supports (backdrop-filter: blur(8px)) {
     .alertify .ajs-dialog,
     .cs-modal-inside,
-    .mds-bootstrap-persian-datetime-picker-popover {
+    .mds-bs-persian-datetime-picker-popover {
         -webkit-backdrop-filter: blur(8px);
         backdrop-filter: blur(8px);
     }
@@ -147,7 +147,7 @@
 
 @-moz-document url-prefix() {
     .alertify .ajs-dialog::after,
-    .mds-bootstrap-persian-datetime-picker-popover::after,
+    .mds-bs-persian-datetime-picker-popover::after,
     .cs-modal-inside::after {
         content: '';
         position: absolute;
@@ -157,7 +157,7 @@
         height: 100%;
         border-radius: inherit;
         z-index: -1;
-        background-image: -moz-radial-gradient(99% 93%, circle cover, var(--color-5-50) 0, var(--color-5-25) 56%);
+        background-image: -moz-radial-gradient(99% 93%, circle cover, var(--color-5-75) 0, var(--color-5-50) 56%);
     }
 
     .alertify .ajs-dialog::before {
@@ -312,7 +312,12 @@
 /**end alertify**/
 
 /*calendar*/
-.mds-bootstrap-persian-datetime-picker-popover {
+.mds-bs-dtp-container {
+	min-width: unset !important;
+    max-width: 100% !important;
+}
+
+.mds-bs-persian-datetime-picker-popover {
     font-family: iransans, sans-serif !important;
     border: 0;
     border-radius: 18px;
@@ -321,29 +326,29 @@
     padding: 12px;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover.bs-popover-bottom .arrow::after,
-.mds-bootstrap-persian-datetime-picker-popover.bs-popover-bottom .arrow::before {
+.mds-bs-persian-datetime-picker-popover.bs-popover-bottom .arrow::after,
+.mds-bs-persian-datetime-picker-popover.bs-popover-bottom .arrow::before {
     border-bottom-color: var(--color-5-75) !important;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover.bs-popover-top .arrow::before,
-.mds-bootstrap-persian-datetime-picker-popover.bs-popover-top .arrow::after {
+.mds-bs-persian-datetime-picker-popover.bs-popover-top .arrow::before,
+.mds-bs-persian-datetime-picker-popover.bs-popover-top .arrow::after {
     border-top-color: var(--color-5-75) !important;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover.bs-popover-top .arrow {
+.mds-bs-persian-datetime-picker-popover.bs-popover-top .arrow {
     bottom: calc((0.5rem + 0px) * -1);
 }
 
-.mds-bootstrap-persian-datetime-picker-popover.bs-popover-bottom .arrow {
+.mds-bs-persian-datetime-picker-popover.bs-popover-bottom .arrow {
     top: calc((0.5rem + 1px) * -1);
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .table-striped tbody tr:nth-of-type(2n+1) {
+.mds-bs-persian-datetime-picker-popover .table-striped tbody tr:nth-of-type(2n+1) {
     background-color: transparent;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container .dropdown-menu {
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container .dropdown-menu {
     background-color: var(--color-5-75);
     border-radius: 15px;
     border-color: var(--dark-5);
@@ -354,20 +359,20 @@
     scrollbar-width: none;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container .dropdown-menu::-webkit-scrollbar {
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container .dropdown-menu::-webkit-scrollbar {
     display: none;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .dropdown-toggle::after {
+.mds-bs-persian-datetime-picker-popover .dropdown-toggle::after {
     display: none;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .table th,
-.mds-bootstrap-persian-datetime-picker-popover .table td {
+.mds-bs-persian-datetime-picker-popover .table th,
+.mds-bs-persian-datetime-picker-popover .table td {
     border: 0;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table td {
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container table td {
     border-radius: 50%;
     height: 1.7rem;
     font-size: 0.8rem;
@@ -375,8 +380,8 @@
     color: var(--color-5-50);
 }
 
-.mds-bootstrap-persian-datetime-picker-popover table .btn-light {
-    background-color: var(--color-2);
+.mds-bs-persian-datetime-picker-popover table .btn-light {
+    background-color: var(--color-1);
     border: 0;
     border-radius: 18px;
     color: var(--white);
@@ -388,34 +393,34 @@
 
 #mdsBootstrapPersianDatetimePickerMonthSelectorButon {
     background-color: transparent !important;
-    color: var(--color-2);
+    color: var(--color-1);
     cursor: pointer !important;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover table .btn-light {
+.mds-bs-persian-datetime-picker-popover table .btn-light {
     box-shadow: var(--shadow-outset-small);
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container .btn[disabled] {
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container .btn[disabled] {
     opacity: 1;
     cursor: not-allowed;
     background-color: transparent;
-    color: var(--color-3);
+    color: var(--color-2-50);
     font-weight: 500;
     font-size: 0.94rem;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .btn-light:not(:disabled):not(.disabled):active,
-.mds-bootstrap-persian-datetime-picker-popover .btn-light:not(:disabled):not(.disabled).active,
-.mds-bootstrap-persian-datetime-picker-popover .show > .btn-light.dropdown-toggle {
+.mds-bs-persian-datetime-picker-popover .btn-light:not(:disabled):not(.disabled):active,
+.mds-bs-persian-datetime-picker-popover .btn-light:not(:disabled):not(.disabled).active,
+.mds-bs-persian-datetime-picker-popover .show > .btn-light.dropdown-toggle {
     box-shadow: var(--shadow-inset-small);
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container .dropdown-divider {
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container .dropdown-divider {
     margin-top: 1px;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .popover-header {
+.mds-bs-persian-datetime-picker-popover .popover-header {
     padding: 0.5rem 0.75rem;
     margin-bottom: 0;
     font-size: 1rem;
@@ -429,63 +434,63 @@
     -o-border-radius: 18px 18px 0 0;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table table tbody.days td[data-day][data-today] {
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container table table tbody.days td[data-day][data-today] {
     background-color: transparent;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table table tbody.days td[data-day]:not([data-special-date]):hover,
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table table tbody.days td[data-nm]:hover,
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table table tbody.days td[data-pm]:hover {
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container table table tbody.days td[data-day]:not([data-special-date]):hover,
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container table table tbody.days td[data-nm]:hover,
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container table table tbody.days td[data-pm]:hover {
     box-shadow: var(--shadow-inset-small);
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table table tbody.days td[data-day][data-selectedday] {
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container table table tbody.days td[data-day][data-selectedday] {
     background-color: var(--color-1);
     box-shadow: var(--shadow-outset-small);
 }
 
-.mds-bootstrap-persian-datetime-picker-popover table table table th {
+.mds-bs-persian-datetime-picker-popover table table table th {
     width: 6rem !important;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover table table table th button {
+.mds-bs-persian-datetime-picker-popover table table table th button {
     cursor: default !important;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover table table table th:first-of-type,
-.mds-bootstrap-persian-datetime-picker-popover table table table th:last-of-type {
+.mds-bs-persian-datetime-picker-popover table table table th:first-of-type,
+.mds-bs-persian-datetime-picker-popover table table table th:last-of-type {
     display: none;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container {
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container {
     width: 100%;
     min-width: unset;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .text-danger {
+.mds-bs-persian-datetime-picker-popover .text-danger {
     color: var(--color-3) !important;
 }
 
-.mds-bootstrap-persian-datetime-picker-container table table input[type="text"] {
+.mds-bs-persian-datetime-picker-container table table input[type="text"] {
 	background-color: transparent;
 	box-shadow: var(--shadow-inset-small);
 	border-radius: 50%;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table tfoot > tr:first-child table tbody > tr > td:nth-last-child(1),
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table tfoot > tr:first-child table tbody > tr > td:nth-last-child(2) {
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container table tfoot > tr:first-child table tbody > tr > td:nth-last-child(1),
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container table tfoot > tr:first-child table tbody > tr > td:nth-last-child(2) {
     display: none;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table tfoot > tr:first-child table tbody > tr > td:nth-child(1),
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table tfoot > tr:first-child table tbody > tr > td:nth-child(2),
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table tfoot > tr:first-child table tbody > tr > td:nth-child(3) {
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container table tfoot > tr:first-child table tbody > tr > td:nth-child(1),
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container table tfoot > tr:first-child table tbody > tr > td:nth-child(2),
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container table tfoot > tr:first-child table tbody > tr > td:nth-child(3) {
     position: relative;
     padding: 2rem 0 0.5rem 0;
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table tfoot > tr:first-child table tbody > tr > td:nth-child(1)::before,
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table tfoot > tr:first-child table tbody > tr > td:nth-child(3)::before {
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container table tfoot > tr:first-child table tbody > tr > td:nth-child(1)::before,
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container table tfoot > tr:first-child table tbody > tr > td:nth-child(3)::before {
 	content: "ساعت";
 	position: absolute;
 	top: 0.5rem;
@@ -497,7 +502,7 @@
 	color: var(--color-1-75);
 }
 
-.mds-bootstrap-persian-datetime-picker-popover .mds-bootstrap-persian-datetime-picker-container table tfoot > tr:first-child table tbody > tr > td:nth-child(3)::before {
+.mds-bs-persian-datetime-picker-popover .mds-bs-persian-datetime-picker-container table tfoot > tr:first-child table tbody > tr > td:nth-child(3)::before {
     content: "دقیقه";
 }
 
@@ -505,6 +510,29 @@
 .mdtp__time_holder {
     direction: ltr;
 }
+
+.mdtp__time_holder {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 40px;
+}
+
+.mdtp__clock_holder {
+    position: relative;
+    z-index: 6;
+}
+
+.mdtp__button {
+	font-family: iranyekan, Tahoma, sans-serif;
+}
+
+/* .mdtimepicker {
+	font-family: iranyekan, Tahoma, sans-serif;
+} */
+
+.mdtp__wrapper[data-theme="blue"] .mdtp__button {
+    color: var(--white);
+  }
 
 .clock-timepicker {
     position: absolute !important;
@@ -518,4 +546,15 @@
     display: flex !important;
     justify-content: flex-start;
     align-items: center;
+}
+
+.mdtp__wrapper {
+    flex-direction: column-reverse;
+}
+
+.mdtp__buttons {
+    position: absolute;
+    z-index: 99;
+    color: black;
+    bottom: -115px;
 }

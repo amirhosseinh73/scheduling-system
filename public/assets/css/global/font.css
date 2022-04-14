@@ -84,3 +84,7 @@
     font-weight: 400;
     src: url('../../font/password.ttf') format('truetype');
 }
+
+body {
+    font-family: iranyekan, Tahoma, sans-serif;
+}

@@ -70,11 +70,13 @@ class DashboardController extends ParentController {
         }
 
         if ( $password === "true" || $password === "null" ) {
-            $password         = NULL;
+            $password         = $user_info->password;
             $confirm_password = NULL;
         } else {
             if ( ! validate_password( $password ) ) return Alert::Error( 104 );
             if ( $password !== $confirm_password ) return Alert::Error( 105 );
+
+            $password = password_hash( $password, PASSWORD_BCRYPT );
         }
 
         if ( ! exists( $verify_code_email ) || $verify_code_email === "true" || $verify_code_email === "null" ) {
