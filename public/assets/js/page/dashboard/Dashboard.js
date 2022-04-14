@@ -68,6 +68,7 @@ class Dashboard {
 
     closeSideNavHandler = ( event ) => {
         if ( event.target.closest( ".side-nav-profile" ) ) return;
+        if ( event.target.closest( ".cs-modal-inside" ) ) return;
         if ( ! this.sideNavProfileMenuSelector ) return;
 
         this.sideNavProfileMenuSelector.style.left = - this.sideNavProfileMenuSelector.offsetWidth + "px";
@@ -154,7 +155,7 @@ class Dashboard {
 
         if ( email.length === 0 ) return true;
 
-        if (email.match( valid_regex )) {
+        if ( ! email.match( valid_regex ) ) {
             profile_form.insertAdjacentHTML( "afterbegin", alert_html_rtl( "danger", Alert.error( 108 ) ) );
             profile_form.scrollIntoView({behavior: 'smooth', block: 'start'});
             return false;
@@ -169,7 +170,7 @@ class Dashboard {
 
         if ( male.checked ) return 1;
         else if( female.checked ) return 0;
-        else null;
+        else return null;
     }
 
     validatePassword = ( profile_form ) => {
@@ -214,7 +215,7 @@ class Dashboard {
             return false;
         }
 
-        return verify_code;
+        return verify_code.value;
     }
 
     validateProfileImage = ( profile_form ) => {
@@ -227,12 +228,36 @@ class Dashboard {
             return false;
         }
 
-        return image;
+        return image.files[0];
+    }
+
+    changeUserInfo = ( response ) => {
+        if ( Array.isArray( response ) && ! response.length ) return;
+
+        document.getElementById( "profile_image" ).src      = response.image;
+        document.getElementById( "profile_image_nav" ).src  = response.image;
+        document.getElementById( "firstname" ).value        = response.firstname;
+        document.getElementById( "lastname" ).value         = response.lastname;
+        document.getElementById( "email" ).value            = response.email;
+
+        let gender_text = "آقای / خانم ";
+        if ( response.gender !== null ) {
+            if ( response.gender === 0 ) {
+                gender_text = "خانم ";
+                document.getElementById( "gender_2" ).checked = true;
+            } else if ( response.gender === 1 ) {
+                gender_text = "آقای ";
+                document.getElementById( "gender_1" ).checked = true;
+            }
+        }
+
+        document.getElementById( "user_fullname_gender_nav" ).innerHTML = gender_text + response.lastname;
+        document.getElementById( "user_fullname_gender" ).innerHTML = gender_text + response.lastname;
     }
 
     successAlert = ( response ) => {
         sweet_alert_message( response, () => {
-            // window.location.reload();
+            this.changeUserInfo( response.data );
         } );
     }
 
@@ -274,8 +299,10 @@ class Dashboard {
                 lastname : lastname,
                 email    : email,
                 gender   : gender,
-                password : password,
                 image    : image,
+                password : password,
+                confirm_password : confirm_password,
+                verify_code_email: verify_code_email,
             }
         };
 

@@ -1,8 +1,6 @@
 <?php
 
 //defines
-
-use App\Controllers\TokenController;
 use App\Libraries\SmsIrUltraFastSend;
 
 defined( "TOKEN_COOKIE_NAME" )      || define( "LOGIN_TOKEN_COOKIE_NAME", "Scheduling_system" );

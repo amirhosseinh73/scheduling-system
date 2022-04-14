@@ -66,6 +66,9 @@ class Alert {
             case 110 :
                 $message = "رمز عبور اشتباه است!";
                 break;
+            case 111 :
+                $message = "ایمیل خود را صحیح وارد کنید!";
+                break;
         endswitch;
 
         if ( $show_code ) :

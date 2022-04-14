@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="col-auto">
                         <label for="choose_profile_image" class="profile-image">
-                            <img src="<?= $user_info->image ?>" class="w-100 h-100 object-fit-cover"/>
+                            <img id="profile_image" src="<?= $user_info->image ?>" class="w-100 h-100 object-fit-cover"/>
                         </label>
                         <label for="choose_profile_image" class="btn-color-4">تغییر عکس</label>
                         <input type="file" class="d-none" accept="image/*" id="choose_profile_image"/>
@@ -73,11 +73,13 @@
                                     <label>تکرار رمز عبور جدید</label>
                                     <input id="confirm_password" type="password" class="form-control form-control-sm input-password" placeholder="*******"/>
                                 </div>
+                                <div class="col-12 col-sm-6 mb-4">
                                 <?php if ( ! exists( $user_info->email_verified_at ) ) echo "
-                                <div class='col-12 col-sm-6 mb-4'>
-                                    <label>کد تایید ایمیل</label>
-                                    <input id='verify_code_email' type='text' class='form-control form-control-sm input-password' />
-                                </div>" ?>
+                                <label>کد تایید ایمیل</label>
+                                <input id='verify_code_email' type='text' class='form-control form-control-sm input-password' />
+                                "; 
+                                else "ایمیل شما قبلا تایید شده است." ?>
+                                </div>
 
                                 <div class="col-12 mb-2 text-start">
                                     <button type="submit" class="btn-color-1">ثبت تغییرات</button>
@@ -124,12 +126,12 @@
         <div class="col-12 col-sm-auto me-sm-auto">
             <div class="row nav-profile">
                 <div class="col">
-                    <p>
+                    <p id="user_fullname_gender_nav">
                         <?= gender_text( $user_info ) . $user_info->lastname ?>
                     </p>
                 </div>
                 <div class="col-auto pe-1">
-                    <img src="<?= $user_info->image ?>" class="profile-image"/>
+                    <img id="profile_image_nav" src="<?= $user_info->image ?>" class="profile-image"/>
                 </div>
             </div>
         </div>
