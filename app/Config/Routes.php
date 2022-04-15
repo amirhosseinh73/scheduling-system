@@ -49,9 +49,12 @@ $routes->get('/logout'      , 'Dashboard\DashboardController::logout');
 $routes->group( "dashboard" , [ "filter" => "IsLogin" ], function( $routes ) {
     $routes->get( ''        , 'Dashboard\DashboardController::index' );
     $routes->post( 'update' , 'Dashboard\DashboardController::updateProfile' );
+
     $routes->get( 'booking'         , 'Dashboard\BookingController::index' );
     $routes->post( 'booking/submit' , 'Dashboard\BookingController::submit' );
     
+    $routes->get( 'reserve'         , 'Dashboard\ReservationController::index' );
+    $routes->post( 'reserve/submit' , 'Dashboard\ReservationController::index' );
 } );
 
 $routes->get( "/(:segment)/(:any)"  , "Site\PostController::index/$1/$2" );

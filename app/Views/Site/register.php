@@ -31,7 +31,7 @@
                     <input class="form-check-input" type="radio" value="1" name="type_user" id="type_user_1">
                     <label class="form-check-label" for="type_user_1">پزشک</label>
                     <input class="form-check-input me-5" type="radio" value="2" name="type_user" id="type_user_2">
-                    <label class="form-check-label" for="type_user_2">بیمار</label>
+                    <label class="form-check-label" for="type_user_2">مراجعه کننده</label>
                 </section>
 
                 <section class="col-12 mb-5">

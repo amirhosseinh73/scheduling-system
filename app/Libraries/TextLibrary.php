@@ -31,6 +31,7 @@ class TextLibrary {
             case "dashboard" :
                 return "حساب کاربری";
             case "booking" :
+            case "reservation" :
                 return "رزرو نوبت";
 
         endswitch;
