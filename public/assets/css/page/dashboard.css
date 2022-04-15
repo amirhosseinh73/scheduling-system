@@ -229,9 +229,9 @@
 	position: relative;
 	display: flex;
 	flex-direction: row;
-	height: 9rem;
+	height: 10rem;
 	overflow: hidden;
-	width: calc(33.3333% - 0.4rem);
+	width: calc(50% - 0.4rem);
 	box-shadow: var(--shadow-outset-small);
 	margin: 0 0 0.4rem 0.4rem;
 	cursor: pointer;

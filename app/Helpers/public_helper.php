@@ -278,10 +278,11 @@ function type_user_text( $user_info ) {
 
 function handle_user_info( $user_info ) {
 
-    $user_info->status   = !!$user_info->status;
-    $user_info->is_admin = !!$user_info->is_admin;
-    $user_info->gender   = is_null( $user_info->gender ) ? $user_info->gender : !!$user_info->gender;
-    $user_info->image    = ( exists( $user_info->image ) ? base_url( IMAGE_DIR_PROFILE . $user_info->image ) : base_url( IMAGE_DIR_PROFILE . gender_handler( $user_info ) ) );
+    $user_info->status    = !!$user_info->status;
+    $user_info->type_user = !!$user_info->type_user;
+    $user_info->is_admin  = !!$user_info->is_admin;
+    $user_info->gender    = is_null( $user_info->gender ) ? $user_info->gender : !!$user_info->gender;
+    $user_info->image     = ( exists( $user_info->image ) ? base_url( IMAGE_DIR_PROFILE . $user_info->image ) : base_url( IMAGE_DIR_PROFILE . gender_handler( $user_info ) ) );
 
     return $user_info;
 }

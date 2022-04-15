@@ -8,7 +8,6 @@ use App\Libraries\Alert;
 use App\Libraries\TextLibrary;
 use App\Models\BookingModel;
 use App\Models\ReservationModel;
-use App\Models\UserModel;
 
 class BookingController extends ParentController {
     public function index() {
@@ -33,12 +32,6 @@ class BookingController extends ParentController {
         $select_booking = $booking_model
             ->where( "user_ID", $user_info->ID )
             ->findAll();
-
-        $user_IDs = array_column( $select_booking, "user_ID" );
-
-        $user_model = new UserModel();
-        $select_user_data = $user_model
-            ->where( "" );
 
         return $select_booking;
     }

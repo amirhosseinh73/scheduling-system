@@ -6,6 +6,7 @@ use App\Controllers\ParentController;
 use App\Controllers\TokenController;
 use App\Libraries\TextLibrary;
 use App\Models\BookingModel;
+use App\Models\UserModel;
 
 class ReservationController extends ParentController {
     public function index() {
@@ -30,6 +31,42 @@ class ReservationController extends ParentController {
         $select_booking = $booking_model
             ->where( "date >=", date( "Y-m-d" ) )
             ->findAll();
+
+        $user_IDs = array_column( $select_booking, "user_ID" );
+
+        $user_model = new UserModel();
+        $select_user_data = $user_model
+            ->select( array(
+                "ID",
+                "username",
+                "firstname",
+                "lastname",
+                "email",
+                "gender",
+                "image",
+                "status",
+                "type_user",
+                "is_admin",
+            ) )
+            ->whereIn( "ID", $user_IDs )
+            ->customFindAll();
+        
+        foreach( $select_user_data as $idx => $doctor ) :
+            $select_user_data[ $idx ] = handle_user_info( $doctor );
+        endforeach;
+
+        $data_return = array();
+        for ( $i = 0; $i < count( $select_booking ); $i++ ) :
+            $booking = $select_booking[ $i ];
+            $booking->doctor_info = array_values( array_filter( $select_user_data, function( $key ) use( $booking ) {
+                return $key->ID === $booking->user_ID;
+            } ) )[ 0 ];
+
+            array_push(
+                $data_return,
+                $booking
+            );
+        endfor;
 
         return $select_booking;
     }
