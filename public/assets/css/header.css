@@ -19,7 +19,8 @@ button > i {
 }
 
 ::placeholder {
-    font-size: .8rem;
+	font-size: .8rem;
+	color: var(--light-5) !important;
 }
 
 .form-control {

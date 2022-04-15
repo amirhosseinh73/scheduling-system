@@ -69,6 +69,18 @@ class Alert {
             case 111 :
                 $message = "ایمیل خود را صحیح وارد کنید!";
                 break;
+            case 112 :
+                $message = "لطفا نوع نوبت خود را مشخص کنید!";
+                break;
+            case 113 :
+                $message = "تاریخ انتخابی نباید گذشته باشد!";
+                break;
+            case 114 :
+                $message = "ساعت ورود باید کمتر از ساعت خروج باشد!";
+                break;
+            case 115 :
+                $message = "زمان هر بیمار را بر اساس دقیقه انتخاب کنید!";
+                break;
         endswitch;
 
         if ( $show_code ) :
@@ -106,6 +118,12 @@ class Alert {
                 break;
             case 201:
                 $message = "ثبت نام شما با موفقیت انجام شد. \n خوش آمدید! ";
+                break;
+            case 202:
+                $message = "اطلاعات شما با موفقیت ثبت شد.";
+                break;
+            case 203:
+                $message = "نوبت شما با موفقیت ثبت شد.";
                 break;
         endswitch;
 

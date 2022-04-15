@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class BookingTimeModel extends ParentModel
+class BookingModel extends ParentModel
 {
     protected $DBGroup          = 'default';
 
@@ -10,7 +10,7 @@ class BookingTimeModel extends ParentModel
     protected $useSoftDeletes   = TRUE;
     protected $useTimestamps    = TRUE;
 
-    protected $table            = 'booking_time';
+    protected $table            = 'booking';
     protected $primaryKey       = 'ID';
     protected $returnType       = 'object';
 

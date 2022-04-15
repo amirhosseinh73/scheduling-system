@@ -158,18 +158,33 @@
                             <span>پیشخوان</span>
                         </a>
                     </li>
-                    <li <?php if ( $page_name === "booking_index" ) echo "class='active'" ?>>
-                        <a href="<?= base_url( "/dashboard/booking" )?>">
-                            <i class="far fa-calendar-edit"></i>
-                            <span>ثبت نوبت جدید</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="disabled">
-                            <i class="far fa-calendar-check"></i>
-                            <span>نوبت های گرفته شده</span>
-                        </a>
-                    </li>
+                    <?php if ( ! $user_info->type_user ) : ?>
+                        <li <?php if ( $page_name === "booking_index" ) echo "class='active'" ?>>
+                            <a href="<?= base_url( "/dashboard/booking" )?>">
+                                <i class="far fa-calendar-edit"></i>
+                                <span>ثبت نوبت جدید</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="disabled">
+                                <i class="far fa-calendar-check"></i>
+                                <span>نوبت های قبلی</span>
+                            </a>
+                        </li>
+                    <?php elseif ( $user_info->type_user ) : ?>
+                        <li <?php if ( $page_name === "booking_index" ) echo "class='active'" ?>>
+                            <a href="<?= base_url( "/dashboard/reserve" )?>">
+                                <i class="far fa-calendar-edit"></i>
+                                <span>گرفتن نوبت</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="disabled">
+                                <i class="far fa-calendar-check"></i>
+                                <span>نوبت های گرفته شده</span>
+                            </a>
+                        </li>
+                    <?php endif;?>
                     <!-- <li>
                         <a href="dashboard-page-4.html" class="disabled">
                             <i class="far fa-wallet"></i>

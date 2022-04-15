@@ -7,6 +7,8 @@ const route = {
 
     dashboard       : base_url + "/dashboard",
     update_profile  : base_url + "/dashboard/update",
+
+    submit_booking  : base_url + "/dashboard/booking/submit",
 };
 
 const state = {

@@ -48,8 +48,9 @@ $routes->group( "register",[ "filter" => "IsNotLogin" ], function( $routes ) {
 $routes->get('/logout'      , 'Dashboard\DashboardController::logout');
 $routes->group( "dashboard" , [ "filter" => "IsLogin" ], function( $routes ) {
     $routes->get( ''        , 'Dashboard\DashboardController::index' );
-    $routes->post( 'update'  , 'Dashboard\DashboardController::updateProfile' );
-    $routes->get( 'booking' , 'Dashboard\BookingController::index' );
+    $routes->post( 'update' , 'Dashboard\DashboardController::updateProfile' );
+    $routes->get( 'booking'         , 'Dashboard\BookingController::index' );
+    $routes->post( 'booking/submit' , 'Dashboard\BookingController::submit' );
     
 } );
 
