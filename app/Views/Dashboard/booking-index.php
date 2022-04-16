@@ -7,7 +7,7 @@
                     </div>
                 </section>
 
-                <section class="dashboard-inside-container">
+                <section class="dashboard-inside-container scroll">
                     <form id="booking_form" method="POST">
                         <section class="row align-items-center mb-5">
                             <div class="col-3">
@@ -24,6 +24,22 @@
                                     <input id="booking_type_phone" name="booking_type" type="radio"/>
                                     <label for="booking_type_phone">تلفنی</label>
                                 </div>
+                            </div>
+                        </section>
+                        <section class="row align-items-center mb-5">
+                            <div class="col-12 col-sm-3">
+                                <p class="title small mb-0">نوع مشاوره را انتخاب کنید:</p>
+                            </div>
+                            <div class="col-12 col-sm-4 me-3">
+                                <section class="custom-select-box-parent">
+                                    <select id="booking_kind_advise" class="custom-select-box">
+                                        <option value="مشاوره ازدواج">مشاوره ازدواج</option>
+                                        <option value="مشاوره بالینی">مشاوره بالینی</option>
+                                        <option value="مشاوره فردی">مشاوره فردی</option>
+                                        <option value="مشاوره کودک">مشاوره کودک</option>
+                                    </select>
+                                    <button type="button" class="btn-color-1 far fa-angle-down"></button>
+                                </section>
                             </div>
                         </section>
                         <section class="row align-items-center mb-5">

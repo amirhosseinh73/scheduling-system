@@ -136,6 +136,8 @@ class Booking {
 
         const handle_time = this.totalNumberPatientHandler();
 
+        const kind_advise = document.getElementById( "booking_kind_advise" ).value;
+
         const fetch_data = {
             method: "post",
             data: {
@@ -145,6 +147,7 @@ class Booking {
                 end         : handle_time.time.end,
                 time_each   : handle_time.time_each,
                 total_number: handle_time.total_number,
+                kind_advise : kind_advise,
             }
         };
 

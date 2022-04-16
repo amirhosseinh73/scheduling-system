@@ -81,6 +81,9 @@ class Alert {
             case 115 :
                 $message = "زمان هر بیمار را بر اساس دقیقه انتخاب کنید!";
                 break;
+            case 116 :
+                $message = "نوع مشاوره خود را انتخاب کنید!";
+                break;
         endswitch;
 
         if ( $show_code ) :

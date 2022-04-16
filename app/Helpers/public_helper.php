@@ -286,3 +286,25 @@ function handle_user_info( $user_info ) {
 
     return $user_info;
 }
+
+function get_day_of_week( $date = "now" ) {
+    $day_of_week = new DateTime( $date );
+    $day_of_week = intval( $day_of_week->format('w') );
+
+    switch ( $day_of_week ) {
+        case 0:
+            return "یکشنبه";
+        case 1:
+            return "دوشنبه";
+        case 2:
+            return "سه شنبه";
+        case 3:
+            return "چهارشنبه";
+        case 4:
+            return "پنج شنبه";
+        case 5:
+            return "جمعه";
+        case 6:
+            return "شنبه";
+    }
+}

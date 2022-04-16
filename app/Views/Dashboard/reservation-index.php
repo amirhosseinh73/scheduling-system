@@ -35,71 +35,45 @@
                     </div> -->
                 </section>
 
-                
                 <section class="dashboard-inside-container">
                     <form id="reservation_form" class="row h-100" method="POST">
                         <div class="col-12 col-sm-9 h-100">
                             <div class="inside-container-right">
                                 <?php
-                                if ( exists( $booking_data ) ) :
+                                /* if ( exists( $booking_data ) ) :
                                     for ( $i = 0; $i < count( $booking_data ); $i++ ) :
                                         $booking = $booking_data[ $i ];
                                         $is_full = ( $booking->number_reserved === $booking->number_reserve );
                                         $extra_class = $is_full ? "full" : "";
                                         $doctor_info = $booking->doctor_info;
+                                        $day_of_week = get_day_of_week( $booking->date );
+                                        $booking_type_icon = ( $booking->type ? "<span class='card-icon text-success fas fa-phone-volume'></span>" : "<span class='card-icon text-success fas fa-user-group'></span>" );
                                         echo "
-                                        <section class='appointment-card'>
+                                        <section class='appointment-card $extra_class'>
                                             <img src='$doctor_info->image'/>
                                             <div>
                                                 <h5 class='card-title'>
                                                     دکتر
                                                     $doctor_info->firstname $doctor_info->lastname
                                                 </h5>
-                                                <p class='card-description-1'>مشاور ازدواج</p>
-                                                " . ( $booking->type ? "<span class='card-icon text-success fas fa-phone-volume'></span>" : "<span class='card-icon text-success fas fa-user-group'></span>" ) . "
+                                                <p class='card-description-1'>$booking->kind_text</p>
+                                                $booking_type_icon
                                                 <p class='card-description-2'>
-                                                    <span>شنبه تا پنج شنبه</span>
-                                                    <abbr>08:45 - 11:30</abbr>
-                                                </p>
-                                                <p class='card-description-2'>
-                                                    <span>شنبه تا پنج شنبه</span>
-                                                    <abbr>16:00 - 22:15</abbr>
-                                                </p>
-                                                <p class='card-description-3'>
-                                                    <span>بیمه:</span>
-                                                    <abbr>نکمیلی</abbr>
-                                                    <abbr>تامین اجتماعی</abbr>
-                                                    <abbr>فولاد</abbr>
+                                                    <span>$day_of_week</span>
+                                                    <abbr>$booking->start - $booking->end</abbr>
                                                 </p>
                                             </div>
                                         </section>";
 
                                     endfor;
-                                endif;
+                                endif; */
                                 ?>
-                                <section class="appointment-card">
-                                    <img src="../assets/image/doctor-1.jpg"/>
-                                    <div>
-                                        <h5 class="card-title">دکتر امین بازرگانی</h5>
-                                        <p class="card-description-1">مشاور ازدواج</p>
-                                        <span class="card-icon text-success fas fa-user-group"></span>
-                                        <span class="card-icon text-danger fas fa-phone-volume"></span>
-                                        <p class="card-description-2">
-                                            <span>شنبه تا پنج شنبه</span>
-                                            <abbr>08:45 - 11:30</abbr>
-                                        </p>
-                                        <p class="card-description-2">
-                                            <span>شنبه تا پنج شنبه</span>
-                                            <abbr>16:00 - 22:15</abbr>
-                                        </p>
-                                        <p class="card-description-3">
-                                            <span>بیمه:</span>
-                                            <abbr>نکمیلی</abbr>
-                                            <abbr>تامین اجتماعی</abbr>
-                                            <abbr>فولاد</abbr>
-                                        </p>
-                                    </div>
-                                </section>
+                                <!-- <p class='card-description-3'>
+                                        <span>بیمه:</span>
+                                        <abbr>نکمیلی</abbr>
+                                        <abbr>تامین اجتماعی</abbr>
+                                        <abbr>فولاد</abbr>
+                                    </p> -->
                             </div>
                         </div>
                         <div class="col-12 col-sm-3 px-0 h-100">

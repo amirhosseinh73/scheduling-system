@@ -48,7 +48,7 @@
 	bottom: 10px;
 	left: 0;
 	font-size: 0.8rem;
-	color: var(--white);
+	color: var(--dark-1);
 }
 
 .btn-close-side-nav {
@@ -151,7 +151,7 @@
 	-moz-border-radius: 8px;
 	-ms-border-radius: 8px;
 	-o-border-radius: 8px;
-	height: 100%;
+	height: calc( 100% - 2rem );
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -208,6 +208,10 @@
 	padding: 0.25rem 0.75rem;
 }
 
+.dashboard-inside-container.scroll {
+	overflow: auto;
+}
+
 .inside-container-left {
 	height: 100%;
 	background-color: var(--light-4);
@@ -220,7 +224,7 @@
 }
 
 .appointment-card {
-	background-color: var(--light-5);
+	background-color: var(--light-1);
 	border-radius: 15px;
 	-webkit-border-radius: 15px;
 	-moz-border-radius: 15px;
@@ -229,7 +233,7 @@
 	position: relative;
 	display: flex;
 	flex-direction: row;
-	height: 10rem;
+	height: 7rem;
 	overflow: hidden;
 	width: calc(50% - 0.4rem);
 	box-shadow: var(--shadow-outset-small);
@@ -246,11 +250,21 @@
 	max-width: 35%;
 	height: 100%;
 	object-fit: cover;
+	/* float: right;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-ms-border-radius: 50%;
+	-o-border-radius: 50%;
+	border: 2px solid var(--color-2);
+	margin: 0.5rem;
+	width: 5rem;
+	height: 5rem; */
 }
 
 .appointment-card > div {
 	flex: 1;
-	max-width: 65%;
+	max-width: 100%;
 	padding: 0.5rem;
 }
 
@@ -265,6 +279,7 @@
 	color: var(--color-1);
 	margin-top: 0;
 	margin-bottom: 0.5rem;
+	line-height: 1.5;
 }
 
 .appointment-card > div > .card-description-1 {

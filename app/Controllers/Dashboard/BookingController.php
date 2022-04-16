@@ -8,6 +8,7 @@ use App\Libraries\Alert;
 use App\Libraries\TextLibrary;
 use App\Models\BookingModel;
 use App\Models\ReservationModel;
+use App\Models\UserModel;
 
 class BookingController extends ParentController {
     public function index() {
@@ -47,6 +48,7 @@ class BookingController extends ParentController {
         $end            = $this->request->getPost( "end" );
         $time_each      = $this->request->getPost( "time_each" );
         $total_number   = $this->request->getPost( "total_number" );
+        $kind_advise    = $this->request->getPost( "kind_advise" );
         
         // if ( ! exists( $type ) )         return Alert::Error( 112 );
         if ( ! exists( $date ) )         return Alert::Error( 113 );
@@ -54,6 +56,7 @@ class BookingController extends ParentController {
         if ( ! exists( $end ) )          return Alert::Error( 114 );
         if ( ! exists( $time_each ) )    return Alert::Error( 115 );
         if ( ! exists( $total_number ) ) return Alert::Error( 115 );
+        if ( ! exists( $kind_advise ) )  return Alert::Error( 116 );
 
         $data = array(
             "user_ID"   => $user_info->ID,
@@ -63,6 +66,7 @@ class BookingController extends ParentController {
             "end"       => $end,
             "time"      => $time_each,
             "number_reserve" => $total_number,
+            "kind_text" => $kind_advise,
         );
 
         $booking_model = new BookingModel();
@@ -99,5 +103,54 @@ class BookingController extends ParentController {
 
         return $data_return;
 
+    }
+
+    public function getBookingPatientData() {
+        $booking_model = new BookingModel();
+
+        $data_return = array();
+        $select_booking = $booking_model
+            ->where( "date >=", date( "Y-m-d" ) )
+            ->orderBy( "date", "DESC" )
+            ->findAll();
+
+        $user_IDs = array_column( $select_booking, "user_ID" );
+
+        if ( ! exists( $select_booking ) ) return Alert::Success( 200, $data_return );
+        
+        $user_model = new UserModel();
+        $select_user_data = $user_model
+            ->select( array(
+                "ID",
+                "username",
+                "firstname",
+                "lastname",
+                "email",
+                "gender",
+                "image",
+                "status",
+                "type_user",
+                "is_admin",
+            ) )
+            ->whereIn( "ID", $user_IDs )
+            ->customFindAll();
+        
+        foreach( $select_user_data as $idx => $doctor ) :
+            $select_user_data[ $idx ] = handle_user_info( $doctor );
+        endforeach;
+
+        for ( $i = 0; $i < count( $select_booking ); $i++ ) :
+            $booking = $select_booking[ $i ];
+            $booking->doctor_info = array_values( array_filter( $select_user_data, function( $key ) use( $booking ) {
+                return $key->ID === $booking->user_ID;
+            } ) )[ 0 ];
+
+            array_push(
+                $data_return,
+                $booking
+            );
+        endfor;
+
+        return Alert::Success( 200, $data_return );
     }
 }

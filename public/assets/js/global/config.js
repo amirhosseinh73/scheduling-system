@@ -9,8 +9,13 @@ const route = {
     update_profile  : base_url + "/dashboard/update",
 
     submit_booking  : base_url + "/dashboard/booking/submit",
+    booking_patient : base_url + "/dashboard/booking/data-patient",
 };
 
 const state = {
     user_info: null,
 }
+
+const data_store = {
+    patient_booking: new Array,
+};

@@ -18,6 +18,8 @@
     <!-- scripts -->
     <script type="text/javascript" src="<?= base_url( "/assets/js/lib/bootstrap.bundle.min.js" )?>"></script>
     <script type="text/javascript" src="<?= base_url( "/assets/js/lib/sweetalert2.min.js" )?>"></script>
+    <script type="text/javascript" src="<?= base_url( "/assets/js/lib/jalaali.min.js" )?>"></script>
+    
     <script type="text/javascript" src="<?= base_url( "/assets/js/global/config.js" )?>"></script>
     <script type="text/javascript" src="<?= base_url( "/assets/js/global/helper.js" )?>"></script>
     <script type="text/javascript" src="<?= base_url( "/assets/js/global/Alert.js" )?>"></script>
@@ -26,8 +28,9 @@
     <?php if( $page_name === "booking_index" ) : ?>
         <script type="text/javascript" src="<?= base_url( "/assets/js/lib/mds.bs.datetimepicker.js" )?>"></script>
         <script type="text/javascript" src="<?= base_url( "/assets/js/lib/mdtimepicker.js" )?>"></script>
-        <script type="text/javascript" src="<?= base_url( "/assets/js/lib/jalaali.min.js" )?>"></script>
         <script type="text/javascript" src="<?= base_url( "/assets/js/page/dashboard/Booking.js" )?>"></script>
+    <?php elseif( $page_name === "reservation_index" ) :?>
+        <script type="text/javascript" src="<?= base_url( "/assets/js/page/dashboard/Reservation.js" ) ?>"></script>
     <?php endif; ?>
 </body>
 </html>
