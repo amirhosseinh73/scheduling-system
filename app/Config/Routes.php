@@ -36,7 +36,8 @@ $routes->group( "login",[ "filter" => "IsNotLogin" ], function( $routes ) {
     $routes->get( ''                , 'Dashboard\LoginController::index' );
     $routes->post( 'submit'         , 'Dashboard\LoginController::submit' );
 } );
-
+$routes->get( "recovery", "Dashboard\LoginController::recoveryPage", [ "filter" => "IsNotLogin" ] );
+$routes->post( "recovery/submit", "Dashboard\LoginController::submitRecovery", [ "filter" => "IsNotLogin" ] );
 
 $routes->group( "register",[ "filter" => "IsNotLogin" ], function( $routes ) {
     $routes->get( ''                , 'Dashboard\RegisterController::index' );

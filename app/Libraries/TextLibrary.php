@@ -33,6 +33,8 @@ class TextLibrary {
             case "booking" :
             case "reservation" :
                 return "رزرو نوبت";
+            case "recovery_pass" :
+                return "بازیابی رمز عبور";
 
         endswitch;
 

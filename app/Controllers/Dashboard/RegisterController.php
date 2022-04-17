@@ -26,7 +26,7 @@ class RegisterController extends ParentController {
             "page_name"         => "register",
         );
 
-        return $this->renderPageSite( "register", $data_page );
+        return $this->renderPageDashboard( "register", $data_page, "header", "footer" );
     }
 
     public function submit() {
@@ -101,7 +101,7 @@ class RegisterController extends ParentController {
             "page_name"         => "register",
         );
 
-        return $this->renderPageSite( "verify", $data_page );
+        return $this->renderPageDashboard( "verify", $data_page, "header", "footer" );
     }
 
     public function verifySubmit() {

@@ -72,11 +72,14 @@ class DashboardController extends ParentController {
         if ( $password === "true" || $password === "null" ) {
             $password         = $user_info->password;
             $confirm_password = NULL;
+            $change_pass_at   = NULL;
         } else {
             if ( ! validate_password( $password ) ) return Alert::Error( 104 );
             if ( $password !== $confirm_password ) return Alert::Error( 105 );
 
             $password = password_hash( $password, PASSWORD_BCRYPT );
+
+            $change_pass_at = date( "Y-m-d H:i:s" );
         }
 
         if ( ! exists( $verify_code_email ) || $verify_code_email === "true" || $verify_code_email === "null" ) {
@@ -99,6 +102,7 @@ class DashboardController extends ParentController {
             "image"     => $image_address,
             "password"  => $password,
             "verify_code_email" => $verify_code_email,
+            "change_pass_at"    => $change_pass_at,
         );
 
         if ( ! exists( $user_info ) ) return Alert::Error( -1 );

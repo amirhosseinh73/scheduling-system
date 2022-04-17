@@ -27,7 +27,7 @@
                 </section>
 
                 <section class="col-12 mb-5">
-                    <a href="javascript:void(0)" class="forgot-password">
+                    <a href="<?= base_url( "/recovery" )?>" class="forgot-password">
                         رمز عبور خود را فراموش کرده ام!
                     </a>
                 </section>

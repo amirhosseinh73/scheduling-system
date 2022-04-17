@@ -17,7 +17,7 @@ class LoginController extends ParentController {
             "page_name"         => "login",
         );
 
-        return $this->renderPageSite( "login", $data_page );
+        return $this->renderPageDashboard( "login", $data_page, "header", "footer" );
     }
 
     public function submit() {
@@ -72,6 +72,63 @@ class LoginController extends ParentController {
         $user_info = handle_user_info( $user_info );
 
         return Alert::Success( 200, $user_info, base_url( "/dashboard" ) );
+    }
+
+    public function recoveryPage() {
+        $data_page = array(
+            "title_head"        => TextLibrary::title( "recovery_pass" ),
+            "description_head"  => TextLibrary::description( "company_name" ),
+            "page_name"         => "login",
+        );
+
+        return $this->renderPageDashboard( "recovery", $data_page, "header", "footer" );
+    }
+
+    public function submitRecovery() {
+
+        $mobile = $this->request->getPost( "mobile" );
+
+        if ( strlen( $mobile ) !== 11 || $mobile[ 0 ] != 0 || $mobile[ 1 ] != 9 ) return Alert::Error( 103 );
+
+        $user_model = new UserModel();
+
+        //check exist user
+        $select_user = $user_model->where( "username", $mobile );
+
+        $select_user = $select_user->first();
+
+        if ( ! exists( $select_user ) ) return Alert::Error( 108 );
+
+        if ( ! $select_user->status ) return Alert::Error( 109 );
+
+        if ( ! exists( $select_user->mobile_verified_at ) ) {
+
+            $data_update = array(
+                "verify_code_mobile" => custom_random_string( 6, TRUE ),
+            );
+            $sms_result = sms_ir_ultra_fast_send_service( $mobile, "VerificationCode", $data_update[ "verify_code_mobile" ] );
+            $data_update[ "sms_result" ] = $sms_result;
+            
+            $user_model->update( $select_user->ID, $data_update );
+
+            $session = session();
+            $session->set( KEY_CHECK_RESPONSE, "KEY_CHECK_RESPONSE" );
+            $session->set( KEY_VALUE_SESSION, $mobile );
+            return Alert::Info( 302, $data_update, base_url( "/register/verify" ) );
+        }
+
+        $new_password = custom_random_string( 8, FALSE );
+
+        $data_update = array(
+            "password" => password_hash( $new_password, PASSWORD_BCRYPT ),
+            "recovery_pass_at" => date( "Y-m-d H:i:s" ),
+        );
+        $sms_result = sms_ir_ultra_fast_send_service( $mobile, "Password", $new_password );
+        $data_update[ "sms_result" ] = $sms_result;
+        
+        $user_model->update( $select_user->ID, $data_update );
+
+        return Alert::Success( 200, $data_update, base_url( "/login" ) );
     }
 
 }

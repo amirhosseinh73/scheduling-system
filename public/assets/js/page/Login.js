@@ -4,6 +4,7 @@ class Login {
         const login = new Login();
 
         login.submit();
+        login.submitRecovery();
     }
 
     submit() {
@@ -67,6 +68,44 @@ class Login {
             if ( response.status !== "success" ) return;
             login_form.reset();
             window.location.href = response.return_url;
+        } );
+    }
+
+    successAlert = ( response ) => {
+        sweet_alert_message( response, () => {
+            if ( response.status === "success" ) window.location.href = response.return_url;
+        } );
+    }
+
+    get recoveryForm() {
+        return document.getElementById( "recovery_form" );
+    }
+
+    submitRecovery() {
+        const form = this.recoveryForm;
+        if ( ! form ) return;
+        form.addEventListener( "submit", ( e ) => {
+            e.preventDefault();
+
+            if ( form.querySelector( ".alert" ) ) {
+                form.querySelector( ".alert" ).remove();
+            }
+
+            const mobile = document.getElementById( "mobile" ).value;
+
+            if ( mobile.length !== 11 || +mobile[ 0 ] !== 0 || +mobile[ 1 ] !== 9 ) {
+                form.insertAdjacentHTML( "afterbegin", alert_html_rtl( "danger", Alert.error( 103 ) ) );
+                return false;
+            }
+
+            const fetch_data = {
+                method: "post",
+                data: {
+                    mobile: mobile,
+                }
+            };
+
+            ajax_fetch( route.recovery_submit, this.successAlert, fetch_data );
         } );
     }
 }

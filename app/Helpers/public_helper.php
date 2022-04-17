@@ -223,6 +223,15 @@ function sms_ir_ultra_fast_send_service( $mobile, $param, $value ) {
 
         $APIURL = "https://ws.sms.ir/";
 
+        switch ( $param ) {
+            case "VerificationCode":
+                $template_ID = "64651";
+                break;
+            case "Password":
+                $template_ID = "64975";
+                break;
+        }
+
         // message data
         $data = array(
             "ParameterArray" => array(
@@ -232,7 +241,7 @@ function sms_ir_ultra_fast_send_service( $mobile, $param, $value ) {
                 ),
             ),
             "Mobile" => $mobile,
-            "TemplateId" => "64651",
+            "TemplateId" => $template_ID,
         );
         $SmsIR_UltraFastSend = new SmsIrUltraFastSend($APIKey, $SecretKey, $APIURL);
         $UltraFastSend = $SmsIR_UltraFastSend->ultraFastSend($data);

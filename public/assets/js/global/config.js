@@ -4,6 +4,7 @@ const route = {
     verify_submit   : base_url + "/register/verify/submit",
     
     login_submit    : base_url + "/login/submit",
+    recovery_submit : base_url + "/recovery/submit",
 
     dashboard       : base_url + "/dashboard",
     update_profile  : base_url + "/dashboard/update",

@@ -112,12 +112,12 @@ class ParentController extends BaseController {
         return $user_info;
     }
 
-    protected function renderPageSite( string $page, array $data ) {
-        return render_page( "Site/$page", $data, "header", "footer" );
+    protected function renderPageSite( string $page, array $data, $header = "header", $footer = "footer" ) {
+        return render_page( "Site/$page", $data, $header, $footer );
     }
 
-    protected function renderPageDashboard( string $page, array $data ) {
-        return render_page( "Dashboard/$page", $data, "header-dashboard", "footer-dashboard" );
+    protected function renderPageDashboard( string $page, array $data, $header = "header-dashboard", $footer = "footer-dashboard" ) {
+        return render_page( "Dashboard/$page", $data, $header, $footer );
     }
 
     protected function checkImageReturn( $address, $image ) {
