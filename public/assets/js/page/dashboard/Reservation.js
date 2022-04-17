@@ -1,10 +1,24 @@
 class Reservation {
     appointmentCardHandler = ( event ) => {
-        event.target.closest( ".appointment-card" ).classList.toggle( "active" );
+        const card = event.target.closest( ".appointment-card" );
+
+        if ( card.classList.contains( "active" ) ) {
+            card.classList.remove( "active" );
+            return;
+        }
+
+        this.getAllCard.forEach( card => {
+            card.classList.remove( "active" );
+        } );
+        card.classList.add( "active" );
+    }
+
+    get getAllCard() {
+        return document.querySelectorAll( ".appointment-card" );
     }
 
     callEventAppointmentCard = () => {
-        document.querySelectorAll( ".appointment-card" ).forEach( section => {
+        this.getAllCard.forEach( section => {
             section.addEventListener( "click", this.appointmentCardHandler.bind( this ) );
         } );
     }
