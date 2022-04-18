@@ -203,8 +203,8 @@
 }
 
 .dashboard-inside-container {
-	height: calc(100% - 4rem);
-	margin-top: 1.8rem;
+	height: calc(100% - 2rem);
+	margin-top: 1rem;
 	padding: 0.25rem 0.75rem;
 }
 
@@ -235,7 +235,7 @@
 	flex-direction: row;
 	height: 8rem;
 	overflow: hidden;
-	width: calc(33.3333% - 0.4rem);
+	width: calc(50% - 0.4rem);
 	box-shadow: var(--shadow-outset-small);
 	margin: 0 0 0.4rem 0.4rem;
 	cursor: pointer;
@@ -347,9 +347,13 @@
 }
 
 .appointment-card.full::after {
-	content: "همه نوبت ها پر شده";
+	content: "پر شده";
 	font-family: inherit;
-	font-size: 2.5rem;
+	font-size: 1rem;
+	font-weight: 900;
+	color: var(--dark-1);
+	background-color: var(--bs-danger-75);
+	box-shadow: none;
 }
 
 .inside-container-center,
@@ -643,4 +647,9 @@
 
 .side-nav-profile > ul > li > button > abbr {
 	padding-right: 0.5rem;
+}
+
+.choose-hour-booking {
+	max-height: 12rem;
+	overflow: auto;
 }

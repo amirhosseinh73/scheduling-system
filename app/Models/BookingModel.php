@@ -28,5 +28,6 @@ class BookingModel extends ParentModel
         "number_reserve",
         "number_reserved",
         "kind_text",
+        "price",
     ];
 }

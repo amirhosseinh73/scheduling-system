@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2022 at 07:59 PM
+-- Generation Time: Apr 18, 2022 at 10:46 PM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -54,6 +54,7 @@ CREATE TABLE `booking` (
   `number_reserve` tinyint(3) NOT NULL COMMENT 'تعدادی بیماری که میتواند معاینه کند',
   `number_reserved` tinyint(3) NOT NULL DEFAULT 0 COMMENT 'تعداد بیماران رزرو شده',
   `kind_text` varchar(50) COLLATE utf8_persian_ci NOT NULL COMMENT 'نوع مشاوره',
+  `price` int(8) NOT NULL COMMENT 'toman',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `deleted_at` datetime DEFAULT NULL
@@ -63,10 +64,10 @@ CREATE TABLE `booking` (
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`ID`, `user_ID`, `type`, `date`, `start`, `end`, `time`, `number_reserve`, `number_reserved`, `kind_text`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(2, 5, b'1', '2022-04-15 00:00:00', '16:40', '18:31', 20, 5, 0, 'مشاوره ازدواج', '2022-04-15 16:44:17', '2022-04-15 16:44:17', NULL),
-(3, 5, b'0', '2022-04-18 00:00:00', '16:46', '19:45', 15, 11, 0, 'مشاوره بالینی', '2022-04-15 16:46:17', '2022-04-15 16:46:17', NULL),
-(4, 5, b'0', '2022-04-18 00:00:00', '09:30', '13:00', 45, 4, 0, 'مشاوره فردی', '2022-04-16 23:42:45', '2022-04-16 23:42:45', NULL);
+INSERT INTO `booking` (`ID`, `user_ID`, `type`, `date`, `start`, `end`, `time`, `number_reserve`, `number_reserved`, `kind_text`, `price`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, 5, b'1', '2022-04-20 00:00:00', '16:40', '18:31', 20, 5, 0, 'مشاوره ازدواج', 120000, '2022-04-15 16:44:17', '2022-04-15 16:44:17', NULL),
+(3, 5, b'0', '2022-04-21 00:00:00', '16:46', '19:45', 15, 11, 0, 'مشاوره بالینی', 180000, '2022-04-15 16:46:17', '2022-04-15 16:46:17', NULL),
+(4, 5, b'0', '2022-04-23 00:00:00', '09:30', '13:00', 45, 4, 0, 'مشاوره فردی', 150000, '2022-04-16 23:42:45', '2022-04-16 23:42:45', NULL);
 
 -- --------------------------------------------------------
 
@@ -329,7 +330,7 @@ CREATE TABLE `token` (
 INSERT INTO `token` (`ID`, `token`, `ip_address`, `user_agent`, `expire_at`, `created_at`, `updated_at`) VALUES
 (11, '053193c4a81653981ba82c4153b83a30', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88', '2022-05-15 01:09:05', '2022-04-15 01:09:05', '2022-04-15 01:09:05'),
 (13, '119acdc42137db520065e1641aa40932', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0', '2022-04-16 16:48:26', '2022-04-15 16:48:26', '2022-04-15 16:48:26'),
-(17, 'ec85abe16a1faeef34da1e1150fcc487', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0', '2022-05-16 23:43:17', '2022-04-16 23:43:17', '2022-04-16 23:43:17');
+(20, 'b11e276315e7ebcab3ddde68330c607c', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0', '2022-04-20 01:09:40', '2022-04-19 01:09:40', '2022-04-19 01:09:40');
 
 -- --------------------------------------------------------
 
@@ -367,8 +368,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `username`, `firstname`, `lastname`, `email`, `gender`, `type_user`, `status`, `is_admin`, `image`, `verify_code_mobile`, `verify_code_email`, `mobile_verified_at`, `email_verified_at`, `created_at`, `updated_at`, `deleted_at`, `last_login_at`, `recovery_pass_at`, `change_pass_at`, `token`, `password`) VALUES
-(5, '09376885515', 'امیرحسین', 'حسنی نجف آبادی', 'amirhoseinh1373@gmail.com', b'1', b'0', b'1', b'0', '1649965396_2d1877cc81c824dd8e28.jpg', '851269', NULL, '2022-04-11 00:26:11', NULL, '2022-04-11 00:25:35', '2022-04-16 23:13:07', NULL, '2022-04-16 23:13:07', NULL, NULL, '035aae08fb1bb751bbbf8a0bedd761e2', '$2y$10$vgC4M9oys1znxr5CBTeVo.WjJfdBTEFq9As9hY0W9B1zoQoUblxwS'),
-(6, '09380332228', 'پریسا', 'شفیعی', NULL, b'0', b'1', b'1', b'0', NULL, '988786', NULL, '2022-04-15 16:48:26', NULL, '2022-04-15 16:47:37', '2022-04-16 23:43:17', NULL, '2022-04-16 23:43:17', NULL, NULL, 'ec85abe16a1faeef34da1e1150fcc487', '$2y$10$21okBDW34XpR4hHEsfYmKO0c.bAH1/h72K4dKw72PPLMjwrxLvYkO');
+(5, '09376885515', 'امیرحسین', 'حسنی نجف آبادی', 'amirhoseinh1373@gmail.com', b'1', b'0', b'1', b'0', '1649965396_2d1877cc81c824dd8e28.jpg', '851269', NULL, '2022-04-11 00:26:11', NULL, '2022-04-11 00:25:35', '2022-04-19 01:09:40', NULL, '2022-04-19 01:09:40', NULL, NULL, 'b11e276315e7ebcab3ddde68330c607c', '$2y$10$vgC4M9oys1znxr5CBTeVo.WjJfdBTEFq9As9hY0W9B1zoQoUblxwS'),
+(6, '09380332228', 'پریسا', 'شفیعی', NULL, b'0', b'1', b'1', b'0', NULL, '988786', NULL, '2022-04-15 16:48:26', NULL, '2022-04-15 16:47:37', '2022-04-19 01:08:18', NULL, '2022-04-19 01:08:18', NULL, NULL, 'ee918fb8191c832296ddcb103314ab75', '$2y$10$21okBDW34XpR4hHEsfYmKO0c.bAH1/h72K4dKw72PPLMjwrxLvYkO');
 
 --
 -- Indexes for dumped tables
@@ -564,7 +565,7 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT for table `token`
 --
 ALTER TABLE `token`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `user`

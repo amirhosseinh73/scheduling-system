@@ -84,6 +84,9 @@ class Alert {
             case 116 :
                 $message = "نوع مشاوره خود را انتخاب کنید!";
                 break;
+            case 117 :
+                $message = "هزینه ویزیت باید بیشتر از 1000 تومان باشد!";
+                break;
         endswitch;
 
         if ( $show_code ) :

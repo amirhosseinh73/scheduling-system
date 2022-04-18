@@ -1,7 +1,7 @@
-<article class="col-12 col-sm-8 col-lg-9 col-xl-10 align-content-center px-0">
+<article class="col-12 col-sm-8 col-lg-9 col-xl-10 align-content-center px-0 h-100">
     <div class="dashboard-main-container">
             <div class="col-12 h-100">
-                <section class="row">
+                <section class="row d-none">
                     <div class="col-12 col-sm-3 me-auto text-start">
                         <button type="button" class="btn-color-1">ثبت نوبت جدید</button>
                     </div>
@@ -40,6 +40,15 @@
                                     </select>
                                     <button type="button" class="btn-color-1 far fa-angle-down"></button>
                                 </section>
+                            </div>
+                        </section>
+                        <section class="row align-items-center mb-5">
+                            <div class="col-12 col-sm-3">
+                                <p class="title small mb-0">هزینه ویزیت خود را وارد کنید:</p>
+                            </div>
+                            <div class="col-12 col-sm-4 me-3">
+                                <input id="booking_price" type="text" class="text-center dir-ltr form-control form-control-sm d-inline-block w-auto" placeholder="10000"/>
+                                <span class="font-size-0-9"> تومان </span>
                             </div>
                         </section>
                         <section class="row align-items-center mb-5">

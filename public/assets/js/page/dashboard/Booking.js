@@ -52,6 +52,16 @@ class Booking {
         }
     }
 
+    validatePrice = () => {
+        const price = document.getElementById( "booking_price" ).value;
+        if ( price.length < 3 ) {
+            this.bookingForm.insertAdjacentHTML( "afterbegin", alert_html_rtl( "danger", Alert.error( 114 ) ) );
+            return false;
+        }
+
+        return price;
+    }
+
     validateDate = () => {
         let date = document.getElementById( "booking_choose_date_append" ).value;
         date = date.split( "/" );
@@ -131,6 +141,9 @@ class Booking {
         const type = this.validateType();
         if ( ! type ) return;
 
+        const price = this.validatePrice();
+        if ( ! price ) return;
+
         const date = this.validateDate();
         if ( ! date ) return;
 
@@ -148,6 +161,7 @@ class Booking {
                 time_each   : handle_time.time_each,
                 total_number: handle_time.total_number,
                 kind_advise : kind_advise,
+                price       : price,
             }
         };
 

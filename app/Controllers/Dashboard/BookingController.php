@@ -49,6 +49,7 @@ class BookingController extends ParentController {
         $time_each      = $this->request->getPost( "time_each" );
         $total_number   = $this->request->getPost( "total_number" );
         $kind_advise    = $this->request->getPost( "kind_advise" );
+        $price          = $this->request->getPost( "price" );
         
         // if ( ! exists( $type ) )         return Alert::Error( 112 );
         if ( ! exists( $date ) )         return Alert::Error( 113 );
@@ -57,6 +58,7 @@ class BookingController extends ParentController {
         if ( ! exists( $time_each ) )    return Alert::Error( 115 );
         if ( ! exists( $total_number ) ) return Alert::Error( 115 );
         if ( ! exists( $kind_advise ) )  return Alert::Error( 116 );
+        if ( ! exists( $price ) )        return Alert::Error( 117 );
 
         $data = array(
             "user_ID"   => $user_info->ID,
@@ -67,6 +69,7 @@ class BookingController extends ParentController {
             "time"      => $time_each,
             "number_reserve" => $total_number,
             "kind_text" => $kind_advise,
+            "price"     => $price,
         );
 
         $booking_model = new BookingModel();

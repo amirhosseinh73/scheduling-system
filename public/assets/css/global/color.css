@@ -91,5 +91,14 @@
     --bs-light-50:    #f8f9fa80;
     --bs-dark-50:     #21252980;
 
+    --bs-primary-75:  #0d6efdc9;
+    --bs-secondary-75:#6c757dc9;
+    --bs-success-75:  #198754c9;
+    --bs-info-75:     #0dcaf0c9;
+    --bs-warning-75:  #ffc107c9;
+    --bs-danger-75:   #dc3545c9;
+    --bs-light-75:    #f8f9fac9;
+    --bs-dark-75:     #212529c9;
+
     --fontawesome: "Font Awesome 6 Pro";
 }
