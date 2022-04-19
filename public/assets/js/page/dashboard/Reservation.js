@@ -182,7 +182,7 @@ class Reservation {
         
             jalaali_date = jalaali_date.jy + "/" + jalaali_date.jm + "/" + jalaali_date.jd ;
 
-            parent_HTML.insertAdjacentHTML( "afterbegin", `
+            parent_HTML.insertAdjacentHTML( "beforeend", `
             <section id="appointment_card_${ index + 1 }" data-id="${booking.ID}" class='appointment-card ${ extra_class }'>
                 <img src='${ booking.doctor_info.image }'/>
                 <div>

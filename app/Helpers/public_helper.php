@@ -10,7 +10,7 @@ defined( "KEY_CHECK_RESPONSE" )     || define( "KEY_CHECK_RESPONSE"     , "reque
 defined( "KEY_VALUE_SESSION" )      || define( "KEY_VALUE_SESSION"      , "needed_key_in_session" );
 
 defined( "PAYMENT_MERCHANT_ID" )    || define( "PAYMENT_MERCHANT_ID"    , "zibal" );
-defined( "PAYMENT_CALLBACK_URL" )   || define( "PAYMENT_CALLBACK_URL"   , base_url( "payment/pay/callback" ) );
+defined( "PAYMENT_CALLBACK_URL" )   || define( "PAYMENT_CALLBACK_URL"   , base_url( "callback-reservation" ) );
 
 defined( "BLOG_URL" )               || define( "BLOG_URL"               , "/blog/" );
 defined( "PAGE_URL" )               || define( "PAGE_URL"               , "/page/" );

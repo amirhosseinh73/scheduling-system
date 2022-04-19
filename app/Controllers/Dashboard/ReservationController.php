@@ -7,6 +7,8 @@ use App\Libraries\Alert;
 use App\Libraries\TextLibrary;
 use App\Models\BookingModel;
 use App\Models\PaymentRequestModel;
+use App\Models\PaymentTrackModel;
+use App\Models\UserModel;
 
 class ReservationController extends ParentController {
     public function index() {
@@ -44,19 +46,21 @@ class ReservationController extends ParentController {
         $zibal_parameters = array(
             "merchant"      => ZIBAL_MERCHANT_KEY,
             "callbackUrl"   => ZIBAL_CALLBACK_URL,
-            "amount"        => $select_booking->price,
+            "amount"        => $select_booking->price * 10, // to rial
             "orderId"       => time(),
         );
 
-        $zibal_response = postToZibal('request', $zibal_parameters);
+        $zibal_response = postToZibal( 'request', $zibal_parameters );
 
         if ( intval( $zibal_response->result ) !== 100) return Alert::Error( 100, resultCodes( $zibal_response->result ) );
 
         $data_insert = array(
-            "user_ID"  => $user_info->ID,
-            "amount"   => $zibal_parameters[ "amount" ],
-            "order_ID" => $zibal_parameters[ "orderId" ],
-            "time"     => date( "Y-m-d H:i:s" ),
+            "user_ID"      => $user_info->ID,
+            "amount"       => $zibal_parameters[ "amount" ] / 10,// toman
+            "order_ID"     => $zibal_parameters[ "orderId" ],
+            "time"         => date( "Y-m-d H:i:s" ),
+            "booking_ID"   => $select_booking->ID,
+            "booking_turn" => $select_booking->number_reserved++,
         );
         
         try {
@@ -69,83 +73,63 @@ class ReservationController extends ParentController {
     }
 
     public function callbackPayment() {
-        if ($this->request->getMethod(true) == 'GET' && $this->validate([
-            'success' => 'required|min_length[1]',
-        ])) {
-            $session = \Config\Services::session();
-            $success = $this->request->getGet('success');
-            if ($success == 1) {
-                require 'ZibalFunctions.php';
-                $id = $session->get('token_pay_student');
-                if (isset($id) && !empty($id)) {
-                    $trackId = $this->request->getGet('trackId');
-                    $orderId = $this->request->getGet('orderId');
-                    $new_storage = $session->get('storage');
-                    $year = $session->get('year');
-                    $month = $session->get('month');
-                    $day = $session->get('day');
-                    $expire_year = $year + 1;
-                    $order_date = $year . '/' . $month . '/' . $day;
-                    $expire_date = $expire_year . '/6/1';
-                    $parameters = array(
-                        "merchant" => "5fbcf9ef18f9344448fe61ff",
-                        "trackId" => $trackId
-                    );
-                    $response = postToZibal('verify', $parameters);
-                    if ($response->result == 100) {
-                        $paymentRecords = new PaymentRecordsModel();
-                        $users = new UserModel();
-                        $old_storage = $users
-                            ->where('id', $id)
-                            ->first()['purchased_space'];
-                        $data_payment_records = [
-                            'student_id' => $id,
-                            'amount' => $response->amount,
-                            'new_space' => $new_storage,
-                            'old_space' => $old_storage,
-                            'date' => $order_date,
-                            'tracking_number' => $trackId,
-                            'orderTime' => $orderId
-                        ];
-                        $storage = $new_storage + $old_storage;
-                        $data_users = [
-                            'status_pay' => 'true',
-                            'expired_date_time' => $expire_date,
-                            'purchased_space' => $storage
-                        ];
+        if ( ! $this->validate( [ "success" => "required|min_length[1]" ] ) ) return redirect()->to( base_url( "dashboard?error=115" ) );
+        
+        $success = $this->request->getGet('success');
+        if ( $success != 1 ) return redirect()->to( base_url( "dashboard?error=115" ) );
 
-                        $paymentRecords->insert($data_payment_records);
-                        $users->update($id, $data_users);
-                        $session->set(['tracking_number' => $trackId]);
-                        return redirect()->to(base_url('/payment/pay/callbackView'));
-                    } else {
-                    //http_response_code(405);
-                        $responseMessage = statusCodes($response->result);
-                        $session->setTempdata('responseMessage',$responseMessage,1800);
-                        return redirect()->to(base_url('/payment/pay/view'));//
-                        // اینجا باید برگرده به app
-                    }
-                } else {
-                //http_response_code(405);
-                    $responseMessage = 'متاسفانه اطلاعات کاربری اشتباه است، دوباره به نرم افزار برگردید و مجددا امتحان کنید';
-                    $session->setTempdata('responseMessage',$responseMessage,1800);
-                    $session->setTempdata('token_id','false',1800);
-                    return redirect()->to(base_url('/payment/pay/view'));
-                    // اینجا باید برگرده به app
-                }
+        require APPPATH . "/Libraries/ZibalFunctions.php";
 
-            } else {
-            //http_response_code(405);
-                $responseMessage = 'متاسفانه پرداخت شما ناموفق بود، لطفا دوباره تلاش کنید.';
-                $session->setTempdata('responseMessage',$responseMessage,1800);
-                return redirect()->to(base_url('/payment/pay/view'));
-            }
-        } else {
-        //http_response_code(405);
-            $session = \Config\Services::session();
-            $responseMessage = 'از جای نادرستی وارد شده اید. دوباره تلاش کنید';
-            $session->setTempdata('responseMessage',$responseMessage,1800);
-            return redirect()->to(base_url('/payment/pay/view'));
+        $trackId = $this->request->getGet('trackId');
+        $orderId = $this->request->getGet('orderId');
+
+        $zibal_parameters = array(
+            "merchant" => ZIBAL_MERCHANT_KEY,
+            "trackId" => $trackId
+        );
+
+        $payment_request_model = new PaymentRequestModel();
+        $payment_track_model   = new PaymentTrackModel();
+        $booking_model         = new BookingModel();
+
+        $select_request = $payment_request_model
+            ->where( "order_ID", $orderId )
+            ->first();
+        if ( ! exists( $select_request ) ) return redirect()->to( base_url( "dashboard?error=115" ) );
+
+        $data_insert = array(
+            "user_ID"               => $select_request->user_ID,
+            "payment_request_ID"    => $select_request->ID,
+            "amount"                => $select_request->amount, //toman
+            "order_ID"              => $orderId,
+            "track_ID"              => $trackId,
+            "time"                  => date( "Y-m-d H:i:s" ),
+            "booking_ID"            => $select_request->booking_ID,
+            "booking_turn"          => $select_request->booking_turn,
+        );
+
+        $select_booking = $booking_model
+            ->select( "number_reserved" )
+            ->where( "ID", $select_request->booking_ID )
+            ->first();
+
+        if ( ! exists( $select_booking ) ) return redirect()->to( base_url( "dashboard?error=115" ) );
+
+        $data_update = array(
+            "number_reserved" => intval( $select_booking->number_reserved ) + 1,
+        );
+
+        try {
+            $payment_track_model->insert($data_insert);
+
+            $booking_model->update( $select_request->booking_ID, $data_update );
+        } catch( \Exception $e ) {
+            return redirect()->to( base_url( "dashboard?error=115" ) );
         }
+
+        $zibal_response = postToZibal( 'verify', $zibal_parameters );
+        if ( $zibal_response->result != 100 ) return redirect()->to( base_url( "dashboard?error=115" ) );
+
+        return redirect()->to( base_url( "/dashboard/reserve" ) );
     }
 }

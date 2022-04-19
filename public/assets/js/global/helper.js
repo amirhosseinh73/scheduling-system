@@ -180,10 +180,6 @@ function input_text_number() {
     } );
 }
 
-doc_ready( function() {
-    input_text_number();
-} );
-
 function html_loading() {
     return `<div id="preloader" style="opacity: 70%">
         <div class="loading">
@@ -206,3 +202,15 @@ function get_day_of_week( year, month, day ) {
         weekday: "long",
     });
 }
+
+doc_ready( function() {
+    input_text_number();
+
+    if ( url_param().has( "error" ) ) {
+        const alert_data = {
+            message: Alert.error( url_param().get( "error" ) ),
+            type_2: "info"
+        };
+        sweet_alert_message( alert_data );
+    }
+} );

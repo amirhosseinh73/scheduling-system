@@ -31,33 +31,48 @@ $routes->setAutoRoute( FALSE );
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/'                    , 'Site\IndexController::index');
-$routes->group( "login",[ "filter" => "IsNotLogin" ], function( $routes ) {
-    $routes->get( ''                , 'Dashboard\LoginController::index' );
-    $routes->post( 'submit'         , 'Dashboard\LoginController::submit' );
+$routes->get( '/' , 'Site\IndexController::index');
+
+$routes->group( "login", [ "filter" => "IsNotLogin" ], function( $routes ) {
+    $routes->get( ''        , 'Dashboard\LoginController::index' );
+    $routes->post( 'submit' , 'Dashboard\LoginController::submit' );
 } );
-$routes->get( "recovery", "Dashboard\LoginController::recoveryPage", [ "filter" => "IsNotLogin" ] );
-$routes->post( "recovery/submit", "Dashboard\LoginController::submitRecovery", [ "filter" => "IsNotLogin" ] );
+
+$routes->group( "recovery", [ "filter" => "IsNotLogin" ], function( $routes ) {
+    $routes->get( ''        , 'Dashboard\LoginController::recoveryPage' );
+    $routes->post( 'submit' , 'Dashboard\LoginController::submitRecovery' );
+} );
 
 $routes->group( "register",[ "filter" => "IsNotLogin" ], function( $routes ) {
     $routes->get( ''                , 'Dashboard\RegisterController::index' );
     $routes->post( 'submit'         , 'Dashboard\RegisterController::submit' );
+
     $routes->get( 'verify'          , 'Dashboard\RegisterController::verify', [ "filter" => "IsFromRequest" ] );
     $routes->post( 'verify/submit'  , 'Dashboard\RegisterController::verifySubmit' );
 } );
 
 $routes->get('/logout'      , 'Dashboard\DashboardController::logout');
+
 $routes->group( "dashboard" , [ "filter" => "IsLogin" ], function( $routes ) {
     $routes->get( ''        , 'Dashboard\DashboardController::index' );
     $routes->post( 'update' , 'Dashboard\DashboardController::updateProfile' );
 
-    $routes->get( 'booking'         , 'Dashboard\BookingController::index' );
-    $routes->post( 'booking/submit' , 'Dashboard\BookingController::submit' );
-    $routes->get( 'booking/data-patient' , 'Dashboard\BookingController::getBookingPatientData' );
-    
-    $routes->get( 'reserve'         , 'Dashboard\ReservationController::index' );
-    $routes->post( 'reserve/submit' , 'Dashboard\ReservationController::submit' );
+    $routes->group( "booking" , function( $routes ) {
+        $routes->get( ''        , 'Dashboard\BookingController::index' );
+        $routes->post( 'submit' , 'Dashboard\BookingController::submit' );
+
+        $routes->get( 'data-patient' , 'Dashboard\BookingController::getBookingPatientData' );
+    } );
+
+    $routes->group( "reserve" , function( $routes ) {
+        $routes->get( ''        , 'Dashboard\ReservationController::index' );
+        $routes->post( 'submit' , 'Dashboard\ReservationController::submit' );
+    } );
 } );
+
+//callback payment /dashboard/reserve/callback
+//separate from group because login may be expired after payment
+$routes->get( 'callback-reservation' , 'Dashboard\ReservationController::callbackPayment' );
 
 $routes->get( "/(:segment)/(:any)"  , "Site\PostController::index/$1/$2" );
 
