@@ -131,6 +131,9 @@ class Alert {
             case 203:
                 $message = "نوبت شما با موفقیت ثبت شد.";
                 break;
+            case 204:
+                $message = "عملیات با موفقیت انجام شد، در حال انتقال به درگاه بانک.";
+                break;
         endswitch;
 
         if ( $show_code ) :

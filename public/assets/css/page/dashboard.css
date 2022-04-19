@@ -145,7 +145,7 @@
 }
 
 .dashboard-main-container {
-	background-color: var(--light-3);
+	background-color: var(--white);
 	border-radius: 8px;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
@@ -214,7 +214,7 @@
 
 .inside-container-left {
 	height: 100%;
-	background-color: var(--light-4);
+	background-color: var(--color-4-50);
 	border-radius: 25px;
 	-webkit-border-radius: 25px;
 	-moz-border-radius: 25px;
@@ -224,7 +224,7 @@
 }
 
 .appointment-card {
-	background-color: var(--light-1);
+	background-color: var(--color-2-25);
 	border-radius: 15px;
 	-webkit-border-radius: 15px;
 	-moz-border-radius: 15px;
@@ -274,11 +274,11 @@
 }
 
 .appointment-card > div > .card-title {
-	font-size: 0.8rem;
+	font-size: 1rem;
 	font-weight: 700;
 	color: var(--color-1);
 	margin-top: 0;
-	margin-bottom: 0.5rem;
+	margin-bottom: 0.2rem;
 	line-height: 1.5;
 }
 

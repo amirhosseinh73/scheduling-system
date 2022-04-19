@@ -1,5 +1,34 @@
 class Reservation {
 
+    get submitSelector() {
+        return document.getElementById( "reservation_form" );
+    }
+
+    successAlert = ( response ) => {
+        sweet_alert_message( response, () => {
+            if ( response.status === "success" ) window.location.href = response.return_url;
+        } );
+    }
+
+    submitHandler = ( event ) => {
+        event.preventDefault();
+
+        const current_booking = data_store.current_booking;
+
+        const fetch_data = {
+            method: "post",
+            data: {
+                ID: current_booking.ID
+            }
+        };
+
+        ajax_fetch( route.submit_reservation, this.successAlert, fetch_data );
+    }
+    
+    submit = () => {
+        this.submitSelector.addEventListener( "submit", this.submitHandler );
+    }
+
     // buttonChooseHourActiveHandler = ( event ) => {
     //     const btn = event.target;
 
@@ -23,7 +52,7 @@ class Reservation {
     chooseHourHTML = ( text ) => {
         //<button type="button" class="btn-color-2 font-size-0-8 w-100 btn-choose-hour">${ text }</button>
         return `<div class="col-12 px-1 my-4">
-                    <span class="font-size-0-9 text-color-3 w-100">ساعت حضور شما در مطب 
+                    <span class="font-size-0-9 text-dark-1 w-100">ساعت حضور شما در مطب 
                         <strong class="font-size-0-95">${ text }</strong>
                     </span>
                 </div>`;
@@ -36,7 +65,23 @@ class Reservation {
         const current_booking = data_store.patient_booking.find( booking => +booking.ID === +booking_ID );        
 
         const name = document.getElementById( "detail_name" );
-        name.innerHTML = current_booking.doctor_info.firstname + " " + current_booking.doctor_info.lastname;
+        name.innerHTML = "دکتر " + current_booking.doctor_info.firstname + " " + current_booking.doctor_info.lastname;
+
+        const more_detail = document.getElementById( "more_detail" );
+
+        more_detail.innerHTML = "";
+        more_detail.insertAdjacentHTML( "beforeend", `<span class="d-block font-size-0-95 text-black mt-5">${current_booking.kind_text}</span>` );
+
+        const booking_type_text = ( Boolean(+current_booking.type) ? "تلفنی" : "حضوری" );
+        
+        const gregorian_date = ( current_booking.date.split( " " ) )[ 0 ].split( "-" );
+        const day_of_week = get_day_of_week( gregorian_date[ 0 ], gregorian_date[ 1 ], gregorian_date[ 2 ] );
+        let jalaali_date = jalaali.toJalaali( +gregorian_date[ 0 ], +gregorian_date[ 1 ], +gregorian_date[ 2 ] ); // y,m,d
+    
+        jalaali_date = jalaali_date.jy + "/" + jalaali_date.jm + "/" + jalaali_date.jd ;
+        more_detail.insertAdjacentHTML( "beforeend", `<span class="d-block font-size-0-95 text-dark-1 mt-3">${booking_type_text}</span>` );
+
+        more_detail.insertAdjacentHTML( "beforeend", `<span class="d-block font-size-1-2 text-black mt-3">${day_of_week} ${jalaali_date}</span>` );
 
         const choose_hour_section = document.getElementById( "choose_hour" );
         if ( current_booking.number_reserved === current_booking.number_reserve ) {
@@ -55,7 +100,6 @@ class Reservation {
         if ( +current_booking.number_reserved !== 0 ) {
             minute = minute + ( current_booking.time * current_booking.number_reserved );
 
-            console.log(minute);
             while ( minute >= 60 ) { //calc hour
                 hour++;
                 minute -= 60;
@@ -90,6 +134,9 @@ class Reservation {
         price_section.innerHTML = current_booking.price;
 
         // this.buttonChooseHourActive();
+
+        data_store.current_booking = current_booking;
+        this.submit();
     }
 
     get containerLeft() {
@@ -140,7 +187,6 @@ class Reservation {
                 <img src='${ booking.doctor_info.image }'/>
                 <div>
                     <h5 class='card-title'>
-                        دکتر
                         ${booking.doctor_info.firstname + " " + booking.doctor_info.lastname}
                     </h5>
                     <p class='card-description-1'>${booking.kind_text}</p>

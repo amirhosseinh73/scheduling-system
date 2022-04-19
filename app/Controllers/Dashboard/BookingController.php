@@ -3,7 +3,6 @@
 namespace App\Controllers\Dashboard;
 
 use App\Controllers\ParentController;
-use App\Controllers\TokenController;
 use App\Libraries\Alert;
 use App\Libraries\TextLibrary;
 use App\Models\BookingModel;
@@ -12,9 +11,7 @@ use App\Models\UserModel;
 
 class BookingController extends ParentController {
     public function index() {
-        $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
-
-        $user_info = handle_user_info( $user_info );
+        $user_info = get_user_info();
 
         $data_page = array(
             "title_head"        => TextLibrary::title( "booking" ),
@@ -38,7 +35,7 @@ class BookingController extends ParentController {
     }
 
     public function submit() {
-        $user_info      = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
+        $user_info = get_user_info();
 
         if ( ! exists( $user_info ) ) return Alert::Error( -1 );
 

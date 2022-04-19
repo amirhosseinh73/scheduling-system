@@ -3,7 +3,6 @@
 namespace App\Controllers\Site;
 
 use App\Controllers\ParentController;
-use App\Controllers\TokenController;
 use App\Libraries\TextLibrary;
 use App\Models\FAQModel;
 use App\Models\PostModel;
@@ -30,7 +29,7 @@ class PostController extends ParentController {
 
         $select_blog = $this->handlePostData( $select_blog, BLOG_URL, IMAGE_DIR_BLOG );
 
-        $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
+        $user_info = get_user_info();
 
         $data_page = array(
             "title_head"        => TextLibrary::title( "blog" ),
@@ -52,7 +51,7 @@ class PostController extends ParentController {
 
         $select_page = $this->handlePostData( $select_page, PAGE_URL, IMAGE_DIR_PAGE );
 
-        $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
+        $user_info = get_user_info();
 
         $data_page = array(
             "title_head"        => $select_page->title,

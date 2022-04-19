@@ -11,10 +11,8 @@ use App\Models\UserModel;
 class DashboardController extends ParentController {
     public function index() {
 
-        $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
+        $user_info = get_user_info();
 
-        $user_info = handle_user_info( $user_info );
-        
         $data_page = array(
             "title_head"        => TextLibrary::title( "dashboard" ),
             "description_head"  => TextLibrary::description( "company_name" ),
@@ -40,7 +38,7 @@ class DashboardController extends ParentController {
     }
 
     public function updateProfile() {
-        $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
+        $user_info = get_user_info();
         
         $firstname  = $this->request->getPost( "firstname" );
         $lastname   = $this->request->getPost( "lastname" );

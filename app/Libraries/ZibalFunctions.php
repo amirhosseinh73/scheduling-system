@@ -4,10 +4,13 @@
  * put your gateway merchant key here.
  * use "zibal" for test
  */
-define("ZIBAL_MERCHANT_KEY","5fbcf9ef18f9344448fe61ff");
+define( "ZIBAL_MERCHANT_KEY", PAYMENT_MERCHANT_ID );
 
+define( "ZIBAL_CALLBACK_URL", PAYMENT_CALLBACK_URL );
 
-define("ZIBAL_CALLBACK_URL",base_url('payment/pay/callback'));
+function ZIBAL_GATEWAY_URL( $token ) {
+    return "https://gateway.zibal.ir/start/" . $token;
+}
 
 /**
  * connects to zibal's rest api

@@ -90,6 +90,9 @@
                                             <button type="button" class="btn-text fas fa-long-arrow-left text-color-3"></button>
                                         </div> -->
                                     <!-- </div> -->
+                                    <div id="more_detail" class="row mx-0">
+                                        
+                                    </div>
                                     <div id="choose_hour" class="row mx-0 choose-hour-booking">
                                         
                                     </div>
@@ -123,7 +126,7 @@
                                     </div>
                                     <div class="row mx-0 mb-3">
                                         <div class="col-12 px-1 my-1">
-                                            <button type="button" class="btn btn-success font-size-0-7 w-100">ثبت و پرداخت</button>
+                                            <button type="submit" class="btn btn-success font-size-0-7 w-100">ثبت و پرداخت</button>
                                         </div>
                                     </div>
                                 </div>

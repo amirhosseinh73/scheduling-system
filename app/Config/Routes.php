@@ -56,7 +56,7 @@ $routes->group( "dashboard" , [ "filter" => "IsLogin" ], function( $routes ) {
     $routes->get( 'booking/data-patient' , 'Dashboard\BookingController::getBookingPatientData' );
     
     $routes->get( 'reserve'         , 'Dashboard\ReservationController::index' );
-    $routes->post( 'reserve/submit' , 'Dashboard\ReservationController::index' );
+    $routes->post( 'reserve/submit' , 'Dashboard\ReservationController::submit' );
 } );
 
 $routes->get( "/(:segment)/(:any)"  , "Site\PostController::index/$1/$2" );

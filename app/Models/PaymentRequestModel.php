@@ -23,5 +23,7 @@ class PaymentRequestModel extends ParentModel
         "amount",
         "order_ID",
         "time",
+        "booking_ID",
+        "booking_turn",
     ];
 }

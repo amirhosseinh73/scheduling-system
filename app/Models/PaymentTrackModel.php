@@ -25,5 +25,7 @@ class PaymentTrackModel extends ParentModel
         "order_ID",
         "track_ID",
         "time",
+        "booking_ID",
+        "booking_turn",
     ];
 }

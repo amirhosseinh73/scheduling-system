@@ -1,11 +1,16 @@
 <?php
 
 //defines
+
+use App\Controllers\TokenController;
 use App\Libraries\SmsIrUltraFastSend;
 
 defined( "TOKEN_COOKIE_NAME" )      || define( "LOGIN_TOKEN_COOKIE_NAME", "Scheduling_system" );
 defined( "KEY_CHECK_RESPONSE" )     || define( "KEY_CHECK_RESPONSE"     , "request_response_session" );
 defined( "KEY_VALUE_SESSION" )      || define( "KEY_VALUE_SESSION"      , "needed_key_in_session" );
+
+defined( "PAYMENT_MERCHANT_ID" )    || define( "PAYMENT_MERCHANT_ID"    , "zibal" );
+defined( "PAYMENT_CALLBACK_URL" )   || define( "PAYMENT_CALLBACK_URL"   , base_url( "payment/pay/callback" ) );
 
 defined( "BLOG_URL" )               || define( "BLOG_URL"               , "/blog/" );
 defined( "PAGE_URL" )               || define( "PAGE_URL"               , "/page/" );
@@ -316,4 +321,12 @@ function get_day_of_week( $date = "now" ) {
         case 6:
             return "شنبه";
     }
+}
+
+function get_user_info() {
+    $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
+
+    $user_info = handle_user_info( $user_info );
+
+    return $user_info;
 }
