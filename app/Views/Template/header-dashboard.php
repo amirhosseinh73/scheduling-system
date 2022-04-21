@@ -158,7 +158,7 @@
                             <span>پیشخوان</span>
                         </a>
                     </li>
-                    <?php if ( ! $user_info->type_user ) : ?>
+                    <?php if ( ! $user_info->type_user ) : //doctor?>
                         <li <?php if ( $page_name === "booking_index" ) echo "class='active'" ?>>
                             <a href="<?= base_url( "/dashboard/booking" )?>">
                                 <i class="far fa-calendar-edit"></i>
@@ -171,28 +171,28 @@
                                 <span>نوبت های قبلی</span>
                             </a>
                         </li>
-                    <?php elseif ( $user_info->type_user ) : ?>
-                        <li <?php if ( $page_name === "booking_index" ) echo "class='active'" ?>>
+                    <?php elseif ( $user_info->type_user ) : //patient?>
+                        <li <?php if ( $page_name === "reservation_index" ) echo "class='active'" ?>>
                             <a href="<?= base_url( "/dashboard/reserve" )?>">
                                 <i class="far fa-calendar-edit"></i>
                                 <span>گرفتن نوبت</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="#" class="disabled">
+                        <li <?php if ( $page_name === "reservation_turns" ) echo "class='active'" ?>>
+                            <a href="<?= base_url( "/dashboard/reserve/turns" )?>">
                                 <i class="far fa-calendar-check"></i>
                                 <span>نوبت های گرفته شده</span>
                             </a>
                         </li>
                     <?php endif;?>
                     <!-- <li>
-                        <a href="dashboard-page-4.html" class="disabled">
+                        <a href="javascript:void(0)" class="disabled">
                             <i class="far fa-wallet"></i>
                             <span>کیف پول</span>
                         </a>
                     </li> -->
                     <li>
-                        <a href="dashboard-page-5.html" class="disabled">
+                        <a href="javascript:void(0)" class="disabled">
                             <i class="far fa-file-signature"></i>
                             <span>آزمون های آنلاین</span>
                         </a>
@@ -204,13 +204,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="dashboard-page-7.html" class="disabled">
+                        <a href="javascript:void(0)" class="disabled">
                             <i class="far fa-question-circle"></i>
                             <span>پرسش و پاسخ</span>
                         </a>
                     </li>
                     <!-- <li>
-                        <a href="dashboard-page-8.html" class="disabled">
+                        <a href="javascript:void(0)" class="disabled">
                             <i class="far fa-comments"></i>
                             <span>تیکت ها</span>
                         </a>

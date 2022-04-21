@@ -8,6 +8,7 @@ use App\Libraries\TextLibrary;
 use App\Models\BookingModel;
 use App\Models\PaymentRequestModel;
 use App\Models\PaymentTrackModel;
+use App\Models\ReservationModel;
 use App\Models\UserModel;
 
 class ReservationController extends ParentController {
@@ -76,7 +77,7 @@ class ReservationController extends ParentController {
         if ( ! $this->validate( [ "success" => "required|min_length[1]" ] ) ) return redirect()->to( base_url( "dashboard?error=115" ) );
         
         $success = $this->request->getGet('success');
-        if ( $success != 1 ) return redirect()->to( base_url( "dashboard?error=115" ) );
+        if ( $success != 1 ) return redirect()->to( base_url( "dashboard/reserve?error=115" ) );
 
         require APPPATH . "/Libraries/ZibalFunctions.php";
 
@@ -91,13 +92,21 @@ class ReservationController extends ParentController {
         $payment_request_model = new PaymentRequestModel();
         $payment_track_model   = new PaymentTrackModel();
         $booking_model         = new BookingModel();
+        $reservation_model     = new ReservationModel();
+        $user_model            = new UserModel();
 
         $select_request = $payment_request_model
             ->where( "order_ID", $orderId )
             ->first();
-        if ( ! exists( $select_request ) ) return redirect()->to( base_url( "dashboard?error=115" ) );
+        if ( ! exists( $select_request ) ) return redirect()->to( base_url( "dashboard/reserve?error=115" ) );
 
-        $data_insert = array(
+        $select_booking = $booking_model
+            ->where( "ID", $select_request->booking_ID )
+            ->first();
+
+        if ( ! exists( $select_booking ) ) return redirect()->to( base_url( "dashboard/reserve?error=115" ) );
+
+        $data_insert_payment = array(
             "user_ID"               => $select_request->user_ID,
             "payment_request_ID"    => $select_request->ID,
             "amount"                => $select_request->amount, //toman
@@ -108,28 +117,59 @@ class ReservationController extends ParentController {
             "booking_turn"          => $select_request->booking_turn,
         );
 
-        $select_booking = $booking_model
-            ->select( "number_reserved" )
-            ->where( "ID", $select_request->booking_ID )
-            ->first();
-
-        if ( ! exists( $select_booking ) ) return redirect()->to( base_url( "dashboard?error=115" ) );
-
-        $data_update = array(
+        $data_update_booking = array(
             "number_reserved" => intval( $select_booking->number_reserved ) + 1,
         );
 
-        try {
-            $payment_track_model->insert($data_insert);
+        $data_insert_reservation = array(
+            "user_ID"    => $select_request->user_ID,
+            "booking_ID" => $select_request->booking_ID,
+            "number"     => intval( $select_booking->number_reserved ) + 1,
+        );
 
-            $booking_model->update( $select_request->booking_ID, $data_update );
+        try {
+            $payment_track_model->insert( $data_insert_payment );
+
+            $reservation_model->insert( $data_insert_reservation );
+
+            $booking_model->update( $select_request->booking_ID, $data_update_booking );
         } catch( \Exception $e ) {
-            return redirect()->to( base_url( "dashboard?error=115" ) );
+            return redirect()->to( base_url( "dashboard/reserve?error=115" ) );
         }
 
         $zibal_response = postToZibal( 'verify', $zibal_parameters );
-        if ( $zibal_response->result != 100 ) return redirect()->to( base_url( "dashboard?error=115" ) );
+        if ( $zibal_response->result != 100 ) return redirect()->to( base_url( "dashboard/reserve?error=115" ) );
 
-        return redirect()->to( base_url( "/dashboard/reserve" ) );
+        $select_user = $user_model
+            ->where( "ID", $select_request->user_ID )
+            ->CustomFirst();
+        if ( exists( $select_user ) ) {
+            $user_fullname = gender_text( $select_user ) . $select_user->firstname . " " . $select_user->lastname;
+            $turn_date = gregorianDatetimeToJalali( $select_booking->date )->date;
+            $turn_time = $this->calcTurnTime( $select_booking->start, $select_booking->number_reserved, $select_booking->time );
+            $turn_text = sprintf( TextLibrary::description( "turn_sms" ), $turn_date, $turn_time );
+            $sms_result = sms_ir_ultra_fast_send_service( $select_user->username, "Text", $turn_text, "UserName", $user_fullname );
+        }
+
+        return redirect()->to( base_url( "/dashboard/reserve/turns" ) );
+    }
+
+    private function calcTurnTime( $start_time, $reserved, $each_time ) {
+        $start_time = explode( ":", $start_time );
+        $hour    = intval( $start_time[ 0 ] );
+        $minute  = intval( $start_time[ 1 ] );
+
+        if ( intval( $reserved ) !== 0 ) {
+            $minute = $minute + ( $each_time * $reserved );
+
+            while ( $minute >= 60 ) { //calc hour
+                $hour++;
+                $minute -= 60;
+            }
+        }
+        if ( $minute === 0 ) $minute = "00";
+        if ( strlen( strval( $hour ) ) === 1 ) $hour = "0" + $hour;
+
+        return $hour . ":" . $minute;
     }
 }

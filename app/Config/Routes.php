@@ -67,6 +67,8 @@ $routes->group( "dashboard" , [ "filter" => "IsLogin" ], function( $routes ) {
     $routes->group( "reserve" , function( $routes ) {
         $routes->get( ''        , 'Dashboard\ReservationController::index' );
         $routes->post( 'submit' , 'Dashboard\ReservationController::submit' );
+
+        $routes->get( "turns", "Dashboard\ReservationController::showTurns" );
     } );
 } );
 

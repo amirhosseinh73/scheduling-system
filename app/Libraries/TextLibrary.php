@@ -41,7 +41,7 @@ class TextLibrary {
     }
 
     /**
-     * @param string $key `company_name` | 
+     * @param string $key `company_name` | `blog` | `turn_sms`
      * @return string
      */
     public static function description( string $key = NULL ) {
@@ -53,6 +53,8 @@ class TextLibrary {
                 return "موسسه روانشناسی کیمیای مهر";
             case "blog" :
                 return "جدید ترین مقالات آموزشی و اخبار موسسه روانشناسی کیمیای مهر";
+            case "turn_sms":
+                return "تاریخ حضور %s ساعت مراجعه: %s";
 
         endswitch;
 

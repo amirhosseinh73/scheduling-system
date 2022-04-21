@@ -38,7 +38,7 @@ class DashboardController extends ParentController {
     }
 
     public function updateProfile() {
-        $user_info = get_user_info();
+        $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
         
         $firstname  = $this->request->getPost( "firstname" );
         $lastname   = $this->request->getPost( "lastname" );

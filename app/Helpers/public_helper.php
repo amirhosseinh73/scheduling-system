@@ -210,7 +210,7 @@ function gregorianDatetimeToJalali( $datetime ) {
     $time     = explode( ":", $time );
     $time     = $time[ 0 ] . ":" . $time[ 1 ];
     $date     = explode( "-", $datetime[ 0 ] );
-    $date     = gregorian_to_jalali( $date[ 0 ], $date[ 1 ], $date[ 2 ], " / " );
+    $date     = gregorian_to_jalali( $date[ 0 ], $date[ 1 ], $date[ 2 ], "/" );
 
     return ( object ) [
         "time" => $time,
@@ -218,7 +218,7 @@ function gregorianDatetimeToJalali( $datetime ) {
     ];
 }
 
-function sms_ir_ultra_fast_send_service( $mobile, $param, $value ) {
+function sms_ir_ultra_fast_send_service( $mobile, $param_1, $value_1, $param_2 = "", $value_2 = "" ) {
     try {
         date_default_timezone_set("Asia/Tehran");
 
@@ -228,12 +228,15 @@ function sms_ir_ultra_fast_send_service( $mobile, $param, $value ) {
 
         $APIURL = "https://ws.sms.ir/";
 
-        switch ( $param ) {
+        switch ( $param_1 ) {
             case "VerificationCode":
                 $template_ID = "64651";
                 break;
             case "Password":
                 $template_ID = "64975";
+                break;
+            case "Text":
+                $template_ID = "65159";
                 break;
         }
 
@@ -241,9 +244,13 @@ function sms_ir_ultra_fast_send_service( $mobile, $param, $value ) {
         $data = array(
             "ParameterArray" => array(
                 array(
-                    "Parameter" => "$param",
-                    "ParameterValue" => $value
+                    "Parameter" => "$param_1",
+                    "ParameterValue" => $value_1
                 ),
+                ( exists( $param_2 ) ? array(
+                    "Parameter" => "$param_2",
+                    "ParameterValue" => $value_2
+                ) : array() )
             ),
             "Mobile" => $mobile,
             "TemplateId" => $template_ID,

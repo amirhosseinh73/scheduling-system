@@ -123,7 +123,9 @@ class LoginController extends ParentController {
             "password" => password_hash( $new_password, PASSWORD_BCRYPT ),
             "recovery_pass_at" => date( "Y-m-d H:i:s" ),
         );
-        $sms_result = sms_ir_ultra_fast_send_service( $mobile, "Password", $new_password );
+
+        $user_fullname = gender_text( $select_user ) . $select_user->firstname . " " . $select_user->lastname;
+        $sms_result = sms_ir_ultra_fast_send_service( $mobile, "Password", $new_password, "UserName", $user_fullname );
         $data_update[ "sms_result" ] = $sms_result;
         
         $user_model->update( $select_user->ID, $data_update );

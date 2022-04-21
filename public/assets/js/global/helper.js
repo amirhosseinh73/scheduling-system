@@ -32,7 +32,7 @@ async function ajax_fetch( url, success_function, data ) {
         return success_function( response );
     } )
     .catch( ( error ) => {
-        // document.getElementById( "preloader" ).remove();
+        document.getElementById( "preloader" ).remove();
         console.error( 'Error:', error );
     } );
 }
