@@ -168,8 +168,73 @@ class ReservationController extends ParentController {
             }
         }
         if ( $minute === 0 ) $minute = "00";
-        if ( strlen( strval( $hour ) ) === 1 ) $hour = "0" + $hour;
+        if ( strlen( strval( $minute ) ) === 1 ) $minute = "0" . $minute;
+        if ( strlen( strval( $hour ) ) === 1 ) $hour = "0" . $hour;
 
         return $hour . ":" . $minute;
+    }
+
+    public function showTurns() {
+        $user_info = get_user_info();
+
+        $data_page = array(
+            "title_head"        => TextLibrary::title( "reservation_turns" ),
+            "description_head"  => TextLibrary::description( "company_name" ),
+            "page_name"         => "reservation_turns",
+            "user_info"         => $user_info,
+        );
+
+        return $this->renderPageDashboard( "reservation-turns", $data_page );
+    }
+
+    public function turnsData() {
+        $user_info = get_user_info();
+
+        $reservation_model = new ReservationModel();
+        $booking_model     = new BookingModel();
+        $user_model        = new UserModel();
+
+        $select_turns = $reservation_model
+            ->select( array(
+                "$reservation_model->table.ID",
+                "$reservation_model->table.created_at",
+                "$reservation_model->table.number as number_reserved",
+                "$booking_model->table.ID as booking_ID",
+                "$booking_model->table.date",
+                "$booking_model->table.start",
+                "$booking_model->table.time",
+                "$booking_model->table.price",
+                "$booking_model->table.kind_text",
+                "$booking_model->table.type",
+                "$user_model->table.firstname",
+                "$user_model->table.lastname",
+            ) )
+            ->join( "$booking_model->table", "$booking_model->table.ID = $reservation_model->table.booking_ID", "inner" )
+            ->join( "$user_model->table", "$user_model->table.ID = $booking_model->table.user_ID", "inner" )
+            ->where( "$reservation_model->table.user_ID", $user_info->ID )
+            ->orderBy( "$reservation_model->table.created_at", "DESC" )
+            ->findAll();
+
+        $data_return = array();
+        for ( $i = 0; $i < count( $select_turns ); $i++ ) :
+            $turn = $select_turns[ $i ];
+
+            array_push(
+                $data_return,
+                array(
+                    "ID"                => $turn->ID,
+                    "booking_ID"        => $turn->booking_ID,
+                    "created_at"        => gregorianDatetimeToJalali( $turn->created_at )->date,
+                    "doctor_fullname"   => $turn->firstname . " " . $turn->lastname,
+                    "kind_text"         => $turn->kind_text,
+                    "type"              => !!$turn->type ? "تلفنی" : "حضوری",
+                    "date"              => gregorianDatetimeToJalali( $turn->date )->date,
+                    "time"              => $this->calcTurnTime( $turn->start, $turn->number_reserved, $turn->time ),
+                    "price"             => $turn->price,
+                )
+            );
+        endfor;
+
+        return Alert::Success( 200, $data_return );
     }
 }

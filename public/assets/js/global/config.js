@@ -13,6 +13,7 @@ const route = {
     booking_patient : base_url + "/dashboard/booking/data-patient",
 
     submit_reservation : base_url + "/dashboard/reserve/submit",
+    reservation_turns : base_url + "/dashboard/reserve/turns-data",
 };
 
 const state = {
@@ -22,4 +23,6 @@ const state = {
 const data_store = {
     patient_booking: new Array,
     current_booking: {},
+
+    reservation_turns: new Array,
 };

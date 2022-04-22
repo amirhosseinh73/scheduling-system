@@ -58,6 +58,38 @@ class Reservation {
                 </div>`;
     }
 
+    _calc_turn_time = ( current_booking ) => {
+        const start_time = current_booking.start.split( ":" );
+        let hour    = parseInt( start_time[ 0 ] );
+        let minute  = parseInt( start_time[ 1 ] );
+
+        if ( +current_booking.number_reserved !== 0 ) {
+            minute = minute + ( current_booking.time * current_booking.number_reserved );
+
+            while ( minute >= 60 ) { //calc hour
+                hour++;
+                minute -= 60;
+            }
+        }
+        if ( minute === 0 ) minute = "00";
+        if ( hour.toString().length === 1 ) hour = "0" + hour;
+
+        return hour + ":" + minute;
+    }
+
+    _gregorian_to_jalaali_and_get_day_of_week = ( date ) => {
+        const gregorian_date = ( date.split( " " ) )[ 0 ].split( "-" );
+        const day_of_week = get_day_of_week( gregorian_date[ 0 ], gregorian_date[ 1 ], gregorian_date[ 2 ] );
+        let jalaali_date = jalaali.toJalaali( +gregorian_date[ 0 ], +gregorian_date[ 1 ], +gregorian_date[ 2 ] ); // y,m,d
+        jalaali_date = jalaali_date.jy + "/" + jalaali_date.jm + "/" + jalaali_date.jd ;
+
+        return {
+            jalaali_date: jalaali_date,
+            day_of_week: day_of_week,
+            gregorian_date: gregorian_date,
+        }
+    }
+
     containerLeftHandler = ( card ) => {
         this.containerLeft.classList.remove( "d-none" );
 
@@ -74,63 +106,28 @@ class Reservation {
 
         const booking_type_text = ( Boolean(+current_booking.type) ? "تلفنی" : "حضوری" );
         
-        const gregorian_date = ( current_booking.date.split( " " ) )[ 0 ].split( "-" );
-        const day_of_week = get_day_of_week( gregorian_date[ 0 ], gregorian_date[ 1 ], gregorian_date[ 2 ] );
-        let jalaali_date = jalaali.toJalaali( +gregorian_date[ 0 ], +gregorian_date[ 1 ], +gregorian_date[ 2 ] ); // y,m,d
-    
-        jalaali_date = jalaali_date.jy + "/" + jalaali_date.jm + "/" + jalaali_date.jd ;
+        const day_of_week_and_jalaali_date = this._gregorian_to_jalaali_and_get_day_of_week( current_booking.date );
+        const day_of_week = day_of_week_and_jalaali_date.day_of_week;
+        const jalaali_date = day_of_week_and_jalaali_date.jalaali_date;
+
         more_detail.insertAdjacentHTML( "beforeend", `<span class="d-block font-size-0-95 text-dark-1 mt-3">${booking_type_text}</span>` );
 
         more_detail.insertAdjacentHTML( "beforeend", `<span class="d-block font-size-1-2 text-black mt-3">${day_of_week} ${jalaali_date}</span>` );
 
         const choose_hour_section = document.getElementById( "choose_hour" );
+        const price_section = document.getElementById( "price_section" );
+
+        choose_hour_section.innerHTML = "";
+        price_section.innerHTML = "";
+
         if ( current_booking.number_reserved === current_booking.number_reserve ) {
             choose_hour_section.insertAdjacentText( "afterbegin", "نوبت ها پر شده است." );
             return;
         }
 
-        choose_hour_section.innerHTML = "";
+        choose_hour_section.insertAdjacentHTML( "beforeend", this.chooseHourHTML( this._calc_turn_time( current_booking ) ) );
 
-        // const reserve_available = parseInt( current_booking.number_reserve ) - parseInt( current_booking.number_reserved );
-
-        const start_time = current_booking.start.split( ":" );
-        let hour    = parseInt( start_time[ 0 ] );
-        let minute  = parseInt( start_time[ 1 ] );
-
-        if ( +current_booking.number_reserved !== 0 ) {
-            minute = minute + ( current_booking.time * current_booking.number_reserved );
-
-            while ( minute >= 60 ) { //calc hour
-                hour++;
-                minute -= 60;
-            }
-        }
-        if ( minute === 0 ) minute = "00";
-        if ( hour.toString().length === 1 ) hour = "0" + hour;
-        choose_hour_section.insertAdjacentHTML( "beforeend", this.chooseHourHTML( hour + ":" + minute ) );
-
-        // for ( let i = 0; i < reserve_available; i++ ) {
-        //     //calc minute and hour after each visit
-        //     minute = parseInt( minute );
-        //     if ( i === 0 ) {
-        //         if ( +current_booking.number_reserved !== 0 ) {
-        //             minute = minute + ( current_booking.time * current_booking.number_reserved );
-        //         }
-        //     } else {
-        //         minute = minute + parseInt( current_booking.time );
-        //     }
-
-        //     while ( minute >= 60 ) { //calc hour
-        //         hour++;
-        //         minute -= 60;
-        //     }
-
-        //     if ( minute === 0 ) minute = "00";
-
-        //     choose_hour_section.insertAdjacentHTML( "beforeend", this.chooseHourHTML( hour + ":" + minute ) );
-        // }
-
-        const price_section = document.getElementById( "price_section" );
+        
         price_section.innerHTML = current_booking.price;
 
         // this.buttonChooseHourActive();
@@ -171,16 +168,16 @@ class Reservation {
 
     appendBookingData = () => {
         const parent_HTML = document.getElementById( "reservation_form" ).querySelector( ".inside-container-right" );
+        if ( ! parent_HTML ) return;
+
         data_store.patient_booking.forEach( ( booking, index ) => {
             const is_full = ( booking.number_reserved === booking.number_reserve );
-            const extra_class = is_full ? "full" : "";
-            const gregorian_date = ( booking.date.split( " " ) )[ 0 ].split( "-" );
-            const day_of_week = get_day_of_week( gregorian_date[ 0 ], gregorian_date[ 1 ], gregorian_date[ 2 ] );
+            const extra_class = is_full ? "full disabled" : "";
             const booking_type_icon = ( Boolean(+booking.type) ? "<span class='card-icon text-success fas fa-phone-volume'></span>" : "<span class='card-icon text-success fas fa-user-group'></span>" );
 
-            let jalaali_date = jalaali.toJalaali( +gregorian_date[ 0 ], +gregorian_date[ 1 ], +gregorian_date[ 2 ] ); // y,m,d
-        
-            jalaali_date = jalaali_date.jy + "/" + jalaali_date.jm + "/" + jalaali_date.jd ;
+            const day_of_week_and_jalaali_date = this._gregorian_to_jalaali_and_get_day_of_week( booking.date );
+            const day_of_week = day_of_week_and_jalaali_date.day_of_week;
+            const jalaali_date = day_of_week_and_jalaali_date.jalaali_date;
 
             parent_HTML.insertAdjacentHTML( "beforeend", `
             <section id="appointment_card_${ index + 1 }" data-id="${booking.ID}" class='appointment-card ${ extra_class }'>
@@ -235,3 +232,30 @@ const init = () => {
 }
 
 doc_ready( init );
+
+
+
+/** choose turn by patient commented codes */
+
+// const reserve_available = parseInt( current_booking.number_reserve ) - parseInt( current_booking.number_reserved );
+
+// for ( let i = 0; i < reserve_available; i++ ) {
+//     //calc minute and hour after each visit
+//     minute = parseInt( minute );
+//     if ( i === 0 ) {
+//         if ( +current_booking.number_reserved !== 0 ) {
+//             minute = minute + ( current_booking.time * current_booking.number_reserved );
+//         }
+//     } else {
+//         minute = minute + parseInt( current_booking.time );
+//     }
+
+//     while ( minute >= 60 ) { //calc hour
+//         hour++;
+//         minute -= 60;
+//     }
+
+//     if ( minute === 0 ) minute = "00";
+
+//     choose_hour_section.insertAdjacentHTML( "beforeend", this.chooseHourHTML( hour + ":" + minute ) );
+// }
