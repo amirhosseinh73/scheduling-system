@@ -154,26 +154,6 @@ class ReservationController extends ParentController {
         return redirect()->to( base_url( "/dashboard/reserve/turns" ) );
     }
 
-    private function calcTurnTime( $start_time, $reserved, $each_time ) {
-        $start_time = explode( ":", $start_time );
-        $hour    = intval( $start_time[ 0 ] );
-        $minute  = intval( $start_time[ 1 ] );
-
-        if ( intval( $reserved ) !== 0 ) {
-            $minute = $minute + ( $each_time * $reserved );
-
-            while ( $minute >= 60 ) { //calc hour
-                $hour++;
-                $minute -= 60;
-            }
-        }
-        if ( $minute === 0 ) $minute = "00";
-        if ( strlen( strval( $minute ) ) === 1 ) $minute = "0" . $minute;
-        if ( strlen( strval( $hour ) ) === 1 ) $hour = "0" . $hour;
-
-        return $hour . ":" . $minute;
-    }
-
     public function showTurns() {
         $user_info = get_user_info();
 

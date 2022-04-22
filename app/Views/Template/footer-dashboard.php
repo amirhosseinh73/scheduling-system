@@ -33,6 +33,8 @@
         <script type="text/javascript" src="<?= base_url( "/assets/js/page/dashboard/Reservation.js" ) ?>"></script>
     <?php elseif( $page_name === "reservation_turns" ) :?>
         <script type="text/javascript" src="<?= base_url( "/assets/js/page/dashboard/ReservationTurns.js" ) ?>"></script>
+    <?php elseif( $page_name === "booking_turns" ) :?>
+        <script type="text/javascript" src="<?= base_url( "/assets/js/page/dashboard/BookingTurns.js" ) ?>"></script>
     <?php endif; ?>
 </body>
 </html>

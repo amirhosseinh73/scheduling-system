@@ -61,7 +61,10 @@ $routes->group( "dashboard" , [ "filter" => "IsLogin" ], function( $routes ) {
         $routes->get( ''        , 'Dashboard\BookingController::index' );
         $routes->post( 'submit' , 'Dashboard\BookingController::submit' );
 
-        $routes->get( 'data-patient' , 'Dashboard\BookingController::getBookingPatientData' );
+        $routes->get( 'data-patient' , 'Dashboard\BookingController::getBookingPatientData' ); // in patient panel
+
+        $routes->get( "turns", "Dashboard\BookingController::showTurns" );
+        $routes->get( "turns-data", "Dashboard\BookingController::turnsData" );
     } );
 
     $routes->group( "reserve" , function( $routes ) {

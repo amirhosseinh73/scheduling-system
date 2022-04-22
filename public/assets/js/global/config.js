@@ -11,6 +11,7 @@ const route = {
 
     submit_booking  : base_url + "/dashboard/booking/submit",
     booking_patient : base_url + "/dashboard/booking/data-patient",
+    booking_turns   : base_url + "/dashboard/booking/turns-data",
 
     submit_reservation : base_url + "/dashboard/reserve/submit",
     reservation_turns : base_url + "/dashboard/reserve/turns-data",

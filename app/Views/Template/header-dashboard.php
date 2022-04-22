@@ -165,8 +165,8 @@
                                 <span>ثبت نوبت جدید</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="#" class="disabled">
+                        <li <?php if ( $page_name === "booking_turns" ) echo "class='active'" ?>>
+                            <a href="<?= base_url( "/dashboard/booking/turns" )?>">
                                 <i class="far fa-calendar-check"></i>
                                 <span>نوبت های قبلی</span>
                             </a>

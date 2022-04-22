@@ -37,6 +37,8 @@ class TextLibrary {
                 return "بازیابی رمز عبور";
             case "reservation_turns" :
                 return "نوبت های رزرو شده قبلی";
+            case "booking_turns" :
+                return "نوبت های قبلی";
 
         endswitch;
 
