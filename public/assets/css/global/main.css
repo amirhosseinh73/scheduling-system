@@ -684,6 +684,15 @@ body {
     font-size: 1.25rem;
     width: 2.5rem;
     height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-back:hover {
+    background-color: var(--dark-5);
+    box-shadow: var(--shadow-inset-big);
+    color: var(--color-1);
 }
 
 .alert {

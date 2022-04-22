@@ -212,6 +212,10 @@
 	overflow: auto;
 }
 
+.dashboard-inside-container.height-scroll-less {
+	height: calc( 100% - 4rem );
+}
+
 .inside-container-left {
 	height: 100%;
 	background-color: var(--color-4-50);

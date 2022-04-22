@@ -171,6 +171,12 @@
                                 <span>نوبت های قبلی</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="javascript:void(0)" class="disabled">
+                                <i class="far fa-question-circle"></i>
+                                <span>پرسش و پاسخ</span>
+                            </a>
+                        </li>
                     <?php elseif ( $user_info->type_user ) : //patient?>
                         <li <?php if ( $page_name === "reservation_index" ) echo "class='active'" ?>>
                             <a href="<?= base_url( "/dashboard/reserve" )?>">
@@ -182,6 +188,12 @@
                             <a href="<?= base_url( "/dashboard/reserve/turns" )?>">
                                 <i class="far fa-calendar-check"></i>
                                 <span>نوبت های گرفته شده</span>
+                            </a>
+                        </li>
+                        <li <?php if ( $page_name === "question_answer_index" ) echo "class='active'" ?>>
+                            <a href="<?= base_url( "/dashboard/question-answer/patient" )?>">
+                                <i class="far fa-question-circle"></i>
+                                <span>پرسش و پاسخ</span>
                             </a>
                         </li>
                     <?php endif;?>
@@ -201,12 +213,6 @@
                         <a href="javascript:void(0)" class="disabled">
                             <i class="far fa-screen-users"></i>
                             <span>کارگاه های آنلاین</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)" class="disabled">
-                            <i class="far fa-question-circle"></i>
-                            <span>پرسش و پاسخ</span>
                         </a>
                     </li>
                     <!-- <li>

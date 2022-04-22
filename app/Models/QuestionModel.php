@@ -24,5 +24,6 @@ class QuestionModel extends ParentModel
         "status",
         "show",
         "type",
+        "relation_user_ID",
     ];
 }

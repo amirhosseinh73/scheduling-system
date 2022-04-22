@@ -15,6 +15,11 @@ const route = {
 
     submit_reservation : base_url + "/dashboard/reserve/submit",
     reservation_turns : base_url + "/dashboard/reserve/turns-data",
+
+    question_answer_index: base_url + "/dashboard/question-answer/patient",
+    question_answer_create: base_url + "/dashboard/question-answer/patient/create",
+    question_answer_submit: base_url + "/dashboard/question-answer/patient/submit",
+    question_answer_show: base_url + "/dashboard/question-answer/patient/show",
 };
 
 const state = {
@@ -26,4 +31,6 @@ const data_store = {
     current_booking: {},
 
     reservation_turns: new Array,
+
+    question_answer_patient: new Array,
 };

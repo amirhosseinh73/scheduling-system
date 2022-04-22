@@ -87,6 +87,9 @@ class Alert {
             case 117 :
                 $message = "هزینه ویزیت باید بیشتر از 1000 تومان باشد!";
                 break;
+            case 118 :
+                $message = "پرسش شما باید حداقل از 10 کاراکتر بیشتر باشد!";
+                break;
         endswitch;
 
         if ( $show_code ) :

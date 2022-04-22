@@ -74,6 +74,18 @@ $routes->group( "dashboard" , [ "filter" => "IsLogin" ], function( $routes ) {
         $routes->get( "turns", "Dashboard\ReservationController::showTurns" );
         $routes->get( "turns-data", "Dashboard\ReservationController::turnsData" );
     } );
+
+    $routes->group( "question-answer" , function( $routes ) {
+        $routes->group( "patient" , function( $routes ) {
+            $routes->get( "", "Dashboard\QuestionAndAnswerController::indexPatient" );
+            $routes->get( "create", "Dashboard\QuestionAndAnswerController::createPatient" );
+            $routes->post( "submit", "Dashboard\QuestionAndAnswerController::submitPatient" );
+            $routes->get( "show", "Dashboard\QuestionAndAnswerController::showPatient" );
+        } );
+        $routes->group( "doctor" , function( $routes ) {
+        
+        } );
+    } );
 } );
 
 //callback payment /dashboard/reserve/callback

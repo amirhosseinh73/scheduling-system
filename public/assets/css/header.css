@@ -47,6 +47,10 @@ button > i {
 	box-shadow: inset -2px 2px 6px -2px var(--dark-4);
 }
 
+textarea.form-control {
+    height: auto;
+}
+
 .form-check-input:focus {
 	border-color: var(--color-1);
 	box-shadow: 0 0 5px 2px var(--color-2-50);

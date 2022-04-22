@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Admin;
 
-use App\Controllers\ParentAdminController;
+use App\Controllers\ParentController;
 use App\Libraries\Alert;
 use App\Models\UserModel;
 
@@ -11,7 +11,7 @@ use App\Models\UserModel;
  * Mange And Create Package items
  * @author amirhosein hasani
 */
-class UserController extends ParentAdminController {
+class UserController extends ParentController {
 
     /**
      * # Summary.
