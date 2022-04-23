@@ -171,8 +171,8 @@
                                 <span>نوبت های قبلی</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="javascript:void(0)" class="disabled">
+                        <li <?php if ( $page_name === "question_answer_index" ) echo "class='active'" ?>>
+                            <a href="<?= base_url( "/dashboard/question-answer/doctor" )?>">
                                 <i class="far fa-question-circle"></i>
                                 <span>پرسش و پاسخ</span>
                             </a>

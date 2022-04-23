@@ -24,6 +24,7 @@ const route = {
     
     question_answer_submit_answer: base_url + "/dashboard/question-answer/patient/submit-answer",
     question_answer_close        : base_url + "/dashboard/question-answer/patient/close",
+    question_answer_delete       : base_url + "/dashboard/question-answer/patient/delete",
 };
 
 const state = {

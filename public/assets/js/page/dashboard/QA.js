@@ -1,5 +1,34 @@
 class QA { //question and answer
 
+    get deleteQASelector() {
+        return document.getElementById( "delete_QA" );
+    }
+
+    deleteQAHandlerSuccess = () => {
+        window.location.href = route.question_answer_index;
+    }
+
+    deleteQAHandler = () => {
+        sweet_alert_confirm( {
+            title: "توجه",
+            message: "آیا از ادامه عملیات اطمینان دارید؟ این کار غیر قابل بازگردانی است!",
+            type_2: "info"
+        }, () => {
+            const fetch_data = {
+                method: "post",
+                data: {
+                    question_ID: url_param().get( "qa-id" )
+                }
+            };
+    
+            ajax_fetch( route.question_answer_delete, this.closeQAHandlerSuccess, fetch_data );
+        } );
+    }
+
+    deleteQA = () => {
+        this.deleteQASelector && this.deleteQASelector.addEventListener( "click", this.deleteQAHandler );
+    }
+
     get closeQASelector() {
         return document.getElementById( "close_QA" );
     }
@@ -170,6 +199,7 @@ class QA { //question and answer
         this.submitQA();
         this.showQA();
         this.closeQA();
+        this.deleteQA();
     }
 
     static run = () => {

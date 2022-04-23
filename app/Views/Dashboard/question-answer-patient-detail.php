@@ -5,6 +5,9 @@
             <section class="dashboard-inside-container scroll height-scroll-less mt-5">
                 <div class="col-12 h-100">
                     <div class="inside-container-center px-2 align-items-center">
+                        <div class="col-12 text-start">
+                            <button id="delete_QA" type="button" class="btn-color-3">حذف پرسش</button>
+                        </div>
                         <?php
                         if ( exists( $QA ) ) :
                             echo "<section class='message-box right'>
@@ -47,7 +50,7 @@
                         ?>
                         <?php if ( $QA->status != 2 ) : ?>
                             <section id="create_qa_row" class="col-12 mt-5">
-                                <div class="row mx-0">
+                                <div class="row mx-0 align-items-center">
                                     <div class="col-12 col-sm-6">
                                         <h5 class="title text-black">مطلب خود را بیان کنید.</h5>
                                     </div>
@@ -77,7 +80,7 @@
                                         </section>
                                     </div>
                                     <div class="col-12 col-sm-3 me-auto text-start mt-4">
-                                        <button id="submit_QA" data-type="answer" type="button" class="btn-color-3">ثبت سوال</button>
+                                        <button id="submit_QA" data-type="answer" type="button" class="btn-color-1">ثبت سوال</button>
                                     </div>
                                 </div>
                             </section>

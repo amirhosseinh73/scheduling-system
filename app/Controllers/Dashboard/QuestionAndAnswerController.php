@@ -263,4 +263,42 @@ class QuestionAndAnswerController extends ParentController {
 
         return Alert::Success( 200 );
     }
+    
+    public function deletePatient() {
+        $user_info = get_user_info();
+
+        $question_ID = $this->request->getPost( "question_ID" );
+
+        if ( ! exists( $question_ID ) ) return Alert::Error( -1 );
+
+        $question_model = new QuestionModel();
+
+        $select_question = $question_model
+            ->where( "ID", $question_ID )
+            ->where( "user_ID", $user_info->ID )
+            ->first();
+        
+        if ( ! exists( $select_question ) ) return Alert::Error( -1 );
+
+        try {
+            $question_model->delete( $question_ID );
+        } catch( \Exception $e ) {
+            return Alert::Error( -1, $e );
+        }
+
+        return Alert::Success( 200 );
+    }
+
+    public function indexDoctor() {
+        $user_info = get_user_info();
+
+        $data_page = array(
+            "title_head"        => TextLibrary::title( "question_answer" ),
+            "description_head"  => TextLibrary::description( "company_name" ),
+            "page_name"         => "question_answer_index",
+            "user_info"         => $user_info,
+        );
+
+        return $this->renderPageDashboard( "question-answer-doctor-index", $data_page );
+    }
 }
