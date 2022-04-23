@@ -657,3 +657,11 @@
 	max-height: 12rem;
 	overflow: auto;
 }
+
+#table_QA_patient tr {
+	cursor: pointer;
+}
+
+.dashboard-body.swal2-height-auto {
+	height: 100vh !important;
+}

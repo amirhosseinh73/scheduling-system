@@ -31,7 +31,7 @@
                             </section>
                         </div>
                         <div class="col-12 col-sm-3 me-auto text-start mt-4">
-                            <button id="submit_QA" type="button" class="btn-color-3">ثبت سوال</button>
+                            <button id="submit_QA" data-type="question" type="button" class="btn-color-3">ثبت سوال</button>
                         </div>
                     </div>
                 </div>

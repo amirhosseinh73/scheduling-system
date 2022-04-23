@@ -77,10 +77,13 @@ $routes->group( "dashboard" , [ "filter" => "IsLogin" ], function( $routes ) {
 
     $routes->group( "question-answer" , function( $routes ) {
         $routes->group( "patient" , function( $routes ) {
-            $routes->get( "", "Dashboard\QuestionAndAnswerController::indexPatient" );
-            $routes->get( "create", "Dashboard\QuestionAndAnswerController::createPatient" );
-            $routes->post( "submit", "Dashboard\QuestionAndAnswerController::submitPatient" );
-            $routes->get( "show", "Dashboard\QuestionAndAnswerController::showPatient" );
+            $routes->get( ""        , "Dashboard\QuestionAndAnswerController::indexPatient" );
+            $routes->get( "create"  , "Dashboard\QuestionAndAnswerController::createPatient" );
+            $routes->post( "submit" , "Dashboard\QuestionAndAnswerController::submitPatient" );
+            $routes->get( "show"    , "Dashboard\QuestionAndAnswerController::showPatient" );
+            $routes->get( "detail"  , "Dashboard\QuestionAndAnswerController::detailPatient" );
+            $routes->post( "submit-answer" , "Dashboard\QuestionAndAnswerController::submitAnswer" );
+            $routes->post( "close" , "Dashboard\QuestionAndAnswerController::closePatient" );
         } );
         $routes->group( "doctor" , function( $routes ) {
         

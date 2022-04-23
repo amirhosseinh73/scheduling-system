@@ -16,10 +16,14 @@ const route = {
     submit_reservation : base_url + "/dashboard/reserve/submit",
     reservation_turns : base_url + "/dashboard/reserve/turns-data",
 
-    question_answer_index: base_url + "/dashboard/question-answer/patient",
-    question_answer_create: base_url + "/dashboard/question-answer/patient/create",
-    question_answer_submit: base_url + "/dashboard/question-answer/patient/submit",
-    question_answer_show: base_url + "/dashboard/question-answer/patient/show",
+    question_answer_index        : base_url + "/dashboard/question-answer/patient",
+    question_answer_create       : base_url + "/dashboard/question-answer/patient/create",
+    question_answer_submit       : base_url + "/dashboard/question-answer/patient/submit",
+    question_answer_show         : base_url + "/dashboard/question-answer/patient/show",
+    question_answer_show_detail  : base_url + "/dashboard/question-answer/patient/detail",
+    
+    question_answer_submit_answer: base_url + "/dashboard/question-answer/patient/submit-answer",
+    question_answer_close        : base_url + "/dashboard/question-answer/patient/close",
 };
 
 const state = {

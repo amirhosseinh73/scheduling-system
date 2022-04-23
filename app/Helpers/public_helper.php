@@ -333,7 +333,9 @@ function get_day_of_week( $date = "now" ) {
 function get_user_info() {
     $user_info = TokenController::UserData( LOGIN_TOKEN_COOKIE_NAME );
 
-    $user_info = handle_user_info( $user_info );
+    if ( $user_info ) {
+        $user_info = handle_user_info( $user_info );
+    }
 
     return $user_info;
 }
