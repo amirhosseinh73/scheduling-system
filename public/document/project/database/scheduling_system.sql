@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2022 at 10:46 PM
+-- Generation Time: Apr 24, 2022 at 07:06 PM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -37,6 +37,14 @@ CREATE TABLE `answer` (
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
+--
+-- Dumping data for table `answer`
+--
+
+INSERT INTO `answer` (`ID`, `user_ID`, `question_ID`, `answer`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 6, 1, 'پاسخ بنده را بدهید', '2022-04-23 16:43:15', '2022-04-23 16:43:15', NULL),
+(2, 6, 1, 'خواهش میکنم', '2022-04-23 17:05:39', '2022-04-23 17:05:39', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -66,8 +74,9 @@ CREATE TABLE `booking` (
 
 INSERT INTO `booking` (`ID`, `user_ID`, `type`, `date`, `start`, `end`, `time`, `number_reserve`, `number_reserved`, `kind_text`, `price`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (2, 5, b'1', '2022-04-20 00:00:00', '16:40', '18:31', 20, 5, 0, 'مشاوره ازدواج', 120000, '2022-04-15 16:44:17', '2022-04-15 16:44:17', NULL),
-(3, 5, b'0', '2022-04-21 00:00:00', '16:46', '19:45', 15, 11, 0, 'مشاوره بالینی', 180000, '2022-04-15 16:46:17', '2022-04-15 16:46:17', NULL),
-(4, 5, b'0', '2022-04-23 00:00:00', '09:30', '13:00', 45, 4, 0, 'مشاوره فردی', 150000, '2022-04-16 23:42:45', '2022-04-16 23:42:45', NULL);
+(3, 5, b'0', '2022-04-21 00:00:00', '16:46', '19:45', 15, 11, 9, 'مشاوره بالینی', 180000, '2022-04-15 16:46:17', '2022-04-21 14:52:09', NULL),
+(4, 5, b'1', '2022-04-23 00:00:00', '09:30', '13:00', 45, 4, 4, 'مشاوره فردی', 150000, '2022-04-16 23:42:45', '2022-04-21 14:37:58', NULL),
+(5, 5, b'0', '2022-05-18 00:00:00', '09:00', '12:00', 30, 6, 0, 'مشاوره کودک', 10000, '2022-04-19 01:34:25', '2022-04-19 01:34:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -214,9 +223,27 @@ CREATE TABLE `payment_request` (
   `amount` int(9) NOT NULL COMMENT '100,000,000,\r\nیکصد میلیون ریال',
   `order_ID` int(11) NOT NULL,
   `time` datetime NOT NULL,
+  `booking_ID` int(11) NOT NULL COMMENT 'booking_ID',
+  `booking_turn` tinyint(3) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+--
+-- Dumping data for table `payment_request`
+--
+
+INSERT INTO `payment_request` (`ID`, `user_ID`, `amount`, `order_ID`, `time`, `booking_ID`, `booking_turn`, `created_at`, `updated_at`) VALUES
+(11, 6, 150000, 1650534786, '2022-04-21 14:23:06', 4, 0, '2022-04-21 14:23:06', '2022-04-21 14:23:06'),
+(12, 6, 150000, 1650534805, '2022-04-21 14:23:26', 4, 0, '2022-04-21 14:23:26', '2022-04-21 14:23:26'),
+(13, 6, 150000, 1650535059, '2022-04-21 14:27:40', 4, 2, '2022-04-21 14:27:40', '2022-04-21 14:27:40'),
+(14, 6, 150000, 1650535673, '2022-04-21 14:37:54', 4, 3, '2022-04-21 14:37:54', '2022-04-21 14:37:54'),
+(15, 6, 180000, 1650535744, '2022-04-21 14:39:05', 3, 0, '2022-04-21 14:39:05', '2022-04-21 14:39:05'),
+(16, 6, 180000, 1650536357, '2022-04-21 14:49:18', 3, 2, '2022-04-21 14:49:18', '2022-04-21 14:49:18'),
+(17, 6, 180000, 1650536410, '2022-04-21 14:50:10', 3, 4, '2022-04-21 14:50:10', '2022-04-21 14:50:10'),
+(18, 6, 180000, 1650536474, '2022-04-21 14:51:15', 3, 6, '2022-04-21 14:51:15', '2022-04-21 14:51:15'),
+(19, 6, 180000, 1650536524, '2022-04-21 14:52:05', 3, 8, '2022-04-21 14:52:05', '2022-04-21 14:52:05'),
+(20, 6, 10000, 1650613617, '2022-04-22 12:16:58', 5, 0, '2022-04-22 12:16:58', '2022-04-22 12:16:58');
 
 -- --------------------------------------------------------
 
@@ -232,9 +259,30 @@ CREATE TABLE `payment_track` (
   `order_ID` int(11) NOT NULL COMMENT 'Res_NUM',
   `track_ID` int(11) NOT NULL,
   `time` datetime NOT NULL,
+  `booking_ID` int(11) NOT NULL,
+  `booking_turn` tinyint(3) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+--
+-- Dumping data for table `payment_track`
+--
+
+INSERT INTO `payment_track` (`ID`, `user_ID`, `payment_request_ID`, `amount`, `order_ID`, `track_ID`, `time`, `booking_ID`, `booking_turn`, `created_at`, `updated_at`) VALUES
+(5, 6, 12, 150000, 1650534805, 2147483647, '2022-04-21 14:23:29', 4, 0, '2022-04-21 14:23:29', '2022-04-21 14:23:29'),
+(6, 6, 12, 150000, 1650534805, 2147483647, '2022-04-21 14:25:17', 4, 0, '2022-04-21 14:25:17', '2022-04-21 14:25:17'),
+(7, 6, 13, 150000, 1650535059, 2147483647, '2022-04-21 14:27:43', 4, 2, '2022-04-21 14:27:43', '2022-04-21 14:27:43'),
+(8, 6, 14, 150000, 1650535673, 2147483647, '2022-04-21 14:37:58', 4, 3, '2022-04-21 14:37:58', '2022-04-21 14:37:58'),
+(9, 6, 15, 180000, 1650535744, 2147483647, '2022-04-21 14:39:08', 3, 0, '2022-04-21 14:39:08', '2022-04-21 14:39:08'),
+(10, 6, 15, 180000, 1650535744, 2147483647, '2022-04-21 14:49:12', 3, 0, '2022-04-21 14:49:12', '2022-04-21 14:49:12'),
+(11, 6, 16, 180000, 1650536357, 2147483647, '2022-04-21 14:49:22', 3, 2, '2022-04-21 14:49:22', '2022-04-21 14:49:22'),
+(12, 6, 16, 180000, 1650536357, 2147483647, '2022-04-21 14:50:05', 3, 2, '2022-04-21 14:50:05', '2022-04-21 14:50:05'),
+(13, 6, 17, 180000, 1650536410, 2147483647, '2022-04-21 14:50:14', 3, 4, '2022-04-21 14:50:14', '2022-04-21 14:50:14'),
+(14, 6, 17, 180000, 1650536410, 2147483647, '2022-04-21 14:51:09', 3, 4, '2022-04-21 14:51:09', '2022-04-21 14:51:09'),
+(15, 6, 18, 180000, 1650536474, 2147483647, '2022-04-21 14:51:20', 3, 6, '2022-04-21 14:51:20', '2022-04-21 14:51:20'),
+(16, 6, 18, 180000, 1650536474, 2147483647, '2022-04-21 14:52:00', 3, 6, '2022-04-21 14:52:00', '2022-04-21 14:52:00'),
+(17, 6, 19, 180000, 1650536524, 2147483647, '2022-04-21 14:52:09', 3, 8, '2022-04-21 14:52:09', '2022-04-21 14:52:09');
 
 -- --------------------------------------------------------
 
@@ -286,10 +334,19 @@ CREATE TABLE `question` (
   `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: new,\r\n1: answered,\r\n2: closed',
   `show` bit(1) NOT NULL DEFAULT b'0' COMMENT '0: private,\r\n1: public',
   `type` bit(1) NOT NULL COMMENT '0: QUESTION and ANSWER,\r\n1: Ticket',
+  `relation_user_ID` int(11) DEFAULT NULL COMMENT 'doctor_ID for question and answer\r\nAdmin for Ticket',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+--
+-- Dumping data for table `question`
+--
+
+INSERT INTO `question` (`ID`, `user_ID`, `question`, `status`, `show`, `type`, `relation_user_ID`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 6, 'با سلام\r\nلطفا', 0, b'0', b'0', NULL, '2022-04-22 22:13:53', '2022-04-23 17:05:39', NULL),
+(2, 6, 'حهخاصح شاهصشا لهاشحصهال هشصصا حلخاشصحلاخشصالحهاشحصالاخشصاحلا حشصاالخ شصجخل کخشصتلخت شجخصت لخصشت لختشخصلت کخشصت لخت شجصختلخ شتکمصلت خشتکلختشکصخصت خشصتک لتشصختل کخشتصکخلت شکصخت کش', 2, b'1', b'0', NULL, '2022-04-22 22:52:57', '2022-04-23 21:59:31', '2022-04-23 21:59:31');
 
 -- --------------------------------------------------------
 
@@ -306,6 +363,25 @@ CREATE TABLE `reservation` (
   `updated_at` datetime NOT NULL,
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+--
+-- Dumping data for table `reservation`
+--
+
+INSERT INTO `reservation` (`ID`, `user_ID`, `booking_ID`, `number`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(3, 6, 4, 1, '2022-04-21 14:23:29', '2022-04-21 14:23:29', NULL),
+(4, 6, 4, 2, '2022-04-21 14:25:17', '2022-04-21 14:25:17', NULL),
+(5, 6, 4, 3, '2022-04-21 14:27:43', '2022-04-21 14:27:43', NULL),
+(6, 6, 4, 4, '2022-04-21 14:37:58', '2022-04-21 14:37:58', NULL),
+(7, 6, 3, 1, '2022-04-21 14:39:08', '2022-04-21 14:39:08', NULL),
+(8, 6, 3, 2, '2022-04-21 14:49:12', '2022-04-21 14:49:12', NULL),
+(9, 6, 3, 3, '2022-04-21 14:49:22', '2022-04-21 14:49:22', NULL),
+(10, 6, 3, 4, '2022-04-21 14:50:05', '2022-04-21 14:50:05', NULL),
+(11, 6, 3, 5, '2022-04-21 14:50:14', '2022-04-21 14:50:14', NULL),
+(12, 6, 3, 6, '2022-04-21 14:51:09', '2022-04-21 14:51:09', NULL),
+(13, 6, 3, 7, '2022-04-21 14:51:20', '2022-04-21 14:51:20', NULL),
+(14, 6, 3, 8, '2022-04-21 14:52:00', '2022-04-21 14:52:00', NULL),
+(15, 6, 3, 9, '2022-04-21 14:52:09', '2022-04-21 14:52:09', NULL);
 
 -- --------------------------------------------------------
 
@@ -330,7 +406,7 @@ CREATE TABLE `token` (
 INSERT INTO `token` (`ID`, `token`, `ip_address`, `user_agent`, `expire_at`, `created_at`, `updated_at`) VALUES
 (11, '053193c4a81653981ba82c4153b83a30', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88', '2022-05-15 01:09:05', '2022-04-15 01:09:05', '2022-04-15 01:09:05'),
 (13, '119acdc42137db520065e1641aa40932', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0', '2022-04-16 16:48:26', '2022-04-15 16:48:26', '2022-04-15 16:48:26'),
-(20, 'b11e276315e7ebcab3ddde68330c607c', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0', '2022-04-20 01:09:40', '2022-04-19 01:09:40', '2022-04-19 01:09:40');
+(35, '4dec026b076220a886cdda22f1ab84fc', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0', '2022-05-23 22:00:38', '2022-04-23 22:00:38', '2022-04-23 22:00:38');
 
 -- --------------------------------------------------------
 
@@ -368,8 +444,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `username`, `firstname`, `lastname`, `email`, `gender`, `type_user`, `status`, `is_admin`, `image`, `verify_code_mobile`, `verify_code_email`, `mobile_verified_at`, `email_verified_at`, `created_at`, `updated_at`, `deleted_at`, `last_login_at`, `recovery_pass_at`, `change_pass_at`, `token`, `password`) VALUES
-(5, '09376885515', 'امیرحسین', 'حسنی نجف آبادی', 'amirhoseinh1373@gmail.com', b'1', b'0', b'1', b'0', '1649965396_2d1877cc81c824dd8e28.jpg', '851269', NULL, '2022-04-11 00:26:11', NULL, '2022-04-11 00:25:35', '2022-04-19 01:09:40', NULL, '2022-04-19 01:09:40', NULL, NULL, 'b11e276315e7ebcab3ddde68330c607c', '$2y$10$vgC4M9oys1znxr5CBTeVo.WjJfdBTEFq9As9hY0W9B1zoQoUblxwS'),
-(6, '09380332228', 'پریسا', 'شفیعی', NULL, b'0', b'1', b'1', b'0', NULL, '988786', NULL, '2022-04-15 16:48:26', NULL, '2022-04-15 16:47:37', '2022-04-19 01:08:18', NULL, '2022-04-19 01:08:18', NULL, NULL, 'ee918fb8191c832296ddcb103314ab75', '$2y$10$21okBDW34XpR4hHEsfYmKO0c.bAH1/h72K4dKw72PPLMjwrxLvYkO');
+(5, '09376885515', 'امیرحسین', 'حسنی نجف آبادی', 'amirhoseinh1373@gmail.com', b'1', b'0', b'1', b'0', '1649965396_2d1877cc81c824dd8e28.jpg', '851269', NULL, '2022-04-11 00:26:11', NULL, '2022-04-11 00:25:35', '2022-04-23 22:00:38', NULL, '2022-04-23 22:00:38', '2022-04-21 14:28:42', '2022-04-21 14:37:14', '4dec026b076220a886cdda22f1ab84fc', '$2y$10$9vHHZ57QlsbNp2Nx3ZJoPetSQtWgYd1vQ7Ipj28qLKkU9eMBG6NqK'),
+(6, '09380332228', 'پریسا', 'شفیعی', NULL, b'0', b'1', b'1', b'0', NULL, '988786', NULL, '2022-04-15 16:48:26', NULL, '2022-04-15 16:47:37', '2022-04-23 22:00:13', NULL, '2022-04-23 22:00:13', NULL, NULL, '30088dba08259d150760db3a4f8c7304', '$2y$10$21okBDW34XpR4hHEsfYmKO0c.bAH1/h72K4dKw72PPLMjwrxLvYkO');
 
 --
 -- Indexes for dumped tables
@@ -481,13 +557,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `contact_us_message`
@@ -535,13 +611,13 @@ ALTER TABLE `metadata`
 -- AUTO_INCREMENT for table `payment_request`
 --
 ALTER TABLE `payment_request`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `payment_track`
 --
 ALTER TABLE `payment_track`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `post`
@@ -553,19 +629,19 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `token`
 --
 ALTER TABLE `token`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `user`

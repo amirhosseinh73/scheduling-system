@@ -16,7 +16,7 @@ class QuestionAndAnswerController extends ParentController {
         $data_page = array(
             "title_head"        => TextLibrary::title( "question_answer" ),
             "description_head"  => TextLibrary::description( "company_name" ),
-            "page_name"         => "question_answer_index",
+            "page_name"         => "question_answer_index_patient",
             "user_info"         => $user_info,
         );
 
@@ -29,7 +29,7 @@ class QuestionAndAnswerController extends ParentController {
         $data_page = array(
             "title_head"        => TextLibrary::title( "question_answer" ),
             "description_head"  => TextLibrary::description( "company_name" ),
-            "page_name"         => "question_answer_index",
+            "page_name"         => "question_answer_index_patient",
             "user_info"         => $user_info,
         );
 
@@ -71,24 +71,48 @@ class QuestionAndAnswerController extends ParentController {
 
         $question_model = new QuestionModel();
 
-        $select_question = $question_model
+        $select_question_private = $question_model
             ->where( "user_ID", $user_info->ID )
-            ->where( "type", FALSE )
+            ->where( "type", FALSE ) // type 1 is ticket
             ->findAll();
 
-        $data_return = array();
+        $select_question_public = $question_model
+            ->where( "show", TRUE )
+            ->where( "type", FALSE ) // type 1 is ticket
+            ->findAll();
 
-        for ( $i = 0; $i < count( $select_question ); $i++ ) :
-            $question = $select_question[ $i ];
+        $data_return = array(
+            "private" => array(),
+            "public"  => array(),
+        );
+
+        for ( $i = 0; $i < count( $select_question_private ); $i++ ) :
+            $question = $select_question_private[ $i ];
 
             array_push(
-                $data_return,
+                $data_return["private"],
                 array(
                     "ID"         => $question->ID,
                     "created_at" => gregorianDatetimeToJalali( $question->created_at )->date,
                     "question"   => str_split_unicode( $question->question, 30 )[ 0 ] . "...",
                     "status"     => $this->statusText( $question->status ),
                     "show"       => $this->showText( !!$question->show ),
+                    "updated_at" => gregorianDatetimeToJalali( $question->updated_at )->date,
+                )
+            );
+
+        endfor;
+
+        for ( $j = 0; $j < count( $select_question_public ); $j++ ) :
+            $question = $select_question_public[ $j ];
+
+            array_push(
+                $data_return["public"],
+                array(
+                    "ID"         => $question->ID,
+                    "created_at" => gregorianDatetimeToJalali( $question->created_at )->date,
+                    "question"   => str_split_unicode( $question->question, 30 )[ 0 ] . "...",
+                    "status"     => $this->statusText( $question->status ),
                     "updated_at" => gregorianDatetimeToJalali( $question->updated_at )->date,
                 )
             );
@@ -161,7 +185,7 @@ class QuestionAndAnswerController extends ParentController {
                 if ( $answer->user_ID === $user_info->ID || exists( $data_doctor ) ) continue;
 
                 $select_doctor = $user_model
-                    ->where( "ID" )
+                    ->where( "ID", $answer->user_ID )
                     ->first();
 
                 $data_doctor = handle_user_info( $select_doctor );
@@ -178,7 +202,7 @@ class QuestionAndAnswerController extends ParentController {
         $data_page = array(
             "title_head"        => TextLibrary::title( "question_answer" ),
             "description_head"  => TextLibrary::description( "company_name" ),
-            "page_name"         => "question_answer_index",
+            "page_name"         => "question_answer_index_patient",
             "user_info"         => $user_info,
             "QA"                => $select_question,
             "answers"           => $select_answer,
@@ -295,10 +319,177 @@ class QuestionAndAnswerController extends ParentController {
         $data_page = array(
             "title_head"        => TextLibrary::title( "question_answer" ),
             "description_head"  => TextLibrary::description( "company_name" ),
-            "page_name"         => "question_answer_index",
+            "page_name"         => "question_answer_index_doctor",
             "user_info"         => $user_info,
         );
 
         return $this->renderPageDashboard( "question-answer-doctor-index", $data_page );
+    }
+
+    public function showDoctor() {
+        $user_info = get_user_info();
+
+        $question_model = new QuestionModel();
+        $user_model     = new UserModel();
+
+        $select_question_already_answered = $question_model
+            ->where( "relation_user_ID", $user_info->ID )
+            ->where( "status !=", FALSE )
+            ->where( "type", FALSE ) // type 1 is ticket
+            ->findAll();
+
+        $select_question_not_answered = $question_model
+            ->groupStart()
+                ->where( "relation_user_ID", NULL )
+                ->orWhere( "relation_user_ID", $user_info->ID )
+            ->groupEnd()
+            ->where( "status", FALSE )
+            ->where( "type", FALSE ) // type 1 is ticket
+            ->findAll();
+
+        $data_return = array(
+            "already_answered" => array(),
+            "not_answered"  => array(),
+        );
+
+        $user_IDs_list_1 = array_column( $select_question_already_answered, "user_ID" );
+        $user_IDs_list_2 = array_column( $select_question_not_answered, "user_ID" );
+
+        if ( exists( $user_IDs_list_1 ) ) {
+            $select_user_list_1 = $user_model
+                ->select( array(
+                    "ID",
+                    "firstname",
+                    "lastname",
+                ) )
+                ->whereIn( "ID", $user_IDs_list_1 )
+                ->findAll();
+        }
+        
+        if ( exists( $user_IDs_list_2 ) ) {
+            $select_user_list_2 = $user_model
+                ->select( array(
+                    "ID",
+                    "firstname",
+                    "lastname",
+                ) )
+                ->whereIn( "ID", $user_IDs_list_2 )
+                ->findAll();
+        }
+
+        for ( $i = 0; $i < count( $select_question_already_answered ); $i++ ) :
+            $question = $select_question_already_answered[ $i ];
+
+            $select_patient = array_values( array_filter( $select_user_list_1, function( $key ) use( $question ) {
+                return ($key->ID === $question->user_ID); 
+            } ) )[ 0 ];
+
+            array_push(
+                $data_return["already_answered"],
+                array(
+                    "ID"         => $question->ID,
+                    "created_at" => gregorianDatetimeToJalali( $question->created_at )->date,
+                    "question"   => str_split_unicode( $question->question, 30 )[ 0 ] . "...",
+                    "show"       => $this->showText( !!$question->show ),
+                    "updated_at" => gregorianDatetimeToJalali( $question->updated_at )->date,
+                    "fullname_patient" => $select_patient->firstname . " " . $select_patient->lastname,
+                )
+            );
+
+        endfor;
+
+        for ( $j = 0; $j < count( $select_question_not_answered ); $j++ ) :
+            $question = $select_question_not_answered[ $j ];
+
+            $select_patient = array_values( array_filter( $select_user_list_2, function( $key ) use( $question ) {
+                return ($key->ID === $question->user_ID); 
+            } ) )[ 0 ];
+
+            array_push(
+                $data_return["not_answered"],
+                array(
+                    "ID"         => $question->ID,
+                    "created_at" => gregorianDatetimeToJalali( $question->created_at )->date,
+                    "question"   => str_split_unicode( $question->question, 30 )[ 0 ] . "...",
+                    "show"       => $this->showText( !!$question->show ),
+                    "updated_at" => gregorianDatetimeToJalali( $question->updated_at )->date,
+                    "fullname_patient" => $select_patient->firstname . " " . $select_patient->lastname,
+                )
+            );
+
+        endfor;
+
+        return Alert::Success( 200, $data_return );
+    }
+
+    public function detailDoctor() {
+        $user_info = get_user_info();
+
+        $QA_ID = $this->request->getGet( "qa-id" );
+
+        if ( ! exists( $QA_ID ) || ! exists( $user_info ) ) return redirect()->to( base_url( "/dashboard/question-answer/doctor" ) );
+
+        $question_model = new QuestionModel();
+        $answer_model   = new AnswerModel();
+        $user_model     = new UserModel();
+
+        $select_question = $question_model
+            ->where( "ID", $QA_ID )
+            // ->where( "relation_user_ID", $user_info->ID )
+            ->first();
+
+        if ( ! exists( $select_question ) ) return redirect()->to( base_url( "/dashboard/question-answer/doctor" ) );
+
+        $Q_created_at = gregorianDatetimeToJalali( $select_question->created_at );
+        $Q_updated_at = gregorianDatetimeToJalali( $select_question->updated_at );
+
+        $select_question->created_at = $Q_created_at->date . " " . $Q_created_at->time;
+        $select_question->updated_at = $Q_updated_at->date . " " . $Q_updated_at->time;
+        $select_question->show       = !!$select_question->show;
+
+        $select_answer = $answer_model
+            ->where( "question_ID", $QA_ID )
+            ->orderBy( "created_at", "ASC" )
+            ->findAll();
+
+        $data_patient = array();
+
+        if ( exists( $select_answer ) ) :
+            foreach( $select_answer as $answer ) :
+
+                $A_created_at = gregorianDatetimeToJalali( $answer->created_at );
+                $A_updated_at = gregorianDatetimeToJalali( $answer->updated_at );
+
+                $answer->created_at = $A_created_at->date . " " . $A_created_at->time;
+                $answer->updated_at = $A_updated_at->date . " " . $A_updated_at->time;
+
+                if ( $answer->user_ID === $user_info->ID || exists( $data_patient ) ) continue;
+
+                $select_patient = $user_model
+                    ->where( "ID", $answer->user_ID )
+                    ->first();
+
+                $data_patient = handle_user_info( $select_patient );
+
+                $data_patient = (object)array(
+                    "ID" => $data_patient->ID,
+                    "image" => $data_patient->image,
+                    "fullname" => $data_patient->firstname . " " . $data_patient->lastname,
+                );
+
+            endforeach;
+        endif;
+
+        $data_page = array(
+            "title_head"        => TextLibrary::title( "question_answer" ),
+            "description_head"  => TextLibrary::description( "company_name" ),
+            "page_name"         => "question_answer_index_doctor",
+            "user_info"         => $user_info,
+            "QA"                => $select_question,
+            "answers"           => $select_answer,
+            "patient_info"       => $data_patient,
+        );
+
+        return $this->renderPageDashboard( "question-answer-doctor-detail", $data_page );
     }
 }

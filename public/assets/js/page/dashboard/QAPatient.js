@@ -1,11 +1,11 @@
-class QA { //question and answer
+class QAPatient { //question and answer
 
     get deleteQASelector() {
         return document.getElementById( "delete_QA" );
     }
 
     deleteQAHandlerSuccess = () => {
-        window.location.href = route.question_answer_index;
+        window.location.href = route.question_answer_index_patient;
     }
 
     deleteQAHandler = () => {
@@ -21,7 +21,7 @@ class QA { //question and answer
                 }
             };
     
-            ajax_fetch( route.question_answer_delete, this.closeQAHandlerSuccess, fetch_data );
+            ajax_fetch( route.question_answer_delete_patient, this.closeQAHandlerSuccess, fetch_data );
         } );
     }
 
@@ -50,7 +50,7 @@ class QA { //question and answer
                 }
             };
     
-            ajax_fetch( route.question_answer_close, this.closeQAHandlerSuccess, fetch_data );
+            ajax_fetch( route.question_answer_close_patient, this.closeQAHandlerSuccess, fetch_data );
         } );
     }
 
@@ -58,27 +58,39 @@ class QA { //question and answer
         this.closeQASelector && this.closeQASelector.addEventListener( "click", this.closeQAHandler );
     }
 
-    get tableRowSelectorAll() {
-        return document.querySelectorAll( "#table_QA_patient > tbody > tr" );
+    get tablePrivateRowSelectorAll() {
+        return document.querySelectorAll( "#table_QA_patient_private > tbody > tr" );
+    }
+
+    get tablePublicRowSelectorAll() {
+        return document.querySelectorAll( "#table_QA_patient_public > tbody > tr" );
     }
 
     showQADetailHandler = ( event ) => {
         const QA_ID = event.target.closest( "tr" ).getAttribute( "data-id" );
 
-        window.location.href = route.question_answer_show_detail + "?qa-id=" + QA_ID;
+        window.location.href = route.question_answer_show_detail_patient + "?qa-id=" + QA_ID;
     }
 
     showQADetail = () => {
-        this.tableRowSelectorAll.forEach( row => {
+        this.tablePrivateRowSelectorAll.forEach( row => {
+            row.addEventListener( "click", this.showQADetailHandler );
+        } );
+
+        this.tablePublicRowSelectorAll.forEach( row => {
             row.addEventListener( "click", this.showQADetailHandler );
         } );
     }
 
-    get tablaQASelector() {
-        return document.getElementById( "table_QA_patient" );
+    get tablaQAPrivateSelector() {
+        return document.getElementById( "table_QA_patient_private" );
     }
 
-    showQAHTML = ( idx, question ) => {
+    get tablaQAPublicSelector() {
+        return document.getElementById( "table_QA_patient_public" );
+    }
+
+    showQAPrivateHTML = ( idx, question ) => {
         return `
         <tr data-id="${ question.ID }">
             <td>${ idx + 1 }</td>
@@ -90,13 +102,29 @@ class QA { //question and answer
         </tr>`;
     }
 
+    showQAPublicHTML = ( idx, question ) => {
+        return `
+        <tr data-id="${ question.ID }">
+            <td>${ idx + 1 }</td>
+            <td>${ question.created_at }</td>
+            <td>${ question.question }</td>
+            <td>${ question.status }</td>
+            <td>${ question.updated_at }</td>
+        </tr>`;
+    }
+
     appendQAHandler = ( response ) => {
         if ( response.data.length < 1 ) return;
 
-        data_store.question_answer_patient = response.data;
+        data_store.question_answer_list_1 = response.data.private;
+        data_store.question_answer_list_2 = response.data.public;
 
-        data_store.question_answer_patient.forEach( ( row, index ) => {
-            this.tablaQASelector.querySelector( "tbody" ).insertAdjacentHTML( "beforeend", this.showQAHTML( index, row ) );
+        data_store.question_answer_list_1.forEach( ( row, index ) => {
+            this.tablaQAPrivateSelector.querySelector( "tbody" ).insertAdjacentHTML( "beforeend", this.showQAPrivateHTML( index, row ) );
+        } );
+
+        data_store.question_answer_list_2.forEach( ( row, index ) => {
+            this.tablaQAPublicSelector.querySelector( "tbody" ).insertAdjacentHTML( "beforeend", this.showQAPublicHTML( index, row ) );
         } );
 
         this.showQADetail();
@@ -108,11 +136,11 @@ class QA { //question and answer
             data: {}
         };
 
-        ajax_fetch( route.question_answer_show, this.appendQAHandler, fetch_data );
+        ajax_fetch( route.question_answer_show_patient, this.appendQAHandler, fetch_data );
     }
 
     showQA = () => {
-        this.tablaQASelector && this.appendQA();
+        this.tablaQAPrivateSelector && this.tablaQAPublicSelector && this.appendQA();
     }
 
     get submitQASelector() {
@@ -121,7 +149,7 @@ class QA { //question and answer
 
     successAlert = ( response ) => {
         sweet_alert_message( response, () => {
-            if ( response.status === "success" ) window.location.href = route.question_answer_index;
+            if ( response.status === "success" ) window.location.href = route.question_answer_index_patient;
         } );
     }
 
@@ -161,8 +189,8 @@ class QA { //question and answer
             }
         };
 
-        let submit_route = route.question_answer_submit;
-        if ( data_type !== "question" && data_type === "answer" ) submit_route = route.question_answer_submit_answer;
+        let submit_route = route.question_answer_submit_answer_patient;
+        if ( data_type !== "question" && data_type === "answer" ) submit_route = route.question_answer_submit_answer_patient;
         else submit_route = null;
 
         if ( ! submit_route ) {
@@ -187,7 +215,7 @@ class QA { //question and answer
     }
 
     goToCreatePage = () => {
-        window.location.href = route.question_answer_create;
+        window.location.href = route.question_answer_create_patient;
     }
 
     createQAHandler = () => {
@@ -203,10 +231,10 @@ class QA { //question and answer
     }
 
     static run = () => {
-        const qa = new QA;
+        const qa = new QAPatient;
 
         qa.init();
     }
 }
 
-doc_ready( QA.run );
+doc_ready( QAPatient.run );

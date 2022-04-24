@@ -88,8 +88,6 @@ $routes->group( "dashboard" , [ "filter" => "IsLogin" ], function( $routes ) {
         } );
         $routes->group( "doctor" , function( $routes ) {
             $routes->get( ""        , "Dashboard\QuestionAndAnswerController::indexDoctor" );
-            $routes->get( "create"  , "Dashboard\QuestionAndAnswerController::createDoctor" );
-            $routes->post( "submit" , "Dashboard\QuestionAndAnswerController::submitDoctor" );
             $routes->get( "show"    , "Dashboard\QuestionAndAnswerController::showDoctor" );
             $routes->get( "detail"  , "Dashboard\QuestionAndAnswerController::detailDoctor" );
             $routes->post( "submit-answer" , "Dashboard\QuestionAndAnswerController::submiDoctor" );

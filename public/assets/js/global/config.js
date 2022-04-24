@@ -16,15 +16,25 @@ const route = {
     submit_reservation : base_url + "/dashboard/reserve/submit",
     reservation_turns : base_url + "/dashboard/reserve/turns-data",
 
-    question_answer_index        : base_url + "/dashboard/question-answer/patient",
-    question_answer_create       : base_url + "/dashboard/question-answer/patient/create",
-    question_answer_submit       : base_url + "/dashboard/question-answer/patient/submit",
-    question_answer_show         : base_url + "/dashboard/question-answer/patient/show",
-    question_answer_show_detail  : base_url + "/dashboard/question-answer/patient/detail",
+    question_answer_index_patient        : base_url + "/dashboard/question-answer/patient",
+    question_answer_create_patient       : base_url + "/dashboard/question-answer/patient/create",
+    question_answer_submit_patient       : base_url + "/dashboard/question-answer/patient/submit",
+    question_answer_show_patient         : base_url + "/dashboard/question-answer/patient/show",
+    question_answer_show_detail_patient  : base_url + "/dashboard/question-answer/patient/detail",
     
-    question_answer_submit_answer: base_url + "/dashboard/question-answer/patient/submit-answer",
-    question_answer_close        : base_url + "/dashboard/question-answer/patient/close",
-    question_answer_delete       : base_url + "/dashboard/question-answer/patient/delete",
+    question_answer_submit_answer_patient: base_url + "/dashboard/question-answer/patient/submit-answer",
+    question_answer_close_patient        : base_url + "/dashboard/question-answer/patient/close",
+    question_answer_delete_patient       : base_url + "/dashboard/question-answer/patient/delete",
+
+    question_answer_index_doctor        : base_url + "/dashboard/question-answer/doctor",
+    question_answer_create_doctor       : base_url + "/dashboard/question-answer/doctor/create",
+    question_answer_submit_doctor       : base_url + "/dashboard/question-answer/doctor/submit",
+    question_answer_show_doctor         : base_url + "/dashboard/question-answer/doctor/show",
+    question_answer_show_detail_doctor  : base_url + "/dashboard/question-answer/doctor/detail",
+    
+    question_answer_submit_answer_doctor: base_url + "/dashboard/question-answer/doctor/submit-answer",
+    question_answer_close_doctor        : base_url + "/dashboard/question-answer/doctor/close",
+    question_answer_delete_doctor       : base_url + "/dashboard/question-answer/doctor/delete",
 };
 
 const state = {
@@ -37,5 +47,6 @@ const data_store = {
 
     reservation_turns: new Array,
 
-    question_answer_patient: new Array,
+    question_answer_list_1: new Array,
+    question_answer_list_2: new Array,
 };
