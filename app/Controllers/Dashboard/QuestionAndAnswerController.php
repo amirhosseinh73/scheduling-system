@@ -43,7 +43,7 @@ class QuestionAndAnswerController extends ParentController {
         $show       = $this->request->getPost( "show" );
         $type       = $this->request->getPost( "type" );
 
-        if ( strlen( $question ) < 10 ) return Alert::Error( 118 );
+        if ( strlen( $question ) < 2 ) return Alert::Error( 118 );
 
         $question_model = new QuestionModel();
 
@@ -77,7 +77,8 @@ class QuestionAndAnswerController extends ParentController {
             ->findAll();
 
         $select_question_public = $question_model
-            ->where( "show", TRUE )
+            ->where( "show", TRUE ) //public
+            ->where( "is_verified", TRUE )
             ->where( "type", FALSE ) // type 1 is ticket
             ->findAll();
 
@@ -218,12 +219,18 @@ class QuestionAndAnswerController extends ParentController {
         $question    = $this->request->getPost( "question" );
         $question_ID = $this->request->getPost( "question_ID" );
 
-        if ( strlen( $question ) < 10 ) return Alert::Error( 118 );
+        if ( strlen( $question ) < 2 ) return Alert::Error( 118 );
 
         if ( ! exists( $question_ID ) ) return Alert::Error( -1 );
 
         $question_model = new QuestionModel();
         $answer_model = new AnswerModel();
+
+        $data_insert = array(
+            "user_ID"       => $user_info->ID,
+            "question_ID"   => $question_ID,
+            "answer"        => $question,
+        );
 
         if ( $user_info->type_user ) { // patient
             $show       = $this->request->getPost( "show" );
@@ -239,12 +246,6 @@ class QuestionAndAnswerController extends ParentController {
                 "status"    => FALSE,
                 "show"      => !!$show,
             );
-
-            $data_insert = array(
-                "user_ID"       => $user_info->ID,
-                "question_ID"   => $question_ID,
-                "answer"        => $question,
-            );
     
             try {
                 $question_model->update( $question_ID, $data_update );
@@ -252,11 +253,32 @@ class QuestionAndAnswerController extends ParentController {
             } catch( \Exception $e ) {
                 return Alert::Error( -1, $e );
             }
-    
-            return Alert::Success( 200 );
         } else { //doctor
+            $select_question = $question_model
+                ->where( "ID", $question_ID )
+                ->groupStart()
+                    ->where( "relation_user_ID", NULL )
+                    ->orWhere( "relation_user_ID", $user_info->ID )
+                ->groupEnd()
+                ->first();
+        
+            if ( ! exists( $select_question ) ) return Alert::Error( 100 );
 
+            $data_update = array(
+                "status"           => TRUE,
+                "is_verified"      => TRUE,
+                "relation_user_ID" => $user_info->ID,
+            );
+
+            try {
+                $question_model->update( $question_ID, $data_update );
+                $answer_model->insert( $data_insert );
+            } catch( \Exception $e ) {
+                return Alert::Error( -1, $e );
+            }
         }
+
+        return Alert::Success( 200 );
     }
 
     public function closePatient() {
@@ -453,6 +475,17 @@ class QuestionAndAnswerController extends ParentController {
             ->findAll();
 
         $data_patient = array();
+        $select_patient = $user_model
+            ->where( "ID", $select_question->user_ID )
+            ->first();
+
+        $data_patient = handle_user_info( $select_patient );
+
+        $data_patient = (object)array(
+            "ID" => $data_patient->ID,
+            "image" => $data_patient->image,
+            "fullname" => $data_patient->firstname . " " . $data_patient->lastname,
+        );
 
         if ( exists( $select_answer ) ) :
             foreach( $select_answer as $answer ) :
@@ -462,20 +495,6 @@ class QuestionAndAnswerController extends ParentController {
 
                 $answer->created_at = $A_created_at->date . " " . $A_created_at->time;
                 $answer->updated_at = $A_updated_at->date . " " . $A_updated_at->time;
-
-                if ( $answer->user_ID === $user_info->ID || exists( $data_patient ) ) continue;
-
-                $select_patient = $user_model
-                    ->where( "ID", $answer->user_ID )
-                    ->first();
-
-                $data_patient = handle_user_info( $select_patient );
-
-                $data_patient = (object)array(
-                    "ID" => $data_patient->ID,
-                    "image" => $data_patient->image,
-                    "fullname" => $data_patient->firstname . " " . $data_patient->lastname,
-                );
 
             endforeach;
         endif;
@@ -491,5 +510,31 @@ class QuestionAndAnswerController extends ParentController {
         );
 
         return $this->renderPageDashboard( "question-answer-doctor-detail", $data_page );
+    }
+
+    public function closeDoctor() {
+        $question_ID = $this->request->getPost( "question_ID" );
+
+        if ( ! exists( $question_ID ) ) return Alert::Error( -1 );
+
+        $question_model = new QuestionModel();
+
+        $select_question = $question_model
+            ->where( "ID", $question_ID )
+            ->first();
+        
+        if ( ! exists( $select_question ) ) return Alert::Error( -1 );
+
+        $data_update = array(
+            "status"    => 2,
+        );
+
+        try {
+            $question_model->update( $question_ID, $data_update );
+        } catch( \Exception $e ) {
+            return Alert::Error( -1, $e );
+        }
+
+        return Alert::Success( 200 );
     }
 }

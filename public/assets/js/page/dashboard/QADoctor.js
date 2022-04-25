@@ -58,6 +58,57 @@ class QADoctor { //question and answer
         this.closeQASelector && this.closeQASelector.addEventListener( "click", this.closeQAHandler );
     }
 
+    get submitQASelector() {
+        return document.getElementById( "submit_QA" );
+    }
+
+    successAlert = ( response ) => {
+        sweet_alert_message( response, () => {
+            if ( response.status === "success" ) window.location.href = route.question_answer_index_doctor;
+        } );
+    }
+
+    submitQAHandler = ( event ) => {
+        const textarea_QA   = document.getElementById( "textarea_QA" ).value;
+
+        const data_type = event.target.getAttribute( "data-type" );
+
+        if ( textarea_QA.length < 2 ) {
+            sweet_alert_message( {
+                title: "توجه",
+                message: Alert.error( 116 ),
+                type_2: "info",
+            } );
+
+            return;
+        }
+
+        if ( ! data_type ) {
+            sweet_alert_message( {
+                title: "توجه",
+                message: Alert.error( -1 ),
+                type_2: "info",
+            } );
+
+            return;
+        }
+
+        const fetch_data = {
+            method: "post",
+            data: {
+                question: textarea_QA,
+                type    : 0,
+                question_ID: url_param().get( "qa-id" ),      
+            }
+        };
+
+        ajax_fetch( route.question_answer_submit_answer_doctor, this.successAlert, fetch_data );
+    }
+
+    submitQA = () => {
+        this.submitQASelector && this.submitQASelector.addEventListener( "click", this.submitQAHandler );
+    }
+
     get table1RowSelectorAll() {
         return document.querySelectorAll( "#table_QA_doctor_not_answered > tbody > tr" );
     }
@@ -134,6 +185,7 @@ class QADoctor { //question and answer
 
     init = () => {
         this.showQA();
+        this.submitQA();
         this.closeQA();
         this.deleteQA();
     }

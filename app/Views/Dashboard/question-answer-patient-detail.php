@@ -10,26 +10,27 @@
                         </div>
                         <?php
                         if ( exists( $QA ) ) :
+                            $question_text = nl2br( $QA->question );
                             echo "<section class='message-box right'>
                                 <img src='$user_info->image' class='profile-image'/>
                                 <div class='details'>
                                     <time class='dir-ltr'>$QA->created_at</time>
                                     <blockquote>
-                                        $QA->question
+                                        $question_text
                                     </blockquote>
                                 </div>
                             </section>";
 
                         if ( exists( $answers ) ) :
                             foreach ( $answers as $answer ) :
-
+                                $answer_text = nl2br( $answer->answer );
                                 if ( $answer->user_ID === $user_info->ID ) : //patient
                                     echo "<section class='message-box right'>
                                         <img src='$user_info->image' class='profile-image'/>
                                         <div class='details'>
                                             <time class='dir-ltr'>$answer->created_at</time>
                                             <blockquote>
-                                                $answer->answer
+                                                $answer_text
                                             </blockquote>
                                         </div>
                                     </section>";
@@ -40,7 +41,7 @@
                                             <time>$answer->created_at</time>
                                             <span>$doctor_info->fullname</span>
                                             <blockquote>
-                                                $answer->answer
+                                                $answer_text
                                             </blockquote>
                                         </div>
                                     </section>";

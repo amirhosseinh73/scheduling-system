@@ -25,5 +25,6 @@ class QuestionModel extends ParentModel
         "show",
         "type",
         "relation_user_ID",
+        "is_verified",
     ];
 }

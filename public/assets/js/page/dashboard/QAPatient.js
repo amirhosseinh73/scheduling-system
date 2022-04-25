@@ -159,7 +159,7 @@ class QAPatient { //question and answer
 
         const data_type = event.target.getAttribute( "data-type" );
 
-        if ( textarea_QA.length < 10 ) {
+        if ( textarea_QA.length < 2 ) {
             sweet_alert_message( {
                 title: "توجه",
                 message: Alert.error( 116 ),
@@ -189,7 +189,7 @@ class QAPatient { //question and answer
             }
         };
 
-        let submit_route = route.question_answer_submit_answer_patient;
+        let submit_route = route.question_answer_submit_patient;
         if ( data_type !== "question" && data_type === "answer" ) submit_route = route.question_answer_submit_answer_patient;
         else submit_route = null;
 
