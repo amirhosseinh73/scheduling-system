@@ -4,8 +4,9 @@ class QADoctor { //question and answer
         return document.getElementById( "delete_QA" );
     }
 
-    deleteQAHandlerSuccess = () => {
-        window.location.href = route.question_answer_index_doctor;
+    deleteQAHandlerSuccess = ( response ) => {
+        if ( response.status === "success" ) window.location.href = route.question_answer_index_doctor;
+        else sweet_alert_message( response );
     }
 
     deleteQAHandler = () => {
@@ -33,8 +34,9 @@ class QADoctor { //question and answer
         return document.getElementById( "close_QA" );
     }
 
-    closeQAHandlerSuccess = () => {
-        window.location.reload();
+    closeQAHandlerSuccess = ( response ) => {
+        if ( response.status === "success" ) window.location.reload();
+        else sweet_alert_message( response );
     }
 
     closeQAHandler = () => {

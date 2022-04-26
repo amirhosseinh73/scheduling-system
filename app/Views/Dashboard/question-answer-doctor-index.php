@@ -1,11 +1,6 @@
 <article class="col-12 col-sm-8 col-lg-9 col-xl-10 align-content-center px-0 h-100">
     <div class="dashboard-main-container">
         <div class="col-12 h-100">
-            <section class="row">
-                <div class="col-12 col-sm-3 me-auto text-start">
-                    <button id="create_QA" type="button" class="btn-color-1">ثبت سوال جدید</button>
-                </div>
-            </section>
             <section class="dashboard-inside-container scroll height-scroll-less">
                 <div class="accordion accordion-flush accordion-active-color-2" id="faq_accordion">
                     <section class="accordion-item">

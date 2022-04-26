@@ -92,6 +92,7 @@ $routes->group( "dashboard" , [ "filter" => "IsLogin" ], function( $routes ) {
             $routes->get( "detail"  , "Dashboard\QuestionAndAnswerController::detailDoctor" );
             $routes->post( "submit-answer" , "Dashboard\QuestionAndAnswerController::submitAnswer" );
             $routes->post( "close" , "Dashboard\QuestionAndAnswerController::closeDoctor" );
+            $routes->post( "delete", "Dashboard\QuestionAndAnswerController::deleteDoctor" );
         } );
     } );
 } );

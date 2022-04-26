@@ -8,6 +8,7 @@ use App\Libraries\TextLibrary;
 use App\Models\AnswerModel;
 use App\Models\QuestionModel;
 use App\Models\UserModel;
+use Exception;
 
 class QuestionAndAnswerController extends ParentController {
     public function indexPatient() {
@@ -513,6 +514,8 @@ class QuestionAndAnswerController extends ParentController {
     }
 
     public function closeDoctor() {
+        $user_info = get_user_info();
+
         $question_ID = $this->request->getPost( "question_ID" );
 
         if ( ! exists( $question_ID ) ) return Alert::Error( -1 );
@@ -527,11 +530,46 @@ class QuestionAndAnswerController extends ParentController {
 
         $data_update = array(
             "status"    => 2,
+            "relation_user_ID" => $user_info->ID,
         );
 
         try {
             $question_model->update( $question_ID, $data_update );
         } catch( \Exception $e ) {
+            return Alert::Error( -1, $e );
+        }
+
+        return Alert::Success( 200 );
+    }
+
+    public function deleteDoctor() {
+        $user_info = get_user_info();
+
+        $question_ID = $this->request->getPost( "question_ID" );
+
+        if ( ! exists( $question_ID ) ) return Alert::Error( -1 );
+
+        $question_model = new QuestionModel();
+
+        $select_question = $question_model
+            ->where( "ID", $question_ID )
+            ->groupStart()
+                ->where( "relation_user_ID", NULL )
+                ->orWhere( "relation_user_ID", $user_info->ID )
+            ->groupEnd()
+            ->first();
+        
+        if ( ! exists( $select_question ) ) return Alert::Error( -1 );
+
+        $data_update = array( 
+            "relation_user_ID" => $user_info->ID 
+        );
+        try {
+            $question_model->update( $question_ID, $data_update );
+
+            $question_model->delete( $question_ID );
+        } catch( \Exception $e ) {
+            throw new Exception($e);
             return Alert::Error( -1, $e );
         }
 

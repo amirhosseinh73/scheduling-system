@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2022 at 09:21 PM
+-- Generation Time: Apr 26, 2022 at 10:17 PM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -334,6 +334,13 @@ CREATE TABLE `question` (
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
+--
+-- Dumping data for table `question`
+--
+
+INSERT INTO `question` (`ID`, `user_ID`, `question`, `status`, `show`, `type`, `relation_user_ID`, `is_verified`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(3, 6, 'سلام', 0, b'0', b'0', 5, b'0', '2022-04-27 00:29:56', '2022-04-27 00:46:31', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -391,7 +398,8 @@ CREATE TABLE `token` (
 
 INSERT INTO `token` (`ID`, `token`, `ip_address`, `user_agent`, `expire_at`, `created_at`, `updated_at`) VALUES
 (11, '053193c4a81653981ba82c4153b83a30', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88', '2022-05-15 01:09:05', '2022-04-15 01:09:05', '2022-04-15 01:09:05'),
-(13, '119acdc42137db520065e1641aa40932', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0', '2022-04-16 16:48:26', '2022-04-15 16:48:26', '2022-04-15 16:48:26');
+(13, '119acdc42137db520065e1641aa40932', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0', '2022-04-16 16:48:26', '2022-04-15 16:48:26', '2022-04-15 16:48:26'),
+(55, '6c91a0bd293321a23c1112d0ffcac7ba', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0', '2022-04-28 00:30:08', '2022-04-27 00:30:08', '2022-04-27 00:30:08');
 
 -- --------------------------------------------------------
 
@@ -429,8 +437,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `username`, `firstname`, `lastname`, `email`, `gender`, `type_user`, `status`, `is_admin`, `image`, `verify_code_mobile`, `verify_code_email`, `mobile_verified_at`, `email_verified_at`, `created_at`, `updated_at`, `deleted_at`, `last_login_at`, `recovery_pass_at`, `change_pass_at`, `token`, `password`) VALUES
-(5, '09376885515', 'امیرحسین', 'حسنی نجف آبادی', 'amirhoseinh1373@gmail.com', b'1', b'0', b'1', b'0', '1649965396_2d1877cc81c824dd8e28.jpg', '851269', NULL, '2022-04-11 00:26:11', NULL, '2022-04-11 00:25:35', '2022-04-25 23:49:02', NULL, '2022-04-25 23:49:02', '2022-04-21 14:28:42', '2022-04-21 14:37:14', '29b578eed4242950190e110bb4fe7509', '$2y$10$9vHHZ57QlsbNp2Nx3ZJoPetSQtWgYd1vQ7Ipj28qLKkU9eMBG6NqK'),
-(6, '09380332228', 'پریسا', 'شفیعی', NULL, b'0', b'1', b'1', b'0', '1650914328_d7b0ce3e2e0e8af95706.png', '988786', NULL, '2022-04-15 16:48:26', NULL, '2022-04-15 16:47:37', '2022-04-25 23:49:55', NULL, '2022-04-25 23:49:55', NULL, NULL, '76fdae7229db3e34b7e41f300919e899', '$2y$10$21okBDW34XpR4hHEsfYmKO0c.bAH1/h72K4dKw72PPLMjwrxLvYkO');
+(5, '09376885515', 'امیرحسین', 'حسنی نجف آبادی', 'amirhoseinh1373@gmail.com', b'1', b'0', b'1', b'0', '1649965396_2d1877cc81c824dd8e28.jpg', '851269', NULL, '2022-04-11 00:26:11', NULL, '2022-04-11 00:25:35', '2022-04-27 00:30:08', NULL, '2022-04-27 00:30:08', '2022-04-21 14:28:42', '2022-04-21 14:37:14', '6c91a0bd293321a23c1112d0ffcac7ba', '$2y$10$9vHHZ57QlsbNp2Nx3ZJoPetSQtWgYd1vQ7Ipj28qLKkU9eMBG6NqK'),
+(6, '09380332228', 'بانو', 'شفیعی', NULL, b'0', b'1', b'1', b'0', '1651000569_044b01c89b36843808cf.jpg', '988786', NULL, '2022-04-15 16:48:26', NULL, '2022-04-15 16:47:37', '2022-04-27 00:28:28', NULL, '2022-04-27 00:28:28', NULL, NULL, '6173b752c66cb959b0eb55b4181a1712', '$2y$10$21okBDW34XpR4hHEsfYmKO0c.bAH1/h72K4dKw72PPLMjwrxLvYkO');
 
 --
 -- Indexes for dumped tables
@@ -614,7 +622,7 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `reservation`
@@ -626,7 +634,7 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT for table `token`
 --
 ALTER TABLE `token`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `user`

@@ -203,8 +203,8 @@
                             <span>کیف پول</span>
                         </a>
                     </li> -->
-                    <li>
-                        <a href="javascript:void(0)" class="disabled">
+                    <li <?php if ( $page_name === "exam_index" ) echo "class='active'" ?>>
+                        <a href="<?= base_url( "/dashboard/exam" )?>" class="disabled">
                             <i class="far fa-file-signature"></i>
                             <span>آزمون های آنلاین</span>
                         </a>
