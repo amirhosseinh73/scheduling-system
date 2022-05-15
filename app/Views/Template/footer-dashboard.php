@@ -39,6 +39,8 @@
         <script type="text/javascript" src="<?= base_url( "/assets/js/page/dashboard/QAPatient.js" ) ?>"></script>
     <?php elseif( $page_name === "question_answer_index_doctor" ) :?>
         <script type="text/javascript" src="<?= base_url( "/assets/js/page/dashboard/QADoctor.js" ) ?>"></script>
+    <?php elseif( $page_name === "exam_index" ) :?>
+        <script type="text/javascript" src="<?= base_url( "/assets/js/page/dashboard/Exam.js" ) ?>"></script>
     <?php endif; ?>
 </body>
 </html>

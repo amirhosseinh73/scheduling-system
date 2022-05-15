@@ -22,5 +22,6 @@ class ExamModel extends ParentModel
         "title",
         "description",
         "time",
+        "image",
     ];
 }

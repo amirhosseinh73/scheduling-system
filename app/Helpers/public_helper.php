@@ -18,6 +18,7 @@ defined( "PAGE_URL" )               || define( "PAGE_URL"               , "/page
 defined( "IMAGE_DIR_PROFILE" )      || define( "IMAGE_DIR_PROFILE"      , "/uploads/profile/" );
 defined( "IMAGE_DIR_BLOG" )         || define( "IMAGE_DIR_BLOG"         , "/uploads/blog/" );
 defined( "IMAGE_DIR_PAGE" )         || define( "IMAGE_DIR_PAGE"         , "/uploads/page/" );
+defined( "IMAGE_DIR_EXAM" )         || define( "IMAGE_DIR_EXAM"         , "/uploads/exam/" );
 defined( "IMAGE_DEFAULT" )          || define( "IMAGE_DEFAULT"          , "/uploads/default.jpg" );
 defined( "IMAGE_DEFAULT_MALE" )     || define( "IMAGE_DEFAULT_MALE"     , "/uploads/default-male.jpg" );
 defined( "IMAGE_DEFAULT_FEMALE" )   || define( "IMAGE_DEFAULT_FEMALE"   , "/uploads/default-female.jpg" );

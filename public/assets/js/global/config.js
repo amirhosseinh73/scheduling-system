@@ -35,6 +35,10 @@ const route = {
     question_answer_submit_answer_doctor: base_url + "/dashboard/question-answer/doctor/submit-answer",
     question_answer_close_doctor        : base_url + "/dashboard/question-answer/doctor/close",
     question_answer_delete_doctor       : base_url + "/dashboard/question-answer/doctor/delete",
+
+    exam_data: base_url + "/dashboard/exam/data",
+    exam_page: base_url + "/dashboard/exam/page",
+    exam_page_data: base_url + "/dashboard/exam/page/data",
 };
 
 const state = {

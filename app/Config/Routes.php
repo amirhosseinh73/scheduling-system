@@ -95,6 +95,13 @@ $routes->group( "dashboard" , [ "filter" => "IsLogin" ], function( $routes ) {
             $routes->post( "delete", "Dashboard\QuestionAndAnswerController::deleteDoctor" );
         } );
     } );
+
+    $routes->group( "exam", function( $routes ) {
+        $routes->get( "", "Dashboard/ExamController::index" );
+        $routes->get( "data", "Dashboard/ExamController::get" );
+        $routes->get( "page", "Dashboard/ExamController::page" );
+        $routes->get( "page/data", "Dashboard/ExamController::getQuestions" );
+    } );
 } );
 
 //callback payment /dashboard/reserve/callback

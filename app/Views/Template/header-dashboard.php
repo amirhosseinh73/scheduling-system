@@ -204,7 +204,7 @@
                         </a>
                     </li> -->
                     <li <?php if ( $page_name === "exam_index" ) echo "class='active'" ?>>
-                        <a href="<?= base_url( "/dashboard/exam" )?>" class="disabled">
+                        <a href="<?= base_url( "/dashboard/exam" )?>">
                             <i class="far fa-file-signature"></i>
                             <span>آزمون های آنلاین</span>
                         </a>
