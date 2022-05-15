@@ -18,6 +18,8 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/modal-alertify-calendar.css" );?>" />
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/dashboard.css" );?>" />
 
+    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/global/responsive.css" );?>" />
+
     <script type="text/javascript">
         const base_url = "<?= base_url();?>";
     </script>
@@ -110,10 +112,12 @@
             <button type="button" class="btn text-color-7 nav-btn-collapse">
                 <i class="fad fa-bars"></i>
             </button>
-            <!-- <button type="button" class="btn text-color-7">
-                <i class="fad fa-search"></i>
-            </button> -->
             <ul class="nav-list-ul">
+                <li class="btn-toggle-navbar">
+                    <button type="button" class="btn text-color-7 nav-btn-collapse">
+                        <i class="fad fa-bars"></i>
+                    </button>
+                </li>
                 <li>
                     <a href="<?= base_url() ?>">صفحه اصلی</a>
                 </li>

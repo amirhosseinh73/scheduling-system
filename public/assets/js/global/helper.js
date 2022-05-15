@@ -203,6 +203,12 @@ function get_day_of_week( year, month, day ) {
     });
 }
 
+function toggleNavbar() {
+    const btn_navbar_selector = document.querySelector( ".btn-toggle-navbar" );
+
+    if ( ! btn_navbar_selector ) return;
+}
+
 doc_ready( function() {
     input_text_number();
 

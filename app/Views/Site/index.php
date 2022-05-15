@@ -42,7 +42,7 @@
             </section>
             <section class="col-12 mt-4">
                 <div class="row">
-                    <section class="col-12 col-sm-6 col-lg-3 advice-box">
+                    <section class="col-12 col-sm-6 col-md-3 advice-box">
                         <div class="parent">
                             <img src="<?= base_url( "assets/icon/advice-meeting.png" )?>" class="image" alt=""/>
                             <h3 class="title">مشاوره حضوری</h3>
@@ -52,7 +52,7 @@
                             </p>
                         </div>
                     </section>
-                    <section class="col-12 col-sm-6 col-lg-3 advice-box">
+                    <section class="col-12 col-sm-6 col-md-3 advice-box">
                         <div class="parent">
                             <img src="<?= base_url( "assets/icon/advice-phone.png" )?>" class="image" alt=""/>
                             <h3 class="title">مشاوره تلفنی</h3>
@@ -62,7 +62,7 @@
                             </p>
                         </div>
                     </section>
-                    <section class="col-12 col-sm-6 col-lg-3 advice-box">
+                    <section class="col-12 col-sm-6 col-md-3 advice-box">
                         <div class="parent">
                             <img src="<?= base_url( "/assets/icon/advice-online-exam.png" )?>" class="image" alt=""/>
                             <h3 class="title">آزمون آنلاین</h3>
@@ -72,7 +72,7 @@
                             </p>
                         </div>
                     </section>
-                    <section class="col-12 col-sm-6 col-lg-3 advice-box">
+                    <section class="col-12 col-sm-6 col-md-3 advice-box">
                         <div class="parent">
                             <img src="<?= base_url( "/assets/icon/advice-faq.png" )?>" class="image" alt=""/>
                             <h3 class="title">پرسش و پاسخ</h3>

@@ -18,6 +18,8 @@
         <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/login.css" );?>" />
     <?php endif; ?>
 
+    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/global/responsive.css" );?>" />
+
     <script type="text/javascript">
         const base_url = "<?= base_url();?>";
     </script>
@@ -26,13 +28,15 @@
     
     <nav class="nav-absolute row flex-row-reverse flex-sm-row align-items-center">
         <div class="col-12 col-sm ms-sm-auto nav-list-parent">
-            <button type="button" class="btn text-color-7 nav-btn-collapse">
-                <i class="fad fa-bars"></i>
-            </button>
             <!-- <button type="button" class="btn text-color-7">
                 <i class="fad fa-search"></i>
             </button> -->
             <ul class="nav-list-ul">
+                <li class="btn-toggle-navbar">
+                    <button type="button" class="btn text-color-7 nav-btn-collapse">
+                        <i class="fad fa-bars"></i>
+                    </button>
+                </li>
                 <li>
                     <a href="<?= base_url() ?>">صفحه اصلی</a>
                 </li>
