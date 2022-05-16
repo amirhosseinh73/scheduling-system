@@ -203,15 +203,7 @@ function get_day_of_week( year, month, day ) {
     });
 }
 
-function toggleNavbar() {
-    const btn_navbar_selector = document.querySelector( ".btn-toggle-navbar" );
-
-    if ( ! btn_navbar_selector ) return;
-}
-
-doc_ready( function() {
-    input_text_number();
-
+function alert_on_load() {
     if ( url_param().has( "error" ) ) {
         const alert_data = {
             message: Alert.error( url_param().get( "error" ) ),
@@ -219,4 +211,52 @@ doc_ready( function() {
         };
         sweet_alert_message( alert_data );
     }
+}
+
+function toggleNavbar() {
+    const btn_navbar_selector = document.querySelector( ".nav-btn-collapse" );
+
+    if ( ! btn_navbar_selector ) return;
+
+    btn_navbar_selector.addEventListener( "click", function() {
+        const nav_list = document.querySelector( "ul.nav-list-ul" ).cloneNode(true);
+        const parent = document.createElement( "div" );
+        const close_btn = document.createElement( "button" );
+
+        close_btn.type = "button";
+        close_btn.innerHTML = "&times;"
+        close_btn.classList.add( "nav-mobile-close-btn" );
+
+        nav_list.classList.add( "mobile" );
+
+        parent.classList.add( "nav-mobile" );
+        parent.insertAdjacentElement( "afterbegin", close_btn );
+        parent.insertAdjacentElement( "beforeend", nav_list );
+        parent.querySelector( ".btn-toggle-navbar" ).remove();
+
+        const login_button = parent.querySelector( ".btn-outline-6" );
+        const register_button = parent.querySelector( ".btn-color-6" );
+        login_button.remove();
+        register_button.remove();
+
+        document.body.insertAdjacentElement( "beforeend", parent );
+
+        parent.offsetWidth;
+        parent.classList.add( "open" );
+
+        close_btn.addEventListener( "click", close_nav_menu );
+
+        function close_nav_menu() {
+            const nav_mobile = document.querySelector( ".nav-mobile" );
+            nav_mobile.classList.remove( "open" );
+
+            setTimeout( () => nav_mobile.remove(), 200 );
+        }
+    } );
+}
+
+doc_ready( function() {
+    input_text_number();
+    alert_on_load();
+    toggleNavbar();
 } );

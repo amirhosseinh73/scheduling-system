@@ -1,3 +1,7 @@
+.btn-toggle-navbar {
+    display: none;
+}
+
 @media ( max-width: 1919.9px ) {
     
 }
@@ -37,8 +41,81 @@
         font-size: 13px;
     }
 
-    .nav-list-ul > li:not([class^="btn"]) {
+    .nav-list-ul:not( .mobile ) > li:not([class^="btn"]) {
         display: none;
+    }
+
+    .btn-toggle-navbar {
+        display: block;
+    }
+
+    .nav-mobile {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background-color: var(--light-1);
+        position: fixed;
+        top: 0;
+        width: 20rem;
+        z-index: 10000;
+        box-shadow: var(--shadow-outset-big);
+        padding: 4rem 2rem;
+        transition: all 300ms linear;
+        -webkit-transition: all 300ms linear;
+        -moz-transition: all 300ms linear;
+        -ms-transition: all 300ms linear;
+        -o-transition: all 300ms linear;
+        right: -20rem;
+        opacity: 0;
+    }
+
+    .nav-mobile.open {
+        right: 0;
+        opacity: 1;
+    }
+
+    .nav-mobile > .nav-list-ul {
+        display: list-item;
+    }
+
+    .nav-mobile > .nav-list-ul > li:not( :last-child ) {
+        border-bottom: 1px solid var(--dark-4);
+    }
+
+    .nav-mobile > .nav-list-ul > li {
+        padding: 0.75rem 0.25rem;
+    }
+
+    .nav-mobile > .nav-list-ul > li:not([class*="btn"]) > a {
+        color: var(--dark-3);
+    }
+
+    .nav-mobile > .nav-list-ul > li:not([class*="btn"]) > a:hover {
+        color: var(--color-2);
+    }
+
+    .nav-mobile-close-btn {
+        position: absolute;
+        left: 1rem;
+        top: 1rem;
+        background: transparent;
+        border: 0;
+        font-size: 2rem;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--color-2);
+        transition: all 200ms linear;
+        -webkit-transition: all 200ms linear;
+        -moz-transition: all 200ms linear;
+        -ms-transition: all 200ms linear;
+        -o-transition: all 200ms linear;
+    }
+
+    .nav-mobile-close-btn:hover {
+        color: var(--color-1);
     }
 }
 
