@@ -488,6 +488,66 @@ body {
     margin-top: 6rem;
 }
 
+@media ( min-width: 576px ) {
+    .mt-sm-8 {
+    margin-top: 8rem;
+}
+
+    .mt-sm-6 {
+        margin-top: 6rem;
+    }
+}
+
+@media ( min-width: 768px ) {
+    .mt-md-8 {
+    margin-top: 8rem;
+}
+
+    .mt-md-6 {
+        margin-top: 6rem;
+    }
+}
+
+@media ( min-width: 992px ) {
+    .mt-lg-8 {
+    margin-top: 8rem;
+}
+
+    .mt-lg-6 {
+        margin-top: 6rem;
+    }
+}
+
+@media ( min-width: 1200px ) {
+    .mt-xl-8 {
+    margin-top: 8rem;
+}
+
+    .mt-xl-6 {
+        margin-top: 6rem;
+    }
+}
+
+@media ( min-width: 1600px ) {
+    .mt-xxl-8 {
+    margin-top: 8rem;
+}
+
+    .mt-xxl-6 {
+        margin-top: 6rem;
+    }
+}
+
+@media ( min-width: 1920px ) {
+    .mt-xxxl-8 {
+    margin-top: 8rem;
+}
+
+    .mt-xxxl-6 {
+        margin-top: 6rem;
+    }
+}
+
 .custom-input-text {
 	appearance: none;
 	background: none;

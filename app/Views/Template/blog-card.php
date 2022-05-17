@@ -1,4 +1,4 @@
-<section class="col-12 col-sm-6 blog-box">
+<section class="col-6 col-sm-6 blog-box">
     <a href="<?= $url?>">
         <div class="blog-box-card">
             <img src="<?= $image?>" class="w-100 h-100 object-fit-cover"/>

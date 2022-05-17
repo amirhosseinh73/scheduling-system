@@ -239,18 +239,32 @@ function toggleNavbar() {
         login_button.remove();
         register_button.remove();
 
-        document.body.insertAdjacentElement( "beforeend", parent );
+        const back_div = document.createElement( "div" );
+        back_div.classList.add( "nav-back" );
+        
+        document.body.insertAdjacentElement( "beforeend", back_div );
 
+        document.body.insertAdjacentElement( "beforeend", parent );
+        
         parent.offsetWidth;
-        parent.classList.add( "open" );
+
+        parent.classList.add( "show" );
+        back_div.classList.add( "show" );
 
         close_btn.addEventListener( "click", close_nav_menu );
+        back_div.addEventListener( "click", close_nav_menu );
 
         function close_nav_menu() {
             const nav_mobile = document.querySelector( ".nav-mobile" );
-            nav_mobile.classList.remove( "open" );
+            const nav_nack  = document.querySelector( ".nav-back" );
 
-            setTimeout( () => nav_mobile.remove(), 200 );
+            nav_mobile.classList.remove( "show" );
+            nav_nack.classList.remove( "show" );
+
+            setTimeout( () => {
+                nav_mobile.remove();
+                nav_nack.remove();
+            }, 200 );
         }
     } );
 }

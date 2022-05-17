@@ -1,27 +1,27 @@
 <footer class="footer container-fluid">
         <div class="d-flex flex-column">
             <section class="row top">
-                <div class="col-12 col-sm-7 col-md-5">
+                <div class="col-12 col-sm-5 col-md-5">
                     <div class="row footer-large-button">
-                        <section class="col-12 col-sm-6">
+                        <section class="col-6 col-sm-6">
                             <i class="fad fa-phone-volume"></i>
                             <p>مشاوره تلفنی</p>
                         </section>
-                        <section class="col-12 col-sm-6">
+                        <section class="col-6 col-sm-6">
                             <i class="fad fa-user-group"></i>
                             <p>مشاوره حضوری</p>
                         </section>
-                        <section class="col-12 col-sm-6">
+                        <section class="col-6 col-sm-6">
                             <i class="fad fa-earth"></i>
                             <p>مشاوره آنلاین</p>
                         </section>
-                        <section class="col-12 col-sm-6">
+                        <section class="col-6 col-sm-6">
                             <i class="fad fa-file-invoice"></i>
                             <p>آزمون آنلاین</p>
                         </section>
                     </div>
                 </div>
-                <div class="col-12 col-sm-5 col-md-5 footer-list">
+                <div class="col-12 col-sm-7 col-md-5 footer-list">
                     <h4 class="title">خدمات مرکز</h4>
                     <ul class="ul-list">
                         <li>
@@ -61,12 +61,12 @@
 
 
                 </div>
-                <div class="col-12 col-md-2 text-start">
+                <div class="col-auto col-sm-auto col-md-2 text-start">
                     <a href="#">
                         <img src="../assets/image/enamad-1.png" class="img-fluid e-nemad"/>
                     </a>
                 </div>
-                <div class="col-12 text-start">
+                <div class="col col-sm text-start mt-auto">
                     <ul class="ul-social">
                         <li>
                             <a href="#" class="fab fa-twitter"></a>

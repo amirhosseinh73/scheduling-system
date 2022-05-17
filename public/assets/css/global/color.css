@@ -60,7 +60,8 @@
     --color-8-25: #00000040;
 
     --gradient-header: linear-gradient( 15deg, var(--light-3) 60%, var(--color-3) 100% );
-    --gradient-caption: linear-gradient( 205deg, var(--light-1) 0%, var(--color-7-50) 35%, transparent 90% );
+    /* --gradient-caption: linear-gradient( 205deg, var(--light-1) 0%, var(--color-7-50) 35%, transparent 90% ); */
+    --gradient-caption: linear-gradient( 205deg, var(--light-1) 0%, var(--color-7-50) 85%, transparent 100% );
     --gradient-footer: linear-gradient( 180deg, var(--color-7) 40%, var(--color-1) 90% );
 
     --swiper-theme-color: var(--color-4);
