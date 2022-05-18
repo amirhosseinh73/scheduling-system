@@ -24,7 +24,7 @@
         const base_url = "<?= base_url();?>";
     </script>
 </head>
-<body class="dashboard-body container-fluid">
+<body class="dashboard-body container-fluid <?= $classes?>">
 
     <div class="cs-modal-back"></div>
     <article id="profile_change_modal" class="cs-modal cs-edit-profile-modal">
@@ -102,16 +102,13 @@
         </div>
     </article>
 
-    <nav class="row flex-row-reverse flex-sm-row nav-header align-items-center">
-        <div class="col-12 col-sm-auto">
+    <nav class="row nav-header align-items-center">
+        <div class="col-auto col-sm-auto">
             <a href="<?= base_url();?>">
                 <img src="<?= base_url( "/assets/image/logo.png" ); ?>" class="img-fluid logo" alt="logo"/>
             </a>
         </div>
-        <div class="col-12 col-sm ms-sm-auto nav-list-parent">
-            <button type="button" class="btn text-color-7 nav-btn-collapse">
-                <i class="fad fa-bars"></i>
-            </button>
+        <div class="col col-sm ms-sm-auto nav-list-parent">
             <ul class="nav-list-ul">
                 <li class="btn-toggle-navbar">
                     <button type="button" class="btn text-color-7 nav-btn-collapse">
@@ -133,7 +130,7 @@
             </ul>
         </div>
         
-        <div class="col-12 col-sm-auto me-sm-auto">
+        <div class="col-auto col-sm-auto me-sm-auto">
             <div class="row nav-profile">
                 <div class="col">
                     <p id="user_fullname_gender_nav">
@@ -149,7 +146,7 @@
 
     <main class="container dashboard-main">
         <div class="row h-100">
-            <aside class="col-8 col-sm-4 col-lg-3 col-xl-2 dashboard-side-nav">
+            <aside class="col-8 col-sm-4 col-md-3 col-xl-2 dashboard-side-nav d-none d-lg-block">
                 <!-- <button type="button" class="btn-color-3 fas fa-arrow-right py-1 btn-close-side-nav"></button>  -->
                 <!-- <span class="wallet-balance">
                     موجودی کیف پول:

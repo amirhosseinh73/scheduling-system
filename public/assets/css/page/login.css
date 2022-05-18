@@ -2,12 +2,12 @@
 @import url("../header.css");
 @import url("../footer.css");
 
-.main {
+.main > article {
     margin: 5rem auto;
     max-width: 100%;
     width: 40rem;
     padding: 4rem 5rem;
-    background-color: var(--white);
+    background-color: var(--white-50);
     border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;

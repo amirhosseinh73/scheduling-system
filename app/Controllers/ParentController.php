@@ -113,10 +113,26 @@ class ParentController extends BaseController {
     }
 
     protected function renderPageSite( string $page, array $data, $header = "header", $footer = "footer" ) {
+        global $classes;
+        $classes = [
+            $data[ "page_name" ],
+            "$page-php"
+        ];
+
+        $data[ "classes" ] = implode( " ", $classes );
+
         return render_page( "Site/$page", $data, $header, $footer );
     }
 
     protected function renderPageDashboard( string $page, array $data, $header = "header-dashboard", $footer = "footer-dashboard" ) {
+        global $classes;
+        $classes = [
+            $data[ "page_name" ],
+            "$page-php"
+        ];
+
+        $data[ "classes" ] = implode( " ", $classes );
+
         return render_page( "Dashboard/$page", $data, $header, $footer );
     }
 

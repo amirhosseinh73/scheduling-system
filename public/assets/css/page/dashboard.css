@@ -548,8 +548,8 @@
 	right: 0;
 	top: 0;
 	bottom: 0;
-	width: 1rem;
-	height: 1rem;
+	width: 14px;
+	height: 14px;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -576,12 +576,15 @@
 
 .answer-radio > input:checked + label::after,
 .answer-checkbox > input:checked + label::after {
-	right: 0.25rem;
-	top: 0.25rem;
-	width: 0.5rem;
-	height: 0.5rem;
+	right: 4px;
+	top: 6px;
+	width: 6px;
+	height: 6px;
 	background-color: var(--color-2);
-	bottom: 0.25rem;
+	/* bottom: 0.25rem; */
+	/* left: 0; */
+	margin: initial;
+	bottom: unset;
 }
 
 .answer-radio > label::before,

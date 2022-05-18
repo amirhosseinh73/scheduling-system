@@ -223,6 +223,9 @@ a {
 .nav-list-ul > li {
     flex: 0 0 auto;
     /* max-width: 6rem; */
+}
+
+.nav-list-ul > li:not(:last-child) {
     margin: 0 0.75rem;
 }
 

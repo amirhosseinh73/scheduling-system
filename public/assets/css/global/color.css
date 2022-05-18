@@ -13,6 +13,19 @@
     --dark-1:  #222222;
     --black:   #000000;
 
+    --white-50:   #ffffff80;
+    --light-1-50: #eeeeee80;
+    --light-2-50: #dddddd80;
+    --light-3-50: #cccccc80;
+    --light-4-50: #bbbbbb80;
+    --light-5-50: #aaaaaa80;
+    --dark-5-50:  #99999980;
+    --dark-4-50:  #88888880;
+    --dark-3-50:  #66666680;
+    --dark-2-50:  #44444480;
+    --dark-1-50:  #22222280;
+    --black-50:   #00000080;
+
     /*
     --color-1: #E17F00--;
     --color-2: #A70000--;
@@ -65,6 +78,7 @@
     --gradient-footer: linear-gradient( 180deg, var(--color-7) 40%, var(--color-1) 90% );
 
     --swiper-theme-color: var(--color-4);
+    --swiper-navigation-size: 2.5rem;
 
     --shadow-outset-small: 2px 2px 4px 0 var(--light-2);
     --shadow-inset-small: inset 2px 2px 4px 0 var(--light-2);

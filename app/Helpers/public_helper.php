@@ -23,7 +23,7 @@ defined( "IMAGE_DEFAULT" )          || define( "IMAGE_DEFAULT"          , "/uplo
 defined( "IMAGE_DEFAULT_MALE" )     || define( "IMAGE_DEFAULT_MALE"     , "/uploads/default-male.jpg" );
 defined( "IMAGE_DEFAULT_FEMALE" )   || define( "IMAGE_DEFAULT_FEMALE"   , "/uploads/default-female.jpg" );
 
-
+global $classes;
 //functions
 /**
  * @param string $page `index` | `contact-us`

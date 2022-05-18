@@ -24,10 +24,10 @@
         const base_url = "<?= base_url();?>";
     </script>
 </head>
-<body>
+<body class="<?= $classes?>">
     
-    <nav class="nav-absolute row flex-row-reverse flex-sm-row align-items-center">
-        <div class="col-12 col-sm ms-sm-auto nav-list-parent">
+    <nav class="nav-absolute row align-items-center">
+        <div class="col col-sm ms-sm-auto nav-list-parent">
             <!-- <button type="button" class="btn text-color-7">
                 <i class="fad fa-search"></i>
             </button> -->
@@ -66,7 +66,7 @@
                 <?php endif;?>
             </ul>
         </div>
-        <div class="col-12 col-sm-auto me-sm-auto">
+        <div class="col-auto col-sm-auto me-sm-auto logo-parent-nav">
             <a href="<?= base_url();?>">
                 <img src="<?= base_url( "/assets/image/logo.png" ); ?>" class="img-fluid logo" alt="logo"/>
             </a>

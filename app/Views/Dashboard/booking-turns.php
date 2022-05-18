@@ -1,4 +1,4 @@
-<article class="col-12 col-sm-8 col-lg-9 col-xl-10 align-content-center px-0 h-100">
+<article class="col align-content-center px-0 h-100">
     <div class="dashboard-main-container">
         <div class="col-12 h-100">
             <section class="dashboard-inside-container scroll row">

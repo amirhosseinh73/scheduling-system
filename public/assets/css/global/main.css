@@ -411,6 +411,7 @@ body {
 
 .btn-outline-6 {
     border-color: var(--color-6);
+    color: var(--color-6);
 }
 
 .btn-outline-7 {
@@ -443,6 +444,7 @@ body {
 
 .btn-outline-6:hover {
     background-color: var(--color-6);
+    color: var(--black);
 }
 
 .btn-outline-7:hover {

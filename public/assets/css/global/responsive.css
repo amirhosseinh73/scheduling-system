@@ -105,6 +105,8 @@
 
     .nav-mobile > .nav-list-ul > li {
         padding: 0.75rem 0.25rem;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .nav-mobile > .nav-list-ul > li:not([class*="btn"]) > a {
@@ -137,6 +139,11 @@
 
     .nav-mobile-close-btn:hover {
         color: var(--color-1);
+    }
+
+    .page-contact-us-contact-info .vector {
+        width: 190%;
+        margin-right: -8rem;
     }
 }
 
@@ -214,6 +221,20 @@
     .e-nemad {
         margin-top: 0.5rem;
     }
+
+    .addresses-list {
+        max-width: 90%;
+        margin-top: 1.5rem;
+        margin-bottom: 0;
+    }
+
+    .addresses-list > li {
+        margin-bottom: 0.5rem;
+    }
+
+    .page-contact-us-contact-info::after {
+        top: 0.3rem;
+    }
 }
 
 @media ( max-width: 575.9px ) {
@@ -226,9 +247,10 @@
     }
 
     .header-description {
-        padding: 0.25rem 0.5rem;
+        padding: 0.5rem 0.75rem;
         width: 60%;
         bottom: 1rem;
+        right: 2rem;
     }
 
     .header-description > .description {
@@ -251,5 +273,40 @@
 
     .ul-list {
         margin-top: 1rem;
+    }
+
+    .login > .main > article {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    label.col-form-label {
+        display: block;
+    }
+
+    .nav-header .logo, .nav-absolute .logo {
+        height: 4rem;
+    }
+
+    .logo-parent-nav {
+        padding-right: 0.25rem;
+    }
+
+    .page-contact-us-contact-info .vector {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .page-contact-us-contact-info::after {
+        display: none;
+    }
+
+    .blog.single-blog-php > .main > .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #booking_price {
+        max-width: 7rem;
     }
 }

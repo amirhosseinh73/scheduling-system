@@ -219,7 +219,7 @@ function toggleNavbar() {
     if ( ! btn_navbar_selector ) return;
 
     btn_navbar_selector.addEventListener( "click", function() {
-        const nav_list = document.querySelector( "ul.nav-list-ul" ).cloneNode(true);
+        const nav_list = document.querySelector( "ul.nav-list-ul" ).cloneNode( true );
         const parent = document.createElement( "div" );
         const close_btn = document.createElement( "button" );
 
@@ -236,8 +236,16 @@ function toggleNavbar() {
 
         const login_button = parent.querySelector( ".btn-outline-6" );
         const register_button = parent.querySelector( ".btn-color-6" );
-        login_button.remove();
-        register_button.remove();
+        if ( login_button ) login_button.remove();
+        if ( register_button ) register_button.remove();
+
+        let side_nav = document.querySelector( "ul.side-nav-ul" );
+        if ( side_nav ) {
+            side_nav = side_nav.cloneNode( true );
+            side_nav.classList.add( "mobile" );
+            parent.insertAdjacentHTML( "beforeend", `<h5 class="title text-color-1">منوی داشبورد</h5>` );
+            parent.insertAdjacentElement( "beforeend", side_nav );
+        }
 
         const back_div = document.createElement( "div" );
         back_div.classList.add( "nav-back" );

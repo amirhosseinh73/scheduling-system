@@ -34,10 +34,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="row align-items-end mx-0">
-                            <div class="col-12 col-sm-6 p-0">
+                            <div class="col-12 col-sm-4 col-lg-6 p-0">
                                 <img src="../assets/image/contact-us-vector.png" class="vector"/>
                             </div>
-                            <div class="col-12 col-sm-6 contact-info">
+                            <div class="col-12 col-sm-8 col-lg-6 contact-info">
                                 <h3 class="title text-color-1 big">مرکز مشاوره کیمیای مهر</h3>
                                 <ul class="addresses-list">
                                     <li>
@@ -74,7 +74,7 @@
         </article>
         <article class="container mt-5 mb-4">
             <div class="row">
-                <div class="col-12 col-sm-5">
+                <div class="col-12 col-md-5">
                     <h4 class="title medium text-color-1">سوالات متداول</h4>
                     <p class="description">
                         اگر در جایی به مشکلی خوردید یا ابهامی برایتان وجود دارد، میتوانید پاسخ سوال خود را در اینجا بیابید.
@@ -87,7 +87,7 @@
                         مشاهده همه سوالات
                     </button>
                 </div>
-                <div class="col-12 col-sm-7">
+                <div class="col-12 col-md-7">
                     <div class="accordion accordion-flush" id="faq_accordion">
                         <?php
                         if ( exists( $faq ) && is_array( $faq ) ) :
