@@ -65,7 +65,7 @@ class Exam {
                     <img src="${ exam.image }"/>
                     <div>
                         <h5 class="card-title">${ exam.title }</h5>
-                        <p class="card-description-2 mt-4">
+                        <p class="card-description-2">
                             <span>تعداد سوالات</span>
                             <abbr>${ exam.questions_count }</abbr>
                         </p>
@@ -76,7 +76,7 @@ class Exam {
                             دقیقه
                             </abbr>
                         </p>
-                        <p class="card-description-3 text-color-3 mt-4">برای شروع آزمون کلیک کنید.</p>
+                        <p class="card-description-3 text-color-3">برای شروع آزمون کلیک کنید.</p>
                     </div>
                 </section>`;
     }

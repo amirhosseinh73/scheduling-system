@@ -2,6 +2,18 @@
     display: none;
 }
 
+.table-responsive {
+	width: 100%;
+	max-width: 100%;
+	display: block;
+}
+
+.appointment-card.small > div {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
 @media ( max-width: 1919.9px ) {
     
 }
@@ -34,6 +46,16 @@
     .blog-box-card {
         height: 25rem;
     }
+
+    .appointment-card.small {
+        width: calc(33.33333% - 0.2rem);
+        height: 10rem;
+    }
+
+    .appointment-card.small:nth-of-type(2n) {
+        margin-right: 0.4rem;
+        margin-left: 0.4rem;
+    }
 }
 
 @media ( max-width: 991.9px ) {
@@ -43,6 +65,15 @@
 
     .nav-list-ul:not( .mobile ) > li:not([class^="btn"]) {
         display: none;
+    }
+
+    .nav-list-ul:not(.mobile) {
+        padding: 0;
+        margin: auto 0 auto auto;
+    }
+
+    .nav-list-ul:not(.mobile) i {
+        font-size: 1.5rem;
     }
 
     .btn-toggle-navbar {
@@ -64,7 +95,7 @@
         -moz-transition: all 200ms linear;
         -ms-transition: all 200ms linear;
         -o-transition: all 200ms linear;
-}
+    }
 
     .nav-back.show {
         opacity: 0.4;
@@ -88,7 +119,7 @@
         -o-transition: all 200ms linear;
         right: -20rem;
         opacity: 0;
-}
+    }
 
     .nav-mobile.show {
         right: 0;
@@ -235,6 +266,16 @@
     .page-contact-us-contact-info::after {
         top: 0.3rem;
     }
+
+    .appointment-card.small {
+        width: calc(50% - 0.2rem);
+        height: 10rem;
+    }
+
+    .appointment-card.small:nth-of-type(2n) {
+        margin-right: 0.4rem;
+        margin-left: 0;
+    }
 }
 
 @media ( max-width: 575.9px ) {
@@ -308,5 +349,20 @@
 
     #booking_price {
         max-width: 7rem;
+    }
+
+    .appointment-card.small {
+        width: 100%;
+        height: 12rem;
+    }
+
+    .appointment-card.small:nth-of-type(2n) {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .appointment-card.small {
+        margin-left: auto;
+        margin-right: auto;
     }
 }

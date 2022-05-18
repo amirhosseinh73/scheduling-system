@@ -33,7 +33,7 @@
             </button> -->
             <ul class="nav-list-ul">
                 <li class="btn-toggle-navbar">
-                    <button type="button" class="btn text-color-7 nav-btn-collapse">
+                    <button type="button" class="btn text-color-1 nav-btn-collapse">
                         <i class="fad fa-bars"></i>
                     </button>
                 </li>

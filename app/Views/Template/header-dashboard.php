@@ -103,7 +103,7 @@
     </article>
 
     <nav class="row nav-header align-items-center">
-        <div class="col-auto col-sm-auto">
+        <div class="col-auto col-sm-auto d-none d-lg-block">
             <a href="<?= base_url();?>">
                 <img src="<?= base_url( "/assets/image/logo.png" ); ?>" class="img-fluid logo" alt="logo"/>
             </a>
@@ -111,7 +111,7 @@
         <div class="col col-sm ms-sm-auto nav-list-parent">
             <ul class="nav-list-ul">
                 <li class="btn-toggle-navbar">
-                    <button type="button" class="btn text-color-7 nav-btn-collapse">
+                    <button type="button" class="btn text-color-1 nav-btn-collapse">
                         <i class="fad fa-bars"></i>
                     </button>
                 </li>
@@ -191,7 +191,7 @@
                                 <span>نوبت های گرفته شده</span>
                             </a>
                         </li>
-                        <li <?php if ( $page_name === "question_answer_index" ) echo "class='active'" ?>>
+                        <li <?php if ( $page_name === "question_answer_index_patient" ) echo "class='active'" ?>>
                             <a href="<?= base_url( "/dashboard/question-answer/patient" )?>">
                                 <i class="far fa-question-circle"></i>
                                 <span>پرسش و پاسخ</span>
