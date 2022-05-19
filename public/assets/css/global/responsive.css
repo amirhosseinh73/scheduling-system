@@ -8,7 +8,7 @@
 	display: block;
 }
 
-.appointment-card.small > div {
+.appointment-card > div {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -52,7 +52,7 @@
         height: 10rem;
     }
 
-    .appointment-card.small:nth-of-type(2n) {
+    .appointment-card:nth-of-type(2n) {
         margin-right: 0.4rem;
         margin-left: 0.4rem;
     }
@@ -267,6 +267,16 @@
         top: 0.3rem;
     }
 
+    .appointment-card {
+        width: 100%;
+        height: 10rem;
+    }
+
+    .appointment-card:nth-of-type(2n) {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
     .appointment-card.small {
         width: calc(50% - 0.2rem);
         height: 10rem;
@@ -364,5 +374,25 @@
     .appointment-card.small {
         margin-left: auto;
         margin-right: auto;
+    }
+
+    #reservation_form {
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    #reservation_form > .col-6 {
+        flex: 0 0 calc( 50% - 1rem );
+        margin-bottom: 1rem;
+        overflow: auto;
+        width: 100%;
+    }
+
+    #reservation_form > .col-6:last-child {
+        margin-bottom: 0;
+    }
+
+    .cs-modal-body .profile-image {
+        margin: 2rem auto;
     }
 }

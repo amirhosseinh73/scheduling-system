@@ -38,14 +38,14 @@
             </section>
             <section class="cs-modal-body">
                 <div class="row">
-                    <div class="col-auto">
+                    <div class="col-12 col-sm-auto">
                         <label for="choose_profile_image" class="profile-image">
                             <img id="profile_image" src="<?= $user_info->image ?>" class="w-100 h-100 object-fit-cover"/>
                         </label>
                         <label for="choose_profile_image" class="btn-color-4">تغییر عکس</label>
                         <input type="file" class="d-none" accept="image/*" id="choose_profile_image"/>
                     </div>
-                    <div class="col">
+                    <div class="col-12 col-sm">
                         <form id="form_edit_profile">
                             <div class="row text-end align-items-center">
                                 <div class="col-12 col-sm-6 mb-4">

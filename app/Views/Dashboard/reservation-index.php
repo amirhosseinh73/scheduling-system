@@ -37,7 +37,7 @@
 
                 <section class="dashboard-inside-container">
                     <form id="reservation_form" class="row h-100" method="POST">
-                        <div class="col-12 col-sm-8 h-100">
+                        <div class="col-6 col-sm-7 col-md-8 h-100">
                             <div class="inside-container-right">
                                 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                                     <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -63,7 +63,7 @@
                                     </p> -->
                             </div>
                         </div>
-                        <div class="col-12 col-sm-4 px-0 h-100">
+                        <div class="col-6 col-sm-5 col-md-4 px-0 h-100">
                             <div class="inside-container-left row mx-0 d-none">
                                 <div class="col-12">
                                     <h4 id="detail_name" class="title text-color-1 mt-3"></h4>
