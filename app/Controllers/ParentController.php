@@ -28,48 +28,28 @@ class ParentController extends BaseController {
      * @var bool   $recovery_password
      * @var string $subject
      */
-    protected string $email       = "";
-    protected string $name        = "";
-    protected string $password    = "";
-    protected string $subject     = "";
-    protected bool   $is_recovery = FALSE;
+    protected string $email_send       = "";
+    protected string $email_name        = "";
+    protected string $email_subject     = "";
 
     protected function sendEmail() {
 
-        if ( $this->is_recovery ) {
-            $message = "<div style='direction: ltr !important;'>
-                            Dear Mr/Mrs {$this->name} your <b>password</b> successfully changed!
-                            <br/>
-                            ------------------------
-                            <br/>
-                            your new password is: <b>{$this->password}</b>
-                            <br/>
-                    </div>";
-        } else {
-            $message = "<div style='direction: ltr !important;'>
-                            Dear Mr/Mrs {$this->name} welcome to
-                            <b>
-                            BookMo!
-                            </b>
-                            <br/>
-                            ------------------------
-                            <br/>
-                            username: <b>{$this->email}</b>
-                            <br/>
-                            password: <b>{$this->password}</b>
-                            <br/>
-                    </div>";
-        }
+        $message = "<div style='direction: ltr !important;'>
+                        آقای/خانم {$this->email_name} عزیز! پاسخ آزمون شما ثبت شد!
+                        <b>
+                        موسسه مشاوره کیمیای مهر
+                        </b>
+                        <br/>
+                        ------------------------
+                        <br/>
+                </div>";
         
         $config = array();
         $email_config = Services::email();
         $config["protocol"]    = "SMTP";
-        // $config["SMTPHost"]    = "smtp.gmail.com";
-        // $config["SMTPUser"]    = "amirhoseinh1373@gmail.com";
-        // $config["SMTPPass"]    = "Am0016973178iR#";
-        $config["SMTPHost"]    = "mail.bookmoapp.com";
-        $config["SMTPUser"]    = "support@bookmoapp.com";
-        $config["SMTPPass"]    = "MeoWjQOj&{_I";
+        $config["SMTPHost"]    = "smtp.gmail.com";
+        $config["SMTPUser"]    = "amirhoseinh1373@gmail.com";
+        $config["SMTPPass"]    = "AmiR0016973178#aMIr@";
         $config["SMTPPort"]    = 465;
         $config["SMTPTimeout"] = 60;
         $config["SMTPCrypto"]  = "ssl";
@@ -77,9 +57,9 @@ class ParentController extends BaseController {
         
         $email_config->initialize($config);
         
-        $email_config->setTo($this->email);
-        $email_config->setFrom( $config["SMTPUser"], "Support BookMo" );
-        $email_config->setSubject($this->subject);
+        $email_config->setTo($this->email_send);
+        $email_config->setFrom( $config["SMTPUser"], "Support KimiyaMehr" );
+        $email_config->setSubject($this->email_subject);
         $email_config->setMessage($message);
     
         // if (mail($email_details->email, $email_details->subject, $message, "From: amirhoseinh1373@gmail.com")) {

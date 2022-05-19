@@ -101,6 +101,7 @@ $routes->group( "dashboard" , [ "filter" => "IsLogin" ], function( $routes ) {
         $routes->get( "data", "Dashboard\ExamController::get" );
         $routes->get( "page", "Dashboard\ExamController::page" );
         $routes->get( "page/data", "Dashboard\ExamController::getQuestions" );
+        $routes->post( "submit", "Dashboard\ExamController::submitAnswer" );
     } );
 } );
 

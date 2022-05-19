@@ -16,6 +16,8 @@ function doc_ready(fn) {
 async function ajax_fetch( url, success_function, data ) {
     document.body.insertAdjacentHTML( "beforeend", html_loading() );
     const form_data = new FormData();
+
+    const preloader = document.getElementById( "preloader" );
     if ( data.method.toUpperCase() === "POST" ) {
         for ( const key in data.data ) {
             form_data.append( key , data.data[key] );
@@ -28,11 +30,11 @@ async function ajax_fetch( url, success_function, data ) {
     } )
     .then( ( response ) => response.json() )
     .then( ( response ) => {
-        document.getElementById( "preloader" ).remove();
+        if ( preloader ) preloader.remove();
         return success_function( response );
     } )
     .catch( ( error ) => {
-        document.getElementById( "preloader" ).remove();
+        if ( preloader ) preloader.remove();
         console.error( 'Error:', error );
     } );
 }

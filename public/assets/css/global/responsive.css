@@ -5,7 +5,7 @@
 .table-responsive {
 	width: 100%;
 	max-width: 100%;
-	display: block;
+	display: table;
 }
 
 .appointment-card > div {
@@ -394,5 +394,9 @@
 
     .cs-modal-body .profile-image {
         margin: 2rem auto;
+    }
+
+    .table-responsive {
+        display: block;
     }
 }

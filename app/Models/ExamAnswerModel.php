@@ -19,7 +19,10 @@ class ExamAnswerModel extends ParentModel
     protected $deletedField     = 'deleted_at';
 
     protected $allowedFields    = [
+        "exam_ID",
         "question_ID",
-        "answer",
+        "answer_ID",
+        "answer_text",
+        "user_ID",
     ];
 }

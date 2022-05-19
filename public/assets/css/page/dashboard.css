@@ -579,17 +579,17 @@
 	color: var(--color-1);
 }
 
-.answer-radio > input:checked + label::after,
-.answer-checkbox > input:checked + label::after {
+.answer-radio > input:checked + label::after, .answer-checkbox > input:checked + label::after {
 	right: 4px;
-	top: 6px;
+	top: 0;
 	width: 6px;
 	height: 6px;
 	background-color: var(--color-2);
 	/* bottom: 0.25rem; */
 	/* left: 0; */
-	margin: initial;
+	/* margin: initial; */
 	bottom: unset;
+	bottom: 0;
 }
 
 .answer-radio > label::before,

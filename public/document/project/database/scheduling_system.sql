@@ -128,7 +128,7 @@ CREATE TABLE `exam_answer` (
 CREATE TABLE `exam_question` (
   `ID` int(11) NOT NULL,
   `exam_ID` int(11) NOT NULL,
-  `type` tinyint(1) NOT NULL COMMENT '0: Descriptiveو\r\n1: checkbox,\r\n2: radio',
+  `type` tinyint(1) NOT NULL COMMENT '0: checkbox,\r\n1: radio',
   `status` bit(1) NOT NULL DEFAULT b'1' COMMENT '0: Not Show,\r\n1: show',
   `question` longtext COLLATE utf8_persian_ci DEFAULT NULL,
   `answer` longtext COLLATE utf8_persian_ci NOT NULL COMMENT 'JSON or TEXT',

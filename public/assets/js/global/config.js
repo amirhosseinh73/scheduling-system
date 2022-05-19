@@ -39,6 +39,7 @@ const route = {
     exam_data: base_url + "/dashboard/exam/data",
     exam_page: base_url + "/dashboard/exam/page",
     exam_page_data: base_url + "/dashboard/exam/page/data",
+    exam_submit: base_url + "/dashboard/exam/submit",
 };
 
 const state = {

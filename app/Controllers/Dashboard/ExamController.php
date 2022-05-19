@@ -5,6 +5,7 @@ namespace App\Controllers\Dashboard;
 use App\Controllers\ParentController;
 use App\Libraries\Alert;
 use App\Libraries\TextLibrary;
+use App\Models\ExamAnswerModel;
 use App\Models\ExamModel;
 use App\Models\ExamQuestionModel;
 
@@ -105,5 +106,63 @@ class ExamController extends ParentController {
         endforeach;
 
         return Alert::Success( 200, $data_return );
+    }
+
+    public function submitAnswer() {
+        $questions_data = json_decode( $this->request->getPost( "all_questions" ) );
+
+        if ( ! exists( $questions_data ) ) return Alert::Error( -1 );
+
+        $user_info = get_user_info();
+
+        if ( ! exists( $user_info ) ) return Alert::Error( -1 );
+
+        $exam_answer_model = new ExamAnswerModel();
+
+        $select_exist_answer = $exam_answer_model
+            ->where( "exam_ID", $questions_data[ 0 ]->exam_ID )
+            ->where( "user_ID", $user_info->ID )
+            ->findAll();
+
+        // $select_exist_answer = json_decode( json_encode_unicode( $select_exist_answer ) , TRUE );
+
+        if ( $select_exist_answer ) :
+            //soft delete old answer of user
+            $old_answers_ID = array_column( $select_exist_answer, "ID" );
+            
+            $exam_answer_model->delete( $old_answers_ID );
+
+        endif;
+
+        $data_insert = array();
+        foreach ( $questions_data as $answer ) :
+
+            array_push(
+                $data_insert,
+                array(
+                    "question_ID" => $answer->question_ID,
+                    "answer_ID" => $answer->answer_ID,
+                    "answer_text" => $answer->answer_text,
+                    "user_ID" => $user_info->ID,
+                    "exam_ID" => $answer->exam_ID,
+                )
+            );
+
+        endforeach;
+
+        try {
+            $exam_answer_model->insertBatch( $data_insert );
+
+            if ( ! $user_info->email ) return Alert::Error( 118 );
+
+            $this->email_name = $user_info->firstname . " " . $user_info->lastname;
+            $this->email_send = $user_info->email;
+            $this->email_subject = "آزمون آنلاین";
+            $this->sendEmail();
+        } catch ( \Exception $e ) {
+            return Alert::Error( 102 );
+        }
+
+        return Alert::Success( 200, [], base_url( "dashboard/exam" ) );
     }
 }
