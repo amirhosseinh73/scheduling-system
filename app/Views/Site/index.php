@@ -3,7 +3,7 @@
         <div class="image-back">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
+                    <section class="swiper-slide">
                         <img src="<?= base_url( "../assets/image/slide-1.jpg" )?>" class="w-100 h-100 object-fit-cover object-position-top-rem" alt="" />
                         <div class="header-description">
                             <h1 class="title">مشاوره تلفنی</h1>
@@ -14,8 +14,8 @@
                                  تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
                             </p>
                         </div>
-                    </div>
-                    <div class="swiper-slide">
+                    </section>
+                    <section class="swiper-slide">
                         <img src="<?= base_url( "../assets/image/slide-2.jpg" )?>" class="w-100 h-100 object-fit-cover" alt="" />
                         <div class="header-description">
                             <h1 class="title">پرسش و پاسخ</h1>
@@ -24,7 +24,7 @@
                                  تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
                             </p>
                         </div>
-                    </div>
+                    </section>
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
@@ -42,7 +42,7 @@
             </section>
             <section class="col-11 col-sm-12 mt-4">
                 <div class="row">
-                    <section class="col-6 col-sm-6 col-md-3 advice-box">
+                    <section class="col-6 col-sm-6 col-md-3 advice-box" onclick="window.location.href=base_url + '/dashboard'">
                         <div class="parent">
                             <img src="<?= base_url( "assets/icon/advice-meeting.png" )?>" class="image" alt=""/>
                             <h3 class="title">مشاوره حضوری</h3>
@@ -52,7 +52,7 @@
                             </p>
                         </div>
                     </section>
-                    <section class="col-6 col-sm-6 col-md-3 advice-box">
+                    <section class="col-6 col-sm-6 col-md-3 advice-box" onclick="window.location.href=base_url + '/dashboard'">
                         <div class="parent">
                             <img src="<?= base_url( "assets/icon/advice-phone.png" )?>" class="image" alt=""/>
                             <h3 class="title">مشاوره تلفنی</h3>
@@ -62,7 +62,7 @@
                             </p>
                         </div>
                     </section>
-                    <section class="col-6 col-sm-6 col-md-3 advice-box">
+                    <section class="col-6 col-sm-6 col-md-3 advice-box" onclick="window.location.href=base_url + '/dashboard/exam'">
                         <div class="parent">
                             <img src="<?= base_url( "/assets/icon/advice-online-exam.png" )?>" class="image" alt=""/>
                             <h3 class="title">آزمون آنلاین</h3>
@@ -72,7 +72,7 @@
                             </p>
                         </div>
                     </section>
-                    <section class="col-6 col-sm-6 col-md-3 advice-box">
+                    <section class="col-6 col-sm-6 col-md-3 advice-box" onclick="window.location.href=base_url + '/dashboard'">
                         <div class="parent">
                             <img src="<?= base_url( "/assets/icon/advice-faq.png" )?>" class="image" alt=""/>
                             <h3 class="title">پرسش و پاسخ</h3>

@@ -3,63 +3,53 @@
             <section class="row top">
                 <div class="col-12 col-sm-5 col-md-5">
                     <div class="row footer-large-button">
-                        <section class="col-6 col-sm-6">
+                        <section class="col-6 col-sm-6" onclick="window.location.href=base_url + '/dashboard'">
                             <i class="fad fa-phone-volume"></i>
                             <p>مشاوره تلفنی</p>
                         </section>
-                        <section class="col-6 col-sm-6">
+                        <section class="col-6 col-sm-6" onclick="window.location.href=base_url + '/dashboard'">
                             <i class="fad fa-user-group"></i>
                             <p>مشاوره حضوری</p>
                         </section>
-                        <section class="col-6 col-sm-6">
+                        <section class="col-6 col-sm-6" onclick="window.location.href=base_url + '/dashboard'">
                             <i class="fad fa-earth"></i>
                             <p>مشاوره آنلاین</p>
                         </section>
-                        <section class="col-6 col-sm-6">
+                        <section class="col-6 col-sm-6" onclick="window.location.href=base_url + '/dashboard/exam'">
                             <i class="fad fa-file-invoice"></i>
                             <p>آزمون آنلاین</p>
                         </section>
                     </div>
                 </div>
                 <div class="col-12 col-sm-7 col-md-5 footer-list">
-                    <h4 class="title">خدمات مرکز</h4>
+                    <h4 class="title">دسترسی سریع</h4>
                     <ul class="ul-list">
                         <li>
-                            <a href="#">مشاوره ازدواج</a>
+                            <a href="<?= base_url()?>">
+                                صفحه اصلی
+                            </a>
                         </li>
                         <li>
-                            <a href="#">مشاوره ازدواج</a>
+                            <a href="<?= base_url( "/page/gallery" )?>">
+                                گالری تصاویر
+                            </a>
                         </li>
                         <li>
-                            <a href="#">مشاوره ازدواج</a>
+                            <a href="<?= base_url( "/page/faq" )?>">
+                                سوالات متداول
+                            </a>
                         </li>
                         <li>
-                            <a href="#">مشاوره ازدواج</a>
+                            <a href="<?= base_url( "/page/about-us" )?>">
+                                درباره ما
+                            </a>
                         </li>
                         <li>
-                            <a href="#">مشاوره ازدواج</a>
-                        </li>
-                        <li>
-                            <a href="#">مشاوره ازدواج</a>
-                        </li>
-                        <li>
-                            <a href="#">مشاوره ازدواج</a>
-                        </li>
-                        <li>
-                            <a href="#">مشاوره ازدواج</a>
-                        </li>
-                        <li>
-                            <a href="#">مشاوره ازدواج</a>
-                        </li>
-                        <li>
-                            <a href="#">مشاوره ازدواج</a>
-                        </li>
-                        <li>
-                            <a href="#">مشاوره ازدواج</a>
+                            <a href="<?= base_url( "/page/contact-us" )?>">
+                                تماس با ما
+                            </a>
                         </li>
                     </ul>
-
-
                 </div>
                 <div class="col-auto col-sm-auto col-md-2 text-start">
                     <a href="#">
