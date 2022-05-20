@@ -248,14 +248,17 @@ function sms_ir_ultra_fast_send_service( $mobile, $param_1, $value_1, $param_2 =
                     "Parameter" => "$param_1",
                     "ParameterValue" => $value_1
                 ),
-                ( exists( $param_2 ) ? array(
-                    "Parameter" => "$param_2",
-                    "ParameterValue" => $value_2
-                ) : array() )
             ),
             "Mobile" => $mobile,
             "TemplateId" => $template_ID,
         );
+        if ( exists( $param_2 ) ) {
+            $data[ "ParameterArray" ][] =  array(
+                "Parameter" => "$param_2",
+                "ParameterValue" => $value_2
+            );
+        }
+
         $SmsIR_UltraFastSend = new SmsIrUltraFastSend($APIKey, $SecretKey, $APIURL);
         $UltraFastSend = $SmsIR_UltraFastSend->ultraFastSend($data);
 
@@ -267,7 +270,7 @@ function sms_ir_ultra_fast_send_service( $mobile, $param_1, $value_1, $param_2 =
 
 function gender_text( $user_info ) {
     if ( is_null( $user_info->gender ) ) :
-        return "آقای / خانم ";
+        return "آقای/خانم ";
     elseif ( $user_info->gender ) :
         return "آقای ";
     elseif ( ! $user_info->gender ) :
