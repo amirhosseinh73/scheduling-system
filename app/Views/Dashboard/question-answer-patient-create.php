@@ -4,7 +4,7 @@
             <a href="<?= base_url( "/dashboard/question-answer/patient" )?>" class="btn-back fas fa-arrow-alt-right"></a>
             <section class="dashboard-inside-container scroll height-scroll-less mt-5">
                 <div class="col-12 h-100">
-                    <div class="inside-container-center px-2 align-items-center">
+                    <div class="inside-container-center px-2 align-items-center h-auto overflow-hidden">
                         <div class="col-12">
                             <h5 class="title text-black">پرسش خود را مطرح کنید.</h5>
                         </div>
