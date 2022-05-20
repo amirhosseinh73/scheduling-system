@@ -119,7 +119,7 @@
                     <a href="<?= base_url() ?>">صفحه اصلی</a>
                 </li>
                 <li>
-                    <a href="<?= base_url( "/category/blog" )?>">وبلاگ</a>
+                    <a href="<?= base_url( "/page/blog" )?>">وبلاگ</a>
                 </li>
                 <li>
                     <a href="<?= base_url( "/page/about-us" )?>">درباره ما</a>

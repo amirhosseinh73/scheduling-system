@@ -15,8 +15,8 @@ class PostController extends ParentController {
 
         // if ( $post_type !== "blog" && $post_type !== "page" ) return redirect()->to( base_url() );
 
-        if ( $post_type === "blog" ) return $this->loadBlog();
-        elseif( $post_type === "page" ) return $this->loadPage();
+        if( $post_type === "page" ) return $this->loadPage();
+        elseif ( $post_type === "blog" ) return $this->loadBlog();
 
         return redirect()->to( base_url() );
     }
@@ -61,18 +61,26 @@ class PostController extends ParentController {
             "description"       => TextLibrary::description( "page" ),
             "user_info"         => $user_info,
         );
-
-        if ( strpos( $select_page->url, "about-us" ) ) {
-            return $this->renderPageSite( "page-about", $data_page );
-        } elseif( strpos( $select_page->url, "contact-us" ) ) {
-
-            $data_page[ "metadata" ] = $this->handleMetadata( "contact_us" );
-            $data_page[ "faq" ] = $this->loadFAQ();
-
-            return $this->renderPageSite( "page-contact", $data_page );
-        } else {
-            return $this->renderPageSite( "page-default", $data_page );
-        }
+        switch ( TRUE ) :
+            case strpos( $select_page->url, "about-us" ):
+                return $this->renderPageSite( "page-about", $data_page );
+            case strpos( $select_page->url, "contact-us" ):
+                $data_page[ "metadata" ] = $this->handleMetadata( "contact_us" );
+                $data_page[ "faq" ] = $this->loadFAQ();
+    
+                return $this->renderPageSite( "page-contact", $data_page );
+            case strpos( $select_page->url, "blog" ):
+                $data_page[ "blog" ] = $this->blogData( 16 );
+                return $this->renderPageSite( "page-blog-category", $data_page );
+            default:
+                if ( strpos( $select_page->url, "faq" ) ) {
+                    $data_page[ "faq" ] = $this->loadFAQ();
+                } elseif ( strpos( $select_page->url, "gallery" ) ) {
+                    $data_page[ "gallery" ] = $this->loadGallery();
+                    $data_page[ "page_name_2" ] = "gallery";
+                }
+                return $this->renderPageSite( "page-default", $data_page );
+        endswitch;
     }
 
     /**
@@ -108,12 +116,52 @@ class PostController extends ParentController {
         return $select_post;
     }
 
-    public function loadFAQ() {
+    public function loadFAQ( $limit = 8 ) {
         $faq_model = new FAQModel();
 
-        $select_faq = $faq_model->orderBy( "updated_at", "DESC" )->customFindAll( FALSE, 8, 0 );
+        $select_faq = $faq_model->orderBy( "updated_at", "DESC" )->customFindAll( FALSE, $limit, 0 );
 
         return $select_faq;
+    }
+
+    public function blogData( $limit = 4 ) {
+        $post_model = new PostModel();
+
+        $select_blog = $post_model
+            ->where( "type", TRUE ) //blog is 1
+            // ->where( "status", TRUE ) //draft is 0
+            ->where( "publish_at <", date( "Y-m-d H:i:s" ) )
+            ->orderBy( "publish_at", "DESC" )
+            ->customFindAll( FALSE, $limit, 0 );
+
+        foreach( $select_blog as $blog ) :
+            $blog = $this->handlePostData( $blog, BLOG_URL, IMAGE_DIR_BLOG );
+        endforeach;
+
+        return (object)array(
+            "title_head" => TextLibrary::title( "blog" ),
+            "data"       => $select_blog,
+        );
+    }
+
+    public function loadGallery() {
+        $path  = FCPATH . "uploads/gallery";
+        $files = scandir( $path );
+        $files = array_diff( scandir( $path ), array( '.' , '..' ) );
+
+        $thumbnails = array();
+        $images = array();
+        foreach( $files as $file ) {
+            $url = base_url( "uploads/gallery/" . $file );
+
+            if ( strpos( $file, "tn" ) ) $thumbnails[] = $url;
+            else $images[] = $url;
+        }
+        
+        return [
+            "thumbnails" => $thumbnails,
+            "images"     => $images,
+        ];
     }
 
 }

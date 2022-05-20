@@ -49,6 +49,11 @@ button > i {
 
 body {
     position: relative;
+    overflow-x: hidden;
+}
+
+a:hover {
+    color: var(--color-2);
 }
 
 .text-color-1 {

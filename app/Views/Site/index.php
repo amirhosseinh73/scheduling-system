@@ -122,13 +122,13 @@
         </article>
     </main>
 
-    <article id="blog" class="my-5 container">
+    <article id="blog" class="mt-5 container">
         <div class="row">
             <div class="col-12">
                 <h3 class="title big text-dark-2"><?= $blog->title_head ?></h3>
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-4">
             <?php 
                 if ( exists( $blog->data ) && is_array( $blog->data ) ) :
                     foreach( $blog->data as $datum ) :

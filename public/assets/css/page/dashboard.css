@@ -489,6 +489,10 @@
 	margin: 0;
 }
 
+.ol-question {
+	width: 100%;
+}
+
 .ol-question > li {
 	margin-bottom: 2.5rem;
 }

@@ -12,8 +12,17 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/sweetalert2.min.css" );?>" />
     <?php if ( $page_name === "index" ) : ?>
         <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/index.css" );?>" />
+        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/blog.css" );?>" />
     <?php elseif ( $page_name === "blog" || $page_name === "page" ) : ?>
+
+        <?php if ( $page_name_2 === "gallery" ) : ?>
+            <link rel="stylesheet" href="<?= base_url( "/assets/css/gallery/hero-slider-style.css" )?>">                              
+            <link rel="stylesheet" href="<?= base_url( "/assets/css/gallery/magnific-popup.css" )?>">                                 
+            <link rel="stylesheet" href="<?= base_url( "/assets/css/gallery/templatemo-style.css" )?>">                                   
+        <?php endif;?>
+
         <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/single.css" );?>" />
+        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/blog.css" );?>" />
     <?php elseif ( $page_name === "register" || $page_name === "login" ) : ?>
         <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/login.css" );?>" />
     <?php endif; ?>
@@ -41,7 +50,7 @@
                     <a href="<?= base_url() ?>">صفحه اصلی</a>
                 </li>
                 <li>
-                    <a href="<?= base_url( "/category/blog" )?>">وبلاگ</a>
+                    <a href="<?= base_url( "/page/blog" )?>">وبلاگ</a>
                 </li>
                 <li>
                     <a href="<?= base_url( "/page/about-us" )?>">درباره ما</a>

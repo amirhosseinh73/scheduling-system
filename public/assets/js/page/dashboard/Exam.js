@@ -129,12 +129,15 @@ class Exam {
                             <abbr>${ exam.questions_count }</abbr>
                         </p>
                         <p class="card-description-2">
+                            ${ exam.description }
+                        </p>
+                        <!--<p class="card-description-2">
                             <span>زمان</span>
                             <abbr>
                             ${ exam.time }
                             دقیقه
                             </abbr>
-                        </p>
+                        </p>-->
                         <p class="card-description-3 text-color-3">برای شروع آزمون کلیک کنید.</p>
                     </div>
                 </section>`;

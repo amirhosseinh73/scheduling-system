@@ -151,9 +151,8 @@ class ExamController extends ParentController {
         endforeach;
 
         try {
-            $exam_answer_model->insertBatch( $data_insert );
-
             if ( ! $user_info->email ) return Alert::Error( 118 );
+            $exam_answer_model->insertBatch( $data_insert );
 
             $this->email_name = $user_info->firstname . " " . $user_info->lastname;
             $this->email_send = $user_info->email;
