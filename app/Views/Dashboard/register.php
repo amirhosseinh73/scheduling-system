@@ -26,11 +26,11 @@
                     <input id="mobile" type="text" inputmode="numeric" data-type="number" class="form-control dir-ltr" placeholder="09*********"/>
                 </section>
 
-                <section class="col-12 col-sm-6 mb-4">
+                <section class="col-12 col-sm-6 mb-4 d-none">
                     <label class="col-form-label mb-4">نوع کاربری خود را مشخص کنید.</label>
                     <input class="form-check-input" type="radio" value="1" name="type_user" id="type_user_1">
                     <label class="form-check-label" for="type_user_1">پزشک</label>
-                    <input class="form-check-input me-5" type="radio" value="2" name="type_user" id="type_user_2">
+                    <input class="form-check-input me-5" type="radio" checked value="2" name="type_user" id="type_user_2">
                     <label class="form-check-label" for="type_user_2">مراجعه کننده</label>
                 </section>
 
