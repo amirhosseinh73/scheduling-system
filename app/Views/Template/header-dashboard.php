@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
     <title><?= $title_head ?> | <?= $description_head ?></title>
 
-    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/bootstrap.min.css" );?>" />
-    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/font/fontawesome/css/all.min.css" );?>" />
-    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/sweetalert2.min.css" );?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/bootstrap.min.css?v=" . get_version() );?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/font/fontawesome/css/all.min.css?v=" . get_version() );?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/sweetalert2.min.css?v=" . get_version() );?>" />
 
     <?php if( $page_name === "booking_index" ) : ?>
-        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/mds.bs.datetimepicker.style.css" );?>" />
-        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/mdtimepicker.css" );?>" />
+        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/mds.bs.datetimepicker.style.css?v=" . get_version() );?>" />
+        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/mdtimepicker.css?v=" . get_version() );?>" />
     <?php endif; ?>
 
-    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/modal-alertify-calendar.css" );?>" />
-    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/dashboard.css" );?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/modal-alertify-calendar.css?v=" . get_version() );?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/dashboard.css?v=" . get_version() );?>" />
 
-    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/global/responsive.css" );?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/global/responsive.css?v=" . get_version() );?>" />
 
     <script type="text/javascript">
         const base_url = "<?= base_url();?>";

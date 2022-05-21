@@ -18,7 +18,7 @@
                     <label class="col-form-label">
                         شماره همراه
                     </label>
-                    <input id="mobile" type="text" class="form-control" placeholder="تلفن همراه خود را وارد کنید."/>
+                    <input id="mobile" type="text" inputmode="numeric" class="form-control" placeholder="تلفن همراه خود را وارد کنید."/>
                 </section>
 
                 <section class="col-12 mb-5">

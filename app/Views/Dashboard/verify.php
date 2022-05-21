@@ -16,7 +16,7 @@
                 
                 <section class="col-12 mb-4">
                     <label class="col-form-label">کد تایید</label>
-                    <input id="verify_code" type="text" data-type="number" class="form-control dir-ltr" placeholder="******"/>
+                    <input id="verify_code" type="text" inputmode="numeric" data-type="number" class="form-control dir-ltr" placeholder="******"/>
                 </section>
 
                 <section class="col-12 col-sm-6 mb-4">

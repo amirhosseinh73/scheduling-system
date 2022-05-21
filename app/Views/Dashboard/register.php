@@ -23,7 +23,7 @@
                 </section>
                 <section class="col-12 col-sm-6 mb-4">
                     <label class="col-form-label">تلفن همراه</label>
-                    <input id="mobile" type="text" data-type="number" class="form-control dir-ltr" placeholder="09*********"/>
+                    <input id="mobile" type="text" inputmode="numeric" data-type="number" class="form-control dir-ltr" placeholder="09*********"/>
                 </section>
 
                 <section class="col-12 col-sm-6 mb-4">

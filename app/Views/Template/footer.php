@@ -88,25 +88,28 @@
         </div>
     </footer>
     <!-- scripts -->
-    <script type="text/javascript" src="<?= base_url( "/assets/js/lib/bootstrap.bundle.min.js" )?>"></script>
-    <script type="text/javascript" src="<?= base_url( "/assets/js/lib/swiper-bundle.min.js" )?>"></script>
-    <script type="text/javascript" src="<?= base_url( "/assets/js/lib/sweetalert2.min.js" )?>"></script>
-    <script type="text/javascript" src="<?= base_url( "/assets/js/global/config.js" )?>"></script>
-    <script type="text/javascript" src="<?= base_url( "/assets/js/global/helper.js" )?>"></script>
-    <script type="text/javascript" src="<?= base_url( "/assets/js/global/Alert.js" )?>"></script>
+    <script type="text/javascript" src="<?= base_url( "/assets/js/lib/bootstrap.bundle.min.js?v=" . get_version() )?>"></script>
+    <script type="text/javascript" src="<?= base_url( "/assets/js/lib/swiper-bundle.min.js?v=" . get_version() )?>"></script>
+    <script type="text/javascript" src="<?= base_url( "/assets/js/lib/sweetalert2.min.js?v=" . get_version() )?>"></script>
+    <script type="text/javascript" src="<?= base_url( "/assets/js/global/config.js?v=" . get_version() )?>"></script>
+    <script type="text/javascript" src="<?= base_url( "/assets/js/global/helper.js?v=" . get_version() )?>"></script>
+    <script type="text/javascript" src="<?= base_url( "/assets/js/global/Alert.js?v=" . get_version() )?>"></script>
 
     <?php if ( $page_name === "index" ) : ?>
-        <script type="text/javascript" src="<?= base_url( "/assets/js/page/index.js" )?>"></script>
+        <script type="text/javascript" src="<?= base_url( "/assets/js/page/index.js?v=" . get_version() )?>"></script>
     <?php elseif( $page_name === "register" ) : ?>
-        <script type="text/javascript" src="<?= base_url( "/assets/js/page/Register.js" )?>"></script>
+        <script type="text/javascript" src="<?= base_url( "/assets/js/page/Register.js?v=" . get_version() )?>"></script>
     <?php elseif( $page_name === "login" ) : ?>
-        <script type="text/javascript" src="<?= base_url( "/assets/js/page/Login.js" )?>"></script>
+        <script type="text/javascript" src="<?= base_url( "/assets/js/page/Login.js?v=" . get_version() )?>"></script>
+    <?php elseif( $page_name === "page" ) : ?>
+        <!-- <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script> -->
+        <script type="text/javascript" src="<?= base_url( "/assets/js/page/direction.js?v=" . get_version() )?>"></script>
     <?php endif; ?>
     <?php if( $page_name_2 === "gallery" ) : ?>
-        <script type="text/javascript" src="<?= base_url( "/assets/js/gallery/jquery-1.11.3.min.js" )?>"></script>
-        <script type="text/javascript" src="<?= base_url( "/assets/js/gallery/tether.min.js" )?>"></script>
-        <script type="text/javascript" src="<?= base_url( "/assets/js/gallery/hero-slider-main.js" )?>"></script>
-        <script type="text/javascript" src="<?= base_url( "/assets/js/gallery/jquery.magnific-popup.min.js" )?>"></script>
+        <script type="text/javascript" src="<?= base_url( "/assets/js/gallery/jquery-1.11.3.min.js?v=" . get_version() )?>"></script>
+        <script type="text/javascript" src="<?= base_url( "/assets/js/gallery/tether.min.js?v=" . get_version() )?>"></script>
+        <script type="text/javascript" src="<?= base_url( "/assets/js/gallery/hero-slider-main.js?v=" . get_version() )?>"></script>
+        <script type="text/javascript" src="<?= base_url( "/assets/js/gallery/jquery.magnific-popup.min.js?v=" . get_version() )?>"></script>
 
         <script>
 

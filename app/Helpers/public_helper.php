@@ -343,3 +343,8 @@ function get_user_info() {
 
     return $user_info;
 }
+
+
+function get_version() {
+    return "1.0.1";
+}

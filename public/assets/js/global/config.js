@@ -55,3 +55,7 @@ const data_store = {
     question_answer_list_1: new Array,
     question_answer_list_2: new Array,
 };
+
+const match_media_1 = window.matchMedia( "(orientation: landscape) and (min-height: 576px)" );
+const match_media_2 = window.matchMedia( "(orientation: landscape) and (min-width: 992px)" );
+const is_phone = ! ( ( ( match_media_1.matches ) || ( match_media_2.matches ) ) );

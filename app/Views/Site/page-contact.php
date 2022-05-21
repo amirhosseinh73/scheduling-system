@@ -42,7 +42,8 @@
                                 <ul class="addresses-list">
                                     <li>
                                         <i class="fas fa-map-marker-alt"></i>
-                                        <a target="_blank" href="https://maps.google.com/?q=<?= $metadata->address ?>"><?= $metadata->address ?></a>
+                                        <a id="open_map" data-lt-ln="32.63288596742476,51.36951581778715" data-address="https://maps.google.com/?q=<?= $metadata->address ?>"><?= $metadata->address ?></a>
+                                        <!-- <a target="_blank" href="https://maps.google.com/?q=<?= $metadata->address ?>"><?= $metadata->address ?></a> -->
                                     </li>
                                     <li>
                                         <i class="fas fa-mobile"></i>

@@ -6,28 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
     <title><?= $title_head ?> | <?= $description_head ?></title>
 
-    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/bootstrap.min.css" );?>" />
-    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/swiper-bundle.min.css" );?>" />
-    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/font/fontawesome/css/all.min.css" );?>" />
-    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/sweetalert2.min.css" );?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/bootstrap.min.css?v=" . get_version() );?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/swiper-bundle.min.css?v=" . get_version() );?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/font/fontawesome/css/all.min.css?v=" . get_version() );?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/sweetalert2.min.css?v=" . get_version() );?>" />
     <?php if ( $page_name === "index" ) : ?>
-        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/index.css" );?>" />
-        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/blog.css" );?>" />
+        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/index.css?v=" . get_version() );?>" />
+        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/blog.css?v=" . get_version() );?>" />
     <?php elseif ( $page_name === "blog" || $page_name === "page" ) : ?>
 
         <?php if ( $page_name_2 === "gallery" ) : ?>
-            <link rel="stylesheet" href="<?= base_url( "/assets/css/gallery/hero-slider-style.css" )?>">                              
-            <link rel="stylesheet" href="<?= base_url( "/assets/css/gallery/magnific-popup.css" )?>">                                 
-            <link rel="stylesheet" href="<?= base_url( "/assets/css/gallery/templatemo-style.css" )?>">                                   
+            <link rel="stylesheet" href="<?= base_url( "/assets/css/gallery/hero-slider-style.css?v=" . get_version() )?>">                              
+            <link rel="stylesheet" href="<?= base_url( "/assets/css/gallery/magnific-popup.css?v=" . get_version() )?>">                                 
+            <link rel="stylesheet" href="<?= base_url( "/assets/css/gallery/templatemo-style.css?v=" . get_version() )?>">                                   
         <?php endif;?>
 
-        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/single.css" );?>" />
-        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/blog.css" );?>" />
+        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/single.css?v=" . get_version() );?>" />
+        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/blog.css?v=" . get_version() );?>" />
     <?php elseif ( $page_name === "register" || $page_name === "login" ) : ?>
-        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/login.css" );?>" />
+        <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/login.css?v=" . get_version() );?>" />
     <?php endif; ?>
 
-    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/global/responsive.css" );?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/global/responsive.css?v=" . get_version() );?>" />
 
     <script type="text/javascript">
         const base_url = "<?= base_url();?>";

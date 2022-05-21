@@ -17,7 +17,7 @@
                     <label class="col-form-label">
                         نام کاربری
                     </label>
-                    <input id="username" type="text" class="form-control" placeholder="تلفن همراه خود را وارد کنید."/>
+                    <input id="username" type="text" inputmode="numeric" class="form-control" placeholder="تلفن همراه خود را وارد کنید."/>
                 </section>
                 <section class="col-12 mb-4">
                     <label class="col-form-label">
