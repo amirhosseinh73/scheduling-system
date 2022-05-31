@@ -42,11 +42,11 @@
 
 .footer-large-button {
 	color: var(--color-8);
-	border-radius: 0 25px;
-	-webkit-border-radius: 0 25px;
-	-moz-border-radius: 0 25px;
-	-ms-border-radius: 0 25px;
-	-o-border-radius: 0 25px;
+	border-radius: 0 25px 0 25px;
+	-webkit-border-radius: 0 25px 0 25px;
+	-moz-border-radius: 0 25px 0 25px;
+	-ms-border-radius: 0 25px 0 25px;
+	-o-border-radius: 0 25px 0 25px;
 	overflow: hidden;
 	width: 30rem;
 	justify-content: center;
