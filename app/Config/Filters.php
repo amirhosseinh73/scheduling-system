@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Filters\IsAdmin;
 use App\Filters\IsFromRequest;
 use App\Filters\IsLogin;
 use App\Filters\IsNotLogin;
@@ -29,6 +30,7 @@ class Filters extends BaseConfig
         'IsLogin'       => IsLogin::class,
         'IsNotLogin'    => IsNotLogin::class,
         'IsFromRequest' => IsFromRequest::class,
+        'IsAdmin'       => IsAdmin::class,
     ];
 
     /**

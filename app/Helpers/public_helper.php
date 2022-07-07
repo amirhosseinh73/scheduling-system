@@ -23,6 +23,9 @@ defined( "IMAGE_DEFAULT" )          || define( "IMAGE_DEFAULT"          , "/uplo
 defined( "IMAGE_DEFAULT_MALE" )     || define( "IMAGE_DEFAULT_MALE"     , "/uploads/default-male.jpg" );
 defined( "IMAGE_DEFAULT_FEMALE" )   || define( "IMAGE_DEFAULT_FEMALE"   , "/uploads/default-female.jpg" );
 
+defined( "QUERY_LIMIT" ) || define( "QUERY_LIMIT", 5 );
+defined( "QUERY_OFFSET" ) || define( "QUERY_OFFSET", 0 );
+
 global $classes;
 //functions
 /**
@@ -40,6 +43,17 @@ function render_page( string $page, array $data, string $header = NULL, string $
 
     return $header . $content . $footer;
 }
+
+function render_page_admin( string $page, array $data, string $header = NULL, string $footer = NULL ) {
+    if( $header ) $header = view("Admin/{$header}", $data);
+
+    if( $footer ) $footer = view("Admin/{$footer}", $data);
+
+    $content = view("Admin/Pages/{$page}", $data);
+
+    return $header . $content . $footer;
+}
+
 
 function str_split_unicode($str, $length = 0) {
     if ($length > 0) {
@@ -95,7 +109,7 @@ function is_json($string) {
 
 /**
  * Summary.
- * is item declared or not
+ * This function returns true if the variable exists and is not NULL, otherwise it returns false.
  * @author amirhosein hasani
  * @param mixed $item
  * @return bool

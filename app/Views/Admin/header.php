@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $head ?></title>
+    <title><?= $title_head ?> | <?= $description_head ?></title>
 
     <!-- Theme assets -->
     <link href="<?= base_url() ?>/assets/template/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -44,7 +44,7 @@
                             <div class="dropdown d-inline-block">
                                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img class="rounded-circle header-profile-user" src="<?= base_url( IMAGE_DIR_PROFILE . $user_info->image ) ?>" alt="Header Avatar">
-                                    <span class="d-none d-xl-inline-block ml-1"><?= $user_info->name?></span>
+                                    <span class="d-none d-xl-inline-block ml-1"><?= $user_info->firstname?></span>
                                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right">
@@ -111,7 +111,7 @@
 
                         <div class="mt-3">
 
-                            <a href="#" class="text-dark font-weight-medium font-size-16 line-height-h"><?= $user_info->name ?></a>
+                            <a href="#" class="text-dark font-weight-medium font-size-16 line-height-h"><?= $user_info->firstname ?></a>
                             <p class="text-body mt-1 mb-0 font-size-13"> <?= $user_info->email ?> </p>
 
                         </div>
@@ -137,11 +137,11 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="page-title mb-0 font-size-18"><?= $page_title?></h4>
+                            <h4 class="page-title mb-0 font-size-18"><?= $title_head?></h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item active"><?= $page_description?></li>
+                                    <li class="breadcrumb-item active"><?= $description_head?></li>
                                 </ol>
                             </div>
 
