@@ -105,7 +105,7 @@
         <!-- <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script> -->
         <script type="text/javascript" src="<?= base_url( "/assets/js/page/direction.js?v=" . get_version() )?>"></script>
     <?php endif; ?>
-    <?php if( $page_name_2 === "gallery" ) : ?>
+    <?php if( isset( $page_name_2 ) && $page_name_2 === "gallery" ) : ?>
         <script type="text/javascript" src="<?= base_url( "/assets/js/gallery/jquery-1.11.3.min.js?v=" . get_version() )?>"></script>
         <script type="text/javascript" src="<?= base_url( "/assets/js/gallery/tether.min.js?v=" . get_version() )?>"></script>
         <script type="text/javascript" src="<?= base_url( "/assets/js/gallery/hero-slider-main.js?v=" . get_version() )?>"></script>

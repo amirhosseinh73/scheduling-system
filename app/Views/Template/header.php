@@ -58,7 +58,7 @@
                 <li>
                     <a href="<?= base_url( "/page/contact-us" )?>">تماس با ما</a>
                 </li>
-                <?php if( exists( $user_info ) ) : ?>
+                <?php if( isset( $user_info ) && ! empty( $user_info ) ) : ?>
                     <li class="btn-outline-6 me-auto">
                         <a href="<?= base_url( "/dashboard" )?>">صفحه شخصی</a>
                     </li>

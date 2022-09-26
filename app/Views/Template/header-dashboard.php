@@ -228,5 +228,12 @@
                             <span>خروج</span>
                         </a>
                     </li>
+
+                    <li>
+                        <a href="<?= base_url( "/admin/dashboard" )?>">
+                            <i class="far fa-dashboard"></i>
+                            <span>مدیریت ادمین</span>
+                        </a>
+                    </li>
                 </ul>
             </aside>

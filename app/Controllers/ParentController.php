@@ -116,6 +116,18 @@ class ParentController extends BaseController {
         return render_page( "Dashboard/$page", $data, $header, $footer );
     }
 
+    function render_page_admin(string $page, array $data, string $header = "header", string $footer = "footer") {
+        global $classes;
+        $classes = [
+            $data[ "page_name" ],
+            "$page-php"
+        ];
+
+        $data[ "classes" ] = implode( " ", $classes );
+
+        return render_page( "Admin/$page", $data, $header, $footer );
+    }
+
     protected function checkImageReturn( $address, $image ) {
         return ( ( exists( $image ) && file_exists( FCPATH . $address . $image ) ) ? base_url( $address ) . "/" . $image  : IMAGE_DEFAULT );
     }

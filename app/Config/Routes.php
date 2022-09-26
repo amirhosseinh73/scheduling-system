@@ -105,6 +105,10 @@ $routes->group( "dashboard" , [ "filter" => "IsLogin" ], function( $routes ) {
     } );
 } );
 
+$routes->group( "admin", function( $routes ) {
+    $routes->get( "dashboard", "Admin\DashboardController::index" );
+} );
+
 //callback payment /Dashboard\reserve/callback
 //separate from group because login may be expired after payment
 $routes->get( 'callback-reservation' , 'Dashboard\ReservationController::callbackPayment' );

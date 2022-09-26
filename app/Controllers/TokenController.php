@@ -98,6 +98,7 @@ class TokenController extends ParentController
 
             return (object)$data_return;
         } catch (\Exception $exception) {
+            _dump($exception);
             logFile([$exception], "log/except_login_" . time() . ".json");
             return FALSE;
         }
@@ -114,7 +115,7 @@ class TokenController extends ParentController
     {
         $token_model = new TokenModel();
 
-        if ( ! exists( $_COOKIE[$session_cookie_name] ) ) return FALSE;
+        if ( ! isset( $_COOKIE[$session_cookie_name] ) ) return FALSE;
 
         $cookie_value = $_COOKIE[$session_cookie_name];
         $get_token = $token_model
@@ -166,7 +167,7 @@ class TokenController extends ParentController
      */
     public static function Unset( string $session_cookie_name )
     {
-        if ( ! exists( $_COOKIE[$session_cookie_name] ) ) return FALSE;
+        if ( ! isset( $_COOKIE[$session_cookie_name] ) ) return FALSE;
         $token_model = new TokenModel();
 
         $cookie_value = $_COOKIE[$session_cookie_name];
