@@ -71,6 +71,8 @@ class LoginController extends ParentController {
 
         $user_info = handle_user_info( $user_info );
 
+        if ( $user_info->is_admin ) Alert::Success( 200, $user_info, base_url( "/dashboard" ) );
+
         return Alert::Success( 200, $user_info, base_url( "/dashboard" ) );
     }
 

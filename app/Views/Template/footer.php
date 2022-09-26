@@ -95,13 +95,13 @@
     <script type="text/javascript" src="<?= base_url( "/assets/js/global/helper.js?v=" . get_version() )?>"></script>
     <script type="text/javascript" src="<?= base_url( "/assets/js/global/Alert.js?v=" . get_version() )?>"></script>
 
-    <?php if ( $page_name === "index" ) : ?>
+    <?php if ( isset( $page_name ) && $page_name === "index" ) : ?>
         <script type="text/javascript" src="<?= base_url( "/assets/js/page/index.js?v=" . get_version() )?>"></script>
-    <?php elseif( $page_name === "register" ) : ?>
+    <?php elseif( isset( $page_name ) && $page_name === "register" ) : ?>
         <script type="text/javascript" src="<?= base_url( "/assets/js/page/Register.js?v=" . get_version() )?>"></script>
-    <?php elseif( $page_name === "login" ) : ?>
+    <?php elseif( isset( $page_name ) && $page_name === "login" ) : ?>
         <script type="text/javascript" src="<?= base_url( "/assets/js/page/Login.js?v=" . get_version() )?>"></script>
-    <?php elseif( $page_name === "page" ) : ?>
+    <?php elseif( isset( $page_name ) && $page_name === "page" ) : ?>
         <!-- <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script> -->
         <script type="text/javascript" src="<?= base_url( "/assets/js/page/direction.js?v=" . get_version() )?>"></script>
     <?php endif; ?>

@@ -72,7 +72,7 @@ class TokenController extends ParentController
         $select_user = $user_model
             ->where( "username", $username )
             ->CustomFirst();
-
+    
         if ( ! exists( $select_user ) ) return FALSE;
 
         $data_update_user = array(
@@ -91,7 +91,7 @@ class TokenController extends ParentController
             $token_model->insert( $data_insert_token );
             $user_model->update( $select_user->ID, $data_update_user );
 
-            self::Unset( LOGIN_TOKEN_COOKIE_NAME );
+            self::Unset( $session_cookie_name );
             setcookie( $session_cookie_name, $create_token->token, time() + $time, '/' );
 
             $data_return = array_merge( (array)$select_user, $data_update_user );
@@ -122,14 +122,12 @@ class TokenController extends ParentController
             ->where( "token", $cookie_value)
             ->where( "expire_at >", date("Y-m-d H:i:s", time() ) )
             ->first();
-        if ( exists( $get_token ) ) {
-            //return token
-            return $get_token->token;
-        } else {
-            //has cookie and expired session date
-            self::Unset( $session_cookie_name );
-        }
-
+        
+        //return token
+        if ( exists( $get_token ) ) return $get_token->token;
+        
+        //has cookie and expired session date
+        self::Unset( $session_cookie_name );
         return FALSE;
     }
 

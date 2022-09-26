@@ -3,23 +3,19 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\ParentController;
+use App\Libraries\TextLibrary;
 
 class DashboardController extends ParentController {
     public function index() {
-        $user_info = $this->CheckLogin();
+        $user_info = get_user_info();
 
-        $data = array(
-            "head" => "Admin Dashboard",
-            "css"  => array(
-                "dashboard"
-            ),
-            "js"   => array(
-                "dashboard"
-            ),
-            "user_info" => $user_info,
-            "page_title" => "داشبورد",
-            "page_description" => "به داشبورد بوک مو خوش آمدید",
+        $data_page = array(
+            "title_head"        => TextLibrary::title( "index" ),
+            "description_head"  => TextLibrary::description( "company_name" ),
+            "page_name"         => "dashboard",
+            "user_info"         => $user_info,
         );
-        return render_page_admin( "page/dashboard", $data );
+
+        return render_page_admin( "dashboard", $data_page, "header", "footer" );
     }
 }

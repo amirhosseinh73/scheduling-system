@@ -10,12 +10,12 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/swiper-bundle.min.css?v=" . get_version() );?>" />
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/font/fontawesome/css/all.min.css?v=" . get_version() );?>" />
     <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/lib/sweetalert2.min.css?v=" . get_version() );?>" />
-    <?php if ( $page_name === "index" ) : ?>
+    <?php if ( isset( $page_name ) && $page_name === "index" ) : ?>
         <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/index.css?v=" . get_version() );?>" />
         <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/blog.css?v=" . get_version() );?>" />
-    <?php elseif ( $page_name === "blog" || $page_name === "page" ) : ?>
+    <?php elseif ( isset( $page_name ) && $page_name === "blog" || $page_name === "page" ) : ?>
 
-        <?php if ( $page_name_2 === "gallery" ) : ?>
+        <?php if ( isset( $page_name_2 ) && $page_name_2 === "gallery" ) : ?>
             <link rel="stylesheet" href="<?= base_url( "/assets/css/gallery/hero-slider-style.css?v=" . get_version() )?>">                              
             <link rel="stylesheet" href="<?= base_url( "/assets/css/gallery/magnific-popup.css?v=" . get_version() )?>">                                 
             <link rel="stylesheet" href="<?= base_url( "/assets/css/gallery/templatemo-style.css?v=" . get_version() )?>">                                   
@@ -23,7 +23,7 @@
 
         <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/single.css?v=" . get_version() );?>" />
         <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/blog.css?v=" . get_version() );?>" />
-    <?php elseif ( $page_name === "register" || $page_name === "login" ) : ?>
+    <?php elseif ( isset( $page_name ) && $page_name === "register" || $page_name === "login" ) : ?>
         <link rel="stylesheet" type="text/css" href="<?= base_url( "/assets/css/page/login.css?v=" . get_version() );?>" />
     <?php endif; ?>
 

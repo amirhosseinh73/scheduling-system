@@ -105,7 +105,7 @@ $routes->group( "dashboard" , [ "filter" => "IsLogin" ], function( $routes ) {
     } );
 } );
 
-$routes->group( "admin", function( $routes ) {
+$routes->group( "admin", [ "filter" => "IsAdmin" ], function( $routes ) {
     $routes->get( "dashboard", "Admin\DashboardController::index" );
 } );
 
